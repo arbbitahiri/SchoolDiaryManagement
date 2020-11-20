@@ -1,0 +1,2 @@
+# SchoolDiaryManagement
+Menaxhimi i Ditarit
