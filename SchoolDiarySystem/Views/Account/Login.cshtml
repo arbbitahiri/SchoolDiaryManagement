@@ -1,0 +1,89 @@
+﻿@{ Layout = null; }
+@using SchoolDiarySystem.Models
+@model Users
+@{
+    ViewBag.Title = "Log in";
+}
+
+<!doctype html>
+<html class="no-js" lang="">
+
+
+<!-- Mirrored from www.radiustheme.com/demo/html/psdboss/akkhor/akkhor/login.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 20 Nov 2020 10:10:02 GMT -->
+<!-- Added by HTTrack -->
+<meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>School Diary | Login</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="~/Content/img/favicon.png">
+    <!-- Normalize CSS -->
+    <link rel="stylesheet" href="~/Content/css/normalize.css">
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="~/Content/css/main.css">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="~/Content/css/bootstrap.min.css">
+    <!-- Fontawesome CSS -->
+    <link rel="stylesheet" href="~/Content/css/all.min.css">
+    <!-- Flaticon CSS -->
+    <link rel="stylesheet" href="~/Content/fonts/flaticon.css">
+    <!-- Animate CSS -->
+    <link rel="stylesheet" href="~/Content/css/animate.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="~/Content/style.css">
+    <!-- Modernize js -->
+    <script src="~/Content/js/modernizr-3.6.0.min.js"></script>
+</head>
+
+<body>
+    <!-- Preloader Start Here -->
+    <div id="preloader"></div>
+    <!-- Preloader End Here -->
+    <!-- Login Page Start Here -->
+    <div class="login-page-wrap">
+        <div class="login-page-content">
+            <div class="login-box">
+                @using (Html.BeginForm("Login", "Account", FormMethod.Post))
+                {
+                    <div class="item-logo">
+                        <img src="~/Content/img/logo2.png" alt="logo">
+                    </div>
+                    <form class="login-form">
+                        <div class="form-group">
+                            <label>Username</label>
+                            @Html.TextBoxFor(m => m.Username, new { @class = "form-control", placeholder = "Enter Username...", id = "username" })
+                            @Html.ValidationMessageFor(m => m.Username, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group">
+                            <label>Password</label>
+                            @Html.PasswordFor(m => m.Password, new { @class = "form-control", placeholder = "Password", id = "password" })
+                            @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                        </div>
+                        <input type="submit" value="Login" class="btn btn-primary btn-user btn-block" style="font-size: large" />
+                    </form>
+                }
+            </div>
+        </div>
+    </div>
+    <!-- Login Page End Here -->
+    <!-- jquery-->
+    <script src="~/Content/js/jquery-3.3.1.min.js"></script>
+    <!-- Plugins js -->
+    <script src="~/Content/js/plugins.js"></script>
+    <!-- Popper js -->
+    <script src="~/Content/js/popper.min.js"></script>
+    <!-- Bootstrap js -->
+    <script src="~/Content/js/bootstrap.min.js"></script>
+    <!-- Scroll Up Js -->
+    <script src="~/Content/js/jquery.scrollUp.min.js"></script>
+    <!-- Custom Js -->
+    <script src="~/Content/js/main.js"></script>
+
+</body>
+
+
+<!-- Mirrored from www.radiustheme.com/demo/html/psdboss/akkhor/akkhor/login.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 20 Nov 2020 10:10:02 GMT -->
+</html>

@@ -18,5 +18,13 @@ namespace SchoolDiarySystem.Models
         public bool IsPasswordChanged { get; set; }
         public int TeacherID { get; set; }
         public int ParentID { get; set; }
+
+        public string FullName
+        {
+            get
+            {
+                return FirstName + " " + LastName;
+            }
+        }
     }
 }

@@ -7,6 +7,7 @@ namespace SchoolDiarySystem.Models
         public int StudentID { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
+        public string Gender { get; set; }
         public DateTime DayofBirth { get; set; }
         public int ClassID { get; set; }
         public int ParentID { get; set; }
