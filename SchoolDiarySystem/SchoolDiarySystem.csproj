@@ -125,6 +125,7 @@
     <Compile Include="Controllers\ParentController.cs" />
     <Compile Include="Controllers\RoomController.cs" />
     <Compile Include="Controllers\StudentController.cs" />
+    <Compile Include="Controllers\SubjectController.cs" />
     <Compile Include="Controllers\TeacherController.cs" />
     <Compile Include="DAL\AbsencesDAL.cs" />
     <Compile Include="DAL\ClassDAL.cs" />
@@ -304,6 +305,11 @@
     <Content Include="Views\Room\Update.cshtml" />
     <Content Include="Views\Room\Details.cshtml" />
     <Content Include="Views\Room\Delete.cshtml" />
+    <Content Include="Views\Subject\Index.cshtml" />
+    <Content Include="Views\Subject\Create.cshtml" />
+    <Content Include="Views\Subject\Update.cshtml" />
+    <Content Include="Views\Subject\Details.cshtml" />
+    <Content Include="Views\Subject\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

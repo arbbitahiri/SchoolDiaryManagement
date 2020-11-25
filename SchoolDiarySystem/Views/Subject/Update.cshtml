@@ -1,0 +1,347 @@
+﻿@{
+    Layout = null;
+}
+@using SchoolDiarySystem.Models
+@model Subjects
+
+<!doctype html>
+<html class="no-js" lang="">
+
+
+<!-- Mirrored from www.radiustheme.com/demo/html/psdboss/akkhor/akkhor/add-teacher.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 20 Nov 2020 10:10:09 GMT -->
+<!-- Added by HTTrack -->
+<meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>School Diary Management | Update Subject</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="~/Content/img/favicon.png">
+    <!-- Normalize CSS -->
+    <link rel="stylesheet" href="~/Content/css/normalize.css">
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="~/Content/css/main.css">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="~/Content/css/bootstrap.min.css">
+    <!-- Fontawesome CSS -->
+    <link rel="stylesheet" href="~/Content/css/all.min.css">
+    <!-- Flaticon CSS -->
+    <link rel="stylesheet" href="~/Content/fonts/flaticon.css">
+    <!-- Animate CSS -->
+    <link rel="stylesheet" href="~/Content/css/animate.min.css">
+    <!-- Select 2 CSS -->
+    <link rel="stylesheet" href="~/Content/css/select2.min.css">
+    <!-- Date Picker CSS -->
+    <link rel="stylesheet" href="~/Content/css/datepicker.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="~/Content/style.css">
+    <!-- Modernize js -->
+    <script src="~/Content/js/modernizr-3.6.0.min.js"></script>
+</head>
+
+<body>
+    <!-- Preloader Start Here -->
+    <div id="preloader"></div>
+    <!-- Preloader End Here -->
+    <div id="wrapper" class="wrapper bg-ash">
+        <!-- Header Menu Area Start Here -->
+        <div class="navbar navbar-expand-md header-menu-one bg-light">
+            <div class="nav-bar-header-one">
+                <div class="header-logo">
+                    <a href="index-2.html">
+                        <img src="~/Content/img/logo.png" alt="logo">
+                    </a>
+                </div>
+                <div class="toggle-button sidebar-toggle">
+                    <button type="button" class="item-link">
+                        <span class="btn-icon-wrap">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </span>
+                    </button>
+                </div>
+            </div>
+            <div class="d-md-none mobile-nav-bar">
+                <button class="navbar-toggler pulse-animation" type="button" data-toggle="collapse" data-target="#mobile-navbar" aria-expanded="false">
+                    <i class="far fa-arrow-alt-circle-down"></i>
+                </button>
+                <button type="button" class="navbar-toggler sidebar-toggle-mobile">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+            <div class="header-main-menu collapse navbar-collapse" id="mobile-navbar">
+                <ul class="navbar-nav">
+                    <li class="navbar-item header-search-bar">
+                        <div class="input-group stylish-input-group">
+                        </div>
+                    </li>
+                </ul>
+                <ul class="navbar-nav">
+                    <li class="navbar-item dropdown header-admin">
+                        <a class="navbar-nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown"
+                           aria-expanded="false">
+                            <div class="admin-title">
+                                @Html.Label(UserSession.GetUsers.FullName, new { @class = "item-title" })
+                                <span>Admin</span>
+                            </div>
+                            <div class="admin-img">
+                                <img src="~/Content/img/figure/admin.jpg" alt="Admin">
+                            </div>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right">
+                            <div class="item-header" style="font-size: large">
+                                @Html.Label(UserSession.GetUsers.FullName, new { @class = "item-title" })
+                            </div>
+                            <div class="item-content">
+                                <ul class="settings-list">
+                                    <li><a href="#"><i class="flaticon-user"></i>My Profile</a></li>
+                                    <li><a href="@Url.Action("Logout", "Account")"><i class="flaticon-turn-off"></i>Log Out</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="navbar-item dropdown header-language">
+                        <a class="navbar-nav-link dropdown-toggle" href="#" role="button"
+                           data-toggle="dropdown" aria-expanded="false"><i class="fas fa-globe-americas"></i>EN</a>
+                        <div class="dropdown-menu dropdown-menu-right">
+                            <a class="dropdown-item" href="#">English</a>
+                            <a class="dropdown-item" href="#">Albanian</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <!-- Header Menu Area End Here -->
+        <!-- Page Area Start Here -->
+        <div class="dashboard-page-one">
+            <!-- Sidebar Area Start Here -->
+            <div class="sidebar-main sidebar-menu-one sidebar-expand-md sidebar-color">
+                <div class="mobile-sidebar-header d-md-none">
+                    <div class="header-logo">
+                        <a href="index-2.html"><img src="~/Content/img/logo1.png" alt="logo"></a>
+                    </div>
+                </div>
+                <div class="sidebar-menu-content">
+                    <ul class="nav nav-sidebar-menu sidebar-toggle-view">
+                        <li class="nav-item">
+                            <a href="@Url.Action("Index", "Admin")" class="nav-link"><i class="flaticon-dashboard"></i><span>Dashboard</span></a>
+                        </li>
+                        <li class="nav-item sidebar-nav-item">
+                            <a href="#" class="nav-link"><i class="flaticon-classmates"></i><span>Students</span></a>
+                            <ul class="nav sub-group-menu">
+                                <li class="nav-item">
+                                    <a href="@Url.Action("Index", "Student")" class="nav-link">
+                                        <i class="fas fa-angle-right"></i>All Students
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="@Url.Action("Create", "Student")" class="nav-link">
+                                        <i class="fas fa-angle-right"></i>Add Student
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item sidebar-nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="flaticon-multiple-users-silhouette"></i><span>Teachers</span>
+                            </a>
+                            <ul class="nav sub-group-menu">
+                                <li class="nav-item">
+                                    <a href="@Url.Action("Index", "Teacher")" class="nav-link">
+                                        <i class="fas fa-angle-right"></i>All Teachers
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="@Url.Action("Create", "Teacher")" class="nav-link">
+                                        <i class="fas fa-angle-right"></i>Add Teacher
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item sidebar-nav-item">
+                            <a href="#" class="nav-link"><i class="flaticon-couple"></i><span>Parents</span></a>
+                            <ul class="nav sub-group-menu">
+                                <li class="nav-item">
+                                    <a href="@Url.Action("Index", "Parent")" class="nav-link">
+                                        <i class="fas fa-angle-right"></i>All Parents
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="@Url.Action("Create", "Parent")" class="nav-link">
+                                        <i class="fas fa-angle-right"></i>Add Parent
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item sidebar-nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="flaticon-maths-class-materials-cross-of-a-pencil-and-a-ruler"></i><span>Class</span>
+                            </a>
+                            <ul class="nav sub-group-menu">
+                                <li class="nav-item">
+                                    <a href="@Url.Action("Index", "Class")" class="nav-link">
+                                        <i class="fas fa-angle-right"></i>All Classes
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="@Url.Action("Create", "Class")" class="nav-link">
+                                        <i class="fas fa-angle-right"></i>Add New Class
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item sidebar-nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="flaticon-open-book"></i><span>Subject</span>
+                            </a>
+                            <ul class="nav sub-group-menu">
+                                <li class="nav-item">
+                                    <a href="@Url.Action("Index", "Subject")" class="nav-link">
+                                        <i class="fas fa-angle-right"></i>All Subjects
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="@Url.Action("Create", "Subject")" class="nav-link">
+                                        <i class="fas fa-angle-right"></i>Add New Subject
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item sidebar-nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="flaticon-calendar"></i><span>Class Schedule</span>
+                            </a>
+                            <ul class="nav sub-group-menu">
+                                <li class="nav-item">
+                                    <a href="@Url.Action("Index", "Schedule")" class="nav-link">
+                                        <i class="fas fa-angle-right"></i>All Schedule
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="@Url.Action("Create", "Schedule")" class="nav-link">
+                                        <i class="fas fa-angle-right"></i>Add New Schedule
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item sidebar-nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="flaticon-bed"></i><span>Room</span>
+                            </a>
+                            <ul class="nav sub-group-menu">
+                                <li class="nav-item">
+                                    <a href="@Url.Action("Index", "Room")" class="nav-link">
+                                        <i class="fas fa-angle-right"></i>All Rooms
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="@Url.Action("Create", "Room")" class="nav-link">
+                                        <i class="fas fa-angle-right"></i>Add New Room
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Sidebar Area End Here -->
+            <div class="dashboard-content-one">
+                <!-- Breadcubs Area Start Here -->
+                <div class="breadcrumbs-area">
+                    <h3>Subject</h3>
+                    <ul>
+                        <li>
+                            <a href="index-2.html">Home</a>
+                        </li>
+                        <li>Add New Subject</li>
+                    </ul>
+                </div>
+                <!-- Breadcubs Area End Here -->
+                <!-- Add New Teacher Area Start Here -->
+                <div class="card height-auto">
+                    <div class="card-body">
+                        <div class="heading-layout1">
+                            <div class="item-title">
+                                <h3>Add New Subject</h3>
+                            </div>
+                        </div>
+                        @using (Html.BeginForm("Update", "Subject", FormMethod.Post))
+                        {
+                            <form class="new-added-form">
+                                <div class="row">
+                                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                    <div class="col-xl-3 col-lg-6 col-12 form-group">
+                                        <label>Subject Title *</label>
+                                        @Html.TextBoxFor(m => m.SubjectTitle, new { @class = "form-control", placeholder = "SubjectTitle...", id = "subjecttitle" })
+                                        @Html.ValidationMessageFor(m => m.SubjectTitle, "", new { @class = "text-danger" })
+                                    </div>
+                                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                    <div class="col-xl-3 col-lg-6 col-12 form-group">
+                                        <label>Book *</label>
+                                        @Html.TextBoxFor(m => m.Book, new { @class = "form-control", placeholder = "Book...", id = "book" })
+                                        @Html.ValidationMessageFor(m => m.Book, "", new { @class = "text-danger" })
+                                    </div>
+                                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                    <div class="col-xl-3 col-lg-6 col-12 form-group">
+                                        <label>Book Author *</label>
+                                        @Html.TextBoxFor(m => m.BookAuthor, new { @class = "form-control", placeholder = "BookAuthor...", id = "bookauthor" })
+                                        @Html.ValidationMessageFor(m => m.BookAuthor, "", new { @class = "text-danger" })
+                                    </div>
+                                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                    <div class="col-xl-3 col-lg-6 col-12 form-group">
+                                        <label>Teacher *</label>
+                                        @Html.DropDownList("TeacherID", null, new { @class = "select2" })
+                                        @Html.ValidationMessageFor(m => m.TeacherID, "", new { @class = "text-danger" })
+                                    </div>
+                                    <div class="col-12 form-group mg-t-8">
+                                        <input type="submit" value="Update" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark" />
+                                    </div>
+                                </div>
+                            </form>
+                        }
+                    </div>
+                </div>
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <!-- Add New Teacher Area End Here -->
+                <footer class="footer-wrap-layout1">
+                    <div class="copyright">© Copyrights <a href="#">Arbi, Erika, Vlera</a> 2020. All rights reserved.</a></div>
+                </footer>
+            </div>
+        </div>
+        <!-- Page Area End Here -->
+    </div>
+    <!-- jquery-->
+    <script src="~/Content/js/jquery-3.3.1.min.js"></script>
+    <!-- Plugins js -->
+    <script src="~/Content/js/plugins.js"></script>
+    <!-- Popper js -->
+    <script src="~/Content/js/popper.min.js"></script>
+    <!-- Bootstrap js -->
+    <script src="~/Content/js/bootstrap.min.js"></script>
+    <!-- Select 2 Js -->
+    <script src="~/Content/js/select2.min.js"></script>
+    <!-- Date Picker Js -->
+    <script src="~/Content/js/datepicker.min.js"></script>
+    <!-- Smoothscroll Js -->
+    <script src="~/Content/js/jquery.smoothscroll.min.html"></script>
+    <!-- Scroll Up Js -->
+    <script src="~/Content/js/jquery.scrollUp.min.js"></script>
+    <!-- Custom Js -->
+    <script src="~/Content/js/main.js"></script>
+
+</body>
+
+
+<!-- Mirrored from www.radiustheme.com/demo/html/psdboss/akkhor/akkhor/add-teacher.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 20 Nov 2020 10:10:09 GMT -->
+</html>
