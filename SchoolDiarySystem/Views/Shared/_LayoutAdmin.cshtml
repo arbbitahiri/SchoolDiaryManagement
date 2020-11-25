@@ -1,17 +1,16 @@
-﻿@{ Layout = null; }
-@using SchoolDiarySystem.Models
+﻿@using SchoolDiarySystem.Models
 
 <!doctype html>
 <html class="no-js" lang="">
 
 
-<!-- Mirrored from www.radiustheme.com/demo/html/psdboss/akkhor/akkhor/ by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 20 Nov 2020 10:09:34 GMT -->
+<!-- Mirrored from www.radiustheme.com/demo/html/psdboss/akkhor/akkhor/add-teacher.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 20 Nov 2020 10:10:09 GMT -->
 <!-- Added by HTTrack -->
 <meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>School Diary Management</title>
+    <title>School Diary Management | Add Teacher</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Favicon -->
@@ -26,10 +25,12 @@
     <link rel="stylesheet" href="~/Content/css/all.min.css">
     <!-- Flaticon CSS -->
     <link rel="stylesheet" href="~/Content/fonts/flaticon.css">
-    <!-- Full Calender CSS -->
-    <link rel="stylesheet" href="~/Content/css/fullcalendar.min.css">
     <!-- Animate CSS -->
     <link rel="stylesheet" href="~/Content/css/animate.min.css">
+    <!-- Select 2 CSS -->
+    <link rel="stylesheet" href="~/Content/css/select2.min.css">
+    <!-- Date Picker CSS -->
+    <link rel="stylesheet" href="~/Content/css/datepicker.min.css">
     <!-- Custom CSS -->
     <link rel="stylesheet" href="~/Content/style.css">
     <!-- Modernize js -->
@@ -243,123 +244,6 @@
                 </div>
             </div>
             <!-- Sidebar Area End Here -->
-            <div class="dashboard-content-one">
-                <!-- Breadcubs Area Start Here -->
-                <div class="breadcrumbs-area">
-                    <h3>Admin Dashboard</h3>
-                    <ul>
-                        <li>
-                            <a href="~/Content/index-2.html">Home</a>
-                        </li>
-                        <li>Admin</li>
-                    </ul>
-                </div>
-                <!-- Breadcubs Area End Here -->
-                <!-- Dashboard summery Start Here -->
-                <div class="row gutters-20">
-                    <div class="col-xl-3 col-sm-6 col-12">
-                        <div class="dashboard-summery-one mg-b-20">
-                            <div class="row align-items-center">
-                                <div class="col-6">
-                                    <div class="item-icon bg-light-green ">
-                                        <i class="flaticon-classmates text-green"></i>
-                                    </div>
-                                </div>
-                                <div class="col-6">
-                                    <div class="item-content">
-                                        <div class="item-title">Students</div>
-                                        <div class="item-number"><span class="counter" data-num="150000">1,50,000</span></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-3 col-sm-6 col-12">
-                        <div class="dashboard-summery-one mg-b-20">
-                            <div class="row align-items-center">
-                                <div class="col-6">
-                                    <div class="item-icon bg-light-blue">
-                                        <i class="flaticon-multiple-users-silhouette text-blue"></i>
-                                    </div>
-                                </div>
-                                <div class="col-6">
-                                    <div class="item-content">
-                                        <div class="item-title">Teachers</div>
-                                        <div class="item-number"><span class="counter" data-num="2250">2,250</span></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-3 col-sm-6 col-12">
-                        <div class="dashboard-summery-one mg-b-20">
-                            <div class="row align-items-center">
-                                <div class="col-6">
-                                    <div class="item-icon bg-light-yellow">
-                                        <i class="flaticon-couple text-orange"></i>
-                                    </div>
-                                </div>
-                                <div class="col-6">
-                                    <div class="item-content">
-                                        <div class="item-title">Parents</div>
-                                        <div class="item-number"><span class="counter" data-num="5690">5,690</span></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Dashboard summery End Here -->
-                <!-- Dashboard Content Start Here -->
-                <div class="row gutters-20">
-                    <div class="col-12 col-xl-6 col-3-xxxl">
-                        <div class="card dashboard-card-three pd-b-20">
-                            <div class="card-body">
-                                <div class="heading-layout1">
-                                    <div class="item-title">
-                                        <h3>Students</h3>
-                                    </div>
-                                </div>
-                                <div class="doughnut-chart-wrap">
-                                    <canvas id="student-doughnut-chart" width="100" height="300"></canvas>
-                                </div>
-                                <div class="student-report">
-                                    <div class="student-count pseudo-bg-blue">
-                                        <h4 class="item-title">Female Students</h4>
-                                        <div class="item-number">45,000</div>
-                                    </div>
-                                    <div class="student-count pseudo-bg-yellow">
-                                        <h4 class="item-title">Male Students</h4>
-                                        <div class="item-number">5,000</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-12 col-xl-6 col-4-xxxl">
-                        <div class="card dashboard-card-four pd-b-20">
-                            <div class="card-body">
-                                <div class="heading-layout1">
-                                    <div class="item-title">
-                                        <h3>Event Calender</h3>
-                                    </div>
-                                </div>
-                                <div class="calender-wrap">
-                                    <div id="fc-calender" class="fc-calender"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Social Media End Here -->
-                <!-- Footer Area Start Here -->
-                <footer class="footer-wrap-layout1">
-                    <div class="copyright">
-                        © Copyrights <a href="#">Arbi, Erika, Vlera</a> 2020. All rights reserved.</a>
-                    </div>
-                </footer>
-                <!-- Footer Area End Here -->
-            </div>
         </div>
         <!-- Page Area End Here -->
     </div>
@@ -371,23 +255,15 @@
     <script src="~/Content/js/popper.min.js"></script>
     <!-- Bootstrap js -->
     <script src="~/Content/js/bootstrap.min.js"></script>
-    <!-- Counterup Js -->
-    <script src="~/Content/js/jquery.counterup.min.js"></script>
-    <!-- Moment Js -->
-    <script src="~/Content/js/moment.min.js"></script>
-    <!-- Waypoints Js -->
-    <script src="~/Content/js/jquery.waypoints.min.js"></script>
     <!-- Scroll Up Js -->
     <script src="~/Content/js/jquery.scrollUp.min.js"></script>
-    <!-- Full Calender Js -->
-    <script src="~/Content/js/fullcalendar.min.js"></script>
-    <!-- Chart Js -->
-    <script src="~/Content/js/Chart.min.js"></script>
     <!-- Custom Js -->
     <script src="~/Content/js/main.js"></script>
+
+    @RenderSection("scripts", required: false)
 
 </body>
 
 
-<!-- Mirrored from www.radiustheme.com/demo/html/psdboss/akkhor/akkhor/ by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 20 Nov 2020 10:09:52 GMT -->
+<!-- Mirrored from www.radiustheme.com/demo/html/psdboss/akkhor/akkhor/teacher-details.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 20 Nov 2020 10:10:09 GMT -->
 </html>

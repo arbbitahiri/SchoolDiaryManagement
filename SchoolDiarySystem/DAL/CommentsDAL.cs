@@ -18,7 +18,7 @@ namespace SchoolDiarySystem.DAL
             throw new NotImplementedException();
         }
 
-        public bool Delete(Comments model)
+        public bool Delete(int id)
         {
             throw new NotImplementedException();
         }

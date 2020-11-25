@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 
 namespace SchoolDiarySystem.Models
 {
@@ -13,5 +15,13 @@ namespace SchoolDiarySystem.Models
         public DateTime DayofBirth { get; set; }
         public string Email { get; set; }
         public string PhoneNo { get; set; }
+
+        public string FullName
+        {
+            get
+            {
+                return FirstName + " " + LastName;
+            }
+        }
     }
 }
