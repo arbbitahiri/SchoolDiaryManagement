@@ -54,11 +54,6 @@ namespace SchoolDiarySystem.Controllers
                     ModelState.AddModelError(string.Empty, "Your user has expired!");
                 }
             }
-            else
-            {
-                ModelState.AddModelError(string.Empty, "Username or Password is incorrect!");
-                return View(users);
-            }
             return View(users);
         }
 

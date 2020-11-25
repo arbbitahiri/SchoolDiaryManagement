@@ -133,13 +133,13 @@
                             <a href="#" class="nav-link"><i class="flaticon-classmates"></i><span>Students</span></a>
                             <ul class="nav sub-group-menu">
                                 <li class="nav-item">
-                                    <a href="all-student.html" class="nav-link">
+                                    <a href="@Url.Action("Index", "Student")" class="nav-link">
                                         <i class="fas fa-angle-right"></i>All Students
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="student-details.html" class="nav-link">
-                                        <i class="fas fa-angle-right"></i>Student Details
+                                    <a href="@Url.Action("Create", "Student")" class="nav-link">
+                                        <i class="fas fa-angle-right"></i>Add Student
                                     </a>
                                 </li>
                             </ul>
@@ -150,12 +150,12 @@
                             </a>
                             <ul class="nav sub-group-menu">
                                 <li class="nav-item">
-                                    <a href="all-teacher.html" class="nav-link">
+                                    <a href="@Url.Action("Index", "Teacher")" class="nav-link">
                                         <i class="fas fa-angle-right"></i>All Teachers
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="add-teacher.html" class="nav-link">
+                                    <a href="@Url.Action("Create", "Teacher")" class="nav-link">
                                         <i class="fas fa-angle-right"></i>Add Teacher
                                     </a>
                                 </li>
@@ -165,12 +165,12 @@
                             <a href="#" class="nav-link"><i class="flaticon-couple"></i><span>Parents</span></a>
                             <ul class="nav sub-group-menu">
                                 <li class="nav-item">
-                                    <a href="all-parents.html" class="nav-link">
+                                    <a href="@Url.Action("Index", "Parent")" class="nav-link">
                                         <i class="fas fa-angle-right"></i>All Parents
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="add-parents.html" class="nav-link">
+                                    <a href="@Url.Action("Create", "Parent")" class="nav-link">
                                         <i class="fas fa-angle-right"></i>Add Parent
                                     </a>
                                 </li>
@@ -182,12 +182,12 @@
                             </a>
                             <ul class="nav sub-group-menu">
                                 <li class="nav-item">
-                                    <a href="all-class.html" class="nav-link">
+                                    <a href="@Url.Action("Index", "Class")" class="nav-link">
                                         <i class="fas fa-angle-right"></i>All Classes
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="add-class.html" class="nav-link">
+                                    <a href="@Url.Action("Create", "Class")" class="nav-link">
                                         <i class="fas fa-angle-right"></i>Add New Class
                                     </a>
                                 </li>
@@ -199,12 +199,12 @@
                             </a>
                             <ul class="nav sub-group-menu">
                                 <li class="nav-item">
-                                    <a href="all-subject.html" class="nav-link">
+                                    <a href="@Url.Action("Index", "Subject")" class="nav-link">
                                         <i class="fas fa-angle-right"></i>All Subjects
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="add-class.html" class="nav-link">
+                                    <a href="@Url.Action("Create", "Subject")" class="nav-link">
                                         <i class="fas fa-angle-right"></i>Add New Subject
                                     </a>
                                 </li>
@@ -216,12 +216,12 @@
                             </a>
                             <ul class="nav sub-group-menu">
                                 <li class="nav-item">
-                                    <a href="all-class.html" class="nav-link">
+                                    <a href="@Url.Action("Index", "Schedule")" class="nav-link">
                                         <i class="fas fa-angle-right"></i>All Schedule
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="add-class.html" class="nav-link">
+                                    <a href="@Url.Action("Create", "Schedule")" class="nav-link">
                                         <i class="fas fa-angle-right"></i>Add New Schedule
                                     </a>
                                 </li>
@@ -233,12 +233,12 @@
                             </a>
                             <ul class="nav sub-group-menu">
                                 <li class="nav-item">
-                                    <a href="all-subject.html" class="nav-link">
+                                    <a href="@Url.Action("Index", "Room")" class="nav-link">
                                         <i class="fas fa-angle-right"></i>All Rooms
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="add-class.html" class="nav-link">
+                                    <a href="@Url.Action("Create", "Room")" class="nav-link">
                                         <i class="fas fa-angle-right"></i>Add New Room
                                     </a>
                                 </li>
@@ -314,7 +314,7 @@
                                         @Html.ValidationMessageFor(m => m.PhoneNo, "", new { @class = "text-danger" })
                                     </div>
                                     <div class="col-12 form-group mg-t-8">
-                                        <input type="submit" value="Create" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark" />
+                                        <input type="submit" value="Update" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark" />
                                     </div>
                                 </div>
                             </form>

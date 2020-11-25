@@ -52,6 +52,7 @@
                         <img src="~/Content/img/logo2.png" alt="logo">
                     </div>
                     <form class="login-form">
+                        @Html.ValidationSummary(true, string.Empty, new { @class = "text-danger" })
                         <div class="form-group">
                             <label>Username</label>
                             @Html.TextBoxFor(m => m.Username, new { @class = "form-control", placeholder = "Enter Username...", id = "username" })

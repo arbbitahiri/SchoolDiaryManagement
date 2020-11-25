@@ -1,16 +1,14 @@
-﻿
-@{
+﻿@{
     Layout = null;
 }
 @using SchoolDiarySystem.Models
-@model IEnumerable<Teachers>
-
+@model Students
 
 <!doctype html>
 <html class="no-js" lang="">
 
 
-<!-- Mirrored from www.radiustheme.com/demo/html/psdboss/akkhor/akkhor/all-teacher.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 20 Nov 2020 10:10:09 GMT -->
+<!-- Mirrored from www.radiustheme.com/demo/html/psdboss/akkhor/akkhor/add-teacher.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 20 Nov 2020 10:10:09 GMT -->
 <!-- Added by HTTrack -->
 <meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
 <head>
@@ -258,95 +256,63 @@
                         <li>
                             <a href="index-2.html">Home</a>
                         </li>
-                        <li>All Teachers</li>
+                        <li>Add New Teacher</li>
                     </ul>
                 </div>
                 <!-- Breadcubs Area End Here -->
-                <!-- Teacher Table Area Start Here -->
+                <!-- Add New Teacher Area Start Here -->
                 <div class="card height-auto">
                     <div class="card-body">
                         <div class="heading-layout1">
                             <div class="item-title">
-                                <h3>All Teachers Data</h3>
+                                <h3>Add New Teacher</h3>
                             </div>
                         </div>
-                        <form class="mg-b-20">
-                            <div class="row gutters-8">
-                                <div class="col-4-xxxl col-xl-4 col-lg-3 col-12 form-group">
-                                    <input type="text" placeholder="Search by Name ..." class="form-control">
+                        @using (Html.BeginForm("Update", "Student", FormMethod.Post))
+                        {
+                            <form class="new-added-form">
+                                <div class="row">
+                                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                    <div class="col-xl-3 col-lg-6 col-12 form-group">
+                                        <label>First Name *</label>
+                                        @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control", placeholder = "First name...", id = "firstname" })
+                                        @Html.ValidationMessageFor(m => m.FirstName, "", new { @class = "text-danger" })
+                                    </div>
+                                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                    <div class="col-xl-3 col-lg-6 col-12 form-group">
+                                        <label>Last Name *</label>
+                                        @Html.TextBoxFor(m => m.LastName, new { @class = "form-control", placeholder = "Last name...", id = "lastname" })
+                                        @Html.ValidationMessageFor(m => m.LastName, "", new { @class = "text-danger" })
+                                    </div>
+                                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                    <div class="col-xl-3 col-lg-6 col-12 form-group">
+                                        <label>Gender *</label>
+                                        @Html.DropDownList("GenderID", null, new { @class = "select2" })
+                                        @Html.ValidationMessageFor(m => m.Gender, "", new { @class = "text-danger" })
+                                    </div>
+                                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                    <div class="col-xl-3 col-lg-6 col-12 form-group">
+                                        <label>Date Of Birth *</label>
+                                        @Html.TextBoxFor(m => m.DayofBirth, new { @class = "form-control air-datepicker", placeholder = "dd/MMMM/yyyy", id = "dob" })
+                                        @Html.ValidationMessageFor(m => m.DayofBirth, "", new { @class = "text-danger" })
+                                        <i class="far fa-calendar-alt"></i>
+                                    </div>
+                                    <div class="col-xl-3 col-lg-6 col-12 form-group">
+                                        <label>Class *</label>
+                                        @Html.DropDownList("ClassID", null, new { @class = "select2" })
+                                        @Html.ValidationMessageFor(m => m.ClassID, "", new { @class = "text-danger" })
+                                    </div>
+                                    <div class="col-xl-3 col-lg-6 col-12 form-group">
+                                        <label>Parent *</label>
+                                        @Html.DropDownList("ParentID", null, new { @class = "select2" })
+                                        @Html.ValidationMessageFor(m => m.ParentID, "", new { @class = "text-danger" })
+                                    </div>
+                                    <div class="col-12 form-group mg-t-8">
+                                        <input type="submit" value="Update" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark" />
+                                    </div>
                                 </div>
-                                <div class="col-1-xxxl col-xl-2 col-lg-3 col-12 form-group">
-                                    <button type="submit" class="fw-btn-fill btn-gradient-yellow">SEARCH</button>
-                                </div>
-                            </div>
-                        </form>
-                        <div class="table-responsive">
-                            <table class="table display data-table text-nowrap">
-                                <thead>
-                                    <tr>
-                                        <th>First Name</th>
-                                        <th>Last Name</th>
-                                        <th>Gender</th>
-                                        <th>City</th>
-                                        <th>Qualification</th>
-                                        <th>Day of Birth</th>
-                                        <th>E-mail</th>
-                                        <th>Phone Number</th>
-                                        <th></th>
-                                    </tr>
-                                </thead>
-                                @*<tfoot>
-                            <tr>
-                                <th>@Html.DisplayNameFor(m => m.FirstName)</th>
-                                <th>@Html.DisplayNameFor(m => m.LastName)</th>
-                                <th>@Html.DisplayNameFor(m => m.Gender)</th>
-                                <th>@Html.DisplayNameFor(m => m.City)</th>
-                                <th>@Html.DisplayNameFor(m => m.Qualification)</th>
-                                <th>@Html.DisplayNameFor(m => m.DayofBirth)</th>
-                                <th>@Html.DisplayNameFor(m => m.Email)</th>
-                                <th>@Html.DisplayNameFor(m => m.PhoneNo)</th>
-                                <th></th>
-                            </tr>
-                        </tfoot>*@
-                                <tbody>
-                                    @foreach (var item in Model)
-                                    {
-                                        <tr>
-                                            <td>
-                                                @Html.DisplayFor(m => item.FirstName)
-                                            </td>
-                                            <td>
-                                                @Html.DisplayFor(m => item.LastName)
-                                            </td>
-                                            <td>
-                                                @Html.DisplayFor(m => item.Gender)
-                                            </td>
-                                            <td>
-                                                @Html.DisplayFor(m => item.City)
-                                            </td>
-                                            <td>
-                                                @Html.DisplayFor(m => item.Qualification)
-                                            </td>
-                                            <td>
-                                                @Html.DisplayFor(m => item.DayofBirth)
-                                            </td>
-                                            <td>
-                                                @Html.DisplayFor(m => item.Email)
-                                            </td>
-                                            <td>
-                                                @Html.DisplayFor(m => item.PhoneNo)
-                                            </td>
-
-                                            <td>
-                                                @Html.ActionLink("Update", "Update", new { id = item.TeacherID })
-                                                @Html.ActionLink("Details", "Details", new { id = item.TeacherID })
-                                                @Html.ActionLink("Delete", "Delete", new { id = item.TeacherID })
-                                            </td>
-                                        </tr>
-                                    }
-                                </tbody>
-                            </table>
-                        </div>
+                            </form>
+                        }
                     </div>
                 </div>
                 <br />
@@ -358,7 +324,7 @@
                 <br />
                 <br />
                 <br />
-                <!-- Teacher Table Area End Here -->
+                <!-- Add New Teacher Area End Here -->
                 <footer class="footer-wrap-layout1">
                     <div class="copyright">© Copyrights <a href="#">Arbi, Erika, Vlera</a> 2020. All rights reserved.</a></div>
                 </footer>
@@ -388,5 +354,5 @@
 </body>
 
 
-<!-- Mirrored from www.radiustheme.com/demo/html/psdboss/akkhor/akkhor/all-teacher.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 20 Nov 2020 10:10:09 GMT -->
+<!-- Mirrored from www.radiustheme.com/demo/html/psdboss/akkhor/akkhor/add-teacher.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 20 Nov 2020 10:10:09 GMT -->
 </html>

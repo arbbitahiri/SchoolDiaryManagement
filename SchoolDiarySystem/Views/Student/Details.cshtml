@@ -3,14 +3,13 @@
     Layout = null;
 }
 @using SchoolDiarySystem.Models
-@model IEnumerable<Teachers>
-
+@model Students
 
 <!doctype html>
 <html class="no-js" lang="">
 
 
-<!-- Mirrored from www.radiustheme.com/demo/html/psdboss/akkhor/akkhor/all-teacher.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 20 Nov 2020 10:10:09 GMT -->
+<!-- Mirrored from www.radiustheme.com/demo/html/psdboss/akkhor/akkhor/add-teacher.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 20 Nov 2020 10:10:09 GMT -->
 <!-- Added by HTTrack -->
 <meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
 <head>
@@ -258,94 +257,92 @@
                         <li>
                             <a href="index-2.html">Home</a>
                         </li>
-                        <li>All Teachers</li>
+                        <li>Teacher Details</li>
                     </ul>
                 </div>
                 <!-- Breadcubs Area End Here -->
-                <!-- Teacher Table Area Start Here -->
+                <!-- Student Table Area Start Here -->
                 <div class="card height-auto">
                     <div class="card-body">
                         <div class="heading-layout1">
                             <div class="item-title">
-                                <h3>All Teachers Data</h3>
+                                <h3>Teacher Details</h3>
                             </div>
                         </div>
-                        <form class="mg-b-20">
-                            <div class="row gutters-8">
-                                <div class="col-4-xxxl col-xl-4 col-lg-3 col-12 form-group">
-                                    <input type="text" placeholder="Search by Name ..." class="form-control">
+                        <div class="single-info-details">
+                            <div class="item-img">
+                                @if (Model.Gender != "Male")
+                                {
+                                    <img src="~/Content/img/figure/user2.jpg" alt="teacher">
+                                }
+                                else
+                                {
+                                    <img src="~/Content/img/figure/teacher.jpg" alt="teacher">
+                                }
+                            </div>
+                            <div class="item-content">
+                                <div class="header-inline item-header">
+                                    @Html.Label(Model.FullName, new { @class = "text-dark-medium font-medium" })
+                                    <div class="header-elements">
+                                        <ul>
+                                            <li><a href="#"><i class="fas fa-print"></i></a></li>
+                                            <li><a href="#"><i class="fas fa-download"></i></a></li>
+                                        </ul>
+                                    </div>
                                 </div>
-                                <div class="col-1-xxxl col-xl-2 col-lg-3 col-12 form-group">
-                                    <button type="submit" class="fw-btn-fill btn-gradient-yellow">SEARCH</button>
+                                <div class="info-table table-responsive">
+                                    <table class="table text-nowrap">
+                                        <tbody>
+                                            <tr>
+                                                <td>Name:</td>
+                                                <td>@Html.Label(Model.FullName, new { @class = "font-medium text-dark-medium" })</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Gender:</td>
+                                                <td>@Html.Label(Model.Gender, new { @class = "font-medium text-dark-medium" })</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Birthday:</td>
+                                                <td>@Html.Label(Model.DayofBirth.ToString(), new { @class = "font-medium text-dark-medium" })</td>
+                                            </tr>
+                                            <tr>
+                                                <td>E-mail:</td>
+                                                <td>@Html.Label(Model.Class.ClassNo.ToString(), new { @class = "font-medium text-dark-medium" })</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Phone Number:</td>
+                                                <td>@Html.Label(Model.Parent.FullName, new { @class = "font-medium text-dark-medium" })</td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    @using (Html.BeginForm("Update", "Student", new { id = Model.StudentID }, FormMethod.Post))
+                                                    {
+                                                        <div class="col-12 form-group mg-t-8">
+                                                            <input type="submit" value="Update" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark" />
+                                                        </div>
+                                                    }
+                                                </td>
+                                                <td>
+                                                    @using (Html.BeginForm("Delete", "Student", new { id = Model.StudentID }, FormMethod.Post))
+                                                    {
+                                                        <div class="col-12 form-group mg-t-8">
+                                                            <input type="submit" value="Delete" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark" />
+                                                        </div>
+                                                    }
+                                                </td>
+                                                <td>
+                                                    @using (Html.BeginForm("Index", "Student", FormMethod.Post))
+                                                    {
+                                                        <div class="col-12 form-group mg-t-8">
+                                                            <input type="submit" value="Back to List" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark" />
+                                                        </div>
+                                                    }
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
                                 </div>
                             </div>
-                        </form>
-                        <div class="table-responsive">
-                            <table class="table display data-table text-nowrap">
-                                <thead>
-                                    <tr>
-                                        <th>First Name</th>
-                                        <th>Last Name</th>
-                                        <th>Gender</th>
-                                        <th>City</th>
-                                        <th>Qualification</th>
-                                        <th>Day of Birth</th>
-                                        <th>E-mail</th>
-                                        <th>Phone Number</th>
-                                        <th></th>
-                                    </tr>
-                                </thead>
-                                @*<tfoot>
-                            <tr>
-                                <th>@Html.DisplayNameFor(m => m.FirstName)</th>
-                                <th>@Html.DisplayNameFor(m => m.LastName)</th>
-                                <th>@Html.DisplayNameFor(m => m.Gender)</th>
-                                <th>@Html.DisplayNameFor(m => m.City)</th>
-                                <th>@Html.DisplayNameFor(m => m.Qualification)</th>
-                                <th>@Html.DisplayNameFor(m => m.DayofBirth)</th>
-                                <th>@Html.DisplayNameFor(m => m.Email)</th>
-                                <th>@Html.DisplayNameFor(m => m.PhoneNo)</th>
-                                <th></th>
-                            </tr>
-                        </tfoot>*@
-                                <tbody>
-                                    @foreach (var item in Model)
-                                    {
-                                        <tr>
-                                            <td>
-                                                @Html.DisplayFor(m => item.FirstName)
-                                            </td>
-                                            <td>
-                                                @Html.DisplayFor(m => item.LastName)
-                                            </td>
-                                            <td>
-                                                @Html.DisplayFor(m => item.Gender)
-                                            </td>
-                                            <td>
-                                                @Html.DisplayFor(m => item.City)
-                                            </td>
-                                            <td>
-                                                @Html.DisplayFor(m => item.Qualification)
-                                            </td>
-                                            <td>
-                                                @Html.DisplayFor(m => item.DayofBirth)
-                                            </td>
-                                            <td>
-                                                @Html.DisplayFor(m => item.Email)
-                                            </td>
-                                            <td>
-                                                @Html.DisplayFor(m => item.PhoneNo)
-                                            </td>
-
-                                            <td>
-                                                @Html.ActionLink("Update", "Update", new { id = item.TeacherID })
-                                                @Html.ActionLink("Details", "Details", new { id = item.TeacherID })
-                                                @Html.ActionLink("Delete", "Delete", new { id = item.TeacherID })
-                                            </td>
-                                        </tr>
-                                    }
-                                </tbody>
-                            </table>
                         </div>
                     </div>
                 </div>
@@ -358,7 +355,7 @@
                 <br />
                 <br />
                 <br />
-                <!-- Teacher Table Area End Here -->
+                <!-- Student Table Area End Here -->
                 <footer class="footer-wrap-layout1">
                     <div class="copyright">© Copyrights <a href="#">Arbi, Erika, Vlera</a> 2020. All rights reserved.</a></div>
                 </footer>
@@ -374,12 +371,6 @@
     <script src="~/Content/js/popper.min.js"></script>
     <!-- Bootstrap js -->
     <script src="~/Content/js/bootstrap.min.js"></script>
-    <!-- Select 2 Js -->
-    <script src="~/Content/js/select2.min.js"></script>
-    <!-- Date Picker Js -->
-    <script src="~/Content/js/datepicker.min.js"></script>
-    <!-- Smoothscroll Js -->
-    <script src="~/Content/js/jquery.smoothscroll.min.html"></script>
     <!-- Scroll Up Js -->
     <script src="~/Content/js/jquery.scrollUp.min.js"></script>
     <!-- Custom Js -->
@@ -388,5 +379,5 @@
 </body>
 
 
-<!-- Mirrored from www.radiustheme.com/demo/html/psdboss/akkhor/akkhor/all-teacher.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 20 Nov 2020 10:10:09 GMT -->
+<!-- Mirrored from www.radiustheme.com/demo/html/psdboss/akkhor/akkhor/teacher-details.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 20 Nov 2020 10:10:09 GMT -->
 </html>

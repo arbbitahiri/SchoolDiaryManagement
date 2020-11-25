@@ -134,13 +134,13 @@
                             <a href="#" class="nav-link"><i class="flaticon-classmates"></i><span>Students</span></a>
                             <ul class="nav sub-group-menu">
                                 <li class="nav-item">
-                                    <a href="all-student.html" class="nav-link">
+                                    <a href="@Url.Action("Index", "Student")" class="nav-link">
                                         <i class="fas fa-angle-right"></i>All Students
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="student-details.html" class="nav-link">
-                                        <i class="fas fa-angle-right"></i>Student Details
+                                    <a href="@Url.Action("Create", "Student")" class="nav-link">
+                                        <i class="fas fa-angle-right"></i>Add Student
                                     </a>
                                 </li>
                             </ul>
@@ -166,12 +166,12 @@
                             <a href="#" class="nav-link"><i class="flaticon-couple"></i><span>Parents</span></a>
                             <ul class="nav sub-group-menu">
                                 <li class="nav-item">
-                                    <a href="all-parents.html" class="nav-link">
+                                    <a href="@Url.Action("Index", "Parent")" class="nav-link">
                                         <i class="fas fa-angle-right"></i>All Parents
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="add-parents.html" class="nav-link">
+                                    <a href="@Url.Action("Create", "Parent")" class="nav-link">
                                         <i class="fas fa-angle-right"></i>Add Parent
                                     </a>
                                 </li>
@@ -183,12 +183,12 @@
                             </a>
                             <ul class="nav sub-group-menu">
                                 <li class="nav-item">
-                                    <a href="all-class.html" class="nav-link">
+                                    <a href="@Url.Action("Index", "Class")" class="nav-link">
                                         <i class="fas fa-angle-right"></i>All Classes
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="add-class.html" class="nav-link">
+                                    <a href="@Url.Action("Create", "Class")" class="nav-link">
                                         <i class="fas fa-angle-right"></i>Add New Class
                                     </a>
                                 </li>
@@ -200,12 +200,12 @@
                             </a>
                             <ul class="nav sub-group-menu">
                                 <li class="nav-item">
-                                    <a href="all-subject.html" class="nav-link">
+                                    <a href="@Url.Action("Index", "Subject")" class="nav-link">
                                         <i class="fas fa-angle-right"></i>All Subjects
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="add-class.html" class="nav-link">
+                                    <a href="@Url.Action("Create", "Subject")" class="nav-link">
                                         <i class="fas fa-angle-right"></i>Add New Subject
                                     </a>
                                 </li>
@@ -217,12 +217,12 @@
                             </a>
                             <ul class="nav sub-group-menu">
                                 <li class="nav-item">
-                                    <a href="all-class.html" class="nav-link">
+                                    <a href="@Url.Action("Index", "Schedule")" class="nav-link">
                                         <i class="fas fa-angle-right"></i>All Schedule
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="add-class.html" class="nav-link">
+                                    <a href="@Url.Action("Create", "Schedule")" class="nav-link">
                                         <i class="fas fa-angle-right"></i>Add New Schedule
                                     </a>
                                 </li>
@@ -234,12 +234,12 @@
                             </a>
                             <ul class="nav sub-group-menu">
                                 <li class="nav-item">
-                                    <a href="all-subject.html" class="nav-link">
+                                    <a href="@Url.Action("Index", "Room")" class="nav-link">
                                         <i class="fas fa-angle-right"></i>All Rooms
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="add-class.html" class="nav-link">
+                                    <a href="@Url.Action("Create", "Room")" class="nav-link">
                                         <i class="fas fa-angle-right"></i>Add New Room
                                     </a>
                                 </li>
@@ -268,20 +268,17 @@
                             <div class="item-title">
                                 <h3>Teacher Details</h3>
                             </div>
-                            <div class="dropdown">
-                                <a class="dropdown-toggle" href="#" role="button"
-                                   data-toggle="dropdown" aria-expanded="false">...</a>
-
-                                <div class="dropdown-menu dropdown-menu-right">
-                                    <a class="dropdown-item" href="@Html.ActionLink("Delete", "Teacher", new { id = Model.TeacherID })"><i class="fas fa-times text-orange-red"></i>Delete</a>
-                                    <a class="dropdown-item" href="@Html.ActionLink("Update", "Teacher", new { id = Model.TeacherID })"><i class="fas fa-cogs text-dark-pastel-green"></i>Update</a>
-                                    <a class="dropdown-item" href="@Html.Action("Index", "Teacher")"><i class="fas fa-redo-alt text-orange-peel"></i>Back to List</a>
-                                </div>
-                            </div>
                         </div>
                         <div class="single-info-details">
                             <div class="item-img">
-                                <img src="~/Content/img/figure/teacher.jpg" alt="teacher">
+                                @if (Model.Gender != "Male")
+                                {
+                                    <img src="~/Content/img/figure/user2.jpg" alt="teacher">
+                                }
+                                else
+                                {
+                                    <img src="~/Content/img/figure/teacher.jpg" alt="teacher">
+                                }
                             </div>
                             <div class="item-content">
                                 <div class="header-inline item-header">
@@ -323,6 +320,32 @@
                                             <tr>
                                                 <td>Phone Number:</td>
                                                 <td>@Html.Label(Model.PhoneNo, new { @class = "font-medium text-dark-medium" })</td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    @using (Html.BeginForm("Update", "Teacher", new { id = Model.TeacherID }, FormMethod.Post))
+                                                    {
+                                                        <div class="col-12 form-group mg-t-8">
+                                                            <input type="submit" value="Update" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark" />
+                                                        </div>
+                                                    }
+                                                </td>
+                                                <td>
+                                                    @using (Html.BeginForm("Delete", "Teacher", new { id = Model.TeacherID }, FormMethod.Post))
+                                                    {
+                                                        <div class="col-12 form-group mg-t-8">
+                                                            <input type="submit" value="Delete" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark" />
+                                                        </div>
+                                                    }
+                                                </td>
+                                                <td>
+                                                    @using (Html.BeginForm("Index", "Teacher", FormMethod.Post))
+                                                    {
+                                                        <div class="col-12 form-group mg-t-8">
+                                                            <input type="submit" value="Back to List" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark" />
+                                                        </div>
+                                                    }
+                                                </td>
                                             </tr>
                                         </tbody>
                                     </table>

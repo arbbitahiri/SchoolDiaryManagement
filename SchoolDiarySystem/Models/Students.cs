@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Web.Mvc;
 
 namespace SchoolDiarySystem.Models
 {
@@ -14,5 +16,16 @@ namespace SchoolDiarySystem.Models
 
         public virtual Class Class { get; set; }
         public virtual Parents Parent { get; set; }
+
+        public string FullName
+        {
+            get
+            {
+                return FirstName + " " + LastName;
+            }
+        }
+
+        public SelectList ParentsList { get; set; }
+        public SelectList ClassesList { get; set; }
     }
 }
