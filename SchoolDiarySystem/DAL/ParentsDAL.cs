@@ -94,10 +94,10 @@ namespace SchoolDiarySystem.DAL
                 Parents parent = null;
                 using (var connection = DataConnection.GetConnection())
                 {
-                    string sqlproc = "dbo.usp_Student_Get";
+                    string sqlproc = "dbo.usp_Parent_Get";
                     using (var command = DataConnection.GetCommand(connection, sqlproc, CommandType.StoredProcedure))
                     {
-                        DataConnection.AddParameter(command, "studentID", id);
+                        DataConnection.AddParameter(command, "parentID", id);
                         using (SqlDataReader reader = command.ExecuteReader())
                         {
                             parent = new Parents();
@@ -152,7 +152,7 @@ namespace SchoolDiarySystem.DAL
                 var parent = new Parents();
 
                 if (dataReader["ParentID"] != DBNull.Value)
-                    parent.ParentID = int.Parse(dataReader["StudentID"].ToString());
+                    parent.ParentID = int.Parse(dataReader["ParentID"].ToString());
 
                 if (dataReader["First_Name"] != DBNull.Value)
                     parent.FirstName = dataReader["First_Name"].ToString();
@@ -161,7 +161,7 @@ namespace SchoolDiarySystem.DAL
                     parent.LastName = dataReader["Last_Name"].ToString();
 
                 if (dataReader["City"] != DBNull.Value)
-                    parent.City = dataReader["Gender"].ToString();
+                    parent.City = dataReader["City"].ToString();
 
                 if (dataReader["InsertBy"] != DBNull.Value)
                     parent.InsertBy = dataReader["InsertBy"].ToString();

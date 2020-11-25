@@ -1,22 +1,20 @@
-﻿
-@{
+﻿@{
     Layout = null;
 }
 @using SchoolDiarySystem.Models
-@model IEnumerable<Students>
-
+@model Parents
 
 <!doctype html>
 <html class="no-js" lang="">
 
 
-<!-- Mirrored from www.radiustheme.com/demo/html/psdboss/akkhor/akkhor/all-teacher.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 20 Nov 2020 10:10:09 GMT -->
+<!-- Mirrored from www.radiustheme.com/demo/html/psdboss/akkhor/akkhor/add-teacher.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 20 Nov 2020 10:10:09 GMT -->
 <!-- Added by HTTrack -->
 <meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>School Diary Management | Teacher</title>
+    <title>School Diary Management | Add Teacher</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Favicon -->
@@ -253,92 +251,51 @@
             <div class="dashboard-content-one">
                 <!-- Breadcubs Area Start Here -->
                 <div class="breadcrumbs-area">
-                    <h3>Student</h3>
+                    <h3>Teacher</h3>
                     <ul>
                         <li>
                             <a href="index-2.html">Home</a>
                         </li>
-                        <li>All Students</li>
+                        <li>Add New Teacher</li>
                     </ul>
                 </div>
                 <!-- Breadcubs Area End Here -->
-                <!-- Teacher Table Area Start Here -->
+                <!-- Add New Teacher Area Start Here -->
                 <div class="card height-auto">
                     <div class="card-body">
                         <div class="heading-layout1">
                             <div class="item-title">
-                                <h3>All Students Data</h3>
+                                <h3>Add New Teacher</h3>
                             </div>
                         </div>
-                        <form class="mg-b-20">
-                            <div class="row gutters-8">
-                                <div class="col-4-xxxl col-xl-4 col-lg-3 col-12 form-group">
-                                    <input type="text" placeholder="Search by Name ..." class="form-control">
+                        @using (Html.BeginForm("Update", "Student", FormMethod.Post))
+                        {
+                            <form class="new-added-form">
+                                <div class="row">
+                                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                    <div class="col-xl-3 col-lg-6 col-12 form-group">
+                                        <label>First Name *</label>
+                                        @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control", placeholder = "First name...", id = "firstname" })
+                                        @Html.ValidationMessageFor(m => m.FirstName, "", new { @class = "text-danger" })
+                                    </div>
+                                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                    <div class="col-xl-3 col-lg-6 col-12 form-group">
+                                        <label>Last Name *</label>
+                                        @Html.TextBoxFor(m => m.LastName, new { @class = "form-control", placeholder = "Last name...", id = "lastname" })
+                                        @Html.ValidationMessageFor(m => m.LastName, "", new { @class = "text-danger" })
+                                    </div>
+                                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                    <div class="col-xl-3 col-lg-6 col-12 form-group">
+                                        <label>City *</label>
+                                        @Html.TextBoxFor(m => m.City, new { @class = "form-control", placeholder = "City...", id = "city" })
+                                        @Html.ValidationMessageFor(m => m.City, "", new { @class = "text-danger" })
+                                    </div>
+                                    <div class="col-12 form-group mg-t-8">
+                                        <input type="submit" value="Update" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark" />
+                                    </div>
                                 </div>
-                                <div class="col-1-xxxl col-xl-2 col-lg-3 col-12 form-group">
-                                    <button type="submit" class="fw-btn-fill btn-gradient-yellow">SEARCH</button>
-                                </div>
-                            </div>
-                        </form>
-                        <div class="table-responsive">
-                            <table class="table display data-table text-nowrap">
-                                <thead>
-                                    <tr>
-                                        <th>First Name</th>
-                                        <th>Last Name</th>
-                                        <th>Gender</th>
-                                        <th>Class</th>
-                                        <th>Parent</th>
-                                        <th>Day of Birth</th>
-                                        <th></th>
-                                    </tr>
-                                </thead>
-                                @*<tfoot>
-                                        <tr>
-                                            <th>@Html.DisplayNameFor(m => m.FirstName)</th>
-                                            <th>@Html.DisplayNameFor(m => m.LastName)</th>
-                                            <th>@Html.DisplayNameFor(m => m.Gender)</th>
-                                            <th>@Html.DisplayNameFor(m => m.City)</th>
-                                            <th>@Html.DisplayNameFor(m => m.Qualification)</th>
-                                            <th>@Html.DisplayNameFor(m => m.DayofBirth)</th>
-                                            <th>@Html.DisplayNameFor(m => m.Email)</th>
-                                            <th>@Html.DisplayNameFor(m => m.PhoneNo)</th>
-                                            <th></th>
-                                        </tr>
-                                    </tfoot>*@
-                                <tbody>
-                                    @foreach (var item in Model)
-                                    {
-                                        <tr>
-                                            <td>
-                                                @Html.DisplayFor(m => item.FirstName)
-                                            </td>
-                                            <td>
-                                                @Html.DisplayFor(m => item.LastName)
-                                            </td>
-                                            <td>
-                                                @Html.DisplayFor(m => item.Gender)
-                                            </td>
-                                            <td>
-                                                @Html.DisplayFor(m => item.Class.ClassNo)
-                                            </td>
-                                            <td>
-                                                @Html.DisplayFor(m => item.Parent.FullName)
-                                            </td>
-                                            <td>
-                                                @Html.DisplayFor(m => item.DayofBirth)
-                                            </td>
-
-                                            <td>
-                                                @Html.ActionLink("Update", "Update", new { id = item.StudentID })
-                                                @Html.ActionLink("Details", "Details", new { id = item.StudentID })
-                                                @Html.ActionLink("Delete", "Delete", new { id = item.StudentID })
-                                            </td>
-                                        </tr>
-                                    }
-                                </tbody>
-                            </table>
-                        </div>
+                            </form>
+                        }
                     </div>
                 </div>
                 <br />
@@ -350,7 +307,7 @@
                 <br />
                 <br />
                 <br />
-                <!-- Teacher Table Area End Here -->
+                <!-- Add New Teacher Area End Here -->
                 <footer class="footer-wrap-layout1">
                     <div class="copyright">© Copyrights <a href="#">Arbi, Erika, Vlera</a> 2020. All rights reserved.</a></div>
                 </footer>
@@ -380,5 +337,5 @@
 </body>
 
 
-<!-- Mirrored from www.radiustheme.com/demo/html/psdboss/akkhor/akkhor/all-teacher.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 20 Nov 2020 10:10:09 GMT -->
+<!-- Mirrored from www.radiustheme.com/demo/html/psdboss/akkhor/akkhor/add-teacher.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 20 Nov 2020 10:10:09 GMT -->
 </html>
