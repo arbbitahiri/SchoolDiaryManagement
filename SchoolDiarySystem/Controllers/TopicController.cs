@@ -8,19 +8,19 @@ using System.Web.Mvc;
 
 namespace SchoolDiarySystem.Controllers
 {
-    public class ClassController : Controller
+    public class TopicController : Controller
     {
+        private readonly TopicsDAL topicsDAL = new TopicsDAL();
         private readonly ClassDAL classDAL = new ClassDAL();
-        private readonly RoomsDAL roomsDAL = new RoomsDAL();
-        private readonly TeachersDAL teachersDAL = new TeachersDAL();
+        private readonly SubjectsDAL subjectsDAL = new SubjectsDAL();
 
-        // GET: Class
+        // GET: Topic
         public ActionResult Index()
         {
             if (UserSession.GetUsers != null)
             {
-                var classes = classDAL.GetAll();
-                return View(classes);
+                var topics = topicsDAL.GetAll();
+                return View(topics);
             }
             else
             {
@@ -32,7 +32,7 @@ namespace SchoolDiarySystem.Controllers
         {
             if (UserSession.GetUsers != null)
             {
-                GetTeachersAndRoom();
+                GetParentsClassesGenders();
                 return View();
             }
             else
@@ -50,13 +50,13 @@ namespace SchoolDiarySystem.Controllers
                     return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest);
                 }
 
-                var classes = classDAL.Get((int)id);
-                if (classes == null)
+                var topics = topicsDAL.Get((int)id);
+                if (topics == null)
                 {
                     return RedirectToAction("Index");
                 }
-                GetTeachersAndRoom(classes);
-                return View(classes);
+                GetParentsClassesGenders(topics);
+                return View(topics);
             }
             else
             {
@@ -73,12 +73,12 @@ namespace SchoolDiarySystem.Controllers
                     return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest);
                 }
 
-                var classes = classDAL.Get((int)id);
-                if (classes == null)
+                var topics = topicsDAL.Get((int)id);
+                if (topics == null)
                 {
                     return RedirectToAction("Index");
                 }
-                return View(classes);
+                return View(topics);
             }
             else
             {
@@ -95,12 +95,12 @@ namespace SchoolDiarySystem.Controllers
                     return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest);
                 }
 
-                var classes = classDAL.Get((int)id);
-                if (classes == null)
+                var topics = topicsDAL.Get((int)id);
+                if (topics == null)
                 {
                     return RedirectToAction("Index");
                 }
-                return View(classes);
+                return View(topics);
             }
             else
             {
@@ -108,16 +108,19 @@ namespace SchoolDiarySystem.Controllers
             }
         }
 
-        private void GetTeachersAndRoom()
+        private void GetSubjectAndClass()
         {
-            ViewBag.TeacherID = new SelectList(teachersDAL.GetAll(), "TeacherID", "FullName");
-            ViewBag.RoomID = new SelectList(roomsDAL.GetAll(), "RoomID", "RoomType");
+            List<int> times = new List<int>() { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+
+            ViewBag.Time = new SelectList(times, "Time");
+            ViewBag.SubjectID = new SelectList(subjectsDAL.GetAll(), "SubjectID", "SubjectTitle");
+            ViewBag.ClassID = new SelectList(classDAL.GetAll(), "ClassID", "ClassNo");
         }
 
-        private void GetTeachersAndRoom(Class _class)
+        private void GetSubjectAndClass(Topics topic)
         {
-            ViewBag.TeacherID = new SelectList(teachersDAL.GetAll(), "TeacherID", "FullName", _class.TeacherID);
-            ViewBag.RoomID = new SelectList(roomsDAL.GetAll(), "RoomID", "RoomType", _class.RoomID);
+            ViewBag.SubjectID = new SelectList(subjectsDAL.GetAll(), "SubjectID", "SubjectTitle", topic.SubjectID);
+            ViewBag.ClassID = new SelectList(classDAL.GetAll(), "ClassID", "ClassNo", topic.ClassID);
         }
     }
 }

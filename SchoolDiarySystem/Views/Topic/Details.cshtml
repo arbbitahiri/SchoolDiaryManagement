@@ -3,7 +3,7 @@
     Layout = null;
 }
 @using SchoolDiarySystem.Models
-@model Class
+@model Topics
 
 <!doctype html>
 <html class="no-js" lang="">
@@ -15,7 +15,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>School Diary Management | Delete Class</title>
+    <title>School Diary Management | Topic Details</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Favicon -->
@@ -252,12 +252,12 @@
             <div class="dashboard-content-one">
                 <!-- Breadcubs Area Start Here -->
                 <div class="breadcrumbs-area">
-                    <h3>Class</h3>
+                    <h3>Topic</h3>
                     <ul>
                         <li>
                             <a href="index-2.html">Home</a>
                         </li>
-                        <li>Class Details</li>
+                        <li>Topic Details</li>
                     </ul>
                 </div>
                 <!-- Breadcubs Area End Here -->
@@ -266,41 +266,71 @@
                     <div class="card-body">
                         <div class="heading-layout1">
                             <div class="item-title">
-                                <h3>Are you sure you want to delete this class?</h3>
+                                <h3>Topic Details</h3>
                             </div>
                         </div>
                         <div class="single-info-details">
-                            <div class="item-img">
-                                <img src="~/Content/img/figure/teacher.jpg" alt="teacher">
-                            </div>
                             <div class="item-content">
                                 <div class="header-inline item-header">
-                                    @Html.Label(Model.ClassNo.ToString(), new { @class = "text-dark-medium font-medium" });
+                                    <div class="header-elements">
+                                        <ul>
+                                            <li><a href="#"><i class="fas fa-print"></i></a></li>
+                                            <li><a href="#"><i class="fas fa-download"></i></a></li>
+                                        </ul>
+                                    </div>
                                 </div>
                                 <div class="info-table table-responsive">
                                     <table class="table text-nowrap">
                                         <tbody>
                                             <tr>
-                                                <td>Class :</td>
-                                                <td>@Html.Label(Model.ClassNo.ToString(), new { @class = "font-medium text-dark-medium" })</td>
+                                                <td>Name:</td>
+                                                <td>@Html.Label(Model.TopicDate.ToString(), new { @class = "font-medium text-dark-medium" })</td>
                                             </tr>
                                             <tr>
-                                                <td>Teacher:</td>
-                                                <td>@Html.Label(Model.Teacher.FullName, new { @class = "font-medium text-dark-medium" })</td>
+                                                <td>Gender:</td>
+                                                <td>@Html.Label(Model.Time.ToString(), new { @class = "font-medium text-dark-medium" })</td>
                                             </tr>
                                             <tr>
                                                 <td>Birthday:</td>
-                                                <td>@Html.Label(Model.Room.RoomType, new { @class = "font-medium text-dark-medium" })</td>
+                                                <td>@Html.Label(Model.Content.ToString(), new { @class = "font-medium text-dark-medium" })</td>
+                                            </tr>
+                                            <tr>
+                                                <td>E-mail:</td>
+                                                <td>@Html.Label(Model.Class.ClassNo.ToString(), new { @class = "font-medium text-dark-medium" })</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Phone Number:</td>
+                                                <td>@Html.Label(Model.Subject.SubjectTitle, new { @class = "font-medium text-dark-medium" })</td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    @using (Html.BeginForm("Update", "Topic", new { id = Model.TopicID }, FormMethod.Post))
+                                                    {
+                                                        <div class="col-12 form-group mg-t-8">
+                                                            <input type="submit" value="Update" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark" />
+                                                        </div>
+                                                    }
+                                                </td>
+                                                <td>
+                                                    @using (Html.BeginForm("Delete", "Topic", new { id = Model.TopicID }, FormMethod.Post))
+                                                    {
+                                                        <div class="col-12 form-group mg-t-8">
+                                                            <input type="submit" value="Delete" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark" />
+                                                        </div>
+                                                    }
+                                                </td>
+                                                <td>
+                                                    @using (Html.BeginForm("Index", "Topic", FormMethod.Post))
+                                                    {
+                                                        <div class="col-12 form-group mg-t-8">
+                                                            <input type="submit" value="Back to List" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark" />
+                                                        </div>
+                                                    }
+                                                </td>
                                             </tr>
                                         </tbody>
                                     </table>
                                 </div>
-                                @using (Html.BeginForm("Delete", "Class", FormMethod.Post))
-                                {
-                                    <div class="col-12 form-group mg-t-8">
-                                        <input type="submit" value="Delete" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark" />
-                                    </div>
-                                }
                             </div>
                         </div>
                     </div>

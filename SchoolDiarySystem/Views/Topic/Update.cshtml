@@ -1,9 +1,8 @@
-﻿
-@{
+﻿@{
     Layout = null;
 }
 @using SchoolDiarySystem.Models
-@model Class
+@model Topics
 
 <!doctype html>
 <html class="no-js" lang="">
@@ -15,7 +14,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>School Diary Management | Delete Class</title>
+    <title>School Diary Management | Add Teacher</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Favicon -->
@@ -252,57 +251,63 @@
             <div class="dashboard-content-one">
                 <!-- Breadcubs Area Start Here -->
                 <div class="breadcrumbs-area">
-                    <h3>Class</h3>
+                    <h3>Teacher</h3>
                     <ul>
                         <li>
                             <a href="index-2.html">Home</a>
                         </li>
-                        <li>Class Details</li>
+                        <li>Add New Teacher</li>
                     </ul>
                 </div>
                 <!-- Breadcubs Area End Here -->
-                <!-- Student Table Area Start Here -->
+                <!-- Add New Teacher Area Start Here -->
                 <div class="card height-auto">
                     <div class="card-body">
                         <div class="heading-layout1">
                             <div class="item-title">
-                                <h3>Are you sure you want to delete this class?</h3>
+                                <h3>Add New Teacher</h3>
                             </div>
                         </div>
-                        <div class="single-info-details">
-                            <div class="item-img">
-                                <img src="~/Content/img/figure/teacher.jpg" alt="teacher">
-                            </div>
-                            <div class="item-content">
-                                <div class="header-inline item-header">
-                                    @Html.Label(Model.ClassNo.ToString(), new { @class = "text-dark-medium font-medium" });
-                                </div>
-                                <div class="info-table table-responsive">
-                                    <table class="table text-nowrap">
-                                        <tbody>
-                                            <tr>
-                                                <td>Class :</td>
-                                                <td>@Html.Label(Model.ClassNo.ToString(), new { @class = "font-medium text-dark-medium" })</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Teacher:</td>
-                                                <td>@Html.Label(Model.Teacher.FullName, new { @class = "font-medium text-dark-medium" })</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Birthday:</td>
-                                                <td>@Html.Label(Model.Room.RoomType, new { @class = "font-medium text-dark-medium" })</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                                @using (Html.BeginForm("Delete", "Class", FormMethod.Post))
-                                {
-                                    <div class="col-12 form-group mg-t-8">
-                                        <input type="submit" value="Delete" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark" />
+                        @using (Html.BeginForm("Update", "Topic", FormMethod.Post))
+                        {
+                            <form class="new-added-form">
+                                <div class="row">
+                                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                    <div class="col-xl-3 col-lg-6 col-12 form-group">
+                                        <label>Select Class *</label>
+                                        @Html.DropDownList("ClassID", null, new { @class = "select2" })
+                                        @Html.ValidationMessageFor(m => m.ClassID, "", new { @class = "text-danger" })
                                     </div>
-                                }
-                            </div>
-                        </div>
+                                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                    <div class="col-xl-3 col-lg-6 col-12 form-group">
+                                        <label>Select Subject *</label>
+                                        @Html.DropDownList("SubjectID", null, new { @class = "select2", @disabled = "disabled" })
+                                        @Html.ValidationMessageFor(m => m.SubjectID, "", new { @class = "text-danger" })
+                                    </div>
+                                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                    <div class="col-xl-3 col-lg-6 col-12 form-group">
+                                        <label>Select Date *</label>
+                                        @Html.TextBoxFor(m => m.TopicDate, new { @class = "form-control air-datepicker", placeholder = "dd/MMMM/yyyy", id = "dob" })
+                                        @Html.ValidationMessageFor(m => m.TopicDate, "", new { @class = "text-danger" })
+                                    </div>
+                                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                    <div class="col-xl-3 col-lg-6 col-12 form-group">
+                                        <label>Select Time *</label>
+                                        @Html.DropDownList("Time", null, new { @class = "select2" })
+                                        @Html.ValidationMessageFor(m => m.ClassID, "", new { @class = "text-danger" })
+                                        <i class="far fa-calendar-alt"></i>
+                                    </div>
+                                    <div class="col-xl-3 col-lg-6 col-12 form-group">
+                                        <label>Content *</label>
+                                        @Html.TextBoxFor(m => m.Content, new { @class = "textarea form-control", placeholder = "Last name...", id = "lastname" })
+                                        @Html.ValidationMessageFor(m => m.Content, "", new { @class = "text-danger" })
+                                    </div>
+                                    <div class="col-12 form-group mg-t-8">
+                                        <input type="submit" value="Update" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark" />
+                                    </div>
+                                </div>
+                            </form>
+                        }
                     </div>
                 </div>
                 <br />
@@ -314,7 +319,7 @@
                 <br />
                 <br />
                 <br />
-                <!-- Student Table Area End Here -->
+                <!-- Add New Teacher Area End Here -->
                 <footer class="footer-wrap-layout1">
                     <div class="copyright">© Copyrights <a href="#">Arbi, Erika, Vlera</a> 2020. All rights reserved.</a></div>
                 </footer>
@@ -330,6 +335,12 @@
     <script src="~/Content/js/popper.min.js"></script>
     <!-- Bootstrap js -->
     <script src="~/Content/js/bootstrap.min.js"></script>
+    <!-- Select 2 Js -->
+    <script src="~/Content/js/select2.min.js"></script>
+    <!-- Date Picker Js -->
+    <script src="~/Content/js/datepicker.min.js"></script>
+    <!-- Smoothscroll Js -->
+    <script src="~/Content/js/jquery.smoothscroll.min.html"></script>
     <!-- Scroll Up Js -->
     <script src="~/Content/js/jquery.scrollUp.min.js"></script>
     <!-- Custom Js -->
@@ -338,5 +349,5 @@
 </body>
 
 
-<!-- Mirrored from www.radiustheme.com/demo/html/psdboss/akkhor/akkhor/teacher-details.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 20 Nov 2020 10:10:09 GMT -->
+<!-- Mirrored from www.radiustheme.com/demo/html/psdboss/akkhor/akkhor/add-teacher.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 20 Nov 2020 10:10:09 GMT -->
 </html>

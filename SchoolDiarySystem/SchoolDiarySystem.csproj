@@ -128,6 +128,7 @@
     <Compile Include="Controllers\StudentController.cs" />
     <Compile Include="Controllers\SubjectController.cs" />
     <Compile Include="Controllers\TeacherController.cs" />
+    <Compile Include="Controllers\TopicController.cs" />
     <Compile Include="DAL\AbsencesDAL.cs" />
     <Compile Include="DAL\ClassDAL.cs" />
     <Compile Include="DAL\ClassSchedulesDAL.cs" />
@@ -314,8 +315,12 @@
     <Content Include="Views\Class\Index.cshtml" />
     <Content Include="Views\Class\Create.cshtml" />
     <Content Include="Views\Class\Update.cshtml" />
-    <Content Include="Views\Class\Details.cshtml" />
     <Content Include="Views\Class\Delete.cshtml" />
+    <Content Include="Views\Topic\Create.cshtml" />
+    <Content Include="Views\Topic\Index.cshtml" />
+    <Content Include="Views\Topic\Update.cshtml" />
+    <Content Include="Views\Topic\Details.cshtml" />
+    <Content Include="Views\Topic\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
