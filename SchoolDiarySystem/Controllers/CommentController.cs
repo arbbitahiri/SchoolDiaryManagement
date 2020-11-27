@@ -14,6 +14,7 @@ namespace SchoolDiarySystem.Controllers
         private readonly ClassDAL classDAL = new ClassDAL();
         private readonly SubjectsDAL subjectsDAL = new SubjectsDAL();
         private readonly StudentsDAL studentsDAL = new StudentsDAL();
+        private readonly ReviewsDAL reviewsDAL = new ReviewsDAL();
 
         // GET: Comment
         public ActionResult Index()
@@ -35,6 +36,28 @@ namespace SchoolDiarySystem.Controllers
             {
                 GetSubjectAndClass();
                 return View();
+            }
+            else
+            {
+                return RedirectToAction("Login", "Account");
+            }
+        }
+
+        public ActionResult Review(int? id)
+        {
+            if (UserSession.GetUsers != null)
+            {
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest);
+                }
+
+                var reviews = reviewsDAL.Get((int)id);
+                if (reviews == null)
+                {
+                    return RedirectToAction("Index");
+                }
+                return View(reviews);
             }
             else
             {

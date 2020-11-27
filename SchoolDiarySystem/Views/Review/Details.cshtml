@@ -1,5 +1,5 @@
 ﻿@using SchoolDiarySystem.Models
-@model Comments
+@model Reviews
 
 <div class="dashboard-page-one">
     <div class="dashboard-content-one">
@@ -32,37 +32,20 @@
                                 </ul>
                             </div>
                         </div>
-                        <p>@Html.Label(Model.Comment.ToString(), new { @class = "font-medium text-dark-medium" })</p>
                         <div class="info-table table-responsive">
                             <table class="table text-nowrap">
                                 <tbody>
                                     <tr>
                                         <td>Date:</td>
-                                        <td>@Html.Label(Model.CommentDate.ToString(), new { @class = "font-medium text-dark-medium" })</td>
+                                        <td><p>@Html.Label(Model.Review.ToString(), new { @class = "font-medium text-dark-medium" })</p></td>
                                     </tr>
                                     <tr>
                                         <td>Time:</td>
-                                        <td>@Html.Label(Model.Time.ToString(), new { @class = "font-medium text-dark-medium" })</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Class:</td>
-                                        <td>@Html.Label(Model.Class.ClassNo.ToString(), new { @class = "font-medium text-dark-medium" })</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Subject:</td>
-                                        <td>@Html.Label(Model.Subject.SubjectTitle, new { @class = "font-medium text-dark-medium" })</td>
+                                        <td>@Html.Label(Model.ReviewDate.ToString(), new { @class = "font-medium text-dark-medium" })</td>
                                     </tr>
                                     <tr>
                                         <td>
-                                            @using (Html.BeginForm("Update", "Comment", new { id = Model.CommentID }, FormMethod.Post))
-                                            {
-                                                <div class="col-12 form-group mg-t-8">
-                                                    <input type="submit" value="Update" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark" />
-                                                </div>
-                                            }
-                                        </td>
-                                        <td>
-                                            @using (Html.BeginForm("Review", "Comment", new { id = Model.CommentID }, FormMethod.Post))
+                                            @using (Html.BeginForm("Update", "Review", new { id = Model.CommentID }, FormMethod.Post))
                                             {
                                                 <div class="col-12 form-group mg-t-8">
                                                     <input type="submit" value="Update" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark" />

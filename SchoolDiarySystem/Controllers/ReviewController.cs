@@ -31,18 +31,6 @@ namespace SchoolDiarySystem.Controllers
             }
         }
 
-        public ActionResult Review()
-        {
-            if (UserSession.GetUsers != null)
-            {
-                return View();
-            }
-            else
-            {
-                return RedirectToAction("Login", "Account");
-            }
-        }
-
         public ActionResult Update(int? id)
         {
             if (UserSession.GetUsers != null)
@@ -97,28 +85,6 @@ namespace SchoolDiarySystem.Controllers
 
                 ViewBag.CommentID = comment.Comment;
             }
-        }
-
-        private List<Reviews> GetAllReviews()
-        {
-            var reviews = reviewsDAL.GetAll();
-            var comments = commentsDAL.GetAll();
-            var students = studentsDAL.GetAll();
-            var classes = classDAL.GetAll();
-            var subjects = subjectsDAL.GetAll();
-
-            foreach (var com in comments)
-            {
-                foreach (var st in students)
-                {
-                    if (com.StudentID == st.StudentID)
-                    {
-
-                    }
-                }
-            }
-
-            return reviews;
         }
     }
 }
