@@ -82,7 +82,7 @@ namespace SchoolDiarySystem.DAL
                     string sqlproc = "dbo.usp_Comment_Get";
                     using (var command = DataConnection.GetCommand(connection, sqlproc, CommandType.StoredProcedure))
                     {
-                        DataConnection.AddParameter(command, "topicID", id);
+                        DataConnection.AddParameter(command, "commentID", id);
                         using (SqlDataReader reader = command.ExecuteReader())
                         {
                             comment = new Comments();
@@ -147,7 +147,7 @@ namespace SchoolDiarySystem.DAL
                 var comment = new Comments();
 
                 if (dataReader["CommentID"] != DBNull.Value)
-                    comment.CommentID = int.Parse(dataReader["TopicID"].ToString());
+                    comment.CommentID = int.Parse(dataReader["CommentID"].ToString());
 
                 if (dataReader["ClassID"] != DBNull.Value)
                     comment.ClassID = int.Parse(dataReader["ClassID"].ToString());

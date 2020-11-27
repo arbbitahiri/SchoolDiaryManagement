@@ -1,16 +1,16 @@
 ﻿@using SchoolDiarySystem.Models
-@model IEnumerable<Subjects>
+@model IEnumerable<Reviews>
 
 <div class="dashboard-page-one">
     <div class="dashboard-content-one">
         <!-- Breadcubs Area Start Here -->
         <div class="breadcrumbs-area">
-            <h3>Subject</h3>
+            <h3>Comments</h3>
             <ul>
                 <li>
                     <a href="index-2.html">Home</a>
                 </li>
-                <li>All Subject</li>
+                <li>All Comments</li>
             </ul>
         </div>
         <!-- Breadcubs Area End Here -->
@@ -19,7 +19,7 @@
             <div class="card-body">
                 <div class="heading-layout1">
                     <div class="item-title">
-                        <h3>All Subject Data</h3>
+                        <h3>All Comments Data</h3>
                     </div>
                 </div>
                 <form class="mg-b-20">
@@ -36,10 +36,11 @@
                     <table class="table display data-table text-nowrap">
                         <thead>
                             <tr>
-                                <th>Subject Title</th>
-                                <th>Book</th>
-                                <th>Book Author</th>
-                                <th>Teacher</th>
+                                <th>Date</th>
+                                <th>Time</th>
+                                <th>Comment</th>
+                                <th>Class</th>
+                                <th>Subject</th>
                                 <th></th>
                             </tr>
                         </thead>
@@ -61,22 +62,24 @@
                             {
                                 <tr>
                                     <td>
-                                        @Html.DisplayFor(m => item.SubjectTitle)
+                                        @Html.DisplayFor(m => item.Comment.Comment)
                                     </td>
                                     <td>
-                                        @Html.DisplayFor(m => item.Book)
+                                        @Html.DisplayFor(m => item.Review)
                                     </td>
                                     <td>
-                                        @Html.DisplayFor(m => item.BookAuthor)
+                                        @Html.DisplayFor(m => item.ReviewDate)
                                     </td>
                                     <td>
-                                        @Html.DisplayFor(m => item.Teacher.FullName)
+                                        @Html.DisplayFor(m => item.Comment.Class.ClassNo)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(m => item.Comment.Subject.SubjectTitle)
                                     </td>
 
                                     <td>
-                                        @Html.ActionLink("Update", "Update", new { id = item.SubjectID })
-                                        @Html.ActionLink("Details", "Details", new { id = item.SubjectID })
-                                        @Html.ActionLink("Delete", "Delete", new { id = item.SubjectID })
+                                        @Html.ActionLink("Update", "Update", new { id = item.CommentID })
+                                        @Html.ActionLink("Details", "Details", new { id = item.CommentID })
                                     </td>
                                 </tr>
                             }

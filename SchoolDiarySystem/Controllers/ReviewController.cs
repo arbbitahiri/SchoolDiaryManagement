@@ -8,20 +8,22 @@ using System.Web.Mvc;
 
 namespace SchoolDiarySystem.Controllers
 {
-    public class CommentController : Controller
+    public class ReviewController : Controller
     {
+        private readonly ReviewsDAL reviewsDAL = new ReviewsDAL();
         private readonly CommentsDAL commentsDAL = new CommentsDAL();
         private readonly ClassDAL classDAL = new ClassDAL();
         private readonly SubjectsDAL subjectsDAL = new SubjectsDAL();
         private readonly StudentsDAL studentsDAL = new StudentsDAL();
 
-        // GET: Comment
+        // GET: Review
         public ActionResult Index()
         {
             if (UserSession.GetUsers != null)
             {
-                var comments = commentsDAL.GetAll();
-                return View(comments);
+                var reviews = reviewsDAL.GetAll();
+
+                return View(reviews);
             }
             else
             {
@@ -29,11 +31,10 @@ namespace SchoolDiarySystem.Controllers
             }
         }
 
-        public ActionResult Create()
+        public ActionResult Review()
         {
             if (UserSession.GetUsers != null)
             {
-                GetSubjectAndClass();
                 return View();
             }
             else
@@ -51,13 +52,13 @@ namespace SchoolDiarySystem.Controllers
                     return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest);
                 }
 
-                var comments = commentsDAL.Get((int)id);
-                if (comments == null)
+                var reviews = reviewsDAL.Get((int)id);
+                if (reviews == null)
                 {
                     return RedirectToAction("Index");
                 }
-                GetSubjectAndClass(comments);
-                return View(comments);
+                GetComment(reviews);
+                return View(reviews);
             }
             else
             {
@@ -74,12 +75,13 @@ namespace SchoolDiarySystem.Controllers
                     return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest);
                 }
 
-                var comments = commentsDAL.Get((int)id);
-                if (comments == null)
+                var reviews = reviewsDAL.Get((int)id);
+                if (reviews == null)
                 {
                     return RedirectToAction("Index");
                 }
-                return View(comments);
+                GetComment(reviews);
+                return View(reviews);
             }
             else
             {
@@ -87,24 +89,36 @@ namespace SchoolDiarySystem.Controllers
             }
         }
 
-        private void GetSubjectAndClass()
+        private void GetComment(Reviews reviews)
         {
-            List<int> times = new List<int>() { 1, 2, 3, 4, 5, 6 };
+            if (reviews != null)
+            {
+                var comment = commentsDAL.Get(reviews.CommentID);
 
-            ViewBag.Time = new SelectList(times, "Time");
-            ViewBag.SubjectID = new SelectList(subjectsDAL.GetAll(), "SubjectID", "SubjectTitle");
-            ViewBag.StudentID = new SelectList(studentsDAL.GetAll(), "StudentID", "FullName");
-            ViewBag.ClassID = new SelectList(classDAL.GetAll(), "ClassID", "ClassNo");
+                ViewBag.CommentID = comment.Comment;
+            }
         }
 
-        private void GetSubjectAndClass(Comments comments)
+        private List<Reviews> GetAllReviews()
         {
-            List<int> times = new List<int>() { 1, 2, 3, 4, 5, 6 };
+            var reviews = reviewsDAL.GetAll();
+            var comments = commentsDAL.GetAll();
+            var students = studentsDAL.GetAll();
+            var classes = classDAL.GetAll();
+            var subjects = subjectsDAL.GetAll();
 
-            ViewBag.Time = new SelectList(times, "Time");
-            ViewBag.SubjectID = new SelectList(subjectsDAL.GetAll(), "SubjectID", "SubjectTitle", comments.SubjectID);
-            ViewBag.ClassID = new SelectList(classDAL.GetAll(), "ClassID", "ClassNo", comments.ClassID);
-            ViewBag.StudentID = new SelectList(studentsDAL.GetAll(), "StudentID", "FullName", comments.StudentID);
+            foreach (var com in comments)
+            {
+                foreach (var st in students)
+                {
+                    if (com.StudentID == st.StudentID)
+                    {
+
+                    }
+                }
+            }
+
+            return reviews;
         }
     }
 }

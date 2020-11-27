@@ -6,6 +6,7 @@ namespace SchoolDiarySystem.Models
     {
         public int CommentID { get; set; }
         public string Comment { get; set; }
+        public int StudentID { get; set; }
         public int ClassID { get; set; }
         public int SubjectID { get; set; }
         public int Time { get; set; }
@@ -13,5 +14,6 @@ namespace SchoolDiarySystem.Models
 
         public virtual Class Class { get; set; }
         public virtual Subjects Subject { get; set; }
+        public virtual Students Student { get; set; }
     }
 }

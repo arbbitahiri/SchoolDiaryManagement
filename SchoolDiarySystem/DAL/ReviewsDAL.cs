@@ -79,7 +79,7 @@ namespace SchoolDiarySystem.DAL
                     string sqlproc = "dbo.usp_Review_Get";
                     using (var command = DataConnection.GetCommand(connection, sqlproc, CommandType.StoredProcedure))
                     {
-                        DataConnection.AddParameter(command, "topicID", id);
+                        DataConnection.AddParameter(command, "reviewID", id);
                         using (SqlDataReader reader = command.ExecuteReader())
                         {
                             review = new Reviews();
@@ -92,7 +92,15 @@ namespace SchoolDiarySystem.DAL
                                     CommentDate = DateTime.Parse(reader["Date"].ToString()),
                                     Time = int.Parse(reader["Time"].ToString()),
                                     ClassID = int.Parse(reader["ClassID"].ToString()),
-                                    SubjectID = int.Parse(reader["SubjectID"].ToString())
+                                    SubjectID = int.Parse(reader["SubjectID"].ToString()),
+                                    Class = new Class
+                                    {
+                                        ClassNo = int.Parse(reader["Class_No"].ToString())
+                                    },
+                                    Subject = new Subjects
+                                    {
+                                        SubjectTitle = reader["Subject_Title"].ToString()
+                                    }
                                 };
                             }
                         }
@@ -128,7 +136,15 @@ namespace SchoolDiarySystem.DAL
                                     CommentDate = DateTime.Parse(reader["Date"].ToString()),
                                     Time = int.Parse(reader["Time"].ToString()),
                                     ClassID = int.Parse(reader["ClassID"].ToString()),
-                                    SubjectID = int.Parse(reader["SubjectID"].ToString())
+                                    SubjectID = int.Parse(reader["SubjectID"].ToString()),
+                                    Class = new Class
+                                    {
+                                        ClassNo = int.Parse(reader["Class_No"].ToString())
+                                    },
+                                    Subject = new Subjects
+                                    {
+                                        SubjectTitle = reader["Subject_Title"].ToString()
+                                    }
                                 };
                                 MyReviews.Add(review);
                             }
@@ -149,8 +165,11 @@ namespace SchoolDiarySystem.DAL
             {
                 var reviews = new Reviews();
 
-                if (dataReader["TopicID"] != DBNull.Value)
-                    reviews.CommentID = int.Parse(dataReader["TopicID"].ToString());
+                if (dataReader["ReviewID"] != DBNull.Value)
+                    reviews.ReviewID = int.Parse(dataReader["ReviewID"].ToString());
+
+                if (dataReader["CommentID"] != DBNull.Value)
+                    reviews.CommentID = int.Parse(dataReader["CommentID"].ToString());
 
                 if (dataReader["Review"] != DBNull.Value)
                     reviews.Review = dataReader["Review"].ToString();

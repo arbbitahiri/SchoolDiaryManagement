@@ -125,6 +125,7 @@
     <Compile Include="Controllers\ClassController.cs" />
     <Compile Include="Controllers\CommentController.cs" />
     <Compile Include="Controllers\ParentController.cs" />
+    <Compile Include="Controllers\ReviewController.cs" />
     <Compile Include="Controllers\RoomController.cs" />
     <Compile Include="Controllers\StudentController.cs" />
     <Compile Include="Controllers\SubjectController.cs" />
@@ -328,6 +329,7 @@
     <Content Include="Views\Comment\Create.cshtml" />
     <Content Include="Views\Comment\Update.cshtml" />
     <Content Include="Views\Comment\Details.cshtml" />
+    <Content Include="Views\Review\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
