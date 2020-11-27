@@ -93,6 +93,12 @@ namespace SchoolDiarySystem.DAL
                                 {
                                     comment.Class = new Class { ClassNo = int.Parse(reader["Class_No"].ToString()) };
                                     comment.Subject = new Subjects { SubjectTitle = reader["Subject_Title"].ToString() };
+                                    comment.Review = new Reviews { Review = reader["Review"].ToString(), ReviewID = int.Parse(reader["ReviewID"].ToString()) };
+                                    comment.Student = new Students
+                                    {
+                                        FirstName = reader["First_Name"].ToString(),
+                                        LastName = reader["Last_Name"].ToString()
+                                    };
                                 }
                             }
                         }
@@ -126,6 +132,27 @@ namespace SchoolDiarySystem.DAL
                                 {
                                     comment.Class = new Class { ClassNo = int.Parse(reader["Class_No"].ToString()) };
                                     comment.Subject = new Subjects { SubjectTitle = reader["Subject_Title"].ToString() };
+                                    if (reader["Review"] != DBNull.Value && reader["ReviewID"] != DBNull.Value)
+                                    {
+                                        comment.Review = new Reviews
+                                        {
+                                            Review = reader["Review"].ToString(),
+                                            ReviewID = int.Parse(reader["ReviewID"].ToString())
+                                        };
+                                    }
+                                    else
+                                    {
+                                        comment.Review = new Reviews
+                                        {
+                                            Review = "Not reviewed yet!",
+                                            ReviewID = 0
+                                        };
+                                    }
+                                    comment.Student = new Students
+                                    {
+                                        FirstName = reader["First_Name"].ToString(),
+                                        LastName = reader["Last_Name"].ToString()
+                                    };
                                 }
                                 MyComments.Add(comment);
                             }

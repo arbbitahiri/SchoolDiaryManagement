@@ -100,6 +100,11 @@ namespace SchoolDiarySystem.DAL
                                     Subject = new Subjects
                                     {
                                         SubjectTitle = reader["Subject_Title"].ToString()
+                                    },
+                                    Student = new Students
+                                    {
+                                        FirstName = reader["First_Name"].ToString(),
+                                        LastName = reader["Last_Name"].ToString()
                                     }
                                 };
                             }
@@ -144,6 +149,11 @@ namespace SchoolDiarySystem.DAL
                                     Subject = new Subjects
                                     {
                                         SubjectTitle = reader["Subject_Title"].ToString()
+                                    },
+                                    Student = new Students
+                                    {
+                                        FirstName = reader["First_Name"].ToString(),
+                                        LastName = reader["Last_Name"].ToString()
                                     }
                                 };
                                 MyReviews.Add(review);

@@ -133,7 +133,7 @@ namespace SchoolDiarySystem.DAL
                 List<Topics> MyTopics = null;
                 using (var connection = DataConnection.GetConnection())
                 {
-                    string sqlproc = "dbo.usp_Topics_ViewAll";
+                    string sqlproc = "dbo.usp_Topic_GetList";
                     using (var command = DataConnection.GetCommand(connection, sqlproc, CommandType.StoredProcedure))
                     {
                         using (SqlDataReader reader = command.ExecuteReader())
