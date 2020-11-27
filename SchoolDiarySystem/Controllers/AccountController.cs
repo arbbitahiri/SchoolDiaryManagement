@@ -34,15 +34,15 @@ namespace SchoolDiarySystem.Controllers
                     }
                     else if (result.RoleID == 2)
                     {
-                        return RedirectToAction("Index", "Admin");
+                        return RedirectToAction("Index", "Teacher");
                     }
                     else if (result.RoleID == 3)
                     {
-                        return RedirectToAction("Index", "Admin");
+                        return RedirectToAction("Index", "Parent");
                     }
                     else if (result.RoleID == 4)
                     {
-                        return RedirectToAction("Index", "Admin");
+                        return RedirectToAction("Index", "Director");
                     }
                     else
                     {

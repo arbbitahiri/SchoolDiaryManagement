@@ -1,3 +1,28 @@
-﻿@{
-    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+﻿@using SchoolDiarySystem.Models
+@{
+    if (UserSession.GetUsers != null)
+    {
+        var role = UserSession.GetUsers.RoleID;
+
+        if (role == 1)
+        {
+            Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+        }
+        else if (role == 2)
+        {
+            Layout = "~/Views/Shared/_LayoutTeacher.cshtml";
+        }
+        else if (role == 3)
+        {
+            Layout = "~/Views/Shared/_LayoutParent.cshtml";
+        }
+        else if (role == 4)
+        {
+            Layout = "~/Views/Shared/_LayoutDirector.cshtml";
+        }
+    }
+    else
+    {
+        Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    }
 }

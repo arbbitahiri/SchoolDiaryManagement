@@ -333,6 +333,9 @@
     <Content Include="Views\Comment\Review.cshtml" />
     <Content Include="Views\Review\Update.cshtml" />
     <Content Include="Views\Review\Details.cshtml" />
+    <Content Include="Views\Shared\_LayoutTeacher.cshtml" />
+    <Content Include="Views\Shared\_LayoutDirector.cshtml" />
+    <Content Include="Views\Shared\_LayoutParent.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

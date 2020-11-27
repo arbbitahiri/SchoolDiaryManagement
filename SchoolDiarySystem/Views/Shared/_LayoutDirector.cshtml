@@ -123,122 +123,42 @@
                 <div class="sidebar-menu-content">
                     <ul class="nav nav-sidebar-menu sidebar-toggle-view">
                         <li class="nav-item">
-                            <a href="@Url.Action("Index", "Admin")" class="nav-link"><i class="flaticon-dashboard"></i><span>Dashboard</span></a>
+                            <a href="@Url.Action("Index", "Director")" class="nav-link"><i class="flaticon-dashboard"></i><span>Dashboard</span></a>
                         </li>
                         <li class="nav-item sidebar-nav-item">
-                            <a href="#" class="nav-link"><i class="flaticon-classmates"></i><span>Students</span></a>
+                            <a href="#" class="nav-link"><i class="flaticon-classmates"></i><span>Users</span></a>
                             <ul class="nav sub-group-menu">
                                 <li class="nav-item">
-                                    <a href="@Url.Action("Index", "Student")" class="nav-link">
-                                        <i class="fas fa-angle-right"></i>All Students
+                                    <a href="@Url.Action("Index", "User")" class="nav-link">
+                                        <i class="fas fa-angle-right"></i>All Users
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="@Url.Action("Create", "Student")" class="nav-link">
-                                        <i class="fas fa-angle-right"></i>Add Student
+                                    <a href="@Url.Action("Create", "User")" class="nav-link">
+                                        <i class="fas fa-angle-right"></i>Add Users
                                     </a>
                                 </li>
                             </ul>
                         </li>
                         <li class="nav-item sidebar-nav-item">
                             <a href="#" class="nav-link">
-                                <i class="flaticon-multiple-users-silhouette"></i><span>Teachers</span>
+                                <i class="flaticon-multiple-users-silhouette"></i><span>Staff Absence</span>
                             </a>
                             <ul class="nav sub-group-menu">
                                 <li class="nav-item">
-                                    <a href="@Url.Action("Index", "Teacher")" class="nav-link">
-                                        <i class="fas fa-angle-right"></i>All Teachers
+                                    <a href="@Url.Action("Index", "Absence")" class="nav-link">
+                                        <i class="fas fa-angle-right"></i>Staff Absence List
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="@Url.Action("Create", "Teacher")" class="nav-link">
-                                        <i class="fas fa-angle-right"></i>Add Teacher
+                                    <a href="@Url.Action("Create", "Absence")" class="nav-link">
+                                        <i class="fas fa-angle-right"></i>Add Absence
                                     </a>
                                 </li>
                             </ul>
                         </li>
-                        <li class="nav-item sidebar-nav-item">
-                            <a href="#" class="nav-link"><i class="flaticon-couple"></i><span>Parents</span></a>
-                            <ul class="nav sub-group-menu">
-                                <li class="nav-item">
-                                    <a href="@Url.Action("Index", "Parent")" class="nav-link">
-                                        <i class="fas fa-angle-right"></i>All Parents
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="@Url.Action("Create", "Parent")" class="nav-link">
-                                        <i class="fas fa-angle-right"></i>Add Parent
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="nav-item sidebar-nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="flaticon-maths-class-materials-cross-of-a-pencil-and-a-ruler"></i><span>Class</span>
-                            </a>
-                            <ul class="nav sub-group-menu">
-                                <li class="nav-item">
-                                    <a href="@Url.Action("Index", "Class")" class="nav-link">
-                                        <i class="fas fa-angle-right"></i>All Classes
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="@Url.Action("Create", "Class")" class="nav-link">
-                                        <i class="fas fa-angle-right"></i>Add New Class
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="nav-item sidebar-nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="flaticon-open-book"></i><span>Subject</span>
-                            </a>
-                            <ul class="nav sub-group-menu">
-                                <li class="nav-item">
-                                    <a href="@Url.Action("Index", "Subject")" class="nav-link">
-                                        <i class="fas fa-angle-right"></i>All Subjects
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="@Url.Action("Create", "Subject")" class="nav-link">
-                                        <i class="fas fa-angle-right"></i>Add New Subject
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="nav-item sidebar-nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="flaticon-calendar"></i><span>Class Schedule</span>
-                            </a>
-                            <ul class="nav sub-group-menu">
-                                <li class="nav-item">
-                                    <a href="@Url.Action("Index", "Schedule")" class="nav-link">
-                                        <i class="fas fa-angle-right"></i>All Schedule
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="@Url.Action("Create", "Schedule")" class="nav-link">
-                                        <i class="fas fa-angle-right"></i>Add New Schedule
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="nav-item sidebar-nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="flaticon-bed"></i><span>Room</span>
-                            </a>
-                            <ul class="nav sub-group-menu">
-                                <li class="nav-item">
-                                    <a href="@Url.Action("Index", "Room")" class="nav-link">
-                                        <i class="fas fa-angle-right"></i>All Rooms
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="@Url.Action("Create", "Room")" class="nav-link">
-                                        <i class="fas fa-angle-right"></i>Add New Room
-                                    </a>
-                                </li>
-                            </ul>
+                        <li class="nav-item">
+                            <a href="@Url.Action("Index", "Comment")" class="nav-link"><i class="flaticon-dashboard"></i><span>Comments</span></a>
                         </li>
                     </ul>
                 </div>
@@ -248,6 +168,12 @@
             <!-- Footer Area End Here -->
             <!-- Sidebar Area End Here -->
             @RenderBody()
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
         </div>
         <!-- Page Area End Here -->
     </div>
@@ -271,3 +197,4 @@
 
 <!-- Mirrored from www.radiustheme.com/demo/html/psdboss/akkhor/akkhor/teacher-details.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 20 Nov 2020 10:10:09 GMT -->
 </html>
+
