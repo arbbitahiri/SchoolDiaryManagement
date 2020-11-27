@@ -8,19 +8,19 @@ using System.Web.Mvc;
 
 namespace SchoolDiarySystem.Controllers
 {
-    public class TopicController : Controller
+    public class CommentController : Controller
     {
-        private readonly TopicsDAL topicsDAL = new TopicsDAL();
+        private readonly CommentsDAL commentsDAL = new CommentsDAL();
         private readonly ClassDAL classDAL = new ClassDAL();
         private readonly SubjectsDAL subjectsDAL = new SubjectsDAL();
 
-        // GET: Topic
+        // GET: Comment
         public ActionResult Index()
         {
             if (UserSession.GetUsers != null)
             {
-                var topics = topicsDAL.GetAll();
-                return View(topics);
+                var comments = commentsDAL.GetAll();
+                return View(comments);
             }
             else
             {
@@ -50,13 +50,13 @@ namespace SchoolDiarySystem.Controllers
                     return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest);
                 }
 
-                var topics = topicsDAL.Get((int)id);
-                if (topics == null)
+                var comments = commentsDAL.Get((int)id);
+                if (comments == null)
                 {
                     return RedirectToAction("Index");
                 }
-                GetSubjectAndClass(topics);
-                return View(topics);
+                GetSubjectAndClass(comments);
+                return View(comments);
             }
             else
             {
@@ -73,12 +73,12 @@ namespace SchoolDiarySystem.Controllers
                     return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest);
                 }
 
-                var topics = topicsDAL.Get((int)id);
-                if (topics == null)
+                var comments = commentsDAL.Get((int)id);
+                if (comments == null)
                 {
                     return RedirectToAction("Index");
                 }
-                return View(topics);
+                return View(comments);
             }
             else
             {
@@ -95,12 +95,12 @@ namespace SchoolDiarySystem.Controllers
                     return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest);
                 }
 
-                var topics = topicsDAL.Get((int)id);
-                if (topics == null)
+                var comments = commentsDAL.Get((int)id);
+                if (comments == null)
                 {
                     return RedirectToAction("Index");
                 }
-                return View(topics);
+                return View(comments);
             }
             else
             {
@@ -117,10 +117,10 @@ namespace SchoolDiarySystem.Controllers
             ViewBag.ClassID = new SelectList(classDAL.GetAll(), "ClassID", "ClassNo");
         }
 
-        private void GetSubjectAndClass(Topics topic)
+        private void GetSubjectAndClass(Comments comments)
         {
-            ViewBag.SubjectID = new SelectList(subjectsDAL.GetAll(), "SubjectID", "SubjectTitle", topic.SubjectID);
-            ViewBag.ClassID = new SelectList(classDAL.GetAll(), "ClassID", "ClassNo", topic.ClassID);
+            ViewBag.SubjectID = new SelectList(subjectsDAL.GetAll(), "SubjectID", "SubjectTitle", comments.SubjectID);
+            ViewBag.ClassID = new SelectList(classDAL.GetAll(), "ClassID", "ClassNo", comments.ClassID);
         }
     }
 }

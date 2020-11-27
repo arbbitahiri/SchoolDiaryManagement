@@ -3,7 +3,7 @@
     Layout = null;
 }
 @using SchoolDiarySystem.Models
-@model Topics
+@model Comments
 
 <!doctype html>
 <html class="no-js" lang="">
@@ -15,7 +15,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>School Diary Management | Topic Details</title>
+    <title>School Diary Management | Comment Details</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Favicon -->
@@ -252,12 +252,12 @@
             <div class="dashboard-content-one">
                 <!-- Breadcubs Area Start Here -->
                 <div class="breadcrumbs-area">
-                    <h3>Topic</h3>
+                    <h3>Comment</h3>
                     <ul>
                         <li>
                             <a href="index-2.html">Home</a>
                         </li>
-                        <li>Topic Details</li>
+                        <li>Comment Details</li>
                     </ul>
                 </div>
                 <!-- Breadcubs Area End Here -->
@@ -266,7 +266,7 @@
                     <div class="card-body">
                         <div class="heading-layout1">
                             <div class="item-title">
-                                <h3>Topic Details</h3>
+                                <h3>Comment Details</h3>
                             </div>
                         </div>
                         <div class="single-info-details">
@@ -279,22 +279,18 @@
                                         </ul>
                                     </div>
                                 </div>
-                                <p>@Html.Label(Model.Content.ToString(), new { @class = "font-medium text-dark-medium" })</p>
+                                <p>@Html.Label(Model.Comment.ToString(), new { @class = "font-medium text-dark-medium" })</p>
                                 <div class="info-table table-responsive">
                                     <table class="table text-nowrap">
                                         <tbody>
                                             <tr>
                                                 <td>Date:</td>
-                                                <td>@Html.Label(Model.TopicDate.ToString(), new { @class = "font-medium text-dark-medium" })</td>
+                                                <td>@Html.Label(Model.CommentDate.ToString(), new { @class = "font-medium text-dark-medium" })</td>
                                             </tr>
                                             <tr>
                                                 <td>Time:</td>
                                                 <td>@Html.Label(Model.Time.ToString(), new { @class = "font-medium text-dark-medium" })</td>
                                             </tr>
-                                            @*<tr>
-                                                <td>Birthday:</td>
-                                                <td>@Html.Label(Model.Content.ToString(), new { @class = "font-medium text-dark-medium" })</td>
-                                            </tr>*@
                                             <tr>
                                                 <td>Class:</td>
                                                 <td>@Html.Label(Model.Class.ClassNo.ToString(), new { @class = "font-medium text-dark-medium" })</td>
@@ -305,7 +301,7 @@
                                             </tr>
                                             <tr>
                                                 <td>
-                                                    @using (Html.BeginForm("Update", "Topic", new { id = Model.TopicID }, FormMethod.Post))
+                                                    @using (Html.BeginForm("Update", "Comment", new { id = Model.CommentID }, FormMethod.Post))
                                                     {
                                                         <div class="col-12 form-group mg-t-8">
                                                             <input type="submit" value="Update" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark" />
@@ -313,15 +309,7 @@
                                                     }
                                                 </td>
                                                 <td>
-                                                    @using (Html.BeginForm("Delete", "Topic", new { id = Model.TopicID }, FormMethod.Post))
-                                                    {
-                                                        <div class="col-12 form-group mg-t-8">
-                                                            <input type="submit" value="Delete" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark" />
-                                                        </div>
-                                                    }
-                                                </td>
-                                                <td>
-                                                    @using (Html.BeginForm("Index", "Topic", FormMethod.Post))
+                                                    @using (Html.BeginForm("Index", "Comment", FormMethod.Post))
                                                     {
                                                         <div class="col-12 form-group mg-t-8">
                                                             <input type="submit" value="Back to List" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark" />
