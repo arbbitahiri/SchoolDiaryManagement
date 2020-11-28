@@ -5,12 +5,12 @@
     <div class="dashboard-content-one">
         <!-- Breadcubs Area Start Here -->
         <div class="breadcrumbs-area">
-            <h3>Notice Board</h3>
+            <h3>Review Board</h3>
             <ul>
                 <li>
-                    <a href="index-2.html">Home</a>
+                    <a href="~/Views/Admin/Index.cshtml">Home</a>
                 </li>
-                <li>Notice</li>
+                <li>Review</li>
             </ul>
         </div>
         <!-- Breadcubs Area End Here -->
@@ -61,9 +61,9 @@
                                     <br />
                                     <div class="entry-meta">  @Html.DisplayFor(m => item.Comment.Student.FullName) / <span>@Html.DisplayFor(m => item.Comment.Subject.SubjectTitle)</span></div>
                                 </div>
-                                }
+                            }
                         </div>
-                        </div>
+                    </div>
                 </div>
             </div>
             <!-- All Notice Area End Here -->

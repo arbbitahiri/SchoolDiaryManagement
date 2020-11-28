@@ -134,7 +134,7 @@ namespace SchoolDiarySystem.DAL
                 List<Subjects> MySubjects = null;
                 using (var connection = DataConnection.GetConnection())
                 {
-                    string sqlproc = "dbo.usp_Subject_ViewAll";
+                    string sqlproc = "dbo.usp_Subject_GetList";
                     using (var command = DataConnection.GetCommand(connection, sqlproc, CommandType.StoredProcedure))
                     {
                         using (SqlDataReader reader = command.ExecuteReader())

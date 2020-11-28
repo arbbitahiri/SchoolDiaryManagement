@@ -8,7 +8,7 @@
             <h3>Room</h3>
             <ul>
                 <li>
-                    <a href="index-2.html">Home</a>
+                    <a href="~/Views/Admin/Index.cshtml">Home</a>
                 </li>
                 <li>Room Details</li>
             </ul>
@@ -17,18 +17,10 @@
         <!-- Student Table Area Start Here -->
         <div class="card height-auto">
             <div class="card-body">
-                <div class="heading-layout1">
-                    <div class="item-title">
-                        <h3>Room Details</h3>
-                    </div>
-                </div>
                 <div class="single-info-details">
-                    <div class="item-img">
-                        <img src="~/Content/img/figure/teacher.jpg" alt="teacher">
-                    </div>
                     <div class="item-content">
                         <div class="header-inline item-header">
-                            @Html.Label(Model.RoomType, new { @class = "text-dark-medium font-medium" })
+                            <h3>@Html.Label(Model.RoomType, new { @class = "text-dark-medium font-medium" })</h3>
                             <div class="header-elements">
                                 <ul>
                                     <li><a href="#"><i class="fas fa-print"></i></a></li>
@@ -52,7 +44,7 @@
                                             @using (Html.BeginForm("Update", "Room", new { id = Model.RoomID }, FormMethod.Post))
                                             {
                                                 <div class="col-12 form-group mg-t-8">
-                                                    <input type="submit" value="Update" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark" />
+                                                    <input type="submit" value="Update" class="btn-fill-lmd radius-30 text-light bg-true-v" />
                                                 </div>
                                             }
                                         </td>
@@ -60,7 +52,7 @@
                                             @using (Html.BeginForm("Delete", "Room", new { id = Model.RoomID }, FormMethod.Post))
                                             {
                                                 <div class="col-12 form-group mg-t-8">
-                                                    <input type="submit" value="Delete" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark" />
+                                                    <input type="submit" value="Delete" class="btn-fill-md radius-30 text-light bg-red" />
                                                 </div>
                                             }
                                         </td>
@@ -68,7 +60,7 @@
                                             @using (Html.BeginForm("Index", "Room", FormMethod.Post))
                                             {
                                                 <div class="col-12 form-group mg-t-8">
-                                                    <input type="submit" value="Back to List" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark" />
+                                                    <input type="button" value="Back to List" class="btn-fill-md radius-30 text-light bg-orange-peel" />
                                                 </div>
                                             }
                                         </td>
@@ -84,6 +76,16 @@
 </div>
 
 @section Scripts {
+    <style>
+        .input-icons i {
+            position: absolute;
+        }
+
+        .input-icons {
+            width: 100%;
+            margin-bottom: 10px;
+        }
+    </style>
     <!-- jquery-->
     <script src="~/Content/js/jquery-3.3.1.min.js"></script>
     <!-- Plugins js -->

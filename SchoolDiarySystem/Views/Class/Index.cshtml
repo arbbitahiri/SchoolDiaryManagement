@@ -1,5 +1,6 @@
 ﻿@using SchoolDiarySystem.Models
-@model Class
+@model IEnumerate<Class>
+
         <div class="dashboard-page-one">
             <div class="dashboard-content-one">
                 <!-- Breadcubs Area Start Here -->
@@ -7,10 +8,30 @@
                     <h3>Class</h3>
                     <ul>
                         <li>
-                            <a href="index-2.html">Home</a>
+                            <a href="~/Views/Admin/Index.cshtml">Home</a>
                         </li>
                         <li>All Classes</li>
                     </ul>
+                </div>
+                <div class="col-4-xxxl col-12">
+                    <div class="card height-auto">
+                        <div class="card-body">
+                            <div class="heading-layout1">
+                                <div class="item-title">
+                                    <h3>Create A Class</h3>
+                                </div>
+                            </div>
+                            <form class="new-added-form">
+                                <div class="row">
+                                    <div class="col-12 form-group mg-t-8">
+                                        <p>
+                                            @Html.ActionLink("Create", "Create", "Class", null, new { @class = "btn-fill-lg font-normal text-light gradient-pastel-green" })
+                                        </p>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
                 </div>
                 <!-- Breadcubs Area End Here -->
                 <!-- Teacher Table Area Start Here -->
@@ -42,40 +63,40 @@
                                     </tr>
                                 </thead>
                                 @*<tfoot>
-                                        <tr>
-                                            <th>@Html.DisplayNameFor(m => m.FirstName)</th>
-                                            <th>@Html.DisplayNameFor(m => m.LastName)</th>
-                                            <th>@Html.DisplayNameFor(m => m.Gender)</th>
-                                            <th>@Html.DisplayNameFor(m => m.City)</th>
-                                            <th>@Html.DisplayNameFor(m => m.Qualification)</th>
-                                            <th>@Html.DisplayNameFor(m => m.DayofBirth)</th>
-                                            <th>@Html.DisplayNameFor(m => m.Email)</th>
-                                            <th>@Html.DisplayNameFor(m => m.PhoneNo)</th>
-                                            <th></th>
-                                        </tr>
-                                    </tfoot>*@
-                                <tbody>
-                                    @foreach (var item in Model)
-                                    {
-                                        <tr>
-                                            <td>
-                                                @Html.DisplayFor(m => item.Teacher.FullName)
-                                            </td>
-                                            <td>
-                                                @Html.DisplayFor(m => item.ClassNo)
-                                            </td>
-                                            <td>
-                                                @Html.DisplayFor(m => item.Room.RoomType)
-                                            </td>
+                            <tr>
+                                <th>@Html.DisplayNameFor(m => m.FirstName)</th>
+                                <th>@Html.DisplayNameFor(m => m.LastName)</th>
+                                <th>@Html.DisplayNameFor(m => m.Gender)</th>
+                                <th>@Html.DisplayNameFor(m => m.City)</th>
+                                <th>@Html.DisplayNameFor(m => m.Qualification)</th>
+                                <th>@Html.DisplayNameFor(m => m.DayofBirth)</th>
+                                <th>@Html.DisplayNameFor(m => m.Email)</th>
+                                <th>@Html.DisplayNameFor(m => m.PhoneNo)</th>
+                                <th></th>
+                            </tr>
+                        </tfoot>*@
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>
+                                            @Html.DisplayFor(m => item.Teacher.FullName)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(m => item.ClassNo)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(m => item.Room.RoomType)
+                                        </td>
 
-                                            <td>
-                                                @Html.ActionLink("Update", "Update", new { id = item.ClassID })
-                                                @Html.ActionLink("Details", "Details", new { id = item.ClassID })
-                                                @Html.ActionLink("Delete", "Delete", new { id = item.ClassID })
-                                            </td>
-                                        </tr>
-                                    }
-                                </tbody>
+                                        <td>
+                                            @Html.ActionLink("Update", "Update", new { id = item.ClassID })
+                                            @Html.ActionLink("Details", "Details", new { id = item.ClassID })
+                                            @Html.ActionLink("Delete", "Delete", new { id = item.ClassID })
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
                             </table>
                         </div>
                     </div>

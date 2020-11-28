@@ -8,72 +8,84 @@
             <h3>Room</h3>
             <ul>
                 <li>
-                    <a href="index-2.html">Home</a>
+                    <a href="~/Views/Admin/Index.cshtml">Home</a>
                 </li>
                 <li>All Rooms</li>
             </ul>
         </div>
+        <div class="col-4-xxxl col-12">
+            <div class="card height-auto">
+                <div class="card-body">
+                    <div class="heading-layout1">
+                        <div class="item-title">
+                            <h3>Create A Room</h3>
+                        </div>
+                    </div>
+                    <form class="new-added-form">
+                        <div class="row">
+                                <div class="col-12 form-group mg-t-8">
+                                    <p>
+                                        @Html.ActionLink("Create", "Create", "Room", null, new { @class = "btn-fill-lg font-normal text-light gradient-pastel-green" })
+                                    </p>
+                                </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
         <!-- Breadcubs Area End Here -->
         <!-- Teacher Table Area Start Here -->
-        <div class="card height-auto">
-            <div class="card-body">
-                <div class="heading-layout1">
-                    <div class="item-title">
-                        <h3>All Rooms Data</h3>
-                    </div>
-                </div>
-                <form class="mg-b-20">
-                    <div class="row gutters-8">
-                        <div class="col-4-xxxl col-xl-4 col-lg-3 col-12 form-group">
-                            <input type="text" placeholder="Search by Name ..." class="form-control">
-                        </div>
-                        <div class="col-1-xxxl col-xl-2 col-lg-3 col-12 form-group">
-                            <button type="submit" class="fw-btn-fill btn-gradient-yellow">SEARCH</button>
+        <div class="col-8-xxxl col-12">
+            <div class="card height-auto">
+                <div class="card-body">
+                    <div class="heading-layout1">
+                        <div class="item-title">
+                            <h3>Room Lists</h3>
                         </div>
                     </div>
-                </form>
-                <div class="table-responsive">
-                    <table class="table display data-table text-nowrap">
-                        <thead>
-                            <tr>
-                                <th>Room Number</th>
-                                <th>Room Type</th>
-                                <th></th>
-                            </tr>
-                        </thead>
-                        @*<tfoot>
+                    <form class="mg-b-20">
+                        <div class="row gutters-8">
+                            <div class="col-lg-12 form-group">
+                                <input type="text" placeholder="Search by Room ..." class="form-control">
+                            </div>
+                            <div class="col-lg-2 col-12 form-group">
+                                <button type="submit"
+                                        class="fw-btn-fill btn-gradient-yellow">
+                                    SEARCH
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                    <div class="table-responsive">
+                        <table class="table display data-table text-nowrap">
+                            <thead>
                                 <tr>
-                                    <th>@Html.DisplayNameFor(m => m.FirstName)</th>
-                                    <th>@Html.DisplayNameFor(m => m.LastName)</th>
-                                    <th>@Html.DisplayNameFor(m => m.Gender)</th>
-                                    <th>@Html.DisplayNameFor(m => m.City)</th>
-                                    <th>@Html.DisplayNameFor(m => m.Qualification)</th>
-                                    <th>@Html.DisplayNameFor(m => m.DayofBirth)</th>
-                                    <th>@Html.DisplayNameFor(m => m.Email)</th>
-                                    <th>@Html.DisplayNameFor(m => m.PhoneNo)</th>
+                                    <th>Room Number</th>
+                                    <th>Room Type</th>
                                     <th></th>
                                 </tr>
-                            </tfoot>*@
-                        <tbody>
-                            @foreach (var item in Model)
-                            {
-                                <tr>
-                                    <td>
-                                        @Html.DisplayFor(m => item.RoomNo)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(m => item.RoomType)
-                                    </td>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>
+                                            @Html.DisplayFor(m => item.RoomNo)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(m => item.RoomType)
+                                        </td>
 
-                                    <td>
-                                        @Html.ActionLink("Update", "Update", new { id = item.RoomID })
-                                        @Html.ActionLink("Details", "Details", new { id = item.RoomID })
-                                        @Html.ActionLink("Delete", "Delete", new { id = item.RoomID })
-                                    </td>
-                                </tr>
-                            }
-                        </tbody>
-                    </table>
+                                        <td>
+                                            @Html.ActionLink("Update", "Update", new { id = item.RoomID }) |
+                                            @Html.ActionLink("Details", "Details", new { id = item.RoomID }) |
+                                            @Html.ActionLink("Delete", "Delete", new { id = item.RoomID })
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
@@ -103,4 +115,6 @@
     <script src="~/Content/js/Chart.min.js"></script>
     <!-- Custom Js -->
     <script src="~/Content/js/main.js"></script>
+    <!-- Modernize js -->
+    <script src="~/Content/js/modernizr-3.6.0.min.js"></script>
 }

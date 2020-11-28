@@ -5,13 +5,33 @@
     <div class="dashboard-content-one">
         <!-- Breadcubs Area Start Here -->
         <div class="breadcrumbs-area">
-            <h3>Notice Board</h3>
+            <h3>Comment Board</h3>
             <ul>
                 <li>
-                    <a href="index-2.html">Home</a>
+                    <a href="~/Views/Admin/Index.cshtml">Home</a>
                 </li>
-                <li>Notice</li>
+                <li>Comment</li>
             </ul>
+        </div>
+        <div class="col-4-xxxl col-12">
+            <div class="card height-auto">
+                <div class="card-body">
+                    <div class="heading-layout1">
+                        <div class="item-title">
+                            <h3>Create A Comment</h3>
+                        </div>
+                    </div>
+                    <form class="new-added-form">
+                        <div class="row">
+                            <div class="col-12 form-group mg-t-8">
+                                <p>
+                                    @Html.ActionLink("Create", "Create", "Comment", null, new { @class = "btn-fill-lg font-normal text-light gradient-pastel-green" })
+                                </p>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
         </div>
         <!-- Breadcubs Area End Here -->
         <div class="row">
@@ -50,28 +70,28 @@
                         <div class="notice-board-wrap">
                             @foreach (var item in Model)
                             {
-                            <div class="notice-list">
-                                <div class="post-date bg-skyblue">@Html.DisplayFor(m => item.CommentDate)</div>
-                                @if (item.Review.ReviewID != 0)
-                                {
+                                <div class="notice-list">
+                                    <div class="post-date bg-skyblue">@Html.DisplayFor(m => item.CommentDate)</div>
+                                    @if (item.Review.ReviewID != 0)
+                                    {
                                         <a href="#">
                                             <div class="post-date bg-pink">
                                                 Reviewed
                                             </div>
                                         </a>
-                                }
-                                <h6 class="notice-title">
-                                    <a href="@Url.Action("Details", "Comment", new { id = item.CommentID })">
-                                        @Html.DisplayFor(m => item.Comment)
-                                    </a>
-                                </h6>
-                                @if (item.Review.ReviewID != 0)
-                                {
-                                    <div class="entry-meta"> @Html.DisplayFor(m => item.Review.Review)</div>
-                                }
-                                <br />
-                                <div class="entry-meta">  @Html.DisplayFor(m => item.Student.FullName) / <span>@Html.DisplayFor(m => item.Subject.SubjectTitle)</span></div>
-                            </div>
+                                    }
+                                    <h6 class="notice-title">
+                                        <a href="@Url.Action("Details", "Comment", new { id = item.CommentID })">
+                                            @Html.DisplayFor(m => item.Comment)
+                                        </a>
+                                    </h6>
+                                    @if (item.Review.ReviewID != 0)
+                                    {
+                                        <div class="entry-meta"> @Html.DisplayFor(m => item.Review.Review)</div>
+                                    }
+                                    <br />
+                                    <div class="entry-meta">  @Html.DisplayFor(m => item.Student.FullName) / <span>@Html.DisplayFor(m => item.Subject.SubjectTitle)</span></div>
+                                </div>
                             }
                         </div>
                     </div>
