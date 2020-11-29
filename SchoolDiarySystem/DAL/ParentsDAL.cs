@@ -154,11 +154,11 @@ namespace SchoolDiarySystem.DAL
                 if (dataReader["ParentID"] != DBNull.Value)
                     parent.ParentID = int.Parse(dataReader["ParentID"].ToString());
 
-                if (dataReader["First_Name"] != DBNull.Value)
-                    parent.FirstName = dataReader["First_Name"].ToString();
+                if (dataReader["First_Name_P"] != DBNull.Value)
+                    parent.FirstName = dataReader["First_Name_P"].ToString();
 
-                if (dataReader["Last_Name"] != DBNull.Value)
-                    parent.LastName = dataReader["Last_Name"].ToString();
+                if (dataReader["Last_Name_P"] != DBNull.Value)
+                    parent.LastName = dataReader["Last_Name_P"].ToString();
 
                 if (dataReader["City"] != DBNull.Value)
                     parent.City = dataReader["City"].ToString();

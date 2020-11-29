@@ -43,22 +43,159 @@ namespace SchoolDiarySystem.DAL
 
         public bool Create(Users model)
         {
-            throw new NotImplementedException();
+            try
+            {
+                using (var connection = DataConnection.GetConnection())
+                {
+                    string sqlproc = "dbo.usp_User_Create";
+                    using (var command = DataConnection.GetCommand(connection, sqlproc, CommandType.StoredProcedure))
+                    {
+                        DataConnection.AddParameter(command, "username", model.Username);
+                        DataConnection.AddParameter(command, "password", model.Password);
+                        DataConnection.AddParameter(command, "firstname", model.FirstName);
+                        DataConnection.AddParameter(command, "lastname", model.LastName);
+                        DataConnection.AddParameter(command, "expiresdate", model.ExpiresDate);
+                        DataConnection.AddParameter(command, "teacherID", model.TeacherID);
+                        DataConnection.AddParameter(command, "parentID", model.ParentID);
+                        DataConnection.AddParameter(command, "roleID", model.RoleID);
+                        DataConnection.AddParameter(command, "insertby", model.InsertBy);
+                        DataConnection.AddParameter(command, "LUB", model.LUB);
+                        DataConnection.AddParameter(command, "LUN", model.LUN);
+
+                        int result = command.ExecuteNonQuery();
+                        return result > 0;
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                return false;
+            }
         }
 
         public bool Update(Users model)
         {
-            throw new NotImplementedException();
+            try
+            {
+                using (var connection = DataConnection.GetConnection())
+                {
+                    string sqlproc = "dbo.usp_User_Update";
+                    using (var command = DataConnection.GetCommand(connection, sqlproc, CommandType.StoredProcedure))
+                    {
+                        DataConnection.AddParameter(command, "userID", model.UserID);
+                        DataConnection.AddParameter(command, "username", model.Username);
+                        DataConnection.AddParameter(command, "firstname", model.FirstName);
+                        DataConnection.AddParameter(command, "lastname", model.LastName);
+                        DataConnection.AddParameter(command, "expiresdate", model.ExpiresDate);
+                        DataConnection.AddParameter(command, "LUB", model.LUB);
+                        DataConnection.AddParameter(command, "LUN", model.LUN);
+
+                        int result = command.ExecuteNonQuery();
+                        return result > 0;
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+
+        public bool ChangePassword(Users model)
+        {
+            try
+            {
+                using (var connection = DataConnection.GetConnection())
+                {
+                    string sqlproc = "dbo.usp_User_ChangePassword";
+                    using (var command = DataConnection.GetCommand(connection, sqlproc, CommandType.StoredProcedure))
+                    {
+                        DataConnection.AddParameter(command, "userID", model.UserID);
+                        DataConnection.AddParameter(command, "userpass", model.Password);
+                        DataConnection.AddParameter(command, "ispasswordchanged", model.IsPasswordChanged);
+                        DataConnection.AddParameter(command, "lastpasswordchangedate", model.LastPasswordChangeDate);
+                        DataConnection.AddParameter(command, "LUN", model.LUN);
+                        DataConnection.AddParameter(command, "LUB", model.LUB);
+
+                        int result = command.ExecuteNonQuery();
+                        return result > 0;
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                return false;
+            }
         }
 
         public bool Delete(int id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                using (var connection = DataConnection.GetConnection())
+                {
+                    string sqlproc = "dbo.usp_User_Delete";
+                    using (var command = DataConnection.GetCommand(connection, sqlproc, CommandType.StoredProcedure))
+                    {
+                        DataConnection.AddParameter(command, "userID", id);
+
+                        int result = command.ExecuteNonQuery();
+
+                        return result > 0;
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                return false;
+            }
         }
 
         public Users Get(int id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                Users user = null;
+                using (var connection = DataConnection.GetConnection())
+                {
+                    string sqlproc = "dbo.usp_User_Get";
+                    using (var command = DataConnection.GetCommand(connection, sqlproc, CommandType.StoredProcedure))
+                    {
+                        DataConnection.AddParameter(command, "userID", id);
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            user = new Users();
+                            while (reader.Read())
+                            {
+                                user = ToObject(reader);
+                                if (reader["RoleName"] != DBNull.Value && reader["RoleID"] != DBNull.Value)
+                                {
+                                    user.Role = new Roles
+                                    {
+                                        RoleName = reader["RoleName"].ToString(),
+                                        RoleID = (int)reader["RoleID"]
+                                    };
+                                    user.Parent = new Parents
+                                    {
+                                        FirstName = reader["First_Name_P"].ToString(),
+                                        LastName = reader["Last_Name_P"].ToString()
+                                    };
+                                    user.Teacher = new Teachers
+                                    {
+                                        FirstName = reader["First_Name_T"].ToString(),
+                                        LastName = reader["Last_Name_T"].ToString()
+                                    };
+                                }
+                            }
+                        }
+                    }
+                }
+                return user;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
 
         public List<Users> GetAll()
@@ -77,9 +214,23 @@ namespace SchoolDiarySystem.DAL
                             while (reader.Read())
                             {
                                 var user = ToObject(reader);
-                                if (reader["RoleName"] != DBNull.Value)
+                                if (reader["RoleName"] != DBNull.Value && reader["RoleID"] != DBNull.Value)
                                 {
-                                    user.Role = new Roles { RoleName = reader["RoleName"].ToString() };
+                                    user.Role = new Roles
+                                    {
+                                        RoleName = reader["RoleName"].ToString(),
+                                        RoleID = (int)reader["RoleID"]
+                                    };
+                                    user.Parent = new Parents
+                                    {
+                                        FirstName = reader["First_Name_P"].ToString(),
+                                        LastName = reader["Last_Name_P"].ToString()
+                                    };
+                                    user.Teacher = new Teachers
+                                    {
+                                        FirstName = reader["First_Name_T"].ToString(),
+                                        LastName = reader["Last_Name_T"].ToString()
+                                    };
                                 }
                                 MyUsers.Add(user);
                             }

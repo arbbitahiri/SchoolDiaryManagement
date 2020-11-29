@@ -164,11 +164,11 @@ namespace SchoolDiarySystem.DAL
                 if (dataReader["TeacherID"] != DBNull.Value)
                     teacher.TeacherID = int.Parse(dataReader["TeacherID"].ToString());
 
-                if (dataReader["First_Name"] != DBNull.Value)
-                    teacher.FirstName = dataReader["First_Name"].ToString();
+                if (dataReader["First_Name_T"] != DBNull.Value)
+                    teacher.FirstName = dataReader["First_Name_T"].ToString();
 
-                if (dataReader["Last_Name"] != DBNull.Value)
-                    teacher.LastName = dataReader["Last_Name"].ToString();
+                if (dataReader["Last_Name_T"] != DBNull.Value)
+                    teacher.LastName = dataReader["Last_Name_T"].ToString();
 
                 if (dataReader["Gender"] != DBNull.Value)
                     teacher.Gender = dataReader["Gender"].ToString();

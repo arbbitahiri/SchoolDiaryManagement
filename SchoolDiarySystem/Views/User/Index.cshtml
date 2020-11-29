@@ -5,12 +5,12 @@
     <div class="dashboard-content-one">
         <!-- Breadcubs Area Start Here -->
         <div class="breadcrumbs-area">
-            <h3>Parent</h3>
+            <h3>User</h3>
             <ul>
                 <li>
                     <a href="~/Views/Admin/Index.cshtml">Home</a>
                 </li>
-                <li>All Parents</li>
+                <li>All Users</li>
             </ul>
         </div>
         <div class="col-4-xxxl col-12">
@@ -53,7 +53,7 @@
                 </div>
                 <form class="mg-b-20">
                     <div class="row gutters-8">
-                        <div class="col-4-xxxl col-xl-4 col-lg-3 col-12 form-group">
+                        <div class="col-4-xxxl col-xl-10 col-lg-3 col-12 form-group">
                             <input type="text" placeholder="Search by Name ..." class="form-control">
                         </div>
                         <div class="col-1-xxxl col-xl-2 col-lg-3 col-12 form-group">
@@ -91,36 +91,57 @@
                         <tbody>
                             @foreach (var item in Model)
                             {
-                                <tr>
+                            <tr>
+                                @if (item.RoleID == 2)
+                                {
+                                    <td>
+                                        @Html.DisplayFor(m => item.Teacher.FirstName)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(m => item.Teacher.LastName)
+                                    </td>
+                                }
+                                else if (item.RoleID == 4)
+                                {
+                                    <td>
+                                        @Html.DisplayFor(m => item.Parent.FirstName)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(m => item.Parent.LastName)
+                                    </td>
+                                }
+                                else
+                                {
                                     <td>
                                         @Html.DisplayFor(m => item.FirstName)
                                     </td>
                                     <td>
                                         @Html.DisplayFor(m => item.LastName)
                                     </td>
-                                    <td>
-                                        @Html.DisplayFor(m => item.Username)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(m => item.Role.RoleName)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(m => item.ExpiresDate)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(m => item.LastLoginDate)
-                                    </td>
-                                    <td class="text-center">
-                                        @Html.DisplayFor(m => item.LastLoginTime)
-                                    </td>
+                                }
+                                <td>
+                                    @Html.DisplayFor(m => item.Username)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(m => item.Role.RoleName)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(m => item.ExpiresDate)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(m => item.LastLoginDate)
+                                </td>
+                                <td class="text-center">
+                                    @Html.DisplayFor(m => item.LastLoginTime)
+                                </td>
 
-                                    <td>
-                                        @Html.ActionLink("Update", "Update", new { id = item.UserID }) |
-                                        @Html.ActionLink("Details", "Details", new { id = item.UserID }) |
-                                        @Html.ActionLink("Change Password", "ChangePassword", new { id = item.UserID }) |
-                                        @Html.ActionLink("Delete", "Delete", new { id = item.UserID })
-                                    </td>
-                                </tr>
+                                <td>
+                                    @Html.ActionLink("Update", "Update", new { id = item.UserID }) |
+                                    @Html.ActionLink("Details", "Details", new { id = item.UserID }) |
+                                    @Html.ActionLink("Change Password", "ChangePassword", new { id = item.UserID }) |
+                                    @Html.ActionLink("Delete", "Delete", new { id = item.UserID })
+                                </td>
+                            </tr>
                             }
                         </tbody>
                     </table>

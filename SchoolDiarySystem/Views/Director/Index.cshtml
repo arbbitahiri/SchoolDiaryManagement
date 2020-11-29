@@ -10,13 +10,6 @@
     <div class="dashboard-content-one">
         <!-- Breadcubs Area Start Here -->
         <div class="breadcrumbs-area">
-            <h3>Parent</h3>
-            <ul>
-                <li>
-                    <a href="index-2.html">Home</a>
-                </li>
-                <li>Admin User Details</li>
-            </ul>
         </div>
         <!-- Breadcubs Area End Here -->
         <!-- Student Table Area Start Here -->
@@ -24,16 +17,18 @@
             <div class="card-body">
                 <div class="heading-layout1">
                     <div class="item-title">
-                        <h3>Admin User Details</h3>
+                        <h3>My Details</h3>
                     </div>
                 </div>
                 <div class="single-info-details">
                     <div class="item-img">
-                        <img src="~/Content/img/figure/teacher.jpg" alt="teacher">
+                        <img src="~/Content/img/figure/user.jpg" alt="user">
                     </div>
                     <div class="item-content">
                         <div class="header-inline item-header">
-                            @Html.Label(Model.FullName, new { @class = "text-dark-medium font-medium" })
+                            <div class="item-title">
+                                <h3></h3>
+                            </div>
                             <div class="header-elements">
                                 <ul>
                                     <li><a href="#"><i class="fas fa-print"></i></a></li>
@@ -44,25 +39,11 @@
                         <div class="info-table table-responsive">
                             <table class="table text-nowrap">
                                 <tbody>
-                                    @if (Model.RoleID == 1)
+                                    @if (Model.RoleID == 3)
                                     {
                                         <tr>
-                                            <td>Admin Name:</td>
+                                            <td>Name:</td>
                                             <td>@Html.Label(Model.FullName, new { @class = "font-medium text-dark-medium" })</td>
-                                        </tr>
-                                    }
-                                    else if (Model.RoleID == 2)
-                                    {
-                                        <tr>
-                                            <td>Teacher:</td>
-                                            <td>@Html.Label(Model.Teacher.FullName, new { @class = "font-medium text-dark-medium" })</td>
-                                        </tr>
-                                    }
-                                    else if (Model.RoleID == 4)
-                                    {
-                                        <tr>
-                                            <td>Parent:</td>
-                                            <td>@Html.Label(Model.Parent.FullName, new { @class = "font-medium text-dark-medium" })</td>
                                         </tr>
                                     }
                                     <tr>
@@ -96,22 +77,6 @@
                                             {
                                                 <div class="col-12 form-group mg-t-8">
                                                     <input type="submit" value="Update" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark" />
-                                                </div>
-                                            }
-                                        </td>
-                                        <td>
-                                            @using (Html.BeginForm("Delete", "User", new { id = Model.ParentID }, FormMethod.Post))
-                                            {
-                                                <div class="col-12 form-group mg-t-8">
-                                                    <input type="submit" value="Delete" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark" />
-                                                </div>
-                                            }
-                                        </td>
-                                        <td>
-                                            @using (Html.BeginForm("Index", "User", FormMethod.Post))
-                                            {
-                                                <div class="col-12 form-group mg-t-8">
-                                                    <input type="submit" value="Back to List" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark" />
                                                 </div>
                                             }
                                         </td>
