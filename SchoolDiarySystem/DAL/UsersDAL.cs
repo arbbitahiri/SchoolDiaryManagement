@@ -63,7 +63,36 @@ namespace SchoolDiarySystem.DAL
 
         public List<Users> GetAll()
         {
-            throw new NotImplementedException();
+            try
+            {
+                List<Users> MyUsers = null;
+                using (var connection = DataConnection.GetConnection())
+                {
+                    string sqlproc = "dbo.usp_Users_GetList";
+                    using (var command = DataConnection.GetCommand(connection, sqlproc, CommandType.StoredProcedure))
+                    {
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            MyUsers = new List<Users>();
+                            while (reader.Read())
+                            {
+                                var user = ToObject(reader);
+                                if (reader["RoleName"] != DBNull.Value)
+                                {
+                                    user.Role = new Roles { RoleName = reader["RoleName"].ToString() };
+                                }
+                                MyUsers.Add(user);
+                            }
+                        }
+                    }
+                }
+                return MyUsers;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
 
         public Users ToObject(SqlDataReader dataReader)
@@ -113,6 +142,9 @@ namespace SchoolDiarySystem.DAL
 
                 if (dataReader["LastLoginDate"] != DBNull.Value)
                     user.LastLoginDate = DateTime.Parse(dataReader["LastLoginDate"].ToString());
+
+                if (dataReader["LastLoginDate"] != DBNull.Value)
+                    user.LastLoginTime = DateTime.Parse(dataReader["LastLoginDate"].ToString());
 
                 if (dataReader["LastPasswordChangeDate"] != DBNull.Value)
                     user.LastPasswordChangeDate = DateTime.Parse(dataReader["LastPasswordChangeDate"].ToString());

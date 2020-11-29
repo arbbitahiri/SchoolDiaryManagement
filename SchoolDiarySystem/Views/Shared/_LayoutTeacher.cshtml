@@ -125,67 +125,21 @@
                         <li class="nav-item">
                             <a href="@Url.Action("Index", "Teacher")" class="nav-link"><i class="flaticon-dashboard"></i><span>Dashboard</span></a>
                         </li>
-                        <li class="nav-item sidebar-nav-item">
-                            <a href="#" class="nav-link"><i class="flaticon-classmates"></i><span>Topics</span></a>
-                            <ul class="nav sub-group-menu">
-                                <li class="nav-item">
-                                    <a href="@Url.Action("Index", "Topic")" class="nav-link">
-                                        <i class="fas fa-angle-right"></i>All Topics
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="@Url.Action("Create", "Topic")" class="nav-link">
-                                        <i class="fas fa-angle-right"></i>Add Topic
-                                    </a>
-                                </li>
-                            </ul>
+                        <li class="nav-item">
+                            <a href="@Url.Action("Index", "Topic")" class="nav-link"><i class="flaticon-chat"></i><span>Topics</span></a>
                         </li>
-                        <li class="nav-item sidebar-nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="flaticon-multiple-users-silhouette"></i><span>Comments</span>
-                            </a>
-                            <ul class="nav sub-group-menu">
-                                <li class="nav-item">
-                                    <a href="@Url.Action("Index", "Comment")" class="nav-link">
-                                        <i class="fas fa-angle-right"></i>All Comments
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="@Url.Action("Create", "Comment")" class="nav-link">
-                                        <i class="fas fa-angle-right"></i>Add Comment
-                                    </a>
-                                </li>
-                            </ul>
+                        <li class="nav-item">
+                            <a href="@Url.Action("Index", "Absence")" class="nav-link"><i class="flaticon-shopping-list"></i><span>Absences</span></a>
                         </li>
-                        <li class="nav-item sidebar-nav-item">
-                            <a href="#" class="nav-link"><i class="flaticon-couple"></i><span>Absences</span></a>
-                            <ul class="nav sub-group-menu">
-                                <li class="nav-item">
-                                    <a href="@Url.Action("Index", "Absence")" class="nav-link">
-                                        <i class="fas fa-angle-right"></i>All Absences
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="@Url.Action("Create", "Absence")" class="nav-link">
-                                        <i class="fas fa-angle-right"></i>Add Absence
-                                    </a>
-                                </li>
-                            </ul>
+                        <li class="nav-item">
+                            <a href="@Url.Action("Index", "Comment")" class="nav-link"><i class="flaticon-script"></i><span>Comments</span></a>
                         </li>
                     </ul>
                 </div>
             </div>
-            <!-- Social Media End Here -->
-            <!-- Footer Area Start Here -->
-            <!-- Footer Area End Here -->
-            <!-- Sidebar Area End Here -->
-            @RenderBody()
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
+            <div class="dashboard-content-one">
+                @RenderBody()
+            </div>
         </div>
         <!-- Page Area End Here -->
     </div>

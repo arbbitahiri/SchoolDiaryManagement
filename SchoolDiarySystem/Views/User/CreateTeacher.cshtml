@@ -1,0 +1,113 @@
+﻿@using SchoolDiarySystem.Models
+@model Users
+
+<div class="dashboard-page-one">
+    <div class="dashboard-content-one">
+        <!-- Breadcubs Area Start Here -->
+        <div class="breadcrumbs-area">
+            <h3>Parent</h3>
+            <ul>
+                <li>
+                    <a href="index-2.html">Home</a>
+                </li>
+                <li>Add New Parent</li>
+            </ul>
+        </div>
+        <!-- Breadcubs Area End Here -->
+        <!-- Add New Teacher Area Start Here -->
+        <div class="card height-auto">
+            <div class="card-body">
+                <div class="heading-layout1">
+                    <div class="item-title">
+                        <h3>Add New Parent</h3>
+                    </div>
+                </div>
+                @using (Html.BeginForm("CreateTeacher", "User", FormMethod.Post))
+                {
+                    <form class="new-added-form">
+                        <div class="row">
+                            <div class="col-xl-6 col-lg-6 col-12 form-group">
+                                <label>Teacher *</label>
+                                @Html.DropDownList("TeacherID", null, new { @class = "select2" })
+                                @Html.ValidationMessageFor(m => m.TeacherID, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-xl-6 col-lg-4 col-12 form-group">
+                                <label>Expire Date *</label>
+                                @Html.TextBoxFor(m => m.ExpiresDate, new { @class = "form-control air-datepicker", placeholder = "dd/MMMM/yyyy", id = "expire" })
+                                @Html.ValidationMessageFor(m => m.ExpiresDate, "", new { @class = "text-danger" })
+                                <i class="far fa-calendar-alt"></i>
+                            </div>
+                            <div class="col-xl-4 col-lg-4 col-12 form-group">
+                                <label>Username *</label>
+                                @Html.TextBoxFor(m => m.Username, new { @class = "form-control", placeholder = "Last name...", id = "lastname" })
+                                @Html.ValidationMessageFor(m => m.Username, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-xl-4 col-lg-4 col-12 form-group">
+                                <label>Password *</label>
+                                @Html.PasswordFor(m => m.Password, new { @class = "form-control", placeholder = "Type Password", id = "password" })
+                                @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-xl-4 col-lg-4 col-12 form-group">
+                                <label>Confirm Password </label>
+                                @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control", placeholder = "Confirm Password", id = "confirmPass" })
+                                @Html.ValidationMessageFor(m => m.ConfirmPassword, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-12 form-group mg-t-8">
+                                <input type="submit" value="Create" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark" />
+                            </div>
+                        </div>
+                    </form>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <link rel="shortcut icon" type="image/x-icon" href="~/Content/img/favicon.png">
+    <!-- Normalize CSS -->
+    <link rel="stylesheet" href="~/Content/css/normalize.css">
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="~/Content/css/main.css">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="~/Content/css/bootstrap.min.css">
+    <!-- Fontawesome CSS -->
+    <link rel="stylesheet" href="~/Content/css/all.min.css">
+    <!-- Flaticon CSS -->
+    <link rel="stylesheet" href="~/Content/fonts/flaticon.css">
+    <!-- Animate CSS -->
+    <link rel="stylesheet" href="~/Content/css/animate.min.css">
+    <!-- Select 2 CSS -->
+    <link rel="stylesheet" href="~/Content/css/select2.min.css">
+    <!-- Date Picker CSS -->
+    <link rel="stylesheet" href="~/Content/css/datepicker.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="~/Content/style.css">
+    <!-- Modernize js -->
+    <script src="js/modernizr-3.6.0.min.js"></script>
+
+    <!-- jquery-->
+    <script src="~/Content/js/jquery-3.3.1.min.js"></script>
+    <!-- Plugins js -->
+    <script src="~/Content/js/plugins.js"></script>
+    <!-- Popper js -->
+    <script src="~/Content/js/popper.min.js"></script>
+    <!-- Bootstrap js -->
+    <script src="~/Content/js/bootstrap.min.js"></script>
+    <!-- Counterup Js -->
+    <script src="~/Content/js/jquery.counterup.min.js"></script>
+    <!-- Moment Js -->
+    <script src="~/Content/js/moment.min.js"></script>
+    <!-- Waypoints Js -->
+    <script src="~/Content/js/jquery.waypoints.min.js"></script>
+    <!-- Scroll Up Js -->
+    <script src="~/Content/js/jquery.scrollUp.min.js"></script>
+    <!-- Full Calender Js -->
+    <script src="~/Content/js/fullcalendar.min.js"></script>
+    <!-- Select 2 Js -->
+    <script src="~/Content/js/select2.min.js"></script>
+    <!-- Chart Js -->
+    <script src="~/Content/js/Chart.min.js"></script>
+    <!-- Custom Js -->
+    <script src="~/Content/js/main.js"></script>
+}

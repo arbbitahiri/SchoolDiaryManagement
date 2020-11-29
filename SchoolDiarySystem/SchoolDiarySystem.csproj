@@ -131,6 +131,7 @@
     <Compile Include="Controllers\SubjectController.cs" />
     <Compile Include="Controllers\TeacherController.cs" />
     <Compile Include="Controllers\TopicController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
     <Compile Include="DAL\AbsencesDAL.cs" />
     <Compile Include="DAL\ClassDAL.cs" />
     <Compile Include="DAL\ClassSchedulesDAL.cs" />
@@ -336,6 +337,14 @@
     <Content Include="Views\Shared\_LayoutTeacher.cshtml" />
     <Content Include="Views\Shared\_LayoutDirector.cshtml" />
     <Content Include="Views\Shared\_LayoutParent.cshtml" />
+    <Content Include="Views\User\Index.cshtml" />
+    <Content Include="Views\User\CreateTeacher.cshtml" />
+    <Content Include="Views\User\CreateParent.cshtml" />
+    <Content Include="Views\User\ChangePassword.cshtml" />
+    <Content Include="Views\User\Delete.cshtml" />
+    <Content Include="Views\User\CreateAdmin.cshtml" />
+    <Content Include="Views\User\Update.cshtml" />
+    <Content Include="Views\User\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,16 +1,16 @@
 ﻿@using SchoolDiarySystem.Models
-@model IEnumerable<Students>
+@model IEnumerable<Users>
 
 <div class="dashboard-page-one">
     <div class="dashboard-content-one">
         <!-- Breadcubs Area Start Here -->
         <div class="breadcrumbs-area">
-            <h3>Student</h3>
+            <h3>Parent</h3>
             <ul>
                 <li>
                     <a href="~/Views/Admin/Index.cshtml">Home</a>
                 </li>
-                <li>All Students</li>
+                <li>All Parents</li>
             </ul>
         </div>
         <div class="col-4-xxxl col-12">
@@ -18,17 +18,26 @@
                 <div class="card-body">
                     <div class="heading-layout1">
                         <div class="item-title">
-                            <h3>Create A Student</h3>
+                            <h3>Create User</h3>
                         </div>
                     </div>
                     <form class="new-added-form">
-                        <div class="row">
                             <div class="col-12 form-group mg-t-8">
-                                <p>
-                                    @Html.ActionLink("Create", "Create", "Student", null, new { @class = "btn-fill-lg font-normal text-light gradient-pastel-green" })
-                                </p>
+                                <table>
+                                    <tr>
+                                        <td>
+                                            @Html.ActionLink("Admin", "CreateAdmin", "User", null, new { @class = "btn-fill-lg font-normal text-light gradient-pastel-green" })
+                                        </td><td></td><td></td><td></td><td></td><td></td>
+                                        <td>
+                                            @Html.ActionLink("Teacher", "CreateTeacher", "User", null, new { @class = "btn-fill-lg font-normal text-light gradient-pastel-green" })
+                                        </td>
+                                        <td></td><td></td><td></td><td></td><td></td>
+                                        <td>
+                                            @Html.ActionLink("Parent", "CreateParent", "User", null, new { @class = "btn-fill-lg font-normal text-light gradient-pastel-green" })
+                                        </td>
+                                    </tr>
+                                </table>
                             </div>
-                        </div>
                     </form>
                 </div>
             </div>
@@ -39,7 +48,7 @@
             <div class="card-body">
                 <div class="heading-layout1">
                     <div class="item-title">
-                        <h3>All Students Data</h3>
+                        <h3>All Parents Data</h3>
                     </div>
                 </div>
                 <form class="mg-b-20">
@@ -56,13 +65,13 @@
                     <table class="table display data-table text-nowrap">
                         <thead>
                             <tr>
-                                <th>Photo</th>
                                 <th>First Name</th>
                                 <th>Last Name</th>
-                                <th>Gender</th>
-                                <th>Class</th>
-                                <th>Parent</th>
-                                <th>Day of Birth</th>
+                                <th>Username</th>
+                                <th>Role</th>
+                                <th>Expire Date</th>
+                                <th>Last Login Date</th>
+                                <th>Last Login Time</th>
                                 <th></th>
                             </tr>
                         </thead>
@@ -82,65 +91,36 @@
                         <tbody>
                             @foreach (var item in Model)
                             {
-                            <tr>
-                                <td class="text-center">
-                                    <div class="form-check">
-                                        <input type="checkbox" class="form-check-input">
-                                        @if (item.Gender == "Male")
-                                        {
-                                            <img src="~/Content/img/figure/student2.png" alt="student">
-                                        }
-                                        else
-                                        {
-                                            <img src="~/Content/img/figure/student3.png" alt="student">
-                                        }
-                                    </div>
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(m => item.FirstName)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(m => item.LastName)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(m => item.Gender)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(m => item.Class.ClassNo)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(m => item.Parent.FullName)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(m => item.DayofBirth)
-                                </td>
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(m => item.FirstName)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(m => item.LastName)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(m => item.Username)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(m => item.Role.RoleName)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(m => item.ExpiresDate)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(m => item.LastLoginDate)
+                                    </td>
+                                    <td class="text-center">
+                                        @Html.DisplayFor(m => item.LastLoginTime)
+                                    </td>
 
-                                <td>
-                                    <div class="dropdown">
-                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"
-                                           aria-expanded="false">
-                                            <span class="flaticon-more-button-of-three-dots"></span>
-                                        </a>
-                                        <div class="dropdown-menu dropdown-menu-right">
-                                            <a class="dropdown-item" href="#">
-                                                <i class="fas fa-cogs text-dark-pastel-green"></i>Update
-                                            </a>
-                                            <a class="dropdown-item" href="#">
-                                                <i class="fas fa-times text-orange-red"></i>Delete
-                                            </a>
-                                            <a class="dropdown-item" href="#">
-                                                <i class="fas fa-redo-alt text-orange-peel"></i>Details
-                                            </a>
-                                        </div>
-                                    </div>
-                                </td>
-
-                                @*<td>
-            @Html.ActionLink("Update", "Update", new { id = item.StudentID })@Url.Action("Update", new { id = item.StudentID })
-            @Html.ActionLink("Details", "Details", new { id = item.StudentID })@Url.Action("Delete", new { id = item.StudentID })
-            @Html.ActionLink("Delete", "Delete", new { id = item.StudentID })@Url.Action("Details", new { id = item.StudentID })
-        </td>*@
-                            </tr>
+                                    <td>
+                                        @Html.ActionLink("Update", "Update", new { id = item.UserID }) |
+                                        @Html.ActionLink("Details", "Details", new { id = item.UserID }) |
+                                        @Html.ActionLink("Change Password", "ChangePassword", new { id = item.UserID }) |
+                                        @Html.ActionLink("Delete", "Delete", new { id = item.UserID })
+                                    </td>
+                                </tr>
                             }
                         </tbody>
                     </table>
@@ -151,7 +131,6 @@
 </div>
 
 @section Scripts {
-    <!-- Favicon -->
     <link rel="shortcut icon" type="image/x-icon" href="~/Content/img/favicon.png">
     <!-- Normalize CSS -->
     <link rel="stylesheet" href="~/Content/css/normalize.css">
@@ -165,6 +144,14 @@
     <link rel="stylesheet" href="~/Content/fonts/flaticon.css">
     <!-- Animate CSS -->
     <link rel="stylesheet" href="~/Content/css/animate.min.css">
+    <!-- Select 2 CSS -->
+    <link rel="stylesheet" href="~/Content/css/select2.min.css">
+    <!-- Date Picker CSS -->
+    <link rel="stylesheet" href="~/Content/css/datepicker.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="~/Content/style.css">
+    <!-- Modernize js -->
+    <script src="~/Content/js/modernizr-3.6.0.min.js"></script>
     <!-- Data Table CSS -->
     <link rel="stylesheet" href="~/Content/css/jquery.dataTables.min.css">
     <!-- Custom CSS -->

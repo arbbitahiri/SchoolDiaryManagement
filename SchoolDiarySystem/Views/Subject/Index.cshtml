@@ -64,18 +64,18 @@
                             </tr>
                         </thead>
                         @*<tfoot>
-                            <tr>
-                                <th>@Html.DisplayNameFor(m => m.FirstName)</th>
-                                <th>@Html.DisplayNameFor(m => m.LastName)</th>
-                                <th>@Html.DisplayNameFor(m => m.Gender)</th>
-                                <th>@Html.DisplayNameFor(m => m.City)</th>
-                                <th>@Html.DisplayNameFor(m => m.Qualification)</th>
-                                <th>@Html.DisplayNameFor(m => m.DayofBirth)</th>
-                                <th>@Html.DisplayNameFor(m => m.Email)</th>
-                                <th>@Html.DisplayNameFor(m => m.PhoneNo)</th>
-                                <th></th>
-                            </tr>
-                        </tfoot>*@
+                                <tr>
+                                    <th>@Html.DisplayNameFor(m => m.FirstName)</th>
+                                    <th>@Html.DisplayNameFor(m => m.LastName)</th>
+                                    <th>@Html.DisplayNameFor(m => m.Gender)</th>
+                                    <th>@Html.DisplayNameFor(m => m.City)</th>
+                                    <th>@Html.DisplayNameFor(m => m.Qualification)</th>
+                                    <th>@Html.DisplayNameFor(m => m.DayofBirth)</th>
+                                    <th>@Html.DisplayNameFor(m => m.Email)</th>
+                                    <th>@Html.DisplayNameFor(m => m.PhoneNo)</th>
+                                    <th></th>
+                                </tr>
+                            </tfoot>*@
                         <tbody>
                             @foreach (var item in Model)
                             {
@@ -109,6 +109,25 @@
 </div>
 
 @section Scripts {
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="~/Content/img/favicon.png">
+    <!-- Normalize CSS -->
+    <link rel="stylesheet" href="~/Content/css/normalize.css">
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="~/Content/css/main.css">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="~/Content/css/bootstrap.min.css">
+    <!-- Fontawesome CSS -->
+    <link rel="stylesheet" href="~/Content/css/all.min.css">
+    <!-- Flaticon CSS -->
+    <link rel="stylesheet" href="~/Content/fonts/flaticon.css">
+    <!-- Animate CSS -->
+    <link rel="stylesheet" href="~/Content/css/animate.min.css">
+    <!-- Data Table CSS -->
+    <link rel="stylesheet" href="~/Content/css/jquery.dataTables.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="~/Content/style.css">
+
     <!-- jquery-->
     <script src="~/Content/js/jquery-3.3.1.min.js"></script>
     <!-- Plugins js -->
@@ -131,4 +150,8 @@
     <script src="~/Content/js/Chart.min.js"></script>
     <!-- Custom Js -->
     <script src="~/Content/js/main.js"></script>
+    <!-- Data Table Js -->
+    <script src="~/Content/js/jquery.dataTables.min.js"></script>
+    <!-- Modernize js -->
+    <script src="~/Content/js/modernizr-3.6.0.min.js"></script>
 }

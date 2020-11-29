@@ -1,5 +1,10 @@
-﻿@using SchoolDiarySystem.Models
-@model Parents
+﻿
+@{
+    ViewBag.Title = "ParentDetails";
+    Layout = "~/Views/Shared/_LayoutDirector.cshtml";
+}
+@using SchoolDiarySystem.Models
+@model Users
 
 <div class="dashboard-page-one">
     <div class="dashboard-content-one">
@@ -39,17 +44,59 @@
                         <div class="info-table table-responsive">
                             <table class="table text-nowrap">
                                 <tbody>
+                                    @if (Model.RoleID == 1)
+                                    {
+                                        <tr>
+                                            <td>Admin Name:</td>
+                                            <td>@Html.Label(Model.FullName, new { @class = "font-medium text-dark-medium" })</td>
+                                        </tr>
+                                    }
+                                    else if (Model.RoleID == 2)
+                                    {
+                                        <tr>
+                                            <td>Teacher:</td>
+                                            <td>@Html.Label(Model.Teacher.FullName, new { @class = "font-medium text-dark-medium" })</td>
+                                        </tr>
+                                    }
+                                    else if (Model.RoleID == 4)
+                                    {
+                                        <tr>
+                                            <td>Parent:</td>
+                                            <td>@Html.Label(Model.Parent.FullName, new { @class = "font-medium text-dark-medium" })</td>
+                                        </tr>
+                                    }
                                     <tr>
-                                        <td>Name:</td>
-                                        <td>@Html.Label(Model.FullName, new { @class = "font-medium text-dark-medium" })</td>
+                                        <td>Username:</td>
+                                        <td>@Html.Label(Model.Username, new { @class = "font-medium text-dark-medium" })</td>
                                     </tr>
                                     <tr>
-                                        <td>City:</td>
-                                        <td>@Html.Label(Model.City, new { @class = "font-medium text-dark-medium" })</td>
+                                        <td>Expire Date:</td>
+                                        <td>@Html.Label(Model.ExpiresDate.ToString(), new { @class = "font-medium text-dark-medium" })</td>
                                     </tr>
+                                    <tr>
+                                        <td>Last Login Date:</td>
+                                        <td>@Html.Label(Model.LastLoginDate.ToString(), new { @class = "font-medium text-dark-medium" })</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Last Login Time:</td>
+                                        <td>@Html.Label(Model.LastLoginTime.ToString(), new { @class = "font-medium text-dark-medium" })</td>
+                                    </tr>
+                                    @if (Model.IsPasswordChanged != true)
+                                    {
+                                        <tr>
+                                            <td class="font-medium text-dark-medium">Never changed password!</td>
+                                        </tr>
+                                    }
+                                    else
+                                    {
+                                        <tr>
+                                            <td>Password changed:</td>
+                                            <td>@Html.Label(Model.LastPasswordChangeDate.ToString(), new { @class = "font-medium text-dark-medium" })</td>
+                                        </tr>
+                                    }
                                     <tr>
                                         <td>
-                                            @using (Html.BeginForm("Update", "Parent", new { id = Model.ParentID }, FormMethod.Post))
+                                            @using (Html.BeginForm("Update", "User", new { id = Model.ParentID }, FormMethod.Post))
                                             {
                                                 <div class="col-12 form-group mg-t-8">
                                                     <input type="submit" value="Update" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark" />
@@ -57,7 +104,7 @@
                                             }
                                         </td>
                                         <td>
-                                            @using (Html.BeginForm("Delete", "Parent", new { id = Model.ParentID }, FormMethod.Post))
+                                            @using (Html.BeginForm("Delete", "User", new { id = Model.ParentID }, FormMethod.Post))
                                             {
                                                 <div class="col-12 form-group mg-t-8">
                                                     <input type="submit" value="Delete" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark" />
@@ -65,7 +112,7 @@
                                             }
                                         </td>
                                         <td>
-                                            @using (Html.BeginForm("Index", "Parent", FormMethod.Post))
+                                            @using (Html.BeginForm("Index", "User", FormMethod.Post))
                                             {
                                                 <div class="col-12 form-group mg-t-8">
                                                     <input type="submit" value="Back to List" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark" />
