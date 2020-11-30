@@ -24,7 +24,7 @@ namespace SchoolDiarySystem.Controllers
 
                     if (!string.IsNullOrEmpty(searchString))
                     {
-                        parents = parents.Where(f => f.FirstName == searchString || f.LastName == searchString).ToList();
+                        parents = parents.Where(f => f.FirstName == searchString || f.LastName == searchString || f.FullName == searchString).ToList();
                     }
 
                     return View(parents);

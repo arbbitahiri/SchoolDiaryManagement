@@ -42,16 +42,19 @@
                         <h3>All Subject Data</h3>
                     </div>
                 </div>
-                <form class="mg-b-20">
-                    <div class="row gutters-8">
-                        <div class="col-4-xxxl col-xl-4 col-lg-3 col-12 form-group">
-                            <input type="text" placeholder="Search by Name ..." class="form-control">
+                @using (Html.BeginForm("Index", "Subject", FormMethod.Get))
+                {
+                    <form class="mg-b-20">
+                        <div class="row gutters-8">
+                            <div class="col-4-xxxl col-xl-4 col-lg-3 col-12 form-group">
+                                <input type="text" placeholder="Search by Subject Title ..." name="searchString" class="form-control">
+                            </div>
+                            <div class="col-1-xxxl col-xl-2 col-lg-3 col-12 form-group">
+                                <button type="submit" class="fw-btn-fill btn-gradient-yellow">SEARCH</button>
+                            </div>
                         </div>
-                        <div class="col-1-xxxl col-xl-2 col-lg-3 col-12 form-group">
-                            <button type="submit" class="fw-btn-fill btn-gradient-yellow">SEARCH</button>
-                        </div>
-                    </div>
-                </form>
+                    </form>
+                }
                 <div class="table-responsive">
                     <table class="table display data-table text-nowrap">
                         <thead>
@@ -64,18 +67,18 @@
                             </tr>
                         </thead>
                         @*<tfoot>
-                                <tr>
-                                    <th>@Html.DisplayNameFor(m => m.FirstName)</th>
-                                    <th>@Html.DisplayNameFor(m => m.LastName)</th>
-                                    <th>@Html.DisplayNameFor(m => m.Gender)</th>
-                                    <th>@Html.DisplayNameFor(m => m.City)</th>
-                                    <th>@Html.DisplayNameFor(m => m.Qualification)</th>
-                                    <th>@Html.DisplayNameFor(m => m.DayofBirth)</th>
-                                    <th>@Html.DisplayNameFor(m => m.Email)</th>
-                                    <th>@Html.DisplayNameFor(m => m.PhoneNo)</th>
-                                    <th></th>
-                                </tr>
-                            </tfoot>*@
+                    <tr>
+                        <th>@Html.DisplayNameFor(m => m.FirstName)</th>
+                        <th>@Html.DisplayNameFor(m => m.LastName)</th>
+                        <th>@Html.DisplayNameFor(m => m.Gender)</th>
+                        <th>@Html.DisplayNameFor(m => m.City)</th>
+                        <th>@Html.DisplayNameFor(m => m.Qualification)</th>
+                        <th>@Html.DisplayNameFor(m => m.DayofBirth)</th>
+                        <th>@Html.DisplayNameFor(m => m.Email)</th>
+                        <th>@Html.DisplayNameFor(m => m.PhoneNo)</th>
+                        <th></th>
+                    </tr>
+                </tfoot>*@
                         <tbody>
                             @foreach (var item in Model)
                             {

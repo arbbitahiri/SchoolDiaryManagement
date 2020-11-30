@@ -51,16 +51,19 @@
                         <h3>All Parents Data</h3>
                     </div>
                 </div>
-                <form class="mg-b-20">
-                    <div class="row gutters-8">
-                        <div class="col-4-xxxl col-xl-10 col-lg-3 col-12 form-group">
-                            <input type="text" placeholder="Search by Name ..." class="form-control">
+                @using (Html.BeginForm("Index", "User", FormMethod.Get))
+                {
+                    <form class="mg-b-20">
+                        <div class="row gutters-8">
+                            <div class="col-4-xxxl col-xl-10 col-lg-3 col-12 form-group">
+                                <input type="text" placeholder="Search by Name ..." name="searchString" class="form-control">
+                            </div>
+                            <div class="col-1-xxxl col-xl-2 col-lg-3 col-12 form-group">
+                                <button type="submit" class="fw-btn-fill btn-gradient-yellow">SEARCH</button>
+                            </div>
                         </div>
-                        <div class="col-1-xxxl col-xl-2 col-lg-3 col-12 form-group">
-                            <button type="submit" class="fw-btn-fill btn-gradient-yellow">SEARCH</button>
-                        </div>
-                    </div>
-                </form>
+                    </form>
+                }
                 <div class="table-responsive">
                     <table class="table display data-table text-nowrap">
                         <thead>
@@ -76,72 +79,72 @@
                             </tr>
                         </thead>
                         @*<tfoot>
-                                <tr>
-                                    <th>@Html.DisplayNameFor(m => m.FirstName)</th>
-                                    <th>@Html.DisplayNameFor(m => m.LastName)</th>
-                                    <th>@Html.DisplayNameFor(m => m.Gender)</th>
-                                    <th>@Html.DisplayNameFor(m => m.City)</th>
-                                    <th>@Html.DisplayNameFor(m => m.Qualification)</th>
-                                    <th>@Html.DisplayNameFor(m => m.DayofBirth)</th>
-                                    <th>@Html.DisplayNameFor(m => m.Email)</th>
-                                    <th>@Html.DisplayNameFor(m => m.PhoneNo)</th>
-                                    <th></th>
-                                </tr>
-                            </tfoot>*@
+                    <tr>
+                        <th>@Html.DisplayNameFor(m => m.FirstName)</th>
+                        <th>@Html.DisplayNameFor(m => m.LastName)</th>
+                        <th>@Html.DisplayNameFor(m => m.Gender)</th>
+                        <th>@Html.DisplayNameFor(m => m.City)</th>
+                        <th>@Html.DisplayNameFor(m => m.Qualification)</th>
+                        <th>@Html.DisplayNameFor(m => m.DayofBirth)</th>
+                        <th>@Html.DisplayNameFor(m => m.Email)</th>
+                        <th>@Html.DisplayNameFor(m => m.PhoneNo)</th>
+                        <th></th>
+                    </tr>
+                </tfoot>*@
                         <tbody>
                             @foreach (var item in Model)
                             {
-                            <tr>
-                                @if (item.RoleID == 2)
-                                {
+                                <tr>
+                                    @if (item.RoleID == 2)
+                                    {
+                                        <td>
+                                            @Html.DisplayFor(m => item.Teacher.FirstName)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(m => item.Teacher.LastName)
+                                        </td>
+                                    }
+                                    else if (item.RoleID == 4)
+                                    {
+                                        <td>
+                                            @Html.DisplayFor(m => item.Parent.FirstName)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(m => item.Parent.LastName)
+                                        </td>
+                                    }
+                                    else
+                                    {
+                                        <td>
+                                            @Html.DisplayFor(m => item.FirstName)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(m => item.LastName)
+                                        </td>
+                                    }
                                     <td>
-                                        @Html.DisplayFor(m => item.Teacher.FirstName)
+                                        @Html.DisplayFor(m => item.Username)
                                     </td>
                                     <td>
-                                        @Html.DisplayFor(m => item.Teacher.LastName)
-                                    </td>
-                                }
-                                else if (item.RoleID == 4)
-                                {
-                                    <td>
-                                        @Html.DisplayFor(m => item.Parent.FirstName)
+                                        @Html.DisplayFor(m => item.Role.RoleName)
                                     </td>
                                     <td>
-                                        @Html.DisplayFor(m => item.Parent.LastName)
-                                    </td>
-                                }
-                                else
-                                {
-                                    <td>
-                                        @Html.DisplayFor(m => item.FirstName)
+                                        @Html.DisplayFor(m => item.ExpiresDate)
                                     </td>
                                     <td>
-                                        @Html.DisplayFor(m => item.LastName)
+                                        @Html.DisplayFor(m => item.LastLoginDate)
                                     </td>
-                                }
-                                <td>
-                                    @Html.DisplayFor(m => item.Username)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(m => item.Role.RoleName)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(m => item.ExpiresDate)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(m => item.LastLoginDate)
-                                </td>
-                                <td class="text-center">
-                                    @Html.DisplayFor(m => item.LastLoginTime)
-                                </td>
+                                    <td class="text-center">
+                                        @Html.DisplayFor(m => item.LastLoginTime)
+                                    </td>
 
-                                <td>
-                                    @Html.ActionLink("Update", "Update", new { id = item.UserID }) |
-                                    @Html.ActionLink("Details", "Details", new { id = item.UserID }) |
-                                    @Html.ActionLink("Change Password", "ChangePassword", new { id = item.UserID }) |
-                                    @Html.ActionLink("Delete", "Delete", new { id = item.UserID })
-                                </td>
-                            </tr>
+                                    <td>
+                                        @Html.ActionLink("Update", "Update", new { id = item.UserID }) |
+                                        @Html.ActionLink("Details", "Details", new { id = item.UserID }) |
+                                        @Html.ActionLink("Change Password", "ChangePassword", new { id = item.UserID }) |
+                                        @Html.ActionLink("Delete", "Delete", new { id = item.UserID })
+                                    </td>
+                                </tr>
                             }
                         </tbody>
                     </table>

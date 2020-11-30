@@ -43,30 +43,23 @@
                             <div class="item-title">
                                 <h3>Notice Board</h3>
                             </div>
-                            <div class="dropdown">
-                                <a class="dropdown-toggle" href="#" role="button"
-                                   data-toggle="dropdown" aria-expanded="false">...</a>
-
-                                <div class="dropdown-menu dropdown-menu-right">
-                                    <a class="dropdown-item" href="#"><i class="fas fa-times text-orange-red"></i>Close</a>
-                                    <a class="dropdown-item" href="#"><i class="fas fa-cogs text-dark-pastel-green"></i>Edit</a>
-                                    <a class="dropdown-item" href="#"><i class="fas fa-redo-alt text-orange-peel"></i>Refresh</a>
-                                </div>
-                            </div>
                         </div>
-                        <form class="mg-b-20">
-                            <div class="row gutters-8">
-                                <div class="col-lg-5 col-12 form-group">
-                                    <input type="text" placeholder="Search by Date ..." class="form-control">
+                        @using (Html.BeginForm("Index", "Topic", FormMethod.Get))
+                        {
+                            <form class="mg-b-20">
+                                <div class="row gutters-8">
+                                    <div class="col-lg-5 col-12 form-group">
+                                        <input type="date" placeholder="Search by Date ..." name="searchString" class="form-control air-datepicker">
+                                    </div>
+                                    <div class="col-lg-5 col-12 form-group">
+                                        <input type="text" placeholder="Search by Title ..." name="searchString2" class="form-control">
+                                    </div>
+                                    <div class="col-lg-2 col-12 form-group">
+                                        <button type="submit" class="fw-btn-fill btn-gradient-yellow">SEARCH</button>
+                                    </div>
                                 </div>
-                                <div class="col-lg-5 col-12 form-group">
-                                    <input type="text" placeholder="Search by Title ..." class="form-control">
-                                </div>
-                                <div class="col-lg-2 col-12 form-group">
-                                    <button type="submit" class="fw-btn-fill btn-gradient-yellow">SEARCH</button>
-                                </div>
-                            </div>
-                        </form>
+                            </form>
+                        }
                         <div class="notice-board-wrap">
                             @foreach (var item in Model)
                             {
@@ -91,6 +84,29 @@
 
 
 @section Scripts {
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="~/Content/img/favicon.png">
+    <!-- Normalize CSS -->
+    <link rel="stylesheet" href="~/Content/css/normalize.css">
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="~/Content/css/main.css">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="~/Content/css/bootstrap.min.css">
+    <!-- Fontawesome CSS -->
+    <link rel="stylesheet" href="~/Content/css/all.min.css">
+    <!-- Flaticon CSS -->
+    <link rel="stylesheet" href="~/Content/fonts/flaticon.css">
+    <!-- Animate CSS -->
+    <link rel="stylesheet" href="~/Content/css/animate.min.css">
+    <!-- Date Picker CSS -->
+    <link rel="stylesheet" href="~/Content/css/datepicker.min.css">
+    <!-- Select 2 CSS -->
+    <link rel="stylesheet" href="~/Content/css/select2.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="~/Content/style.css">
+    <!-- Modernize js -->
+    <script src="~/Content/js/modernizr-3.6.0.min.js"></script>
+
     <!-- jquery-->
     <script src="~/Content/js/jquery-3.3.1.min.js"></script>
     <!-- Plugins js -->
@@ -105,8 +121,12 @@
     <script src="~/Content/js/moment.min.js"></script>
     <!-- Waypoints Js -->
     <script src="~/Content/js/jquery.waypoints.min.js"></script>
+    <!-- Select 2 Js -->
+    <script src="~/Content/js/select2.min.js"></script>
     <!-- Scroll Up Js -->
     <script src="~/Content/js/jquery.scrollUp.min.js"></script>
+    <!-- Date Picker Js -->
+    <script src="~/Content/js/datepicker.min.js"></script>
     <!-- Full Calender Js -->
     <script src="~/Content/js/fullcalendar.min.js"></script>
     <!-- Chart Js -->
