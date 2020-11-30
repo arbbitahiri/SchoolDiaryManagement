@@ -18,14 +18,21 @@ namespace SchoolDiarySystem.Controllers
         {
             if (UserSession.GetUsers != null)
             {
-                var parents = await Task.Run(() => parentsDAL.GetAll());
-
-                if (!string.IsNullOrEmpty(searchString))
+                if (UserSession.GetUsers.RoleID == 1)
                 {
-                    parents = parents.Where(f => f.FirstName == searchString || f.LastName == searchString).ToList();
-                }
+                    var parents = await Task.Run(() => parentsDAL.GetAll());
 
-                return View(parents);
+                    if (!string.IsNullOrEmpty(searchString))
+                    {
+                        parents = parents.Where(f => f.FirstName == searchString || f.LastName == searchString).ToList();
+                    }
+
+                    return View(parents);
+                }
+                else
+                {
+                    return Content("You're not allowed to view this page!");
+                }
             }
             else
             {
@@ -37,7 +44,14 @@ namespace SchoolDiarySystem.Controllers
         {
             if (UserSession.GetUsers != null)
             {
-                return View();
+                if (UserSession.GetUsers.RoleID == 1)
+                {
+                    return View();
+                }
+                else
+                {
+                    return Content("You're not allowed to view this page!");
+                }
             }
             else
             {
@@ -51,23 +65,30 @@ namespace SchoolDiarySystem.Controllers
         {
             if (UserSession.GetUsers != null)
             {
-                try
+                if (UserSession.GetUsers.RoleID == 1)
                 {
-                    if (ModelState.IsValid)
+                    try
                     {
-                        parent.InsertBy = UserSession.GetUsers.Username;
-                        parent.LUB = UserSession.GetUsers.Username;
-                        parent.LUN++;
+                        if (ModelState.IsValid)
+                        {
+                            parent.InsertBy = UserSession.GetUsers.Username;
+                            parent.LUB = UserSession.GetUsers.Username;
+                            parent.LUN++;
 
-                        var result = await Task.Run(() => parentsDAL.Create(parent));
-                        return RedirectToAction(nameof(Index));
+                            var result = await Task.Run(() => parentsDAL.Create(parent));
+                            return RedirectToAction(nameof(Index));
+                        }
+                        return View(parent);
                     }
-                    return View(parent);
+                    catch (Exception)
+                    {
+                        ModelState.AddModelError(string.Empty, "An error occured while creating class.");
+                        return View(parent);
+                    }
                 }
-                catch (Exception)
+                else
                 {
-                    ModelState.AddModelError(string.Empty, "An error occured while creating class.");
-                    return View(parent);
+                    return Content("You're not allowed to view this page!");
                 }
             }
             else
@@ -80,17 +101,24 @@ namespace SchoolDiarySystem.Controllers
         {
             if (UserSession.GetUsers != null)
             {
-                if (id == null)
+                if (UserSession.GetUsers.RoleID == 1)
                 {
-                    return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest);
-                }
+                    if (id == null)
+                    {
+                        return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest);
+                    }
 
-                var parent = await Task.Run(() => parentsDAL.Get((int)id));
-                if (parent == null)
-                {
-                    return RedirectToAction(nameof(Index));
+                    var parent = await Task.Run(() => parentsDAL.Get((int)id));
+                    if (parent == null)
+                    {
+                        return RedirectToAction(nameof(Index));
+                    }
+                    return View(parent);
                 }
-                return View(parent);
+                else
+                {
+                    return Content("You're not allowed to view this page!");
+                }
             }
             else
             {
@@ -103,28 +131,35 @@ namespace SchoolDiarySystem.Controllers
         {
             if (UserSession.GetUsers != null)
             {
-                if (id != parent.ParentID)
+                if (UserSession.GetUsers.RoleID == 1)
                 {
-                    return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest);
-                }
+                    if (id != parent.ParentID)
+                    {
+                        return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest);
+                    }
 
-                if (ModelState.IsValid)
+                    if (ModelState.IsValid)
+                    {
+                        try
+                        {
+                            parent.LUB = UserSession.GetUsers.Username;
+                            parent.LUN = ++parent.LUN;
+
+                            var result = await Task.Run(() => parentsDAL.Update(parent));
+                            return RedirectToAction(nameof(Index));
+                        }
+                        catch (Exception)
+                        {
+                            ModelState.AddModelError(string.Empty, "An error occured while updating class.");
+                            return View(parent);
+                        }
+                    }
+                    return View(parent);
+                }
+                else
                 {
-                    try
-                    {
-                        parent.LUB = UserSession.GetUsers.Username;
-                        parent.LUN = ++parent.LUN;
-
-                        var result = await Task.Run(() => parentsDAL.Update(parent));
-                        return RedirectToAction(nameof(Index));
-                    }
-                    catch (Exception)
-                    {
-                        ModelState.AddModelError(string.Empty, "An error occured while updating class.");
-                        return View(parent);
-                    }
+                    return Content("You're not allowed to view this page!");
                 }
-                return View(parent);
             }
             else
             {
@@ -136,17 +171,24 @@ namespace SchoolDiarySystem.Controllers
         {
             if (UserSession.GetUsers != null)
             {
-                if (id == null)
+                if (UserSession.GetUsers.RoleID == 1)
                 {
-                    return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest);
-                }
+                    if (id == null)
+                    {
+                        return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest);
+                    }
 
-                var parent = await Task.Run(() => parentsDAL.Get((int)id));
-                if (parent == null)
-                {
-                    return RedirectToAction(nameof(Index));
+                    var parent = await Task.Run(() => parentsDAL.Get((int)id));
+                    if (parent == null)
+                    {
+                        return RedirectToAction(nameof(Index));
+                    }
+                    return View(parent);
                 }
-                return View(parent);
+                else
+                {
+                    return Content("You're not allowed to view this page!");
+                }
             }
             else
             {
@@ -158,17 +200,24 @@ namespace SchoolDiarySystem.Controllers
         {
             if (UserSession.GetUsers != null)
             {
-                if (id == null)
+                if (UserSession.GetUsers.RoleID == 1)
                 {
-                    return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest);
-                }
+                    if (id == null)
+                    {
+                        return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest);
+                    }
 
-                var parent = await Task.Run(() => parentsDAL.Get((int)id));
-                if (parent == null)
-                {
-                    return RedirectToAction(nameof(Index));
+                    var parent = await Task.Run(() => parentsDAL.Get((int)id));
+                    if (parent == null)
+                    {
+                        return RedirectToAction(nameof(Index));
+                    }
+                    return View(parent);
                 }
-                return View(parent);
+                else
+                {
+                    return Content("You're not allowed to view this page!");
+                }
             }
             else
             {
@@ -181,8 +230,15 @@ namespace SchoolDiarySystem.Controllers
         {
             if (UserSession.GetUsers != null)
             {
-                await Task.Run(() => parentsDAL.Delete(id));
-                return RedirectToAction(nameof(Index));
+                if (UserSession.GetUsers.RoleID == 1)
+                {
+                    await Task.Run(() => parentsDAL.Delete(id));
+                    return RedirectToAction(nameof(Index));
+                }
+                else
+                {
+                    return Content("You're not allowed to view this page!");
+                }
             }
             else
             {

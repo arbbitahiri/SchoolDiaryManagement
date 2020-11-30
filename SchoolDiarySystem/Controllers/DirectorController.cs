@@ -17,15 +17,22 @@ namespace SchoolDiarySystem.Controllers
         {
             if (UserSession.GetUsers != null)
             {
-                var users = usersDAL.GetAll();
-                foreach (var user in users)
+                if (UserSession.GetUsers.RoleID == 3)
                 {
-                    if (user.RoleID == 3)
+                    var users = usersDAL.GetAll();
+                    foreach (var user in users)
                     {
-                        return View(user);
+                        if (user.RoleID == 3)
+                        {
+                            return View(user);
+                        }
                     }
+                    return View();
                 }
-                return View();
+                else
+                {
+                    return Content("You're not allowed to view this page!");
+                }
             }
             else
             {

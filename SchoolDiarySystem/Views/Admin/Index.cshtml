@@ -7,7 +7,7 @@
                 <h3>Admin Dashboard</h3>
                 <ul>
                     <li>
-                        <a href="~/Content/index-2.html">Home</a>
+                        <a href="@Url.Action("Index", "Admin")">Home</a>
                     </li>
                     <li>Admin</li>
                 </ul>
@@ -26,7 +26,7 @@
                             <div class="col-6">
                                 <div class="item-content">
                                     <div class="item-title">Students</div>
-                                    <div class="item-number"><span class="counter" data-num="150000">1,50,000</span></div>
+                                    <div class="item-number"><span class="counter" data-num="@ViewBag.Students">@ViewBag.Students</span></div>
                                 </div>
                             </div>
                         </div>
@@ -43,7 +43,7 @@
                             <div class="col-6">
                                 <div class="item-content">
                                     <div class="item-title">Teachers</div>
-                                    <div class="item-number"><span class="counter" data-num="2250">2,250</span></div>
+                                    <div class="item-number"><span class="counter" data-num="@ViewBag.Teachers">@ViewBag.Teachers</span></div>
                                 </div>
                             </div>
                         </div>
@@ -60,7 +60,7 @@
                             <div class="col-6">
                                 <div class="item-content">
                                     <div class="item-title">Parents</div>
-                                    <div class="item-number"><span class="counter" data-num="5690">5,690</span></div>
+                                    <div class="item-number"><span class="counter" data-num="@ViewBag.Parents">@ViewBag.Parents</span></div>
                                 </div>
                             </div>
                         </div>

@@ -19,19 +19,26 @@ namespace SchoolDiarySystem.Controllers
         {
             if (UserSession.GetUsers != null)
             {
-                var reviews = await Task.Run(() => reviewsDAL.GetAll());
-
-                if (!string.IsNullOrEmpty(searchString))
+                if (UserSession.GetUsers.RoleID == 3)
                 {
-                    reviews = reviews.Where(f => f.ReviewDate.Date == Convert.ToDateTime(searchString).Date).ToList();
-                }
+                    var reviews = await Task.Run(() => reviewsDAL.GetAll());
 
-                if (!string.IsNullOrEmpty(searchString2))
+                    if (!string.IsNullOrEmpty(searchString))
+                    {
+                        reviews = reviews.Where(f => f.ReviewDate.Date == Convert.ToDateTime(searchString).Date).ToList();
+                    }
+
+                    if (!string.IsNullOrEmpty(searchString2))
+                    {
+                        reviews = reviews.Where(f => f.Comment.Subject.SubjectTitle == searchString2).ToList();
+                    }
+
+                    return View(reviews);
+                }
+                else
                 {
-                    reviews = reviews.Where(f => f.Comment.Subject.SubjectTitle == searchString2).ToList();
+                    return Content("You're not allowed to view this page!");
                 }
-
-                return View(reviews);
             }
             else
             {
@@ -43,18 +50,25 @@ namespace SchoolDiarySystem.Controllers
         {
             if (UserSession.GetUsers != null)
             {
-                if (id == null)
+                if (UserSession.GetUsers.RoleID == 3)
                 {
-                    return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest);
-                }
+                    if (id == null)
+                    {
+                        return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest);
+                    }
 
-                var review = await Task.Run(() => reviewsDAL.Get((int)id));
-                if (review == null)
-                {
-                    return RedirectToAction(nameof(Index));
+                    var review = await Task.Run(() => reviewsDAL.Get((int)id));
+                    if (review == null)
+                    {
+                        return RedirectToAction(nameof(Index));
+                    }
+                    GetComment(review);
+                    return View(review);
                 }
-                GetComment(review);
-                return View(review);
+                else
+                {
+                    return Content("You're not allowed to view this page!");
+                }
             }
             else
             {
@@ -67,28 +81,35 @@ namespace SchoolDiarySystem.Controllers
         {
             if (UserSession.GetUsers != null)
             {
-                if (id != review.ReviewID)
+                if (UserSession.GetUsers.RoleID == 3)
                 {
-                    return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest);
-                }
+                    if (id != review.ReviewID)
+                    {
+                        return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest);
+                    }
 
-                if (ModelState.IsValid)
+                    if (ModelState.IsValid)
+                    {
+                        try
+                        {
+                            review.LUB = UserSession.GetUsers.Username;
+                            review.LUN = ++review.LUN;
+
+                            var result = await Task.Run(() => reviewsDAL.Update(review));
+                            return RedirectToAction(nameof(Index));
+                        }
+                        catch (Exception)
+                        {
+                            ModelState.AddModelError(string.Empty, "An error occured while updating class.");
+                            return View(review);
+                        }
+                    }
+                    return View(review);
+                }
+                else
                 {
-                    try
-                    {
-                        review.LUB = UserSession.GetUsers.Username;
-                        review.LUN = ++review.LUN;
-
-                        var result = await Task.Run(() => reviewsDAL.Update(review));
-                        return RedirectToAction(nameof(Index));
-                    }
-                    catch (Exception)
-                    {
-                        ModelState.AddModelError(string.Empty, "An error occured while updating class.");
-                        return View(review);
-                    }
+                    return Content("You're not allowed to view this page!");
                 }
-                return View(review);
             }
             else
             {
@@ -100,18 +121,25 @@ namespace SchoolDiarySystem.Controllers
         {
             if (UserSession.GetUsers != null)
             {
-                if (id == null)
+                if (UserSession.GetUsers.RoleID == 3 || UserSession.GetUsers.RoleID == 2)
                 {
-                    return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest);
-                }
+                    if (id == null)
+                    {
+                        return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest);
+                    }
 
-                var review = await Task.Run(() => reviewsDAL.Get((int)id));
-                if (review == null)
-                {
-                    return RedirectToAction("Index");
+                    var review = await Task.Run(() => reviewsDAL.Get((int)id));
+                    if (review == null)
+                    {
+                        return RedirectToAction("Index");
+                    }
+                    GetComment(review);
+                    return View(review);
                 }
-                GetComment(review);
-                return View(review);
+                else
+                {
+                    return Content("You're not allowed to view this page!");
+                }
             }
             else
             {
