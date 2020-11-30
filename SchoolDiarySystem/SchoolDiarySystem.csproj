@@ -157,6 +157,8 @@
     <Compile Include="Models\Class.cs" />
     <Compile Include="Models\ClassSchedules.cs" />
     <Compile Include="Models\Comments.cs" />
+    <Compile Include="Models\DataAnnotations\CheckPhoneNo.cs" />
+    <Compile Include="Models\DataAnnotations\ValidateClassNo.cs" />
     <Compile Include="Models\Parents.cs" />
     <Compile Include="Models\Reviews.cs" />
     <Compile Include="Models\Roles.cs" />
