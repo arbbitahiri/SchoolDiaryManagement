@@ -59,16 +59,16 @@ namespace SchoolDiarySystem.Controllers
             {
                 try
                 {
-                    //if (ModelState.IsValid)
-                    //{
+                    if (ModelState.IsValid)
+                    {
                         _class.InsertBy = UserSession.GetUsers.Username;
                         _class.LUB = UserSession.GetUsers.Username;
                         _class.LUN++;
 
                         var result = await Task.Run(() => classDAL.Create(_class));
                         return RedirectToAction(nameof(Index));
-                    //}
-                    //return View(_class);
+                    }
+                    return View(_class);
                 }
                 catch (Exception)
                 {
@@ -96,7 +96,10 @@ namespace SchoolDiarySystem.Controllers
                 {
                     return RedirectToAction(nameof(Index));
                 }
-                GetTeachersAndRoom(_class);
+
+                _class.TeacherList = new SelectList(teachersDAL.GetAll(), "TeacherID", "FullName", _class.TeacherID);
+                _class.RoomList = new SelectList(roomsDAL.GetAll(), "RoomID", "RoomType", _class.RoomID);
+
                 return View(_class);
             }
             else
@@ -121,7 +124,7 @@ namespace SchoolDiarySystem.Controllers
                     {
                         _class.LUB = UserSession.GetUsers.Username;
                         _class.LUN = ++_class.LUN;
-                        GetTeachersAndRoom(_class);
+
                         var result = await Task.Run(() => classDAL.Update(_class));
                         return RedirectToAction(nameof(Index));
                     }
@@ -161,7 +164,7 @@ namespace SchoolDiarySystem.Controllers
             }
         }
 
-        public ActionResult Delete(int? id)
+        public async Task<ActionResult> Delete(int? id)
         {
             if (UserSession.GetUsers != null)
             {
@@ -170,12 +173,12 @@ namespace SchoolDiarySystem.Controllers
                     return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest);
                 }
 
-                var classes = classDAL.Get((int)id);
-                if (classes == null)
+                var _class = await Task.Run(() => classDAL.Get((int)id));
+                if (_class == null)
                 {
-                    return RedirectToAction("Index");
+                    return RedirectToAction(nameof(Index));
                 }
-                return View(classes);
+                return View(_class);
             }
             else
             {
@@ -188,19 +191,13 @@ namespace SchoolDiarySystem.Controllers
         {
             if (UserSession.GetUsers != null)
             {
-                var _class = await Task.Run(() => classDAL.Delete(id));
+                await Task.Run(() => classDAL.Delete(id));
                 return RedirectToAction(nameof(Index));
             }
             else
             {
                 return RedirectToAction("Login", "Account");
             }
-        }
-
-        private void GetTeachersAndRoom(Class _class)
-        {
-            ViewBag.TeacherID = new SelectList(teachersDAL.GetAll(), "TeacherID", "FullName", _class.TeacherID);
-            ViewBag.RoomID = new SelectList(roomsDAL.GetAll(), "RoomID", "RoomType", _class.RoomID);
         }
     }
 }

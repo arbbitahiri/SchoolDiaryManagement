@@ -3,6 +3,7 @@ using SchoolDiarySystem.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 
@@ -11,17 +12,28 @@ namespace SchoolDiarySystem.Controllers
     public class CommentController : Controller
     {
         private readonly CommentsDAL commentsDAL = new CommentsDAL();
-        private readonly ClassDAL classDAL = new ClassDAL();
         private readonly SubjectsDAL subjectsDAL = new SubjectsDAL();
         private readonly StudentsDAL studentsDAL = new StudentsDAL();
+        private readonly ClassDAL classDAL = new ClassDAL();
         private readonly ReviewsDAL reviewsDAL = new ReviewsDAL();
 
         // GET: Comment
-        public ActionResult Index()
+        public async Task<ActionResult> Index(string searchString, string searchString2)
         {
             if (UserSession.GetUsers != null)
             {
-                var comments = commentsDAL.GetAll();
+                var comments = await Task.Run(() => commentsDAL.GetAll());
+
+                if (!string.IsNullOrEmpty(searchString))
+                {
+                    comments = comments.Where(f => f.CommentDate.Date == Convert.ToDateTime(searchString).Date).ToList();
+                }
+
+                if (!string.IsNullOrEmpty(searchString2))
+                {
+                    comments = comments.Where(f => f.Subject.SubjectTitle == searchString2).ToList();
+                }
+
                 return View(comments);
             }
             else
@@ -34,8 +46,13 @@ namespace SchoolDiarySystem.Controllers
         {
             if (UserSession.GetUsers != null)
             {
-                GetSubjectAndClass();
-                return View();
+                var comment = new Comments()
+                {
+                    SubjectsList = new SelectList(subjectsDAL.GetAll(), "SubjectID", "SubjectTitle"),
+                    ClassesList = new SelectList(classDAL.GetAll(), "ClassID", "ClassNo"),
+                    StudentsList = new SelectList(studentsDAL.GetAll(), "StudentID", "FullName")
+                };
+                return View(comment);
             }
             else
             {
@@ -43,7 +60,37 @@ namespace SchoolDiarySystem.Controllers
             }
         }
 
-        public ActionResult Review(int? id)
+        [HttpPost]
+        public async Task<ActionResult> Create(Comments comment)
+        {
+            if (UserSession.GetUsers != null)
+            {
+                try
+                {
+                    if (ModelState.IsValid)
+                    {
+                        comment.InsertBy = UserSession.GetUsers.Username;
+                        comment.LUB = UserSession.GetUsers.Username;
+                        comment.LUN++;
+
+                        var result = await Task.Run(() => commentsDAL.Create(comment));
+                        return RedirectToAction(nameof(Index));
+                    }
+                    return View(comment);
+                }
+                catch (Exception)
+                {
+                    ModelState.AddModelError(string.Empty, "An error occured while creating class.");
+                    return View(comment);
+                }
+            }
+            else
+            {
+                return RedirectToAction("Login", "Account");
+            }
+        }
+
+        public async Task<ActionResult> Review(int? id)
         {
             if (UserSession.GetUsers != null)
             {
@@ -52,12 +99,12 @@ namespace SchoolDiarySystem.Controllers
                     return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest);
                 }
 
-                var reviews = reviewsDAL.Get((int)id);
-                if (reviews == null)
+                var review = await Task.Run(() => reviewsDAL.Get((int)id));
+                if (review == null)
                 {
-                    return RedirectToAction("Index");
+                    return RedirectToAction(nameof(Index));
                 }
-                return View(reviews);
+                return View(review);
             }
             else
             {
@@ -65,7 +112,41 @@ namespace SchoolDiarySystem.Controllers
             }
         }
 
-        public ActionResult Update(int? id)
+        [HttpPost]
+        public async Task<ActionResult> Review(int id, Reviews review)
+        {
+            if (UserSession.GetUsers != null)
+            {
+                if (id != review.CommentID)
+                {
+                    return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest);
+                }
+
+                if (ModelState.IsValid)
+                {
+                    try
+                    {
+                        review.LUB = UserSession.GetUsers.Username;
+                        review.LUN = ++review.LUN;
+
+                        var result = await Task.Run(() => reviewsDAL.Create(review));
+                        return RedirectToAction(nameof(Index));
+                    }
+                    catch (Exception)
+                    {
+                        ModelState.AddModelError(string.Empty, "An error occured while updating class.");
+                        return View(review);
+                    }
+                }
+                return View(review);
+            }
+            else
+            {
+                return RedirectToAction("Login", "Account");
+            }
+        }
+
+        public async Task<ActionResult> Update(int? id)
         {
             if (UserSession.GetUsers != null)
             {
@@ -74,13 +155,16 @@ namespace SchoolDiarySystem.Controllers
                     return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest);
                 }
 
-                var comments = commentsDAL.Get((int)id);
-                if (comments == null)
+                var comment = await Task.Run(() => commentsDAL.Get((int)id));
+                if (comment == null)
                 {
-                    return RedirectToAction("Index");
+                    return RedirectToAction(nameof(Index));
                 }
-                GetSubjectAndClass(comments);
-                return View(comments);
+                comment.SubjectsList = new SelectList(subjectsDAL.GetAll(), "SubjectID", "SubjectTitle", comment.SubjectID);
+                comment.ClassesList = new SelectList(classDAL.GetAll(), "ClassID", "ClassNo", comment.ClassID);
+                comment.StudentsList = new SelectList(studentsDAL.GetAll(), "StudentID", "FullName", comment.StudentID);
+
+                return View(comment);
             }
             else
             {
@@ -88,7 +172,41 @@ namespace SchoolDiarySystem.Controllers
             }
         }
 
-        public ActionResult Details(int? id)
+        [HttpPost]
+        public async Task<ActionResult> Update(int id, Comments comment)
+        {
+            if (UserSession.GetUsers != null)
+            {
+                if (id != comment.CommentID)
+                {
+                    return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest);
+                }
+
+                if (ModelState.IsValid)
+                {
+                    try
+                    {
+                        comment.LUB = UserSession.GetUsers.Username;
+                        comment.LUN = ++comment.LUN;
+
+                        var result = await Task.Run(() => commentsDAL.Update(comment));
+                        return RedirectToAction(nameof(Index));
+                    }
+                    catch (Exception)
+                    {
+                        ModelState.AddModelError(string.Empty, "An error occured while updating class.");
+                        return View(comment);
+                    }
+                }
+                return View(comment);
+            }
+            else
+            {
+                return RedirectToAction("Login", "Account");
+            }
+        }
+
+        public async Task<ActionResult> Details(int? id)
         {
             if (UserSession.GetUsers != null)
             {
@@ -97,12 +215,12 @@ namespace SchoolDiarySystem.Controllers
                     return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest);
                 }
 
-                var comments = commentsDAL.Get((int)id);
-                if (comments == null)
+                var comment = await Task.Run(() => commentsDAL.Get((int)id));
+                if (comment == null)
                 {
-                    return RedirectToAction("Index");
+                    return RedirectToAction(nameof(Index));
                 }
-                return View(comments);
+                return View(comment);
             }
             else
             {
@@ -110,24 +228,11 @@ namespace SchoolDiarySystem.Controllers
             }
         }
 
-        private void GetSubjectAndClass()
+        private void GetTimes()
         {
             List<int> times = new List<int>() { 1, 2, 3, 4, 5, 6 };
 
             ViewBag.Time = new SelectList(times, "Time");
-            ViewBag.SubjectID = new SelectList(subjectsDAL.GetAll(), "SubjectID", "SubjectTitle");
-            ViewBag.StudentID = new SelectList(studentsDAL.GetAll(), "StudentID", "FullName");
-            ViewBag.ClassID = new SelectList(classDAL.GetAll(), "ClassID", "ClassNo");
-        }
-
-        private void GetSubjectAndClass(Comments comments)
-        {
-            List<int> times = new List<int>() { 1, 2, 3, 4, 5, 6 };
-
-            ViewBag.Time = new SelectList(times, "Time");
-            ViewBag.SubjectID = new SelectList(subjectsDAL.GetAll(), "SubjectID", "SubjectTitle", comments.SubjectID);
-            ViewBag.ClassID = new SelectList(classDAL.GetAll(), "ClassID", "ClassNo", comments.ClassID);
-            ViewBag.StudentID = new SelectList(studentsDAL.GetAll(), "StudentID", "FullName", comments.StudentID);
         }
     }
 }

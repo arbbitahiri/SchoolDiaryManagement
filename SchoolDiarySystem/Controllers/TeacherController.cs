@@ -15,11 +15,17 @@ namespace SchoolDiarySystem.Controllers
         private readonly TeachersDAL teachersDAL = new TeachersDAL();
 
         // GET: Teacher
-        public ActionResult Index()
+        public async Task<ActionResult> Index(string searchString)
         {
             if (UserSession.GetUsers != null)
             {
-                var teachers = teachersDAL.GetAll();
+                var teachers = await Task.Run(() => teachersDAL.GetAll());
+
+                if (!string.IsNullOrEmpty(searchString))
+                {
+                    teachers = teachers.Where(f => f.FirstName == searchString || f.LastName == searchString).ToList();
+                }
+
                 return View(teachers);
             }
             else
@@ -41,7 +47,37 @@ namespace SchoolDiarySystem.Controllers
             }
         }
 
-        public ActionResult Update(int? id)
+        [HttpPost]
+        public async Task<ActionResult> Create(Teachers teacher)
+        {
+            if (UserSession.GetUsers != null)
+            {
+                try
+                {
+                    if (ModelState.IsValid)
+                    {
+                        teacher.InsertBy = UserSession.GetUsers.Username;
+                        teacher.LUB = UserSession.GetUsers.Username;
+                        teacher.LUN++;
+
+                        var result = await Task.Run(() => teachersDAL.Create(teacher));
+                        return RedirectToAction(nameof(Index));
+                    }
+                    return View(teacher);
+                }
+                catch (Exception)
+                {
+                    ModelState.AddModelError(string.Empty, "An error occured while creating teacher.");
+                    return View(teacher);
+                }
+            }
+            else
+            {
+                return RedirectToAction("Login", "Account");
+            }
+        }
+
+        public async Task<ActionResult> Update(int? id)
         {
             if (UserSession.GetUsers != null)
             {
@@ -50,10 +86,10 @@ namespace SchoolDiarySystem.Controllers
                     return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest);
                 }
 
-                var teachers = teachersDAL.Get((int)id);
+                var teachers = await Task.Run(() => teachersDAL.Get((int)id));
                 if (teachers == null)
                 {
-                    return RedirectToAction("Index");
+                    return RedirectToAction(nameof(Index));
                 }
                 GettingGenders();
                 return View(teachers);
@@ -64,21 +100,32 @@ namespace SchoolDiarySystem.Controllers
             }
         }
 
-        public ActionResult Details(int? id)
+        [HttpPost]
+        public async Task<ActionResult> Update(int id, Teachers teacher)
         {
             if (UserSession.GetUsers != null)
             {
-                if (id == null)
+                if (id != teacher.TeacherID)
                 {
                     return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest);
                 }
 
-                var teachers = teachersDAL.Get((int)id);
-                if (teachers == null)
+                if (ModelState.IsValid)
                 {
-                    return RedirectToAction("Index");
+                    try
+                    {
+                        teacher.LUB = UserSession.GetUsers.Username;
+                        teacher.LUN = ++teacher.LUN;
+                        var result = await Task.Run(() => teachersDAL.Update(teacher));
+                        return RedirectToAction(nameof(Index));
+                    }
+                    catch (Exception)
+                    {
+                        ModelState.AddModelError(string.Empty, "An error occured while updating class.");
+                        return View(teacher);
+                    }
                 }
-                return View(teachers);
+                return View(teacher);
             }
             else
             {
@@ -86,7 +133,7 @@ namespace SchoolDiarySystem.Controllers
             }
         }
 
-        public ActionResult Delete(int? id)
+        public async Task<ActionResult> Details(int? id)
         {
             if (UserSession.GetUsers != null)
             {
@@ -95,12 +142,48 @@ namespace SchoolDiarySystem.Controllers
                     return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest);
                 }
 
-                var teachers = teachersDAL.Get((int)id);
-                if (teachers == null)
+                var teacher = await Task.Run(() => teachersDAL.Get((int)id));
+                if (teacher == null)
                 {
-                    return RedirectToAction("Index");
+                    return RedirectToAction(nameof(Index));
                 }
-                return View(teachers);
+                return View(teacher);
+            }
+            else
+            {
+                return RedirectToAction("Login", "Account");
+            }
+        }
+
+        public async Task<ActionResult> Delete(int? id)
+        {
+            if (UserSession.GetUsers != null)
+            {
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest);
+                }
+
+                var teacher = await Task.Run(() => teachersDAL.Get((int)id));
+                if (teacher == null)
+                {
+                    return RedirectToAction(nameof(Index));
+                }
+                return View(teacher);
+            }
+            else
+            {
+                return RedirectToAction("Login", "Account");
+            }
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> Delete(int id)
+        {
+            if (UserSession.GetUsers != null)
+            {
+                var teacher = await Task.Run(() => teachersDAL.Delete((int)id));
+                return RedirectToAction(nameof(Index));
             }
             else
             {

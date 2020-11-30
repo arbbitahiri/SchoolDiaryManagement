@@ -145,6 +145,28 @@ namespace SchoolDiarySystem.DAL
             }
         }
 
+        public int Count()
+        {
+            try
+            {
+                int result = 0;
+                using (var connection = DataConnection.GetConnection())
+                {
+                    string sqlproc = "dbo.usp_Count_Parents";
+                    using (var command = DataConnection.GetCommand(connection, sqlproc, CommandType.StoredProcedure))
+                    {
+                        result = (int)command.ExecuteScalar();
+                    }
+                }
+                return result;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
         public Parents ToObject(SqlDataReader dataReader)
         {
             try

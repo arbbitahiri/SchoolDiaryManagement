@@ -86,6 +86,8 @@ namespace SchoolDiarySystem.DAL
                         DataConnection.AddParameter(command, "username", model.Username);
                         DataConnection.AddParameter(command, "firstname", model.FirstName);
                         DataConnection.AddParameter(command, "lastname", model.LastName);
+                        DataConnection.AddParameter(command, "teacherID", model.TeacherID);
+                        DataConnection.AddParameter(command, "parentID", model.ParentID);
                         DataConnection.AddParameter(command, "expiresdate", model.ExpiresDate);
                         DataConnection.AddParameter(command, "LUB", model.LUB);
                         DataConnection.AddParameter(command, "LUN", model.LUN);

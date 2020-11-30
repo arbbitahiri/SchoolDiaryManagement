@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Web.Mvc;
 
 namespace SchoolDiarySystem.Models
 {
@@ -44,5 +46,8 @@ namespace SchoolDiarySystem.Models
                 return FirstName + " " + LastName;
             }
         }
+
+        public IEnumerable<SelectListItem> ParentsList { get; set; }
+        public IEnumerable<SelectListItem> ClassesList { get; set; }
     }
 }

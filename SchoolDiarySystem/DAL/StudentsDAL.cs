@@ -46,7 +46,7 @@ namespace SchoolDiarySystem.DAL
             {
                 using (var connection = DataConnection.GetConnection())
                 {
-                    string sqlproc = "dbo.usp_Student_Create";
+                    string sqlproc = "dbo.usp_Student_Update";
                     using (var command = DataConnection.GetCommand(connection, sqlproc, CommandType.StoredProcedure))
                     {
                         DataConnection.AddParameter(command, "studentID", model.StudentID);
@@ -154,6 +154,28 @@ namespace SchoolDiarySystem.DAL
                     }
                 }
                 return MyStudents;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+        public int Count()
+        {
+            try
+            {
+                int result = 0;
+                using (var connection = DataConnection.GetConnection())
+                {
+                    string sqlproc = "dbo.usp_Count_Students";
+                    using (var command = DataConnection.GetCommand(connection, sqlproc, CommandType.StoredProcedure))
+                    {
+                        result = (int)command.ExecuteScalar();
+                    }
+                }
+                return result;
             }
             catch (Exception)
             {

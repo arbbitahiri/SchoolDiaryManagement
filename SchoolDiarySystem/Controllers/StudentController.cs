@@ -3,6 +3,7 @@ using SchoolDiarySystem.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 
@@ -15,11 +16,17 @@ namespace SchoolDiarySystem.Controllers
         private readonly ClassDAL classDAL = new ClassDAL();
 
         // GET: Student
-        public ActionResult Index()
+        public async Task<ActionResult> Index(string searchString)
         {
             if (UserSession.GetUsers != null)
             {
-                var students = studentsDAL.GetAll();
+                var students = await Task.Run(() => studentsDAL.GetAll());
+
+                if (!string.IsNullOrEmpty(searchString))
+                {
+                    students = students.Where(f => f.FirstName == searchString && f.LastName == searchString).ToList();
+                }
+
                 return View(students);
             }
             else
@@ -32,8 +39,13 @@ namespace SchoolDiarySystem.Controllers
         {
             if (UserSession.GetUsers != null)
             {
-                GetParentsClassesGenders();
-                return View();
+                var student = new Students
+                {
+                    ClassesList = new SelectList(classDAL.GetAll(), "ClassID", "ClassNo"),
+                    ParentsList = new SelectList(parentsDAL.GetAll(), "ParentID", "FullName"),
+                };
+                GetGenders();
+                return View(student);
             }
             else
             {
@@ -41,7 +53,37 @@ namespace SchoolDiarySystem.Controllers
             }
         }
 
-        public ActionResult Update(int? id)
+        [HttpPost]
+        public async Task<ActionResult> Create(Students student)
+        {
+            if (UserSession.GetUsers != null)
+            {
+                try
+                {
+                    if (ModelState.IsValid)
+                    {
+                        student.InsertBy = UserSession.GetUsers.Username;
+                        student.LUB = UserSession.GetUsers.Username;
+                        student.LUN++;
+
+                        var result = await Task.Run(() => studentsDAL.Create(student));
+                        return RedirectToAction(nameof(Index));
+                    }
+                    return View(student);
+                }
+                catch (Exception)
+                {
+                    ModelState.AddModelError(string.Empty, "An error occured while creating class.");
+                    return View(student);
+                }
+            }
+            else
+            {
+                return RedirectToAction("Login", "Account");
+            }
+        }
+
+        public async Task<ActionResult> Update(int? id)
         {
             if (UserSession.GetUsers != null)
             {
@@ -50,14 +92,17 @@ namespace SchoolDiarySystem.Controllers
                     return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest);
                 }
 
-                var students = studentsDAL.Get((int)id);
-                if (students == null)
+                var student = await Task.Run(() => studentsDAL.Get((int)id));
+                if (student == null)
                 {
-                    return RedirectToAction("Index");
+                    return RedirectToAction(nameof(Index));
                 }
-                GetParentsClassesGenders();
-                GetParentsAndClass(students);
-                return View(students);
+
+                student.ClassesList = new SelectList(classDAL.GetAll(), "ClassID", "ClassNo", student.ParentID);
+                student.ParentsList = new SelectList(parentsDAL.GetAll(), "ParentID", "FullName", student.ClassID);
+
+                GetGenders();
+                return View(student);
             }
             else
             {
@@ -65,7 +110,41 @@ namespace SchoolDiarySystem.Controllers
             }
         }
 
-        public ActionResult Details(int? id)
+        [HttpPost]
+        public async Task<ActionResult> Update(int id, Students student)
+        {
+            if (UserSession.GetUsers != null)
+            {
+                if (id != student.StudentID)
+                {
+                    return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest);
+                }
+
+                //if (ModelState.IsValid)
+                //{
+                try
+                {
+                    student.LUB = UserSession.GetUsers.Username;
+                    student.LUN = ++student.LUN;
+
+                    var result = await Task.Run(() => studentsDAL.Update(student));
+                    return RedirectToAction(nameof(Index));
+                }
+                catch (Exception)
+                {
+                    ModelState.AddModelError(string.Empty, "An error occured while updating class.");
+                    return View(student);
+                }
+                //}
+                //return View(_class);
+            }
+            else
+            {
+                return RedirectToAction("Login", "Account");
+            }
+        }
+
+        public async Task<ActionResult> Details(int? id)
         {
             if (UserSession.GetUsers != null)
             {
@@ -74,12 +153,12 @@ namespace SchoolDiarySystem.Controllers
                     return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest);
                 }
 
-                var students = studentsDAL.Get((int)id);
-                if (students == null)
+                var student = await Task.Run(() => studentsDAL.Get((int)id));
+                if (student == null)
                 {
-                    return RedirectToAction("Index");
+                    return RedirectToAction(nameof(Index));
                 }
-                return View(students);
+                return View(student);
             }
             else
             {
@@ -87,7 +166,7 @@ namespace SchoolDiarySystem.Controllers
             }
         }
 
-        public ActionResult Delete(int? id)
+        public async Task<ActionResult> Delete(int? id)
         {
             if (UserSession.GetUsers != null)
             {
@@ -96,12 +175,12 @@ namespace SchoolDiarySystem.Controllers
                     return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest);
                 }
 
-                var students = studentsDAL.Get((int)id);
-                if (students == null)
+                var student = await Task.Run(() => studentsDAL.Get((int)id));
+                if (student == null)
                 {
-                    return RedirectToAction("Index");
+                    return RedirectToAction(nameof(Index));
                 }
-                return View(students);
+                return View(student);
             }
             else
             {
@@ -109,19 +188,24 @@ namespace SchoolDiarySystem.Controllers
             }
         }
 
-        private void GetParentsClassesGenders()
+        [HttpPost]
+        public async Task<ActionResult> Delete(int id)
+        {
+            if (UserSession.GetUsers != null)
+            {
+                await Task.Run(() => studentsDAL.Delete(id));
+                return RedirectToAction(nameof(Index));
+            }
+            else
+            {
+                return RedirectToAction("Login", "Account");
+            }
+        }
+
+        private void GetGenders()
         {
             List<string> genders = new List<string>() { "Male", "Female" };
-
-            ViewBag.ParentID = new SelectList(parentsDAL.GetAll(), "ParentID", "FullName");
-            ViewBag.ClassID = new SelectList(classDAL.GetAll(), "ClassID", "ClassNo");
             ViewBag.GenderID = new SelectList(genders, "GenderID");
-        }
-
-        private void GetParentsAndClass(Students students)
-        {
-            ViewBag.ParentID = new SelectList(parentsDAL.GetAll(), "ParentID", "FullName", students.ParentID);
-            ViewBag.ClassID = new SelectList(classDAL.GetAll(), "ClassID", "ClassNo", students.ClassID);
         }
     }
 }

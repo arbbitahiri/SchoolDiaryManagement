@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Web.Mvc;
 
 namespace SchoolDiarySystem.Models
 {
@@ -17,7 +19,7 @@ namespace SchoolDiarySystem.Models
         public string Password { get; set; }
 
         [DataType(DataType.Password)]
-        [Compare("Password", ErrorMessage = "Password doesn't not match!")]
+        [System.ComponentModel.DataAnnotations.Compare("Password", ErrorMessage = "Password doesn't not match!")]
         public string ConfirmPassword { get; set; }
 
         [Display(Name = "Role")]
@@ -72,5 +74,9 @@ namespace SchoolDiarySystem.Models
         public virtual Roles Role { get; set; }
         public virtual Parents Parent { get; set; }
         public virtual Teachers Teacher { get; set; }
+
+        public IEnumerable<SelectListItem> RolesList { get; set; }
+        public IEnumerable<SelectListItem> ParentsList { get; set; }
+        public IEnumerable<SelectListItem> TeachersList { get; set; }
     }
 }

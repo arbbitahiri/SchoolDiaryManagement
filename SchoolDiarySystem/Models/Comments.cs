@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Web.Mvc;
 
 namespace SchoolDiarySystem.Models
 {
@@ -37,5 +39,9 @@ namespace SchoolDiarySystem.Models
         public virtual Subjects Subject { get; set; }
         public virtual Students Student { get; set; }
         public virtual Reviews Review { get; set; }
+
+        public IEnumerable<SelectListItem> SubjectsList { get; set; }
+        public IEnumerable<SelectListItem> StudentsList { get; set; }
+        public IEnumerable<SelectListItem> ClassesList { get; set; }
     }
 }

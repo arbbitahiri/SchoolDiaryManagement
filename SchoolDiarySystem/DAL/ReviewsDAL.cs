@@ -44,7 +44,7 @@ namespace SchoolDiarySystem.DAL
             {
                 using (var connection = DataConnection.GetConnection())
                 {
-                    string sqlproc = "dbo.usp_Review_Create";
+                    string sqlproc = "dbo.usp_Review_Update";
                     using (var command = DataConnection.GetCommand(connection, sqlproc, CommandType.StoredProcedure))
                     {
                         DataConnection.AddParameter(command, "reviewID", model.CommentID);

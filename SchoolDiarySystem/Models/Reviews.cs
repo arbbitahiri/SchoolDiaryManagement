@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Web.Mvc;
 
 namespace SchoolDiarySystem.Models
 {
@@ -21,5 +23,7 @@ namespace SchoolDiarySystem.Models
         public DateTime ReviewDate { get; set; }
 
         public virtual Comments Comment { get; set; }
+
+        public IEnumerable<SelectListItem> SubjectsList { get; set; }
     }
 }

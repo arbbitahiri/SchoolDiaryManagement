@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Threading.Tasks;
 
 namespace SchoolDiarySystem.Controllers
 {
@@ -16,11 +17,18 @@ namespace SchoolDiarySystem.Controllers
         private readonly TeachersDAL teachersDAL = new TeachersDAL();
 
         // GET: User
-        public ActionResult Index()
+        public async Task<ActionResult> Index(string searchString)
         {
             if (UserSession.GetUsers != null)
             {
-                var users = usersDAL.GetAll();
+                var users = await Task.Run(() => usersDAL.GetAll());
+
+                if (!string.IsNullOrEmpty(searchString))
+                {
+                    users = users.Where(f => f.FirstName == searchString || f.LastName == searchString
+                    || f.Username == searchString || f.FullName == searchString).ToList();
+                }
+
                 return View(users);
             }
             else
@@ -39,7 +47,38 @@ namespace SchoolDiarySystem.Controllers
                 }
                 else
                 {
-                    return RedirectToAction("Login", "Account");
+                    return Content("You're not allowed here!");
+                }
+            }
+            else
+            {
+                return RedirectToAction("Login", "Account");
+            }
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> CreateAdmin(Users user)
+        {
+            if (UserSession.GetUsers != null)
+            {
+                try
+                {
+                    if (ModelState.IsValid)
+                    {
+                        user.InsertBy = UserSession.GetUsers.Username;
+                        user.LUB = UserSession.GetUsers.Username;
+                        user.LUN++;
+                        user.RoleID = 1;
+
+                        var result = await Task.Run(() => usersDAL.Create(user));
+                        return RedirectToAction(nameof(Index));
+                    }
+                    return View(user);
+                }
+                catch (Exception)
+                {
+                    ModelState.AddModelError(string.Empty, "An error occured while creating class.");
+                    return View(user);
                 }
             }
             else
@@ -59,7 +98,38 @@ namespace SchoolDiarySystem.Controllers
                 }
                 else
                 {
-                    return RedirectToAction("Login", "Account");
+                    return Content("You're not allowed here!");
+                }
+            }
+            else
+            {
+                return RedirectToAction("Login", "Account");
+            }
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> CreateTeacher(Users user)
+        {
+            if (UserSession.GetUsers != null)
+            {
+                try
+                {
+                    if (ModelState.IsValid)
+                    {
+                        user.InsertBy = UserSession.GetUsers.Username;
+                        user.LUB = UserSession.GetUsers.Username;
+                        user.LUN++;
+                        user.RoleID = 2;
+
+                        var result = await Task.Run(() => usersDAL.Create(user));
+                        return RedirectToAction(nameof(Index));
+                    }
+                    return View(user);
+                }
+                catch (Exception)
+                {
+                    ModelState.AddModelError(string.Empty, "An error occured while creating class.");
+                    return View(user);
                 }
             }
             else
@@ -79,7 +149,7 @@ namespace SchoolDiarySystem.Controllers
                 }
                 else
                 {
-                    return RedirectToAction("Login", "Account");
+                    return Content("You're not allowed here!");
                 }
             }
             else
@@ -88,7 +158,38 @@ namespace SchoolDiarySystem.Controllers
             }
         }
 
-        public ActionResult Update(int? id)
+        [HttpPost]
+        public async Task<ActionResult> CreateParent(Users user)
+        {
+            if (UserSession.GetUsers != null)
+            {
+                try
+                {
+                    if (ModelState.IsValid)
+                    {
+                        user.InsertBy = UserSession.GetUsers.Username;
+                        user.LUB = UserSession.GetUsers.Username;
+                        user.LUN++;
+                        user.RoleID = 4;
+
+                        var result = await Task.Run(() => usersDAL.Create(user));
+                        return RedirectToAction(nameof(Index));
+                    }
+                    return View(user);
+                }
+                catch (Exception)
+                {
+                    ModelState.AddModelError(string.Empty, "An error occured while creating class.");
+                    return View(user);
+                }
+            }
+            else
+            {
+                return RedirectToAction("Login", "Account");
+            }
+        }
+
+        public async Task<ActionResult> Update(int? id)
         {
             if (UserSession.GetUsers != null)
             {
@@ -97,10 +198,10 @@ namespace SchoolDiarySystem.Controllers
                     return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest);
                 }
 
-                var user = usersDAL.Get((int)id);
+                var user = await Task.Run(() => usersDAL.Get((int)id));
                 if (user == null)
                 {
-                    return RedirectToAction("Index");
+                    return RedirectToAction(nameof(Index));
                 }
                 GetParentsAndTeachers(user);
                 return View(user);
@@ -111,7 +212,54 @@ namespace SchoolDiarySystem.Controllers
             }
         }
 
-        public ActionResult ChangePassword(int? id)
+        [HttpPost]
+        public async Task<ActionResult> Update(int id, Users user)
+        {
+            if (UserSession.GetUsers != null)
+            {
+                if (id != user.UserID)
+                {
+                    return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest);
+                }
+
+                if (ModelState.IsValid)
+                {
+                    try
+                    {
+                        user.LUB = UserSession.GetUsers.Username;
+                        user.LUN = ++user.LUN;
+                        if (user.RoleID == 1)
+                        {
+                            user.TeacherID = 0;
+                            user.ParentID = 0;
+                        }
+                        else if (user.RoleID == 2)
+                        {
+                            user.ParentID = 0;
+                        }
+                        else if (user.RoleID == 4)
+                        {
+                            user.TeacherID = 0;
+                        }
+
+                        var result = await Task.Run(() => usersDAL.Update(user));
+                        return RedirectToAction(nameof(Index));
+                    }
+                    catch (Exception)
+                    {
+                        ModelState.AddModelError(string.Empty, "An error occured while updating class.");
+                        return View(user);
+                    }
+                }
+                return View(user);
+            }
+            else
+            {
+                return RedirectToAction("Login", "Account");
+            }
+        }
+
+        public async Task<ActionResult> ChangePassword(int? id)
         {
             if (UserSession.GetUsers != null)
             {
@@ -120,10 +268,10 @@ namespace SchoolDiarySystem.Controllers
                     return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest);
                 }
 
-                var user = usersDAL.Get((int)id);
+                var user = await Task.Run(() => usersDAL.Get((int)id));
                 if (user == null)
                 {
-                    return RedirectToAction("Index");
+                    return RedirectToAction(nameof(Index));
                 }
                 GetParentsAndTeachers(user);
                 return View(user);
@@ -134,19 +282,32 @@ namespace SchoolDiarySystem.Controllers
             }
         }
 
-        public ActionResult Details(int? id)
+        [HttpPost]
+        public async Task<ActionResult> ChangePassword(int id, Users user)
         {
             if (UserSession.GetUsers != null)
             {
-                if (id == null)
+                if (id != user.UserID)
                 {
                     return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest);
                 }
 
-                var user = usersDAL.Get((int)id);
-                if (user == null)
+                if (ModelState.IsValid)
                 {
-                    return RedirectToAction("Index");
+                    try
+                    {
+                        user.LUB = UserSession.GetUsers.Username;
+                        user.LUN = ++user.LUN;
+                        user.IsPasswordChanged = true;
+
+                        var result = await Task.Run(() => usersDAL.ChangePassword(user));
+                        return RedirectToAction(nameof(Index));
+                    }
+                    catch (Exception)
+                    {
+                        ModelState.AddModelError(string.Empty, "An error occured while updating class.");
+                        return View(user);
+                    }
                 }
                 return View(user);
             }
@@ -156,7 +317,7 @@ namespace SchoolDiarySystem.Controllers
             }
         }
 
-        public ActionResult Delete(int? id)
+        public async Task<ActionResult> Details(int? id)
         {
             if (UserSession.GetUsers != null)
             {
@@ -165,12 +326,55 @@ namespace SchoolDiarySystem.Controllers
                     return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest);
                 }
 
-                var user = usersDAL.Get((int)id);
+                var user = await Task.Run(() => usersDAL.Get((int)id));
                 if (user == null)
                 {
-                    return RedirectToAction("Index");
+                    return RedirectToAction(nameof(Index));
                 }
                 return View(user);
+            }
+            else
+            {
+                return RedirectToAction("Login", "Account");
+            }
+        }
+
+        public async Task<ActionResult> Delete(int? id)
+        {
+            if (UserSession.GetUsers != null)
+            {
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest);
+                }
+
+                var user = await Task.Run(() => usersDAL.Get((int)id));
+                if (user == null)
+                {
+                    return RedirectToAction(nameof(Index));
+                }
+                return View(user);
+            }
+            else
+            {
+                return RedirectToAction("Login", "Account");
+            }
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> Delete(int id)
+        {
+            if (UserSession.GetUsers != null)
+            {
+                if (id != 3)
+                {
+                    await Task.Run(() => usersDAL.Delete(id));
+                    return RedirectToAction(nameof(Index));
+                }
+                else
+                {
+                    return Content("You can't delete your own user!");
+                }
             }
             else
             {

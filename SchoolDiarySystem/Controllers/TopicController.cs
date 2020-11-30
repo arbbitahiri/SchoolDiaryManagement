@@ -3,6 +3,7 @@ using SchoolDiarySystem.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 
@@ -15,11 +16,27 @@ namespace SchoolDiarySystem.Controllers
         private readonly SubjectsDAL subjectsDAL = new SubjectsDAL();
 
         // GET: Topic
-        public ActionResult Index()
+        public async Task<ActionResult> Index(string searchString, string searchString2, string searchString3)
         {
             if (UserSession.GetUsers != null)
             {
-                var topics = topicsDAL.GetAll();
+                var topics = await Task.Run(() => topicsDAL.GetAll());
+
+                if (!string.IsNullOrEmpty(searchString))
+                {
+                    topics = topics.Where(f => f.TopicDate.Date == Convert.ToDateTime(searchString).Date).ToList();
+                }
+
+                if (!string.IsNullOrEmpty(searchString2))
+                {
+                    topics = topics.Where(f => f.Subject.SubjectTitle == searchString2).ToList();
+                }
+
+                if (!string.IsNullOrEmpty(searchString3))
+                {
+                    topics = topics.Where(f => f.Time == int.Parse(searchString2)).ToList();
+                }
+
                 return View(topics);
             }
             else
@@ -32,8 +49,13 @@ namespace SchoolDiarySystem.Controllers
         {
             if (UserSession.GetUsers != null)
             {
-                GetSubjectAndClass();
-                return View();
+                var topic = new Topics()
+                {
+                    ClassesList = new SelectList(classDAL.GetAll(), "ClassID", "ClassNo"),
+                    SubjectsList = new SelectList(subjectsDAL.GetAll(), "SubjectID", "SubjectTitle")
+                };
+                GetTimes();
+                return View(topic);
             }
             else
             {
@@ -41,7 +63,37 @@ namespace SchoolDiarySystem.Controllers
             }
         }
 
-        public ActionResult Update(int? id)
+        [HttpPost]
+        public async Task<ActionResult> Create(Topics topic)
+        {
+            if (UserSession.GetUsers != null)
+            {
+                try
+                {
+                    if (ModelState.IsValid)
+                    {
+                        topic.InsertBy = UserSession.GetUsers.Username;
+                        topic.LUB = UserSession.GetUsers.Username;
+                        topic.LUN++;
+
+                        var result = await Task.Run(() => topicsDAL.Create(topic));
+                        return RedirectToAction(nameof(Index));
+                    }
+                    return View(topic);
+                }
+                catch (Exception)
+                {
+                    ModelState.AddModelError(string.Empty, "An error occured while creating class.");
+                    return View(topic);
+                }
+            }
+            else
+            {
+                return RedirectToAction("Login", "Account");
+            }
+        }
+
+        public async Task<ActionResult> Update(int? id)
         {
             if (UserSession.GetUsers != null)
             {
@@ -50,13 +102,16 @@ namespace SchoolDiarySystem.Controllers
                     return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest);
                 }
 
-                var topics = topicsDAL.Get((int)id);
-                if (topics == null)
+                var topic = await Task.Run(() => topicsDAL.Get((int)id));
+                if (topic == null)
                 {
                     return RedirectToAction("Index");
                 }
-                GetSubjectAndClass(topics);
-                return View(topics);
+                topic.SubjectsList = new SelectList(subjectsDAL.GetAll(), "SubjectID", "SubjectTitle", topic.SubjectID);
+                topic.ClassesList = new SelectList(classDAL.GetAll(), "ClassID", "ClassNo", topic.ClassID);
+                GetTimes();
+
+                return View(topic);
             }
             else
             {
@@ -64,7 +119,41 @@ namespace SchoolDiarySystem.Controllers
             }
         }
 
-        public ActionResult Details(int? id)
+        [HttpPost]
+        public async Task<ActionResult> Update(int id, Topics topic)
+        {
+            if (UserSession.GetUsers != null)
+            {
+                if (id != topic.TopicID)
+                {
+                    return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest);
+                }
+
+                if (ModelState.IsValid)
+                {
+                    try
+                    {
+                        topic.LUB = UserSession.GetUsers.Username;
+                        topic.LUN = ++topic.LUN;
+
+                        var result = await Task.Run(() => topicsDAL.Update(topic));
+                        return RedirectToAction(nameof(Index));
+                    }
+                    catch (Exception)
+                    {
+                        ModelState.AddModelError(string.Empty, "An error occured while updating class.");
+                        return View(topic);
+                    }
+                }
+                return View(topic);
+            }
+            else
+            {
+                return RedirectToAction("Login", "Account");
+            }
+        }
+
+        public async Task<ActionResult> Details(int? id)
         {
             if (UserSession.GetUsers != null)
             {
@@ -73,12 +162,12 @@ namespace SchoolDiarySystem.Controllers
                     return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest);
                 }
 
-                var topics = topicsDAL.Get((int)id);
-                if (topics == null)
+                var topic = await Task.Run(() => topicsDAL.Get((int)id));
+                if (topic == null)
                 {
-                    return RedirectToAction("Index");
+                    return RedirectToAction(nameof(Index));
                 }
-                return View(topics);
+                return View(topic);
             }
             else
             {
@@ -86,7 +175,7 @@ namespace SchoolDiarySystem.Controllers
             }
         }
 
-        public ActionResult Delete(int? id)
+        public async Task<ActionResult> Delete(int? id)
         {
             if (UserSession.GetUsers != null)
             {
@@ -95,12 +184,12 @@ namespace SchoolDiarySystem.Controllers
                     return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest);
                 }
 
-                var topics = topicsDAL.Get((int)id);
-                if (topics == null)
+                var topic = await Task.Run(() => topicsDAL.Get((int)id));
+                if (topic == null)
                 {
-                    return RedirectToAction("Index");
+                    return RedirectToAction(nameof(Index));
                 }
-                return View(topics);
+                return View(topic);
             }
             else
             {
@@ -108,19 +197,25 @@ namespace SchoolDiarySystem.Controllers
             }
         }
 
-        private void GetSubjectAndClass()
+        [HttpPost]
+        public async Task<ActionResult> Delete(int id)
+        {
+            if (UserSession.GetUsers != null)
+            {
+                await Task.Run(() => topicsDAL.Delete(id));
+                return RedirectToAction(nameof(Index));
+            }
+            else
+            {
+                return RedirectToAction("Login", "Account");
+            }
+        }
+
+        private void GetTimes()
         {
             List<int> times = new List<int>() { 1, 2, 3, 4, 5, 6 };
 
             ViewBag.Time = new SelectList(times, "Time");
-            ViewBag.SubjectID = new SelectList(subjectsDAL.GetAll(), "SubjectID", "SubjectTitle");
-            ViewBag.ClassID = new SelectList(classDAL.GetAll(), "ClassID", "ClassNo");
-        }
-
-        private void GetSubjectAndClass(Topics topic)
-        {
-            ViewBag.SubjectID = new SelectList(subjectsDAL.GetAll(), "SubjectID", "SubjectTitle", topic.SubjectID);
-            ViewBag.ClassID = new SelectList(classDAL.GetAll(), "ClassID", "ClassNo", topic.ClassID);
         }
     }
 }

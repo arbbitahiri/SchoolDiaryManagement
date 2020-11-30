@@ -3,6 +3,7 @@ using SchoolDiarySystem.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 
@@ -12,16 +13,23 @@ namespace SchoolDiarySystem.Controllers
     {
         private readonly ReviewsDAL reviewsDAL = new ReviewsDAL();
         private readonly CommentsDAL commentsDAL = new CommentsDAL();
-        private readonly ClassDAL classDAL = new ClassDAL();
-        private readonly SubjectsDAL subjectsDAL = new SubjectsDAL();
-        private readonly StudentsDAL studentsDAL = new StudentsDAL();
 
         // GET: Review
-        public ActionResult Index()
+        public async Task<ActionResult> Index(string searchString, string searchString2)
         {
             if (UserSession.GetUsers != null)
             {
-                var reviews = reviewsDAL.GetAll();
+                var reviews = await Task.Run(() => reviewsDAL.GetAll());
+
+                if (!string.IsNullOrEmpty(searchString))
+                {
+                    reviews = reviews.Where(f => f.ReviewDate.Date == Convert.ToDateTime(searchString).Date).ToList();
+                }
+
+                if (!string.IsNullOrEmpty(searchString2))
+                {
+                    reviews = reviews.Where(f => f.Comment.Subject.SubjectTitle == searchString2).ToList();
+                }
 
                 return View(reviews);
             }
@@ -31,7 +39,7 @@ namespace SchoolDiarySystem.Controllers
             }
         }
 
-        public ActionResult Update(int? id)
+        public async Task<ActionResult> Update(int? id)
         {
             if (UserSession.GetUsers != null)
             {
@@ -40,13 +48,13 @@ namespace SchoolDiarySystem.Controllers
                     return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest);
                 }
 
-                var reviews = reviewsDAL.Get((int)id);
-                if (reviews == null)
+                var review = await Task.Run(() => reviewsDAL.Get((int)id));
+                if (review == null)
                 {
-                    return RedirectToAction("Index");
+                    return RedirectToAction(nameof(Index));
                 }
-                GetComment(reviews);
-                return View(reviews);
+                GetComment(review);
+                return View(review);
             }
             else
             {
@@ -54,7 +62,41 @@ namespace SchoolDiarySystem.Controllers
             }
         }
 
-        public ActionResult Details(int? id)
+        [HttpPost]
+        public async Task<ActionResult> Update(int id, Reviews review)
+        {
+            if (UserSession.GetUsers != null)
+            {
+                if (id != review.ReviewID)
+                {
+                    return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest);
+                }
+
+                if (ModelState.IsValid)
+                {
+                    try
+                    {
+                        review.LUB = UserSession.GetUsers.Username;
+                        review.LUN = ++review.LUN;
+
+                        var result = await Task.Run(() => reviewsDAL.Update(review));
+                        return RedirectToAction(nameof(Index));
+                    }
+                    catch (Exception)
+                    {
+                        ModelState.AddModelError(string.Empty, "An error occured while updating class.");
+                        return View(review);
+                    }
+                }
+                return View(review);
+            }
+            else
+            {
+                return RedirectToAction("Login", "Account");
+            }
+        }
+
+        public async Task<ActionResult> Details(int? id)
         {
             if (UserSession.GetUsers != null)
             {
@@ -63,13 +105,13 @@ namespace SchoolDiarySystem.Controllers
                     return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest);
                 }
 
-                var reviews = reviewsDAL.Get((int)id);
-                if (reviews == null)
+                var review = await Task.Run(() => reviewsDAL.Get((int)id));
+                if (review == null)
                 {
                     return RedirectToAction("Index");
                 }
-                GetComment(reviews);
-                return View(reviews);
+                GetComment(review);
+                return View(review);
             }
             else
             {

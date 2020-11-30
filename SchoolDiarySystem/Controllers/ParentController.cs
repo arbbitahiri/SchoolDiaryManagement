@@ -3,6 +3,7 @@ using SchoolDiarySystem.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 
@@ -13,12 +14,18 @@ namespace SchoolDiarySystem.Controllers
         private readonly ParentsDAL parentsDAL = new ParentsDAL();
 
         // GET: Parent
-        public ActionResult Index()
+        public async Task<ActionResult> Index(string searchString)
         {
             if (UserSession.GetUsers != null)
             {
-                var students = parentsDAL.GetAll();
-                return View(students);
+                var parents = await Task.Run(() => parentsDAL.GetAll());
+
+                if (!string.IsNullOrEmpty(searchString))
+                {
+                    parents = parents.Where(f => f.FirstName == searchString || f.LastName == searchString).ToList();
+                }
+
+                return View(parents);
             }
             else
             {
@@ -38,21 +45,30 @@ namespace SchoolDiarySystem.Controllers
             }
         }
 
-        public ActionResult Update(int? id)
+
+        [HttpPost]
+        public async Task<ActionResult> Create(Parents parent)
         {
             if (UserSession.GetUsers != null)
             {
-                if (id == null)
+                try
                 {
-                    return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest);
-                }
+                    if (ModelState.IsValid)
+                    {
+                        parent.InsertBy = UserSession.GetUsers.Username;
+                        parent.LUB = UserSession.GetUsers.Username;
+                        parent.LUN++;
 
-                var teachers = parentsDAL.Get((int)id);
-                if (teachers == null)
-                {
-                    return RedirectToAction("Index");
+                        var result = await Task.Run(() => parentsDAL.Create(parent));
+                        return RedirectToAction(nameof(Index));
+                    }
+                    return View(parent);
                 }
-                return View(teachers);
+                catch (Exception)
+                {
+                    ModelState.AddModelError(string.Empty, "An error occured while creating class.");
+                    return View(parent);
+                }
             }
             else
             {
@@ -60,7 +76,7 @@ namespace SchoolDiarySystem.Controllers
             }
         }
 
-        public ActionResult Details(int? id)
+        public async Task<ActionResult> Update(int? id)
         {
             if (UserSession.GetUsers != null)
             {
@@ -69,12 +85,12 @@ namespace SchoolDiarySystem.Controllers
                     return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest);
                 }
 
-                var teachers = parentsDAL.Get((int)id);
-                if (teachers == null)
+                var parent = await Task.Run(() => parentsDAL.Get((int)id));
+                if (parent == null)
                 {
-                    return RedirectToAction("Index");
+                    return RedirectToAction(nameof(Index));
                 }
-                return View(teachers);
+                return View(parent);
             }
             else
             {
@@ -82,7 +98,41 @@ namespace SchoolDiarySystem.Controllers
             }
         }
 
-        public ActionResult Delete(int? id)
+        [HttpPost]
+        public async Task<ActionResult> Update(int id, Parents parent)
+        {
+            if (UserSession.GetUsers != null)
+            {
+                if (id != parent.ParentID)
+                {
+                    return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest);
+                }
+
+                if (ModelState.IsValid)
+                {
+                    try
+                    {
+                        parent.LUB = UserSession.GetUsers.Username;
+                        parent.LUN = ++parent.LUN;
+
+                        var result = await Task.Run(() => parentsDAL.Update(parent));
+                        return RedirectToAction(nameof(Index));
+                    }
+                    catch (Exception)
+                    {
+                        ModelState.AddModelError(string.Empty, "An error occured while updating class.");
+                        return View(parent);
+                    }
+                }
+                return View(parent);
+            }
+            else
+            {
+                return RedirectToAction("Login", "Account");
+            }
+        }
+
+        public async Task<ActionResult> Details(int? id)
         {
             if (UserSession.GetUsers != null)
             {
@@ -91,12 +141,48 @@ namespace SchoolDiarySystem.Controllers
                     return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest);
                 }
 
-                var teachers = parentsDAL.Get((int)id);
-                if (teachers == null)
+                var parent = await Task.Run(() => parentsDAL.Get((int)id));
+                if (parent == null)
                 {
-                    return RedirectToAction("Index");
+                    return RedirectToAction(nameof(Index));
                 }
-                return View(teachers);
+                return View(parent);
+            }
+            else
+            {
+                return RedirectToAction("Login", "Account");
+            }
+        }
+
+        public async Task<ActionResult> DeleteAsync(int? id)
+        {
+            if (UserSession.GetUsers != null)
+            {
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest);
+                }
+
+                var parent = await Task.Run(() => parentsDAL.Get((int)id));
+                if (parent == null)
+                {
+                    return RedirectToAction(nameof(Index));
+                }
+                return View(parent);
+            }
+            else
+            {
+                return RedirectToAction("Login", "Account");
+            }
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> Delete(int id)
+        {
+            if (UserSession.GetUsers != null)
+            {
+                await Task.Run(() => parentsDAL.Delete(id));
+                return RedirectToAction(nameof(Index));
             }
             else
             {
