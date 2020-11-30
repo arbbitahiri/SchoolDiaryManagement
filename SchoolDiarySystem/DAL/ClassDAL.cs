@@ -103,10 +103,10 @@ namespace SchoolDiarySystem.DAL
                             while (reader.Read())
                             {
                                 classes = ToObject(reader);
-                                if (reader["Room_Type"] != DBNull.Value && reader["First_Name"] != DBNull.Value && reader["Last_Name"] != DBNull.Value)
+                                if (reader["Room_Type"] != DBNull.Value && reader["First_Name_T"] != DBNull.Value && reader["Last_Name_T"] != DBNull.Value)
                                 {
                                     classes.Room = new Rooms { RoomType = reader["Room_Type"].ToString() };
-                                    classes.Teacher = new Teachers { FirstName = reader["First_Name"].ToString(), LastName = reader["Last_Name"].ToString() };
+                                    classes.Teacher = new Teachers { FirstName = reader["First_Name_T"].ToString(), LastName = reader["Last_Name_T"].ToString() };
                                 }
                             }
                         }
@@ -136,10 +136,10 @@ namespace SchoolDiarySystem.DAL
                             while (reader.Read())
                             {
                                 var classes = ToObject(reader);
-                                if (reader["Room_Type"] != DBNull.Value && reader["First_Name"] != DBNull.Value && reader["Last_Name"] != DBNull.Value)
+                                if (reader["Room_Type"] != DBNull.Value && reader["First_Name_T"] != DBNull.Value && reader["Last_Name_T"] != DBNull.Value)
                                 {
                                     classes.Room = new Rooms { RoomType = reader["Room_Type"].ToString() };
-                                    classes.Teacher = new Teachers { FirstName = reader["First_Name"].ToString(), LastName = reader["Last_Name"].ToString() };
+                                    classes.Teacher = new Teachers { FirstName = reader["First_Name_T"].ToString(), LastName = reader["Last_Name_T"].ToString() };
                                 }
                                 MyClasses.Add(classes);
                             }

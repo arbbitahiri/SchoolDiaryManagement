@@ -16,11 +16,10 @@ namespace SchoolDiarySystem.Controllers
         [HttpPost]
         public async Task<ActionResult> Login(Users users)
         {
-            if (!ModelState.IsValid)
-            {
-                return View(users);
-            }
-
+            //if (!ModelState.IsValid)
+            //{
+            //    return View(users);
+            //}
             var result = await Task.Run(() => usersDAL.Login(users.Username, users.Password));
             if (result != null)
             {

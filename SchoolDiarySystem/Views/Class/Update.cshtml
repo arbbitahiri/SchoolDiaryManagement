@@ -1,13 +1,14 @@
 ﻿@using SchoolDiarySystem.Models
 @model Class
-<div class="dashboard-page-one">
+
+<div class="dashboard-page-one" style="position: relative; height: 100%;">
     <div class="dashboard-content-one">
         <!-- Breadcubs Area Start Here -->
         <div class="breadcrumbs-area">
             <h3>Class</h3>
             <ul>
                 <li>
-                    <a href="index-2.html">Home</a>
+                    <a href="@Url.Action("Index", "Admin")">Home</a>
                 </li>
                 <li>Update Class</li>
             </ul>
@@ -25,20 +26,21 @@
                 {
                     <form class="new-added-form">
                         <div class="row">
+                            @Html.HiddenFor(m => m.ClassID)
                             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                            <div class="col-xl-3 col-lg-6 col-12 form-group">
+                            <div class="col-xl-4 col-lg-6 col-12 form-group">
                                 <label>Teacher *</label>
-                                @Html.DropDownList("TeacherID", null, new { @class = "select2" })
+                                @Html.DropDownList("TeacherID", null, new { @class = "select2", placeholder = "Please select a teacher..." })
                                 @Html.ValidationMessageFor(m => m.TeacherID, "", new { @class = "text-danger" })
                             </div>
                             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                            <div class="col-xl-3 col-lg-6 col-12 form-group">
+                            <div class="col-xl-4 col-lg-6 col-12 form-group">
                                 <label>Class Number *</label>
-                                @Html.TextBoxFor(m => m.ClassNo, new { @class = "form-control", placeholder = "First name...", id = "firstname" })
+                                @Html.TextBoxFor(m => m.ClassNo, new { @class = "form-control", placeholder = "Write class number...", id = "classNo", @readonly = "true"})
                                 @Html.ValidationMessageFor(m => m.ClassNo, "", new { @class = "text-danger" })
                             </div>
                             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                            <div class="col-xl-3 col-lg-6 col-12 form-group">
+                            <div class="col-xl-4 col-lg-6 col-12 form-group">
                                 <label>Room Type *</label>
                                 @Html.DropDownList("RoomID", null, new { @class = "select2" })
                                 @Html.ValidationMessageFor(m => m.RoomID, "", new { @class = "text-danger" })
@@ -56,6 +58,28 @@
 
 
 @section Scripts {
+    <link rel="shortcut icon" type="image/x-icon" href="~/Content/img/favicon.png">
+    <!-- Normalize CSS -->
+    <link rel="stylesheet" href="~/Content/css/normalize.css">
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="~/Content/css/main.css">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="~/Content/css/bootstrap.min.css">
+    <!-- Fontawesome CSS -->
+    <link rel="stylesheet" href="~/Content/css/all.min.css">
+    <!-- Flaticon CSS -->
+    <link rel="stylesheet" href="~/Content/fonts/flaticon.css">
+    <!-- Animate CSS -->
+    <link rel="stylesheet" href="~/Content/css/animate.min.css">
+    <!-- Select 2 CSS -->
+    <link rel="stylesheet" href="~/Content/css/select2.min.css">
+    <!-- Date Picker CSS -->
+    <link rel="stylesheet" href="~/Content/css/datepicker.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="~/Content/style.css">
+    <!-- Modernize js -->
+    <script src="js/modernizr-3.6.0.min.js"></script>
+
     <!-- jquery-->
     <script src="~/Content/js/jquery-3.3.1.min.js"></script>
     <!-- Plugins js -->
@@ -76,6 +100,8 @@
     <script src="~/Content/js/fullcalendar.min.js"></script>
     <!-- Chart Js -->
     <script src="~/Content/js/Chart.min.js"></script>
+    <!-- Select 2 Js -->
+    <script src="~/Content/js/select2.min.js"></script>
     <!-- Custom Js -->
     <script src="~/Content/js/main.js"></script>
 }

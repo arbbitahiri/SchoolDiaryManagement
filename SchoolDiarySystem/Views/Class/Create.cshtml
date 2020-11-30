@@ -4,12 +4,12 @@
     <div class="dashboard-content-one">
         <!-- Breadcubs Area Start Here -->
         <div class="breadcrumbs-area">
-            <h3>Student</h3>
+            <h3>Class Create Form</h3>
             <ul>
                 <li>
-                    <a href="index-2.html">Home</a>
+                    <a href="@Url.Action("Index", "Admin")">Home</a>
                 </li>
-                <li>Add New Student</li>
+                <li>Add New Class</li>
             </ul>
         </div>
         <!-- Breadcubs Area End Here -->
@@ -18,7 +18,7 @@
             <div class="card-body">
                 <div class="heading-layout1">
                     <div class="item-title">
-                        <h3>Add New Student</h3>
+                        <h3>Add New Class</h3>
                     </div>
                 </div>
                 @using (Html.BeginForm("Create", "Class", FormMethod.Post))
@@ -26,21 +26,21 @@
                     <form class="new-added-form">
                         <div class="row">
                             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                            <div class="col-xl-3 col-lg-6 col-12 form-group">
+                            <div class="col-xl-4 col-lg-6 col-12 form-group">
                                 <label>Teacher *</label>
-                                @Html.DropDownList("TeacherID", null, new { @class = "select2" })
+                                @Html.DropDownListFor(m => m.TeacherID, Model.TeacherList, htmlAttributes: new { @class = "select2" })
                                 @Html.ValidationMessageFor(m => m.TeacherID, "", new { @class = "text-danger" })
                             </div>
                             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                            <div class="col-xl-3 col-lg-6 col-12 form-group">
+                            <div class="col-xl-4 col-lg-6 col-12 form-group">
                                 <label>Class Number *</label>
-                                @Html.TextBoxFor(m => m.ClassNo, new { @class = "form-control", placeholder = "First name...", id = "firstname", @type = "number", @maxlength = "1" })
+                                @Html.TextBoxFor(m => m.ClassNo, new { @class = "form-control", @placeholder = "Write class number...", @type = "number", @maxlength = 1 })
                                 @Html.ValidationMessageFor(m => m.ClassNo, "", new { @class = "text-danger" })
                             </div>
                             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                            <div class="col-xl-3 col-lg-6 col-12 form-group">
+                            <div class="col-xl-4 col-lg-6 col-12 form-group">
                                 <label>Room Type *</label>
-                                @Html.DropDownList("RoomID", null, new { @class = "select2" })
+                                @Html.DropDownListFor(m => m.RoomID, Model.RoomList, htmlAttributes: new { @class = "select2" })
                                 @Html.ValidationMessageFor(m => m.RoomID, "", new { @class = "text-danger" })
                             </div>
                             <div class="col-12 form-group mg-t-8">
@@ -56,6 +56,28 @@
 
 
 @section Scripts {
+    <link rel="shortcut icon" type="image/x-icon" href="~/Content/img/favicon.png">
+    <!-- Normalize CSS -->
+    <link rel="stylesheet" href="~/Content/css/normalize.css">
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="~/Content/css/main.css">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="~/Content/css/bootstrap.min.css">
+    <!-- Fontawesome CSS -->
+    <link rel="stylesheet" href="~/Content/css/all.min.css">
+    <!-- Flaticon CSS -->
+    <link rel="stylesheet" href="~/Content/fonts/flaticon.css">
+    <!-- Animate CSS -->
+    <link rel="stylesheet" href="~/Content/css/animate.min.css">
+    <!-- Select 2 CSS -->
+    <link rel="stylesheet" href="~/Content/css/select2.min.css">
+    <!-- Date Picker CSS -->
+    <link rel="stylesheet" href="~/Content/css/datepicker.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="~/Content/style.css">
+    <!-- Modernize js -->
+    <script src="js/modernizr-3.6.0.min.js"></script>
+
     <!-- jquery-->
     <script src="~/Content/js/jquery-3.3.1.min.js"></script>
     <!-- Plugins js -->
@@ -74,6 +96,10 @@
     <script src="~/Content/js/jquery.scrollUp.min.js"></script>
     <!-- Full Calender Js -->
     <script src="~/Content/js/fullcalendar.min.js"></script>
+    <!-- Select 2 Js -->
+    <script src="~/Content/js/select2.min.js"></script>
+    <!-- Date Picker Js -->
+    <script src="~/Content/js/datepicker.min.js"></script>
     <!-- Chart Js -->
     <script src="~/Content/js/Chart.min.js"></script>
     <!-- Custom Js -->

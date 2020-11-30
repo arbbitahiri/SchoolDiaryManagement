@@ -1,5 +1,7 @@
 ﻿using SchoolDiarySystem.Models.DataAnnotations;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Web.Mvc;
 
 namespace SchoolDiarySystem.Models
 {
@@ -8,7 +10,7 @@ namespace SchoolDiarySystem.Models
         public int ClassID { get; set; }
 
         [Display(Name = "Teacher")]
-        [Required(ErrorMessage = "Please select a teacher!")]
+        //[Required(ErrorMessage = "Please select a teacher!")]
         public int TeacherID { get; set; }
 
         [Display(Name = "Class")]
@@ -17,10 +19,13 @@ namespace SchoolDiarySystem.Models
         public int ClassNo { get; set; }
 
         [Display(Name = "Room")]
-        [Required(ErrorMessage = "Please select a room!")]
+        //[Required(ErrorMessage = "Please select a room!")]
         public int RoomID { get; set; }
 
         public virtual Teachers Teacher { get; set; }
         public virtual Rooms Room { get; set; }
+
+        public IEnumerable<SelectListItem> TeacherList { get; set; }
+        public IEnumerable<SelectListItem> RoomList { get; set; }
     }
 }

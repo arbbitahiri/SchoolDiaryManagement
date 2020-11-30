@@ -7,13 +7,13 @@ namespace SchoolDiarySystem.Models
     {
         public int UserID { get; set; }
 
-        [Display(Name = "Username")]
-        [Required(ErrorMessage = "Please write user's username!")]
+        //[Display(Name = "Username")]
+        //[Required(ErrorMessage = "Please write user's username!")]
         public string Username { get; set; }
 
-        [Display(Name = "Password")]
-        [DataType(DataType.Password)]
-        [Required(ErrorMessage = "Please write user's password!")]
+        //[Display(Name = "Password")]
+        //[DataType(DataType.Password)]
+        //[Required(ErrorMessage = "Please write user's password!")]
         public string Password { get; set; }
 
         [DataType(DataType.Password)]
@@ -31,7 +31,7 @@ namespace SchoolDiarySystem.Models
 
         [Display(Name = "Expire Date")]
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd MMMM yyyy}")]
-        [Required(ErrorMessage = "Please select a date!")]
+        //[Required(ErrorMessage = "Please select a date!")]
         public DateTime ExpiresDate { get; set; }
 
         [Display(Name = "Absence Date")]

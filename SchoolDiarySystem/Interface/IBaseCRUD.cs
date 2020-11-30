@@ -7,6 +7,7 @@ namespace SchoolDiarySystem.Interface
         bool Create(T model);
         bool Update(T model);
         bool Delete(int id);
+        //bool Search()
         List<T> GetAll();
         T Get(int id);
     }

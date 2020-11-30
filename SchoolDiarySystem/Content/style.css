@@ -4252,8 +4252,9 @@ ul {
 .bg-git {
   background-color: #997f75;
 }
+/*#042954*/
 .sidebar-color {
-  background-color: #042954;
+    background-color: #042954;
 }
 .bg-gradient-fb {
   background: -webkit-gradient(linear, left top, right top, from(#546ca9), to(#5c77bc));

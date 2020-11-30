@@ -3,6 +3,7 @@ using SchoolDiarySystem.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 
@@ -15,11 +16,17 @@ namespace SchoolDiarySystem.Controllers
         private readonly TeachersDAL teachersDAL = new TeachersDAL();
 
         // GET: Class
-        public ActionResult Index()
+        public async Task<ActionResult> Index(string searchString)
         {
             if (UserSession.GetUsers != null)
             {
-                var classes = classDAL.GetAll();
+                var classes = await Task.Run(() => classDAL.GetAll());
+
+                if (!string.IsNullOrEmpty(searchString))
+                {
+                    classes = classes.Where(f => f.ClassNo == int.Parse(searchString)).ToList();
+                }
+
                 return View(classes);
             }
             else
@@ -32,8 +39,12 @@ namespace SchoolDiarySystem.Controllers
         {
             if (UserSession.GetUsers != null)
             {
-                GetTeachersAndRoom();
-                return View();
+                var _class = new Class
+                {
+                    TeacherList = new SelectList(teachersDAL.GetAll(), "TeacherID", "FullName"),
+                    RoomList = new SelectList(roomsDAL.GetAll(), "RoomID", "RoomType")
+                };
+                return View(_class);
             }
             else
             {
@@ -41,7 +52,37 @@ namespace SchoolDiarySystem.Controllers
             }
         }
 
-        public ActionResult Update(int? id)
+        [HttpPost]
+        public async Task<ActionResult> Create(Class _class)
+        {
+            if (UserSession.GetUsers != null)
+            {
+                try
+                {
+                    //if (ModelState.IsValid)
+                    //{
+                        _class.InsertBy = UserSession.GetUsers.Username;
+                        _class.LUB = UserSession.GetUsers.Username;
+                        _class.LUN++;
+
+                        var result = await Task.Run(() => classDAL.Create(_class));
+                        return RedirectToAction(nameof(Index));
+                    //}
+                    //return View(_class);
+                }
+                catch (Exception)
+                {
+                    ModelState.AddModelError(string.Empty, "An error occured while creating class.");
+                    return View(_class);
+                }
+            }
+            else
+            {
+                return RedirectToAction("Login", "Account");
+            }
+        }
+
+        public async Task<ActionResult> Update(int? id)
         {
             if (UserSession.GetUsers != null)
             {
@@ -50,13 +91,13 @@ namespace SchoolDiarySystem.Controllers
                     return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest);
                 }
 
-                var classes = classDAL.Get((int)id);
-                if (classes == null)
+                var _class = await Task.Run(() => classDAL.Get((int)id));
+                if (_class == null)
                 {
-                    return RedirectToAction("Index");
+                    return RedirectToAction(nameof(Index));
                 }
-                GetTeachersAndRoom(classes);
-                return View(classes);
+                GetTeachersAndRoom(_class);
+                return View(_class);
             }
             else
             {
@@ -64,7 +105,41 @@ namespace SchoolDiarySystem.Controllers
             }
         }
 
-        public ActionResult Details(int? id)
+        [HttpPost]
+        public async Task<ActionResult> Update(int id, Class _class)
+        {
+            if (UserSession.GetUsers != null)
+            {
+                if (id != _class.ClassID)
+                {
+                    return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest);
+                }
+
+                //if (ModelState.IsValid)
+                //{
+                    try
+                    {
+                        _class.LUB = UserSession.GetUsers.Username;
+                        _class.LUN = ++_class.LUN;
+                        GetTeachersAndRoom(_class);
+                        var result = await Task.Run(() => classDAL.Update(_class));
+                        return RedirectToAction(nameof(Index));
+                    }
+                    catch (Exception)
+                    {
+                        ModelState.AddModelError(string.Empty, "An error occured while updating class.");
+                        return View(_class);
+                    }
+                //}
+                //return View(_class);
+            }
+            else
+            {
+                return RedirectToAction("Login", "Account");
+            }
+        }
+
+        public async Task<ActionResult> Details(int? id)
         {
             if (UserSession.GetUsers != null)
             {
@@ -73,12 +148,12 @@ namespace SchoolDiarySystem.Controllers
                     return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest);
                 }
 
-                var classes = classDAL.Get((int)id);
-                if (classes == null)
+                var _class = await Task.Run(() => classDAL.Get((int)id));
+                if (_class == null)
                 {
-                    return RedirectToAction("Index");
+                    return RedirectToAction(nameof(Index));
                 }
-                return View(classes);
+                return View(_class);
             }
             else
             {
@@ -108,10 +183,18 @@ namespace SchoolDiarySystem.Controllers
             }
         }
 
-        private void GetTeachersAndRoom()
+        [HttpPost]
+        public async Task<ActionResult> Delete(int id)
         {
-            ViewBag.TeacherID = new SelectList(teachersDAL.GetAll(), "TeacherID", "FullName");
-            ViewBag.RoomID = new SelectList(roomsDAL.GetAll(), "RoomID", "RoomType");
+            if (UserSession.GetUsers != null)
+            {
+                var _class = await Task.Run(() => classDAL.Delete(id));
+                return RedirectToAction(nameof(Index));
+            }
+            else
+            {
+                return RedirectToAction("Login", "Account");
+            }
         }
 
         private void GetTeachersAndRoom(Class _class)
