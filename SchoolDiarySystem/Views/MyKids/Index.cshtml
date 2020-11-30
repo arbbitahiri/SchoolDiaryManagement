@@ -1,0 +1,78 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutParent.cshtml";
+}
+@using SchoolDiarySystem.Models
+@model IEnumerable<Students>
+
+<div class="dashboard-page-one" style="position: relative; height: 100%;">
+    <div class="dashboard-content-one">
+        <!-- Breadcubs Area Start Here -->
+        <div class="breadcrumbs-area">
+            <h3>Parent Dashboard</h3>
+            <ul>
+                <li>
+                    <a href="@Url.Action("Index", "MyKids")">Home</a>
+                </li>
+                <li>Parents</li>
+            </ul>
+        </div>
+        <div class="row">
+            <div class="col-5-xxxl col-12">
+                <div class="card dashboard-card-twelve">
+                    <div class="card-body">
+                        <div class="heading-layout1">
+                            <div class="item-title">
+                                <h3>My Kids</h3>
+                            </div>
+                        </div>
+                        <div class="kids-details-wrap">
+                            <div class="row">
+                                <div class="col-12-xxxl col-xl-6 col-12">
+                                    @foreach (var item in Model)
+                                    {
+                                        <div class="kids-details-box mb-5">
+                                            <div class="item-img">
+                                                @if (item.Gender != "Male")
+                                                {
+                                                    <img src="~/Content/img/figure/student.png" alt="kids">
+                                                }
+                                                else
+                                                {
+                                                    <img src="~/Content/img/figure/student1.png" alt="kids">
+                                                }
+                                            </div>
+                                            <div class="item-content table-responsive">
+                                                <table class="table text-nowrap">
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>Name:</td>
+                                                            <td>@Html.DisplayFor(m => item.FullName)</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Gender:</td>
+                                                            <td>@Html.DisplayFor(m => item.Gender)</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Class:</td>
+                                                            <td>@Html.DisplayFor(m => item.Class.ClassNo)</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Birthday:</td>
+                                                            <td>@Html.DisplayFor(m => item.DayofBirth)</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

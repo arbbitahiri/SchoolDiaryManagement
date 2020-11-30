@@ -110,10 +110,10 @@ namespace SchoolDiarySystem.DAL
                             while (reader.Read())
                             {
                                 student = ToObject(reader);
-                                if (reader["Class_No"] != DBNull.Value && reader["First_Name"] != DBNull.Value && reader["Last_Name"] != DBNull.Value)
+                                if (reader["Class_No"] != DBNull.Value && reader["First_Name_P"] != DBNull.Value && reader["Last_Name_P"] != DBNull.Value)
                                 {
                                     student.Class = new Class { ClassNo = (int)reader["Class_No"] };
-                                    student.Parent = new Parents { FirstName = reader["First_Name"].ToString(), LastName = reader["Last_Name"].ToString() };
+                                    student.Parent = new Parents { FirstName = reader["First_Name_P"].ToString(), LastName = reader["Last_Name_P"].ToString() };
                                 }
                             }
                         }
@@ -143,10 +143,10 @@ namespace SchoolDiarySystem.DAL
                             while (reader.Read())
                             {
                                 var student = ToObject(reader);
-                                if (reader["Class_No"] != DBNull.Value && reader["First_Name"] != DBNull.Value && reader["Last_Name"] != DBNull.Value)
+                                if (reader["Class_No"] != DBNull.Value && reader["First_Name_P"] != DBNull.Value && reader["Last_Name_P"] != DBNull.Value)
                                 {
                                     student.Class = new Class { ClassNo = (int)reader["Class_No"] };
-                                    student.Parent = new Parents { FirstName = reader["First_Name"].ToString(), LastName = reader["Last_Name"].ToString() };
+                                    student.Parent = new Parents { FirstName = reader["First_Name_P"].ToString(), LastName = reader["Last_Name_P"].ToString() };
                                 }
                                 MyStudents.Add(student);
                             }

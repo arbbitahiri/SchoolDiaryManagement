@@ -33,7 +33,7 @@ namespace SchoolDiarySystem.Controllers
                     }
                     else if (result.RoleID == 2)
                     {
-                        return RedirectToAction("Index", "Teacher");
+                        return RedirectToAction("Index", "Professor");
                     }
                     else if (result.RoleID == 3)
                     {
@@ -41,7 +41,7 @@ namespace SchoolDiarySystem.Controllers
                     }
                     else if (result.RoleID == 4)
                     {
-                        return RedirectToAction("Index", "Parent");
+                        return RedirectToAction("Index", "MyKids");
                     }
                     else
                     {

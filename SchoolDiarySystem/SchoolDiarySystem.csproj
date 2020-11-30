@@ -125,7 +125,9 @@
     <Compile Include="Controllers\ClassController.cs" />
     <Compile Include="Controllers\CommentController.cs" />
     <Compile Include="Controllers\DirectorController.cs" />
+    <Compile Include="Controllers\MyKidsController.cs" />
     <Compile Include="Controllers\ParentController.cs" />
+    <Compile Include="Controllers\ProfessorController.cs" />
     <Compile Include="Controllers\ReviewController.cs" />
     <Compile Include="Controllers\RoomController.cs" />
     <Compile Include="Controllers\StudentController.cs" />
@@ -351,6 +353,8 @@
     <Content Include="Views\User\Update.cshtml" />
     <Content Include="Views\User\Details.cshtml" />
     <Content Include="Views\Director\Index.cshtml" />
+    <Content Include="Views\MyKids\Index.cshtml" />
+    <Content Include="Views\Professor\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -28,6 +28,12 @@ namespace SchoolDiarySystem.DAL
                             while (reader.Read())
                             {
                                 result = ToObject(reader);
+                                if (reader["First_Name_T"] != DBNull.Value && reader["Last_Name_T"] != DBNull.Value
+                                    && reader["First_Name_P"] != DBNull.Value && reader["Last_Name_P"] != DBNull.Value)
+                                {
+                                    result.Teacher = new Teachers { FirstName = reader["First_Name_T"].ToString(), LastName = reader["Last_Name_T"].ToString() };
+                                    result.Parent = new Parents { FirstName = reader["First_Name_P"].ToString(), LastName = reader["Last_Name_P"].ToString() };
+                                }
                             }
 
                             return result;
@@ -286,6 +292,9 @@ namespace SchoolDiarySystem.DAL
 
                 if (dataReader["TeacherID"] != DBNull.Value)
                     user.TeacherID = int.Parse(dataReader["TeacherID"].ToString());
+
+                if (dataReader["ParentID"] != DBNull.Value)
+                    user.ParentID = int.Parse(dataReader["ParentID"].ToString());
 
                 if (dataReader["First_Name"] != DBNull.Value)
                     user.FirstName = dataReader["First_Name"].ToString();

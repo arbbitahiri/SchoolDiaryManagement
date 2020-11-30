@@ -80,7 +80,7 @@
                         <a class="navbar-nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown"
                            aria-expanded="false">
                             <div class="admin-title">
-                                @Html.Label(UserSession.GetUsers.FullName, new { @class = "item-title" })
+                                @Html.Label(UserSession.GetUsers.Teacher.FullName, new { @class = "item-title" })
                                 <span>Admin</span>
                             </div>
                             <div class="admin-img">
@@ -89,7 +89,7 @@
                         </a>
                         <div class="dropdown-menu dropdown-menu-right">
                             <div class="item-header" style="font-size: large">
-                                @Html.Label(UserSession.GetUsers.FullName, new { @class = "item-title" })
+                                @Html.Label(UserSession.GetUsers.Teacher.FullName, new { @class = "item-title" })
                             </div>
                             <div class="item-content">
                                 <ul class="settings-list">
@@ -123,7 +123,7 @@
                 <div class="sidebar-menu-content">
                     <ul class="nav nav-sidebar-menu sidebar-toggle-view">
                         <li class="nav-item">
-                            <a href="@Url.Action("Index", "Teacher")" class="nav-link"><i class="flaticon-dashboard"></i><span>Dashboard</span></a>
+                            <a href="@Url.Action("Index", "Professor")" class="nav-link"><i class="flaticon-dashboard"></i><span>Dashboard</span></a>
                         </li>
                         <li class="nav-item">
                             <a href="@Url.Action("Index", "Topic")" class="nav-link"><i class="flaticon-chat"></i><span>Topics</span></a>
