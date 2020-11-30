@@ -249,6 +249,7 @@
     <Content Include="Content\webfonts\fa-regular-401.html" />
     <Content Include="Content\webfonts\fa-solid-900.html" />
     <Content Include="Content\webfonts\fa-solid-901.html" />
+    <Content Include="DAL\DataBase\SchoolDiarySystemSCRIPT.sql" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
