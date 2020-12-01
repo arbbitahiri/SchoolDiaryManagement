@@ -1,16 +1,20 @@
-﻿@using SchoolDiarySystem.Models
+﻿@{
+    ViewBag.Title = "User Delete";
+    Layout = "~/Views/Shared/_LayoutDirector.cshtml";
+}
+@using SchoolDiarySystem.Models
 @model Users
 
 <div class="dashboard-page-one">
     <div class="dashboard-content-one">
         <!-- Breadcubs Area Start Here -->
         <div class="breadcrumbs-area">
-            <h3>Teacher</h3>
+            <h3>User</h3>
             <ul>
                 <li>
                     <a href="index-2.html">Home</a>
                 </li>
-                <li>Teacher Details</li>
+                <li>User Details</li>
             </ul>
         </div>
         <!-- Breadcubs Area End Here -->
@@ -19,7 +23,7 @@
             <div class="card-body">
                 <div class="heading-layout1">
                     <div class="item-title">
-                        <h3>Are you sure you want to delete this teacher?</h3>
+                        <h3>Are you sure you want to delete this user?</h3>
                     </div>
                 </div>
                 <div class="single-info-details">
@@ -28,7 +32,18 @@
                     </div>
                     <div class="item-content">
                         <div class="header-inline item-header">
-                            @Html.Label(Model.FullName, new { @class = "text-dark-medium font-medium" })
+                            @if (Model.RoleID == 1)
+                            {
+                                @Html.Label("FullName", Model.FullName, new { @class = "text-dark-medium font-medium" })
+                            }
+                            else if (Model.RoleID == 2)
+                            {
+                                @Html.Label(Model.Teacher.FullName, new { @class = "font-medium text-dark-medium" })
+                            }
+                            else if (Model.RoleID == 4)
+                            {
+                                @Html.Label(Model.Parent.FullName, new { @class = "font-medium text-dark-medium" })
+                            }
                         </div>
                         <div class="info-table table-responsive">
                             <table class="table text-nowrap">
@@ -39,12 +54,44 @@
                                             <td>Admin Name:</td>
                                             <td>@Html.Label(Model.FullName, new { @class = "font-medium text-dark-medium" })</td>
                                         </tr>
+                                        <tr>
+                                            <td>Username:</td>
+                                            <td>@Html.Label(Model.Username, new { @class = "font-medium text-dark-medium" })</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Expire Date:</td>
+                                            <td>@Html.Label(Model.ExpiresDate.ToString("dd MMMM yyyy"), new { @class = "font-medium text-dark-medium" })</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Last Login Date:</td>
+                                            <td>@Html.Label(Model.LastLoginDate.ToString("dd MMMM yyyy"), new { @class = "font-medium text-dark-medium" })</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Last Login Time:</td>
+                                            <td>@Html.Label(Model.LastLoginTime.ToString("hh:mm tt"), new { @class = "font-medium text-dark-medium" })</td>
+                                        </tr>
                                     }
                                     else if (Model.RoleID == 2)
                                     {
                                         <tr>
                                             <td>Teacher:</td>
                                             <td>@Html.Label(Model.Teacher.FullName, new { @class = "font-medium text-dark-medium" })</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Username:</td>
+                                            <td>@Html.Label(Model.Username, new { @class = "font-medium text-dark-medium" })</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Expire Date:</td>
+                                            <td>@Html.Label(Model.ExpiresDate.ToString("dd MMMM yyyy"), new { @class = "font-medium text-dark-medium" })</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Last Login Date:</td>
+                                            <td>@Html.Label(Model.LastLoginDate.ToString("dd MMMM yyyy"), new { @class = "font-medium text-dark-medium" })</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Last Login Time:</td>
+                                            <td>@Html.Label(Model.LastLoginTime.ToString("hh:mm tt"), new { @class = "font-medium text-dark-medium" })</td>
                                         </tr>
                                     }
                                     else if (Model.RoleID == 4)
@@ -53,23 +100,23 @@
                                             <td>Parent:</td>
                                             <td>@Html.Label(Model.Parent.FullName, new { @class = "font-medium text-dark-medium" })</td>
                                         </tr>
+                                        <tr>
+                                            <td>Username:</td>
+                                            <td>@Html.Label(Model.Username, new { @class = "font-medium text-dark-medium" })</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Expire Date:</td>
+                                            <td>@Html.Label(Model.ExpiresDate.ToString("dd MMMM yyyy"), new { @class = "font-medium text-dark-medium" })</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Last Login Date:</td>
+                                            <td>@Html.Label(Model.LastLoginDate.ToString("dd MMMM yyyy"), new { @class = "font-medium text-dark-medium" })</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Last Login Time:</td>
+                                            <td>@Html.Label(Model.LastLoginTime.ToString("hh:mm tt"), new { @class = "font-medium text-dark-medium" })</td>
+                                        </tr>
                                     }
-                                    <tr>
-                                        <td>Username:</td>
-                                        <td>@Html.Label(Model.Username, new { @class = "font-medium text-dark-medium" })</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Expire Date:</td>
-                                        <td>@Html.Label(Model.ExpiresDate.ToString(), new { @class = "font-medium text-dark-medium" })</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Last Login Date:</td>
-                                        <td>@Html.Label(Model.LastLoginDate.ToString(), new { @class = "font-medium text-dark-medium" })</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Last Login Time:</td>
-                                        <td>@Html.Label(Model.LastLoginTime.ToString(), new { @class = "font-medium text-dark-medium" })</td>
-                                    </tr>
                                     @if (Model.IsPasswordChanged != true)
                                     {
                                         <tr>

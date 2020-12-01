@@ -1,25 +1,26 @@
-﻿@using SchoolDiarySystem.Models
+﻿@{
+    ViewBag.Title = "Update Review";
+    Layout = "~/Views/Shared/_LayoutDirector.cshtml";
+}
+@using SchoolDiarySystem.Models
 @model Reviews
 
 <div class="dashboard-page-one">
     <div class="dashboard-content-one">
-        <!-- Breadcubs Area Start Here -->
         <div class="breadcrumbs-area">
-            <h3>Comment</h3>
+            <h3>Review</h3>
             <ul>
                 <li>
                     <a href="index-2.html">Home</a>
                 </li>
-                <li>Update Comment</li>
+                <li>Update Review</li>
             </ul>
         </div>
-        <!-- Breadcubs Area End Here -->
-        <!-- Add New Teacher Area Start Here -->
         <div class="card height-auto">
             <div class="card-body">
                 <div class="heading-layout1">
                     <div class="item-title">
-                        <h3>Update Comment</h3>
+                        <h3>Update Review</h3>
                     </div>
                 </div>
                 @using (Html.BeginForm("Update", "Review", FormMethod.Post))

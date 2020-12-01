@@ -1,16 +1,20 @@
-﻿@using SchoolDiarySystem.Models
+﻿@{
+    ViewBag.Title = "Create User";
+    Layout = "~/Views/Shared/_LayoutDirector.cshtml";
+}
+@using SchoolDiarySystem.Models
 @model Users
 
 <div class="dashboard-page-one">
     <div class="dashboard-content-one">
         <!-- Breadcubs Area Start Here -->
         <div class="breadcrumbs-area">
-            <h3>Parent</h3>
+            <h3>Create Parent</h3>
             <ul>
                 <li>
                     <a href="index-2.html">Home</a>
                 </li>
-                <li>Add New Parent</li>
+                <li>Create Parent</li>
             </ul>
         </div>
         <!-- Breadcubs Area End Here -->
@@ -19,7 +23,7 @@
             <div class="card-body">
                 <div class="heading-layout1">
                     <div class="item-title">
-                        <h3>Add New Parent</h3>
+                        <h3>Create User for Parent</h3>
                     </div>
                 </div>
                 @using (Html.BeginForm("CreateParent", "User", FormMethod.Post))

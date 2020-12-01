@@ -1,20 +1,21 @@
-﻿@using SchoolDiarySystem.Models
+﻿@{
+    ViewBag.Title = "Delete Subject";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+@using SchoolDiarySystem.Models
 @model Subjects
 
 <div class="dashboard-page-one">
     <div class="dashboard-content-one">
-        <!-- Breadcubs Area Start Here -->
         <div class="breadcrumbs-area">
             <h3>Subject</h3>
             <ul>
                 <li>
-                    <a href="index-2.html">Home</a>
+                    <a href="@Url.Action("Index", "Admin")">Home</a>
                 </li>
                 <li>Subject Details</li>
             </ul>
         </div>
-        <!-- Breadcubs Area End Here -->
-        <!-- Student Table Area Start Here -->
         <div class="card height-auto">
             <div class="card-body">
                 <div class="heading-layout1">
@@ -23,12 +24,9 @@
                     </div>
                 </div>
                 <div class="single-info-details">
-                    <div class="item-img">
-                        <img src="~/Content/img/figure/teacher.jpg" alt="teacher">
-                    </div>
                     <div class="item-content">
                         <div class="header-inline item-header">
-                            @Html.Label(Model.SubjectTitle, new { @class = "text-dark-medium font-medium" })
+                            <h3 class="text-dark-medium font-medium">@Html.Label("SubjectTitle", Model.SubjectTitle, new { @class = "text-dark-medium font-medium" })</h3>
                         </div>
                         <div class="info-table table-responsive">
                             <table class="table text-nowrap">

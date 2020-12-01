@@ -1,4 +1,8 @@
-﻿@using SchoolDiarySystem.Models
+﻿@{
+    ViewBag.Title = "List";
+    Layout = "~/Views/Shared/_LayoutDirector.cshtml";
+}
+@using SchoolDiarySystem.Models
 @model IEnumerable<Users>
 
 <div class="dashboard-page-one">
@@ -22,22 +26,31 @@
                         </div>
                     </div>
                     <form class="new-added-form">
-                            <div class="col-12 form-group mg-t-8">
-                                <table>
-                                    <tr>
-                                        <td>
-                                            @Html.ActionLink("Admin", "CreateAdmin", "User", null, new { @class = "btn-fill-lg font-normal text-light gradient-pastel-green" })
-                                        </td><td></td><td></td><td></td><td></td><td></td>
-                                        <td>
-                                            @Html.ActionLink("Teacher", "CreateTeacher", "User", null, new { @class = "btn-fill-lg font-normal text-light gradient-pastel-green" })
-                                        </td>
-                                        <td></td><td></td><td></td><td></td><td></td>
-                                        <td>
-                                            @Html.ActionLink("Parent", "CreateParent", "User", null, new { @class = "btn-fill-lg font-normal text-light gradient-pastel-green" })
-                                        </td>
-                                    </tr>
-                                </table>
-                            </div>
+                        <div class="col-12 form-group mg-t-8">
+                            <table>
+                                <tr>
+                                    <td>
+                                        @Html.ActionLink("Admin", "CreateAdmin", "User", null, new { @class = "btn-fill-lg font-normal text-light gradient-pastel-green" })
+                                    </td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td>
+                                        @Html.ActionLink("Teacher", "CreateTeacher", "User", null, new { @class = "btn-fill-lg font-normal text-light gradient-pastel-green" })
+                                    </td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td>
+                                        @Html.ActionLink("Parent", "CreateParent", "User", null, new { @class = "btn-fill-lg font-normal text-light gradient-pastel-green" })
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
                     </form>
                 </div>
             </div>
@@ -78,19 +91,6 @@
                                 <th></th>
                             </tr>
                         </thead>
-                        @*<tfoot>
-                    <tr>
-                        <th>@Html.DisplayNameFor(m => m.FirstName)</th>
-                        <th>@Html.DisplayNameFor(m => m.LastName)</th>
-                        <th>@Html.DisplayNameFor(m => m.Gender)</th>
-                        <th>@Html.DisplayNameFor(m => m.City)</th>
-                        <th>@Html.DisplayNameFor(m => m.Qualification)</th>
-                        <th>@Html.DisplayNameFor(m => m.DayofBirth)</th>
-                        <th>@Html.DisplayNameFor(m => m.Email)</th>
-                        <th>@Html.DisplayNameFor(m => m.PhoneNo)</th>
-                        <th></th>
-                    </tr>
-                </tfoot>*@
                         <tbody>
                             @foreach (var item in Model)
                             {
@@ -139,10 +139,17 @@
                                     </td>
 
                                     <td>
-                                        @Html.ActionLink("Update", "Update", new { id = item.UserID }) |
-                                        @Html.ActionLink("Details", "Details", new { id = item.UserID }) |
-                                        @Html.ActionLink("Change Password", "ChangePassword", new { id = item.UserID }) |
-                                        @Html.ActionLink("Delete", "Delete", new { id = item.UserID })
+                                        <div class="dropdown">
+                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                                <span class="flaticon-more-button-of-three-dots"></span>
+                                            </a>
+                                            <div class="dropdown-menu dropdown-menu-right">
+                                                <a class="dropdown-item" href="@Url.Action("Delete", "User", new { id = item.UserID })"><i class="fas fa-times text-orange-red"></i>Delete</a>
+                                                <a class="dropdown-item" href="@Url.Action("Update", "User", new { id = item.UserID })"><i class="fas fa-cogs text-dark-pastel-green"></i>Update</a>
+                                                <a class="dropdown-item" href="@Url.Action("ChangePassword", "User", new { id = item.UserID })"><i class="fas fa-redo-alt text-orange-peel"></i>Change Password</a>
+                                                <a class="dropdown-item" href="@Url.Action("Details", "User", new { id = item.UserID })"><i class="fas fa-redo-alt text-orange-peel"></i>Details</a>
+                                            </div>
+                                        </div>
                                     </td>
                                 </tr>
                             }

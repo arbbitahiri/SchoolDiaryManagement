@@ -1,21 +1,22 @@
-﻿@using SchoolDiarySystem.Models
+﻿@{
+    ViewBag.Title = "Review's List";
+    Layout = "~/Views/Shared/_LayoutDirector.cshtml";
+}
+@using SchoolDiarySystem.Models
 @model IEnumerable<Reviews>
 
 <div class="dashboard-page-one">
     <div class="dashboard-content-one">
-        <!-- Breadcubs Area Start Here -->
         <div class="breadcrumbs-area">
             <h3>Review Board</h3>
             <ul>
                 <li>
-                    <a href="~/Views/Admin/Index.cshtml">Home</a>
+                    <a href="@Url.Action("Index", "Director")">Home</a>
                 </li>
                 <li>Review</li>
             </ul>
         </div>
-        <!-- Breadcubs Area End Here -->
         <div class="row">
-            <!-- All Notice Area Start Here -->
             <div class="col-8-xxxl col-12">
                 <div class="card height-auto">
                     <div class="card-body">
@@ -60,7 +61,6 @@
                     </div>
                 </div>
             </div>
-            <!-- All Notice Area End Here -->
         </div>
     </div>
 </div>

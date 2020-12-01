@@ -1,20 +1,21 @@
-﻿@using SchoolDiarySystem.Models
+﻿@{
+    ViewBag.Title = "Create Parent";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+@using SchoolDiarySystem.Models
 @model Parents
 
 <div class="dashboard-page-one">
     <div class="dashboard-content-one">
-        <!-- Breadcubs Area Start Here -->
         <div class="breadcrumbs-area">
             <h3>Parent</h3>
             <ul>
                 <li>
-                    <a href="index-2.html">Home</a>
+                    <a href="@Url.Action("Index", "Admin")">Home</a>
                 </li>
                 <li>Add New Parent</li>
             </ul>
         </div>
-        <!-- Breadcubs Area End Here -->
-        <!-- Add New Teacher Area Start Here -->
         <div class="card height-auto">
             <div class="card-body">
                 <div class="heading-layout1">

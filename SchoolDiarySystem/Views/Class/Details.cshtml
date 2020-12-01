@@ -1,66 +1,67 @@
-﻿@using SchoolDiarySystem.Models
-@model Comments
+﻿@{
+    ViewBag.Title = "Class Details";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+@using SchoolDiarySystem.Models
+@model Class
 
 <div class="dashboard-page-one">
     <div class="dashboard-content-one">
         <div class="breadcrumbs-area">
-            <h3>Comment</h3>
+            <h3>Class</h3>
             <ul>
                 <li>
-                    <a href="@Url.Action("Index", "Professor")">Home</a>
+                    <a href="@Url.Action("Index", "Admin")">Home</a>
                 </li>
-                <li>Comment Details</li>
+                <li>Class Details</li>
             </ul>
         </div>
         <div class="card height-auto">
             <div class="card-body">
                 <div class="heading-layout1">
                     <div class="item-title">
-                        <h3>Comment</h3>
+                        <h3>Class Details</h3>
                     </div>
                 </div>
                 <div class="single-info-details">
                     <div class="item-content">
                         <div class="header-inline item-header">
-                            <h3 class="text-dark-medium font-medium">Details</h3>
-                            <div class="header-elements">
-                                <ul>
-                                    <li><a href="#"><i class="fas fa-print"></i></a></li>
-                                    <li><a href="#"><i class="fas fa-download"></i></a></li>
-                                </ul>
-                            </div>
+                            <h3 class="text-dark-medium font-medium">@Html.Label("ClassNo", Model.ClassNo.ToString(), new { @class = "text-dark-medium font-medium" })</h3>
                         </div>
-                        <p>@Html.Label("Comment", Model.Comment.ToString(), new { @class = "font-medium text-dark-medium" })</p>
                         <div class="info-table table-responsive">
                             <table class="table text-nowrap">
                                 <tbody>
                                     <tr>
-                                        <td>Date:</td>
-                                        <td>@Html.Label(Model.CommentDate.ToString("dd MMMM yyyy"), new { @class = "font-medium text-dark-medium" })</td>
+                                        <td>Class :</td>
+                                        <td>@Html.Label(Model.ClassNo.ToString(), new { @class = "font-medium text-dark-medium" })</td>
                                     </tr>
                                     <tr>
-                                        <td>Class Time:</td>
-                                        <td>@Html.Label(Model.Time.ToString(), new { @class = "font-medium text-dark-medium" })</td>
+                                        <td>Teacher:</td>
+                                        <td>@Html.Label(Model.Teacher.FullName, new { @class = "font-medium text-dark-medium" })</td>
                                     </tr>
                                     <tr>
-                                        <td>Class:</td>
-                                        <td>@Html.Label(Model.Class.ClassNo.ToString(), new { @class = "font-medium text-dark-medium" })</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Subject:</td>
-                                        <td>@Html.Label(Model.Subject.SubjectTitle, new { @class = "font-medium text-dark-medium" })</td>
+                                        <td>Birthday:</td>
+                                        <td>@Html.Label(Model.Room.RoomType, new { @class = "font-medium text-dark-medium" })</td>
                                     </tr>
                                     <tr>
                                         <td>
-                                            @using (Html.BeginForm("Update", "Comment", new { id = Model.CommentID }, FormMethod.Post))
+                                            @using (Html.BeginForm("Update", "Class", new { id = Model.ClassID }, FormMethod.Post))
                                             {
                                                 <div class="col-12 form-group mg-t-8">
-                                                    <input type="submit" value="Update" class="btn-fill-md text-light bg-dark-pastel-green" />
+                                                    <input type="submit" value="Update" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark" />
                                                 </div>
                                             }
                                         </td>
                                         <td>
-                                            @using (Html.BeginForm("Index", "Comment", FormMethod.Post))
+                                            @using (Html.BeginForm("Delete", "Class", new { id = Model.ClassID }, FormMethod.Post))
+                                            {
+                                                <div class="col-12 form-group mg-t-8">
+                                                    <input type="submit" value="Delete" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark" />
+                                                </div>
+                                            }
+                                        </td>
+                                        <td>
+                                            @using (Html.BeginForm("Index", "Class", FormMethod.Post))
                                             {
                                                 <div class="col-12 form-group mg-t-8">
                                                     <input type="submit" value="Back to List" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark" />
@@ -77,5 +78,6 @@
         </div>
     </div>
 </div>
+
 
 @section Scripts {}

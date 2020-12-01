@@ -1,6 +1,5 @@
-﻿
-@{
-    ViewBag.Title = "Index";
+﻿@{
+    ViewBag.Title = "Teacher's Dashboard";
     Layout = "~/Views/Shared/_LayoutTeacher.cshtml";
 }
 @using SchoolDiarySystem.Models
@@ -8,19 +7,15 @@
 
 <div class="dashboard-page-one">
     <div class="dashboard-content-one">
-        <!-- Breadcubs Area Start Here -->
         <div class="breadcrumbs-area">
-            <h3>Admin Dashboard</h3>
+            <h3>Teacher Dashboard</h3>
             <ul>
                 <li>
-                    <a href="index-2.html">Home</a>
+                    <a href="@Url.Action("Index", "Professor")">Home</a>
                 </li>
-                <li>Teachers</li>
             </ul>
         </div>
-        <!-- Breadcubs Area End Here -->
         <div class="row">
-            <!-- Dashboard summery Start Here -->
             <div class="col-12 col-4-xxxl">
                 <div class="row">
                     <div class="col-6-xxxl col-lg-12 col-sm-6 col-12">

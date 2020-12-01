@@ -1,14 +1,17 @@
-﻿@using SchoolDiarySystem.Models
+﻿@{
+    ViewBag.Title = "Student's List";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+@using SchoolDiarySystem.Models
 @model IEnumerable<Students>
 
 <div class="dashboard-page-one">
     <div class="dashboard-content-one">
-        <!-- Breadcubs Area Start Here -->
         <div class="breadcrumbs-area">
             <h3>Student</h3>
             <ul>
                 <li>
-                    <a href="~/Views/Admin/Index.cshtml">Home</a>
+                    <a href="@Url.Action("Index", "Admin")">Home</a>
                 </li>
                 <li>All Students</li>
             </ul>
@@ -33,8 +36,6 @@
                 </div>
             </div>
         </div>
-        <!-- Breadcubs Area End Here -->
-        <!-- Teacher Table Area Start Here -->
         <div class="card height-auto">
             <div class="card-body">
                 <div class="heading-layout1">
@@ -69,19 +70,6 @@
                                 <th></th>
                             </tr>
                         </thead>
-                        @*<tfoot>
-                    <tr>
-                        <th>@Html.DisplayNameFor(m => m.FirstName)</th>
-                        <th>@Html.DisplayNameFor(m => m.LastName)</th>
-                        <th>@Html.DisplayNameFor(m => m.Gender)</th>
-                        <th>@Html.DisplayNameFor(m => m.City)</th>
-                        <th>@Html.DisplayNameFor(m => m.Qualification)</th>
-                        <th>@Html.DisplayNameFor(m => m.DayofBirth)</th>
-                        <th>@Html.DisplayNameFor(m => m.Email)</th>
-                        <th>@Html.DisplayNameFor(m => m.PhoneNo)</th>
-                        <th></th>
-                    </tr>
-                </tfoot>*@
                         <tbody>
                             @foreach (var item in Model)
                             {
@@ -120,29 +108,16 @@
 
                                     <td>
                                         <div class="dropdown">
-                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"
-                                               aria-expanded="false">
+                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
                                                 <span class="flaticon-more-button-of-three-dots"></span>
                                             </a>
                                             <div class="dropdown-menu dropdown-menu-right">
-                                                <a class="dropdown-item" href="#">
-                                                    <i class="fas fa-cogs text-dark-pastel-green"></i>Update
-                                                </a>
-                                                <a class="dropdown-item" href="#">
-                                                    <i class="fas fa-times text-orange-red"></i>Delete
-                                                </a>
-                                                <a class="dropdown-item" href="#">
-                                                    <i class="fas fa-redo-alt text-orange-peel"></i>Details
-                                                </a>
+                                                <a class="dropdown-item" href="@Url.Action("Delete", "Student", new { id = item.StudentID })"><i class="fas fa-times text-orange-red"></i>Delete</a>
+                                                <a class="dropdown-item" href="@Url.Action("Update", "Student", new { id = item.StudentID })"><i class="fas fa-cogs text-dark-pastel-green"></i>Update</a>
+                                                <a class="dropdown-item" href="@Url.Action("Details", "Student", new { id = item.StudentID })"><i class="fas fa-redo-alt text-orange-peel"></i>Details</a>
                                             </div>
                                         </div>
                                     </td>
-
-                                    @*<td>
-                                @Html.ActionLink("Update", "Update", new { id = item.StudentID })@Url.Action("Update", new { id = item.StudentID })
-                                @Html.ActionLink("Details", "Details", new { id = item.StudentID })@Url.Action("Delete", new { id = item.StudentID })
-                                @Html.ActionLink("Delete", "Delete", new { id = item.StudentID })@Url.Action("Details", new { id = item.StudentID })
-                            </td>*@
                                 </tr>
                             }
                         </tbody>

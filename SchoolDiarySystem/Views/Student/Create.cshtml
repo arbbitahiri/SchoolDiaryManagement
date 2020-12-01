@@ -1,9 +1,12 @@
-﻿@using SchoolDiarySystem.Models
+﻿@{
+    ViewBag.Title = "Create Student";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+@using SchoolDiarySystem.Models
 @model Students
 
 <div class="dashboard-page-one">
     <div class="dashboard-content-one">
-        <!-- Breadcubs Area Start Here -->
         <div class="breadcrumbs-area">
             <h3>Student</h3>
             <ul>
@@ -13,8 +16,6 @@
                 <li>Add New Student</li>
             </ul>
         </div>
-        <!-- Breadcubs Area End Here -->
-        <!-- Add New Teacher Area Start Here -->
         <div class="card height-auto">
             <div class="card-body">
                 <div class="heading-layout1">

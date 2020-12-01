@@ -1,6 +1,5 @@
-﻿
-@{
-    ViewBag.Title = "Update Parent";
+﻿@{
+    ViewBag.Title = "Update";
     Layout = "~/Views/Shared/_LayoutDirector.cshtml";
 }
 
@@ -11,12 +10,12 @@
     <div class="dashboard-content-one">
         <!-- Breadcubs Area Start Here -->
         <div class="breadcrumbs-area">
-            <h3>Parent</h3>
+            <h3>Update</h3>
             <ul>
                 <li>
-                    <a href="index-2.html">Home</a>
+                    <a href="@Url.Action("Index", "Director")">Home</a>
                 </li>
-                <li>Add New Parent</li>
+                <li>Update User</li>
             </ul>
         </div>
         <!-- Breadcubs Area End Here -->
@@ -25,7 +24,7 @@
             <div class="card-body">
                 <div class="heading-layout1">
                     <div class="item-title">
-                        <h3>Add New Parent</h3>
+                        <h3>Update User</h3>
                     </div>
                 </div>
                 @using (Html.BeginForm("Update", "User", FormMethod.Post))

@@ -1,14 +1,17 @@
-﻿@using SchoolDiarySystem.Models
+﻿@{
+    ViewBag.Title = "Parent's List";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+@using SchoolDiarySystem.Models
 @model IEnumerable<Parents>
 
 <div class="dashboard-page-one">
     <div class="dashboard-content-one">
-        <!-- Breadcubs Area Start Here -->
         <div class="breadcrumbs-area">
             <h3>Parent</h3>
             <ul>
                 <li>
-                    <a href="~/Views/Admin/Index.cshtml">Home</a>
+                    <a href="@Url.Action("Index", "Admin")">Home</a>
                 </li>
                 <li>All Parents</li>
             </ul>
@@ -33,8 +36,6 @@
                 </div>
             </div>
         </div>
-        <!-- Breadcubs Area End Here -->
-        <!-- Teacher Table Area Start Here -->
         <div class="card height-auto">
             <div class="card-body">
                 <div class="heading-layout1">
@@ -59,29 +60,18 @@
                     <table class="table display data-table text-nowrap">
                         <thead>
                             <tr>
+                                <th></th>
                                 <th>First Name</th>
                                 <th>Last Name</th>
                                 <th>City</th>
                                 <th></th>
                             </tr>
                         </thead>
-                        @*<tfoot>
-                    <tr>
-                        <th>@Html.DisplayNameFor(m => m.FirstName)</th>
-                        <th>@Html.DisplayNameFor(m => m.LastName)</th>
-                        <th>@Html.DisplayNameFor(m => m.Gender)</th>
-                        <th>@Html.DisplayNameFor(m => m.City)</th>
-                        <th>@Html.DisplayNameFor(m => m.Qualification)</th>
-                        <th>@Html.DisplayNameFor(m => m.DayofBirth)</th>
-                        <th>@Html.DisplayNameFor(m => m.Email)</th>
-                        <th>@Html.DisplayNameFor(m => m.PhoneNo)</th>
-                        <th></th>
-                    </tr>
-                </tfoot>*@
                         <tbody>
                             @foreach (var item in Model)
                             {
                                 <tr>
+                                    <td></td>
                                     <td>
                                         @Html.DisplayFor(m => item.FirstName)
                                     </td>
@@ -93,9 +83,16 @@
                                     </td>
 
                                     <td>
-                                        @Html.ActionLink("Update", "Update", new { id = item.ParentID })
-                                        @Html.ActionLink("Details", "Details", new { id = item.ParentID })
-                                        @Html.ActionLink("Delete", "Delete", new { id = item.ParentID })
+                                        <div class="dropdown">
+                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                                <span class="flaticon-more-button-of-three-dots"></span>
+                                            </a>
+                                            <div class="dropdown-menu dropdown-menu-right">
+                                                <a class="dropdown-item" href="@Url.Action("Delete", "Parent", new { id = item.ParentID })"><i class="fas fa-times text-orange-red"></i>Delete</a>
+                                                <a class="dropdown-item" href="@Url.Action("Update", "Parent", new { id = item.ParentID })"><i class="fas fa-cogs text-dark-pastel-green"></i>Update</a>
+                                                <a class="dropdown-item" href="@Url.Action("Details", "Parent", new { id = item.ParentID })"><i class="fas fa-redo-alt text-orange-peel"></i>Details</a>
+                                            </div>
+                                        </div>
                                     </td>
                                 </tr>
                             }

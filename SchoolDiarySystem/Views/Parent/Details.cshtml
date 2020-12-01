@@ -1,34 +1,35 @@
-﻿@using SchoolDiarySystem.Models
+﻿@{
+    ViewBag.Title = "Parent Details";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+@using SchoolDiarySystem.Models
 @model Parents
 
 <div class="dashboard-page-one">
     <div class="dashboard-content-one">
-        <!-- Breadcubs Area Start Here -->
         <div class="breadcrumbs-area">
             <h3>Parent</h3>
             <ul>
                 <li>
-                    <a href="index-2.html">Home</a>
+                    <a href="@Url.Action("Index", "Admin")">Home</a>
                 </li>
-                <li>Admin User Details</li>
+                <li>Parent Details</li>
             </ul>
         </div>
-        <!-- Breadcubs Area End Here -->
-        <!-- Student Table Area Start Here -->
         <div class="card height-auto">
             <div class="card-body">
                 <div class="heading-layout1">
                     <div class="item-title">
-                        <h3>Admin User Details</h3>
+                        <h3>Parent Details</h3>
                     </div>
                 </div>
                 <div class="single-info-details">
                     <div class="item-img">
-                        <img src="~/Content/img/figure/teacher.jpg" alt="teacher">
+                        <img src="~/Content/img/figure/user5.jpg" alt="parent">
                     </div>
                     <div class="item-content">
                         <div class="header-inline item-header">
-                            @Html.Label(Model.FullName, new { @class = "text-dark-medium font-medium" })
+                            <h3 class="text-dark-medium font-medium">@Html.Label("FullName", Model.FullName, new { @class = "text-dark-medium font-medium" })</h3>
                             <div class="header-elements">
                                 <ul>
                                     <li><a href="#"><i class="fas fa-print"></i></a></li>

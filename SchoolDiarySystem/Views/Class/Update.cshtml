@@ -1,9 +1,12 @@
-﻿@using SchoolDiarySystem.Models
+﻿@{
+    ViewBag.Title = "Update Class";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+@using SchoolDiarySystem.Models
 @model Class
 
 <div class="dashboard-page-one" style="position: relative; height: 100%;">
     <div class="dashboard-content-one">
-        <!-- Breadcubs Area Start Here -->
         <div class="breadcrumbs-area">
             <h3>Class</h3>
             <ul>
@@ -13,8 +16,6 @@
                 <li>Update Class</li>
             </ul>
         </div>
-        <!-- Breadcubs Area End Here -->
-        <!-- Add New Teacher Area Start Here -->
         <div class="card height-auto">
             <div class="card-body">
                 <div class="heading-layout1">
@@ -36,7 +37,7 @@
                             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                             <div class="col-xl-4 col-lg-6 col-12 form-group">
                                 <label>Class Number *</label>
-                                @Html.TextBoxFor(m => m.ClassNo, new { @class = "form-control", placeholder = "Write class number...", id = "classNo", @readonly = "true"})
+                                @Html.TextBoxFor(m => m.ClassNo, new { @class = "form-control", placeholder = "Write class number...", id = "classNo", @readonly = "true" })
                                 @Html.ValidationMessageFor(m => m.ClassNo, "", new { @class = "text-danger" })
                             </div>
                             @Html.ValidationSummary(true, "", new { @class = "text-danger" })

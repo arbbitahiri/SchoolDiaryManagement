@@ -357,6 +357,7 @@
     <Content Include="Views\Director\Index.cshtml" />
     <Content Include="Views\MyKids\Index.cshtml" />
     <Content Include="Views\Professor\Index.cshtml" />
+    <Content Include="Views\Class\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

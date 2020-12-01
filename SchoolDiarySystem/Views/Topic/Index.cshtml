@@ -1,14 +1,17 @@
-﻿@using SchoolDiarySystem.Models
+﻿@{
+    ViewBag.Title = "Topic Board";
+    Layout = "~/Views/Shared/_LayoutTeacher.cshtml";
+}
+@using SchoolDiarySystem.Models
 @model IEnumerable<Topics>
 
 <div class="dashboard-page-one">
     <div class="dashboard-content-one">
-        <!-- Breadcubs Area Start Here -->
         <div class="breadcrumbs-area">
             <h3>Topic Board</h3>
             <ul>
                 <li>
-                    <a href="~/Views/Admin/Index.cshtml">Home</a>
+                    <a href="@Url.Action("Index", "Professor")">Home</a>
                 </li>
                 <li>Topic</li>
             </ul>
@@ -33,9 +36,7 @@
                 </div>
             </div>
         </div>
-        <!-- Breadcubs Area End Here -->
         <div class="row">
-            <!-- All Notice Area Start Here -->
             <div class="col-8-xxxl col-12">
                 <div class="card height-auto">
                     <div class="card-body">
@@ -70,14 +71,13 @@
                                             @Html.DisplayFor(m => item.Content)
                                         </a>
                                     </h6>
-                                    <div class="entry-meta">@Html.DisplayFor(m => item.Subject.SubjectTitle) | Time: @Html.DisplayFor(m => item.Time) / <span>Class: @Html.DisplayFor(m => item.Class.ClassNo)</span></div>
+                                    <div class="entry-meta">@Html.DisplayFor(m => item.Subject.SubjectTitle) | Class Time: @Html.DisplayFor(m => item.Time) / <span>Class: @Html.DisplayFor(m => item.Class.ClassNo)</span></div>
                                 </div>
                             }
                         </div>
                     </div>
                 </div>
             </div>
-            <!-- All Notice Area End Here -->
         </div>
     </div>
 </div>

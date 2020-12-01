@@ -1,25 +1,26 @@
-﻿@using SchoolDiarySystem.Models
+﻿@{
+    ViewBag.Title = "Create Subject";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+@using SchoolDiarySystem.Models
 @model Subjects
 
 <div class="dashboard-page-one">
     <div class="dashboard-content-one">
-        <!-- Breadcubs Area Start Here -->
         <div class="breadcrumbs-area">
             <h3>Subject</h3>
             <ul>
                 <li>
                     <a href="index-2.html">Home</a>
                 </li>
-                <li>Add New Subject</li>
+                <li>Create Subject</li>
             </ul>
         </div>
-        <!-- Breadcubs Area End Here -->
-        <!-- Add New Teacher Area Start Here -->
         <div class="card height-auto">
             <div class="card-body">
                 <div class="heading-layout1">
                     <div class="item-title">
-                        <h3>Add New Subject</h3>
+                        <h3>Create Subject</h3>
                     </div>
                 </div>
                 @using (Html.BeginForm("Create", "Subject", FormMethod.Post))
