@@ -284,6 +284,45 @@ namespace SchoolDiarySystem.Controllers
             }
         }
 
+        public async Task<ActionResult> ReviewDetails(int? id)
+        {
+            if (UserSession.GetUsers != null)
+            {
+                if (UserSession.GetUsers.RoleID == 3 || UserSession.GetUsers.RoleID == 2)
+                {
+                    if (id == null)
+                    {
+                        return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest);
+                    }
+
+                    var review = await Task.Run(() => reviewsDAL.Get((int)id));
+                    if (review == null)
+                    {
+                        return RedirectToAction("Index");
+                    }
+                    GetComment(review);
+                    return View(review);
+                }
+                else
+                {
+                    return Content("You're not allowed to view this page!");
+                }
+            }
+            else
+            {
+                return RedirectToAction("Login", "Account");
+            }
+        }
+        private void GetComment(Reviews reviews)
+        {
+            if (reviews != null)
+            {
+                var comment = commentsDAL.Get(reviews.CommentID);
+
+                ViewBag.CommentID = comment.Comment;
+            }
+        }
+
         private void GetTimes()
         {
             List<int> times = new List<int>() { 1, 2, 3, 4, 5, 6 };

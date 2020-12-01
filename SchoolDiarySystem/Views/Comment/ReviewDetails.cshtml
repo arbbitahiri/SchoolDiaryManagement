@@ -1,6 +1,6 @@
 ﻿@{
-    ViewBag.Title = "Review Details";
-    Layout = "~/Views/Shared/_LayoutDirector.cshtml";
+    ViewBag.Title = "ReviewDetails";
+    Layout = "~/Views/Shared/_LayoutTeacher.cshtml";
 }
 @using SchoolDiarySystem.Models
 @model Reviews
@@ -43,15 +43,7 @@
                                     </tr>
                                     <tr>
                                         <td>
-                                            @using (Html.BeginForm("Update", "Review", new { id = Model.CommentID }, FormMethod.Post))
-                                            {
-                                                <div class="col-12 form-group mg-t-8">
-                                                    <input type="submit" value="Update" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark" />
-                                                </div>
-                                            }
-                                        </td>
-                                        <td>
-                                            @using (Html.BeginForm("Index", "Review", FormMethod.Post))
+                                            @using (Html.BeginForm("Index", "Comment", FormMethod.Post))
                                             {
                                                 <div class="col-12 form-group mg-t-8">
                                                     <input type="submit" value="Back to List" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark" />
