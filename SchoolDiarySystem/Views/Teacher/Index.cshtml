@@ -49,7 +49,7 @@
                     {
                         <form class="mg-b-20">
                             <div class="row gutters-8">
-                                <div class="col-4-xxxl col-xl-4 col-lg-3 col-12 form-group">
+                                <div class="col-4-xxxl col-xl-10 col-lg-3 col-12 form-group">
                                     <input type="text" placeholder="Search by Name ..." name="searchString" class="form-control">
                                 </div>
                                 <div class="col-1-xxxl col-xl-2 col-lg-3 col-12 form-group">
@@ -78,46 +78,56 @@
                                 <tbody>
                                     @foreach (var item in Model)
                                     {
-                                        <tr>
-                                            <td></td>
-                                            <td>
-                                                @Html.DisplayFor(m => item.FirstName)
-                                            </td>
-                                            <td>
-                                                @Html.DisplayFor(m => item.LastName)
-                                            </td>
-                                            <td>
-                                                @Html.DisplayFor(m => item.Gender)
-                                            </td>
-                                            <td>
-                                                @Html.DisplayFor(m => item.City)
-                                            </td>
-                                            <td>
-                                                @Html.DisplayFor(m => item.Qualification)
-                                            </td>
-                                            <td>
-                                                @Html.DisplayFor(m => item.DayofBirth)
-                                            </td>
-                                            <td>
-                                                @Html.DisplayFor(m => item.Email)
-                                            </td>
-                                            <td>
-                                                @Html.DisplayFor(m => item.PhoneNo)
-                                            </td>
+                                    <tr>
 
-                                            <td>
-                                                <div class="dropdown">
-                                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                                                        <span class="flaticon-more-button-of-three-dots"></span>
-                                                    </a>
-                                                    <div class="dropdown-menu dropdown-menu-right">
-                                                        <a class="dropdown-item" href="@Url.Action("Delete", "Teacher", new { id = item.TeacherID })"><i class="fas fa-times text-orange-red"></i>Delete</a>
-                                                        <a class="dropdown-item" href="@Url.Action("Update", "Teacher", new { id = item.TeacherID })"><i class="fas fa-cogs text-dark-pastel-green"></i>Update</a>
-                                                        <a class="dropdown-item" href="@Url.Action("Details", "Teacher", new { id = item.TeacherID })"><i class="fas fa-redo-alt text-orange-peel"></i>Details</a>
-                                                    </div>
+                                        <td class="text-center">
+                                                @if (item.Gender == "Male")
+                                                {
+                                                    <img src="~/Content/img/figure/student4.png" alt="teacher">
+                                                }
+                                                else
+                                                {
+                                                    <img src="~/Content/img/figure/student9.png" alt="teacher">
+                                                }
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(m => item.FirstName)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(m => item.LastName)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(m => item.Gender)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(m => item.City)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(m => item.Qualification)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(m => item.DayofBirth)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(m => item.Email)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(m => item.PhoneNo)
+                                        </td>
+
+                                        <td>
+                                            <div class="dropdown">
+                                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                                    <span class="flaticon-more-button-of-three-dots"></span>
+                                                </a>
+                                                <div class="dropdown-menu dropdown-menu-right">
+                                                    <a class="dropdown-item" href="@Url.Action("Delete", "Teacher", new { id = item.TeacherID })"><i class="fas fa-times text-orange-red"></i>Delete</a>
+                                                    <a class="dropdown-item" href="@Url.Action("Update", "Teacher", new { id = item.TeacherID })"><i class="fas fa-cogs text-dark-pastel-green"></i>Update</a>
+                                                    <a class="dropdown-item" href="@Url.Action("Details", "Teacher", new { id = item.TeacherID })"><i class="fas fa-redo-alt text-orange-peel"></i>Details</a>
                                                 </div>
-                                            </td>
-                                        </tr>
+                                            </div>
+                                        </td>
+                                    </tr>
                                     }
                                 </tbody>
                             </table>

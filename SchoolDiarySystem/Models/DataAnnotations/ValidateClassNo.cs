@@ -13,7 +13,7 @@ namespace SchoolDiarySystem.Models.DataAnnotations
 
         public override bool IsValid(object value)
         {
-            string strValue = value as string;
+            string strValue = value.ToString();
             int x = int.Parse(value.ToString());
 
             if (!string.IsNullOrEmpty(strValue))

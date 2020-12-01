@@ -78,6 +78,8 @@ namespace SchoolDiarySystem.Controllers
                             user.LUB = UserSession.GetUsers.Username;
                             user.LUN++;
                             user.RoleID = 1;
+                            user.TeacherID = 0;
+                            user.ParentID = 0;
 
                             var result = await Task.Run(() => usersDAL.Create(user));
                             return RedirectToAction(nameof(Index));
@@ -136,6 +138,7 @@ namespace SchoolDiarySystem.Controllers
                             user.LUB = UserSession.GetUsers.Username;
                             user.LUN++;
                             user.RoleID = 2;
+                            user.ParentID = 0;
 
                             var result = await Task.Run(() => usersDAL.Create(user));
                             return RedirectToAction(nameof(Index));
@@ -194,6 +197,7 @@ namespace SchoolDiarySystem.Controllers
                             user.LUB = UserSession.GetUsers.Username;
                             user.LUN++;
                             user.RoleID = 4;
+                            user.TeacherID = 0;
 
                             var result = await Task.Run(() => usersDAL.Create(user));
                             return RedirectToAction(nameof(Index));
@@ -350,6 +354,7 @@ namespace SchoolDiarySystem.Controllers
                             user.LUB = UserSession.GetUsers.Username;
                             user.LUN = ++user.LUN;
                             user.IsPasswordChanged = true;
+                            user.LastPasswordChangeDate = DateTime.Now;
 
                             var result = await Task.Run(() => usersDAL.ChangePassword(user));
                             return RedirectToAction(nameof(Index));

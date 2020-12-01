@@ -11,16 +11,12 @@ namespace SchoolDiarySystem.Models
 
         [Display(Name = "Comment")]
         [Required(ErrorMessage = "Please write a comment!")]
-        [StringLength(250, MinimumLength = 5, ErrorMessage = "Comment is to short!")]
-        public string Comment { get; set; }
+        //[StringLength(250, MinimumLength = 5, ErrorMessage = "Comment is to short!")]
+        public string Content { get; set; }
 
         [Display(Name = "Student")]
         [Required(ErrorMessage = "Please select a student!")]
         public int StudentID { get; set; }
-
-        [Display(Name = "Class")]
-        [Required(ErrorMessage = "Please select a class!")]
-        public int ClassID { get; set; }
 
         [Display(Name = "Subject")]
         [Required(ErrorMessage = "Please select a subject!")]
@@ -35,13 +31,12 @@ namespace SchoolDiarySystem.Models
         [Required(ErrorMessage = "Please select a date!")]
         public DateTime CommentDate { get; set; }
 
-        public virtual Class Class { get; set; }
         public virtual Subjects Subject { get; set; }
         public virtual Students Student { get; set; }
         public virtual Reviews Review { get; set; }
 
         public IEnumerable<SelectListItem> SubjectsList { get; set; }
         public IEnumerable<SelectListItem> StudentsList { get; set; }
-        public IEnumerable<SelectListItem> ClassesList { get; set; }
+        public IEnumerable<SelectListItem> Times { get; set; }
     }
 }

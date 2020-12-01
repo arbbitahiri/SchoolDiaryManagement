@@ -42,7 +42,7 @@
                                     </tr>
                                     <tr>
                                         <td>
-                                            @using (Html.BeginForm("Update", "Room", new { id = Model.RoomID }, FormMethod.Post))
+                                            @using (Html.BeginForm("Update", "Room", new { id = Model.RoomID }))
                                             {
                                                 <div class="col-12 form-group mg-t-8">
                                                     <input type="submit" value="Update" class="btn-fill-lmd radius-30 text-light bg-true-v" />
@@ -50,7 +50,7 @@
                                             }
                                         </td>
                                         <td>
-                                            @using (Html.BeginForm("Delete", "Room", new { id = Model.RoomID }, FormMethod.Post))
+                                            @using (Html.BeginForm("Delete", "Room", new { id = Model.RoomID }))
                                             {
                                                 <div class="col-12 form-group mg-t-8">
                                                     <input type="submit" value="Delete" class="btn-fill-md radius-30 text-light bg-red" />
@@ -58,7 +58,7 @@
                                             }
                                         </td>
                                         <td>
-                                            @using (Html.BeginForm("Index", "Room", FormMethod.Post))
+                                            @using (Html.BeginForm("Index", "Room"))
                                             {
                                                 <div class="col-12 form-group mg-t-8">
                                                     <input type="button" value="Back to List" class="btn-fill-md radius-30 text-light bg-orange-peel" />

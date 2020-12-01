@@ -26,7 +26,7 @@ namespace SchoolDiarySystem.Controllers
 
                     if (!string.IsNullOrEmpty(searchString))
                     {
-                        students = students.Where(f => f.FirstName == searchString && f.LastName == searchString).ToList();
+                        students = students.Where(f => f.FirstName == searchString || f.LastName == searchString || f.FullName == searchString).ToList();
                     }
 
                     return View(students);
@@ -48,12 +48,13 @@ namespace SchoolDiarySystem.Controllers
             {
                 if (UserSession.GetUsers.RoleID == 1)
                 {
+                    IEnumerable<string> genders = new List<string>() { "Male", "Female" };
                     var student = new Students
                     {
                         ClassesList = new SelectList(classDAL.GetAll(), "ClassID", "ClassNo"),
                         ParentsList = new SelectList(parentsDAL.GetAll(), "ParentID", "FullName"),
+                        Genders = new SelectList(genders)
                     };
-                    GetGenders();
                     return View(student);
                 }
                 else
@@ -120,11 +121,11 @@ namespace SchoolDiarySystem.Controllers
                     {
                         return RedirectToAction(nameof(Index));
                     }
-
                     student.ClassesList = new SelectList(classDAL.GetAll(), "ClassID", "ClassNo", student.ParentID);
                     student.ParentsList = new SelectList(parentsDAL.GetAll(), "ParentID", "FullName", student.ClassID);
+                    IEnumerable<string> genders = new List<string>() { "Male", "Female" };
+                    student.Genders = new SelectList(genders);
 
-                    GetGenders();
                     return View(student);
                 }
                 else
@@ -150,23 +151,23 @@ namespace SchoolDiarySystem.Controllers
                         return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest);
                     }
 
-                    //if (ModelState.IsValid)
-                    //{
-                    try
+                    if (ModelState.IsValid)
                     {
-                        student.LUB = UserSession.GetUsers.Username;
-                        student.LUN = ++student.LUN;
+                        try
+                        {
+                            student.LUB = UserSession.GetUsers.Username;
+                            student.LUN = ++student.LUN;
 
-                        var result = await Task.Run(() => studentsDAL.Update(student));
-                        return RedirectToAction(nameof(Index));
+                            var result = await Task.Run(() => studentsDAL.Update(student));
+                            return RedirectToAction(nameof(Index));
+                        }
+                        catch (Exception)
+                        {
+                            ModelState.AddModelError(string.Empty, "An error occured while updating class.");
+                            return View(student);
+                        }
                     }
-                    catch (Exception)
-                    {
-                        ModelState.AddModelError(string.Empty, "An error occured while updating class.");
-                        return View(student);
-                    }
-                    //}
-                    //return View(_class);
+                    return View(student);
                 }
                 else
                 {
@@ -256,12 +257,6 @@ namespace SchoolDiarySystem.Controllers
             {
                 return RedirectToAction("Login", "Account");
             }
-        }
-
-        private void GetGenders()
-        {
-            List<string> genders = new List<string>() { "Male", "Female" };
-            ViewBag.GenderID = new SelectList(genders, "GenderID");
         }
     }
 }

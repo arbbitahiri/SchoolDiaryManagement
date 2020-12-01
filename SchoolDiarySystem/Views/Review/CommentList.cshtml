@@ -1,4 +1,8 @@
-﻿@using SchoolDiarySystem.Models
+﻿@{
+    ViewBag.Title = "CommentList";
+    Layout = "~/Views/Shared/_LayoutDirector.cshtml";
+}
+@using SchoolDiarySystem.Models
 @model IEnumerable<Comments>
 
 <div class="dashboard-page-one">
@@ -12,29 +16,7 @@
                 <li>Comment</li>
             </ul>
         </div>
-        <div class="col-4-xxxl col-12">
-            <div class="card height-auto">
-                <div class="card-body">
-                    <div class="heading-layout1">
-                        <div class="item-title">
-                            <h3>Create A Comment</h3>
-                        </div>
-                    </div>
-                    <form class="new-added-form">
-                        <div class="row">
-                            <div class="col-12 form-group mg-t-8">
-                                <p>
-                                    @Html.ActionLink("Create", "Create", "Comment", null, new { @class = "btn-fill-lg font-normal text-light gradient-pastel-green" })
-                                </p>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-        <!-- Breadcubs Area End Here -->
         <div class="row">
-            <!-- All Notice Area Start Here -->
             <div class="col-8-xxxl col-12">
                 <div class="card height-auto">
                     <div class="card-body">
@@ -66,21 +48,23 @@
                                 <div class="post-date bg-skyblue">@Html.DisplayFor(m => item.CommentDate)</div>
                                 @if (item.Review.ReviewID != 0)
                                 {
-                                    @*@Url.Action("Details", "Review", new { id = item.CommentID })*@
-                                    <a href="#">
+                                    <a href="@Url.Action("Details", "Review", new { id = item.CommentID })">
                                         <div class="post-date bg-pink">
-                                            Reviewed
+                                            Reviewed on @Html.DisplayFor(m => item.Review.ReviewDate)
                                         </div>
                                     </a>
-                                }
-                                <h6 class="notice-title">
-                                    <a href="@Url.Action("Details", "Comment", new { id = item.CommentID })">
+                                    <h6 class="notice-title">
                                         @Html.DisplayFor(m => item.Content)
-                                    </a>
-                                </h6>
-                                @if (item.Review.ReviewID != 0)
-                                {
+                                    </h6>
                                     <div class="entry-meta"> @Html.DisplayFor(m => item.Review.Review)</div>
+                                }
+                                else
+                                {
+                                    <h6 class="notice-title">
+                                        <a href="@Url.Action("Review", "Comment", new { id = item.CommentID })">
+                                            @Html.DisplayFor(m => item.Content)
+                                        </a>
+                                    </h6>
                                 }
                                 <br />
                                 <div class="entry-meta">  @Html.DisplayFor(m => item.Student.FullName) / <span>@Html.DisplayFor(m => item.Subject.SubjectTitle)</span></div>

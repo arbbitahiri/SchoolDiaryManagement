@@ -29,9 +29,10 @@
                         <div class="row">
                             <div class="col-xl-3 col-lg-6 col-12 form-group">
                                 <h6 class="notice-title">
-                                    @Html.DisplayFor(m => m.Comment.Comment)
+                                    @Html.DisplayFor(m => m.Comment.Content)
                                 </h6>
                             </div>
+                            @Html.HiddenFor(m => m.ReviewID)
                             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                             <div class="col-xl-3 col-lg-6 col-12 form-group">
                                 <label>Review *</label>

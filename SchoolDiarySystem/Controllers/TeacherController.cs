@@ -47,8 +47,12 @@ namespace SchoolDiarySystem.Controllers
             {
                 if (UserSession.GetUsers.RoleID == 1)
                 {
-                    GettingGenders();
-                    return View();
+                    IEnumerable<string> genders = new List<string>() { "Male", "Female" };
+                    var teacher = new Teachers()
+                    {
+                        Genders = new SelectList(genders)
+                    };
+                    return View(teacher);
                 }
                 else
                 {
@@ -109,13 +113,14 @@ namespace SchoolDiarySystem.Controllers
                         return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest);
                     }
 
-                    var teachers = await Task.Run(() => teachersDAL.Get((int)id));
-                    if (teachers == null)
+                    var teacher = await Task.Run(() => teachersDAL.Get((int)id));
+                    if (teacher == null)
                     {
                         return RedirectToAction(nameof(Index));
                     }
-                    GettingGenders();
-                    return View(teachers);
+                    IEnumerable<string> genders = new List<string>() { "Male", "Female" };
+                    teacher.Genders = new SelectList(genders);
+                    return View(teacher);
                 }
                 else
                 {
@@ -233,7 +238,7 @@ namespace SchoolDiarySystem.Controllers
             {
                 if (UserSession.GetUsers.RoleID == 1)
                 {
-                    var teacher = await Task.Run(() => teachersDAL.Delete((int)id));
+                    var result = await Task.Run(() => teachersDAL.Delete(id));
                     return RedirectToAction(nameof(Index));
                 }
                 else
@@ -245,12 +250,6 @@ namespace SchoolDiarySystem.Controllers
             {
                 return RedirectToAction("Login", "Account");
             }
-        }
-
-        private void GettingGenders()
-        {
-            List<string> genders = new List<string>() { "Male", "Female" };
-            ViewBag.GenderID = new SelectList(genders, "GenderID");
         }
     }
 }

@@ -11,7 +11,7 @@ namespace SchoolDiarySystem.Models
 
         [Display(Name = "Content")]
         [Required(ErrorMessage = "Please write topic's content!")]
-        [StringLength(250, MinimumLength = 5, ErrorMessage = "Content is to short!")]
+        //[StringLength(250, MinimumLength = 5, ErrorMessage = "Content is to short!")]
         public string Content { get; set; }
 
         [Display(Name = "Class")]
@@ -36,5 +36,6 @@ namespace SchoolDiarySystem.Models
 
         public IEnumerable<SelectListItem> ClassesList { get; set; }
         public IEnumerable<SelectListItem> SubjectsList { get; set; }
+        public IEnumerable<SelectListItem> Times { get; set; }
     }
 }

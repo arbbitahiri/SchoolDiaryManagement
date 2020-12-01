@@ -56,28 +56,25 @@
                                     </tr>
                                     <tr>
                                         <td>
-                                            @using (Html.BeginForm("Update", "Topic", new { id = Model.TopicID }, FormMethod.Post))
-                                            {
+                                            <a href="@Url.Action("Update", "Topic", routeValues: new { id = Model.TopicID })">
                                                 <div class="col-12 form-group mg-t-8">
-                                                    <input type="submit" value="Update" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark" />
+                                                    <input type="submit" value="Update" class="btn-fill-md text-light bg-dark-pastel-green" />
                                                 </div>
-                                            }
+                                            </a>
                                         </td>
                                         <td>
-                                            @using (Html.BeginForm("Delete", "Topic", new { id = Model.TopicID }, FormMethod.Post))
-                                            {
+                                            <a href="@Url.Action("Delete", "Topic", routeValues: new { id = Model.TopicID })">
                                                 <div class="col-12 form-group mg-t-8">
-                                                    <input type="submit" value="Delete" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark" />
+                                                    <input type="submit" value="Delete" class="btn-fill-md text-light bg-dark-pastel-green" />
                                                 </div>
-                                            }
+                                            </a>
                                         </td>
                                         <td>
-                                            @using (Html.BeginForm("Index", "Topic", FormMethod.Post))
-                                            {
+                                            <a href="@Url.Action("Index", "Topic")">
                                                 <div class="col-12 form-group mg-t-8">
-                                                    <input type="submit" value="Back to List" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark" />
+                                                    <input type="submit" value="Back to List" class="btn-fill-md text-light bg-dark-pastel-green" />
                                                 </div>
-                                            }
+                                            </a>
                                         </td>
                                     </tr>
                                 </tbody>

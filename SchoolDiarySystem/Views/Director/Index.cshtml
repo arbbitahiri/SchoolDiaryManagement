@@ -48,11 +48,15 @@
                                     </tr>
                                     <tr>
                                         <td>Expire Date:</td>
-                                        <td>@Html.Label(Model.ExpiresDate.ToString(), new { @class = "font-medium text-dark-medium" })</td>
+                                        <td>@Html.Label(Model.ExpiresDate.ToString("dd MMMM yyyy"), new { @class = "font-medium text-dark-medium" })</td>
                                     </tr>
                                     <tr>
                                         <td>Last Login Date:</td>
-                                        <td>@Html.Label(Model.LastLoginDate.ToString(), new { @class = "font-medium text-dark-medium" })</td>
+                                        <td>@Html.Label(Model.LastLoginDate.ToString("dd MMMM yyyy"), new { @class = "font-medium text-dark-medium" })</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Last Login Time:</td>
+                                        <td>@Html.Label(Model.LastLoginTime.ToString("hh:mm tt"), new { @class = "font-medium text-dark-medium" })</td>
                                     </tr>
                                     @if (Model.IsPasswordChanged != true)
                                     {

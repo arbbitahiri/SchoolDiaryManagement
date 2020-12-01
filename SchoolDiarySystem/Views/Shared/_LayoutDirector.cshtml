@@ -85,7 +85,7 @@
                            aria-expanded="false">
                             <div class="admin-title">
                                 @Html.Label(UserSession.GetUsers.FullName, new { @class = "item-title" })
-                                <span>Admin</span>
+                                <span>Director</span>
                             </div>
                             <div class="admin-img">
                                 <img src="~/Content/img/figure/admin.jpg" alt="Admin">
@@ -136,7 +136,7 @@
                             <a href="@Url.Action("Index", "Absence")" class="nav-link"><i class="flaticon-calendar"></i><span>Absences</span></a>
                         </li>
                         <li class="nav-item">
-                            <a href="@Url.Action("Index", "Comment")" class="nav-link"><i class="flaticon-dashboard"></i><span>Comments</span></a>
+                            <a href="@Url.Action("CommentList", "Review")" class="nav-link"><i class="flaticon-dashboard"></i><span>Comments</span></a>
                         </li>
                     </ul>
                 </div>

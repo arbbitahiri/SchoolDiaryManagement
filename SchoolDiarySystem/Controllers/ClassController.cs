@@ -75,6 +75,7 @@ namespace SchoolDiarySystem.Controllers
                 {
                     try
                     {
+                        var errors = ModelState.Values.SelectMany(m => m.Errors);
                         if (ModelState.IsValid)
                         {
                             _class.InsertBy = UserSession.GetUsers.Username;
@@ -119,7 +120,6 @@ namespace SchoolDiarySystem.Controllers
                     {
                         return RedirectToAction(nameof(Index));
                     }
-
                     _class.TeacherList = new SelectList(teachersDAL.GetAll(), "TeacherID", "FullName", _class.TeacherID);
                     _class.RoomList = new SelectList(roomsDAL.GetAll(), "RoomID", "RoomType", _class.RoomID);
 

@@ -1,6 +1,8 @@
 ﻿using SchoolDiarySystem.Models.DataAnnotations;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Web.Mvc;
 
 namespace SchoolDiarySystem.Models
 {
@@ -35,8 +37,8 @@ namespace SchoolDiarySystem.Models
 
         [Display(Name = "E-mail")]
         [DataType(DataType.EmailAddress)]
-        [RegularExpression(@" ^ ([\w\.\-] +)@([\w\-] +)\.([\w] +)$", ErrorMessage = "Please write in correct format: example@gmail.com")]
-        [Required(ErrorMessage = "Please write a e-mail!")]
+        //[RegularExpression(@" ^ ([\w\.\-] +)@([\w\-] +)\.([\w] +)$", ErrorMessage = "Please write in correct format: example@gmail.com")]
+        [Required(ErrorMessage = "Please write an e-mail!")]
         public string Email { get; set; }
 
         [Display(Name = "Phone Number")]
@@ -53,5 +55,7 @@ namespace SchoolDiarySystem.Models
                 return FirstName + " " + LastName;
             }
         }
+
+        public IEnumerable<SelectListItem> Genders { get; set; }
     }
 }

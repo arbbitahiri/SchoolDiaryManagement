@@ -19,11 +19,11 @@ namespace SchoolDiarySystem.DAL
                     string sqlproc = "dbo.usp_Comment_Create";
                     using (var command = DataConnection.GetCommand(connection, sqlproc, CommandType.StoredProcedure))
                     {
-                        DataConnection.AddParameter(command, "classID", model.ClassID);
                         DataConnection.AddParameter(command, "subjectID", model.SubjectID);
+                        DataConnection.AddParameter(command, "studentID", model.StudentID);
                         DataConnection.AddParameter(command, "date", model.CommentDate);
                         DataConnection.AddParameter(command, "time", model.Time);
-                        DataConnection.AddParameter(command, "comment", model.Comment);
+                        DataConnection.AddParameter(command, "coment", model.Content);
                         DataConnection.AddParameter(command, "LUN", model.LUN);
                         DataConnection.AddParameter(command, "LUB", model.LUB);
                         DataConnection.AddParameter(command, "insertby", model.InsertBy);
@@ -33,7 +33,7 @@ namespace SchoolDiarySystem.DAL
                     }
                 }
             }
-            catch (Exception)
+            catch (Exception e)
             {
                 return false;
             }
@@ -49,10 +49,9 @@ namespace SchoolDiarySystem.DAL
                     using (var command = DataConnection.GetCommand(connection, sqlproc, CommandType.StoredProcedure))
                     {
                         DataConnection.AddParameter(command, "commentID", model.CommentID);
-                        DataConnection.AddParameter(command, "classID", model.ClassID);
                         DataConnection.AddParameter(command, "date", model.CommentDate);
                         DataConnection.AddParameter(command, "time", model.Time);
-                        DataConnection.AddParameter(command, "comment", model.Comment);
+                        DataConnection.AddParameter(command, "comment", model.Content);
                         DataConnection.AddParameter(command, "LUN", model.LUN);
                         DataConnection.AddParameter(command, "LUB", model.LUB);
 
@@ -89,11 +88,10 @@ namespace SchoolDiarySystem.DAL
                             while (reader.Read())
                             {
                                 comment = ToObject(reader);
-                                if (reader["Class_No"] != DBNull.Value && reader["Subject_Title"] != DBNull.Value)
+                                if (reader["Subject_Title"] != DBNull.Value)
                                 {
-                                    comment.Class = new Class { ClassNo = int.Parse(reader["Class_No"].ToString()) };
                                     comment.Subject = new Subjects { SubjectTitle = reader["Subject_Title"].ToString() };
-                                    comment.Review = new Reviews { Review = reader["Review"].ToString(), ReviewID = int.Parse(reader["ReviewID"].ToString()) };
+                                    comment.Review = new Reviews { Review = reader["Review"].ToString(), ReviewID = int.Parse(reader["ReviewID"].ToString()), ReviewDate = DateTime.Parse(reader["ReviewDate"].ToString()) };
                                     comment.Student = new Students
                                     {
                                         FirstName = reader["First_Name"].ToString(),
@@ -128,16 +126,16 @@ namespace SchoolDiarySystem.DAL
                             while (reader.Read())
                             {
                                 var comment = ToObject(reader);
-                                if (reader["Class_No"] != DBNull.Value && reader["Subject_Title"] != DBNull.Value)
+                                if (reader["Subject_Title"] != DBNull.Value)
                                 {
-                                    comment.Class = new Class { ClassNo = int.Parse(reader["Class_No"].ToString()) };
                                     comment.Subject = new Subjects { SubjectTitle = reader["Subject_Title"].ToString() };
-                                    if (reader["Review"] != DBNull.Value && reader["ReviewID"] != DBNull.Value)
+                                    if (reader["Review"] != DBNull.Value && reader["ReviewID"] != DBNull.Value && reader["ReviewDate"] != DBNull.Value)
                                     {
                                         comment.Review = new Reviews
                                         {
                                             Review = reader["Review"].ToString(),
-                                            ReviewID = int.Parse(reader["ReviewID"].ToString())
+                                            ReviewID = int.Parse(reader["ReviewID"].ToString()),
+                                            ReviewDate = DateTime.Parse(reader["ReviewDate"].ToString())
                                         };
                                     }
                                     else
@@ -176,9 +174,6 @@ namespace SchoolDiarySystem.DAL
                 if (dataReader["CommentID"] != DBNull.Value)
                     comment.CommentID = int.Parse(dataReader["CommentID"].ToString());
 
-                if (dataReader["ClassID"] != DBNull.Value)
-                    comment.ClassID = int.Parse(dataReader["ClassID"].ToString());
-
                 if (dataReader["SubjectID"] != DBNull.Value)
                     comment.SubjectID = int.Parse(dataReader["SubjectID"].ToString());
 
@@ -189,7 +184,7 @@ namespace SchoolDiarySystem.DAL
                     comment.Time = int.Parse(dataReader["Time"].ToString());
 
                 if (dataReader["Comment"] != DBNull.Value)
-                    comment.Comment = dataReader["Comment"].ToString();
+                    comment.Content = dataReader["Comment"].ToString();
 
                 if (dataReader["InsertBy"] != DBNull.Value)
                     comment.InsertBy = dataReader["InsertBy"].ToString();

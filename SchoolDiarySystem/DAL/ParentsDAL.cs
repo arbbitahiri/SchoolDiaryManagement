@@ -21,7 +21,7 @@ namespace SchoolDiarySystem.DAL
                     {
                         DataConnection.AddParameter(command, "firstName", model.FirstName);
                         DataConnection.AddParameter(command, "lastName", model.LastName);
-                        DataConnection.AddParameter(command, "gender", model.City);
+                        DataConnection.AddParameter(command, "city", model.City);
                         DataConnection.AddParameter(command, "insertby", model.InsertBy);
                         DataConnection.AddParameter(command, "LUB", model.LUB);
                         DataConnection.AddParameter(command, "LUN", model.LUN);
@@ -31,7 +31,7 @@ namespace SchoolDiarySystem.DAL
                     }
                 }
             }
-            catch (Exception)
+            catch (Exception e)
             {
                 return false;
             }
@@ -49,7 +49,7 @@ namespace SchoolDiarySystem.DAL
                         DataConnection.AddParameter(command, "parentID", model.ParentID);
                         DataConnection.AddParameter(command, "firstName", model.FirstName);
                         DataConnection.AddParameter(command, "lastName", model.LastName);
-                        DataConnection.AddParameter(command, "gender", model.City);
+                        DataConnection.AddParameter(command, "city", model.City);
                         DataConnection.AddParameter(command, "LUB", model.LUB);
                         DataConnection.AddParameter(command, "LUN", model.LUN);
 

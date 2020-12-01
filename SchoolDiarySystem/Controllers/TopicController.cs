@@ -58,12 +58,13 @@ namespace SchoolDiarySystem.Controllers
             {
                 if (UserSession.GetUsers.RoleID == 2)
                 {
+                    IEnumerable<int> times = new List<int>() { 1, 2, 3, 4, 5, 6 };
                     var topic = new Topics()
                     {
                         ClassesList = new SelectList(classDAL.GetAll(), "ClassID", "ClassNo"),
-                        SubjectsList = new SelectList(subjectsDAL.GetAll(), "SubjectID", "SubjectTitle")
+                        SubjectsList = new SelectList(subjectsDAL.GetAll(), "SubjectID", "SubjectTitle"),
+                        Times = new SelectList(times)
                     };
-                    GetTimes();
                     return View(topic);
                 }
                 else
@@ -132,7 +133,8 @@ namespace SchoolDiarySystem.Controllers
                     }
                     topic.SubjectsList = new SelectList(subjectsDAL.GetAll(), "SubjectID", "SubjectTitle", topic.SubjectID);
                     topic.ClassesList = new SelectList(classDAL.GetAll(), "ClassID", "ClassNo", topic.ClassID);
-                    GetTimes();
+                    IEnumerable<int> times = new List<int>() { 1, 2, 3, 4, 5, 6 };
+                    topic.Times = new SelectList(times);
 
                     return View(topic);
                 }
@@ -159,6 +161,7 @@ namespace SchoolDiarySystem.Controllers
                         return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest);
                     }
 
+                    var errors = ModelState.Values.SelectMany(s => s.Errors);
                     if (ModelState.IsValid)
                     {
                         try
@@ -265,13 +268,6 @@ namespace SchoolDiarySystem.Controllers
             {
                 return RedirectToAction("Login", "Account");
             }
-        }
-
-        private void GetTimes()
-        {
-            List<int> times = new List<int>() { 1, 2, 3, 4, 5, 6 };
-
-            ViewBag.Time = new SelectList(times, "Time");
         }
     }
 }

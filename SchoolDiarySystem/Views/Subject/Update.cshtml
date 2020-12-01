@@ -27,6 +27,7 @@
                 {
                     <form class="new-added-form">
                         <div class="row">
+                            @Html.HiddenFor(m => m.SubjectID)
                             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                             <div class="col-xl-3 col-lg-6 col-12 form-group">
                                 <label>Subject Title *</label>

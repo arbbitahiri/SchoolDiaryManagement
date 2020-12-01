@@ -117,6 +117,37 @@ namespace SchoolDiarySystem.Controllers
             }
         }
 
+        public async Task<ActionResult> CommentList(string searchString, string searchString2)
+        {
+            if (UserSession.GetUsers != null)
+            {
+                if (UserSession.GetUsers.RoleID == 3)
+                {
+                    var comments = await Task.Run(() => commentsDAL.GetAll());
+
+                    if (!string.IsNullOrEmpty(searchString))
+                    {
+                        comments = comments.Where(f => f.CommentDate.Date == Convert.ToDateTime(searchString).Date).ToList();
+                    }
+
+                    if (!string.IsNullOrEmpty(searchString2))
+                    {
+                        comments = comments.Where(f => f.Subject.SubjectTitle == searchString2).ToList();
+                    }
+
+                    return View(comments);
+                }
+                else
+                {
+                    return Content("You're not allowed to view this page!");
+                }
+            }
+            else
+            {
+                return RedirectToAction("Login", "Account");
+            }
+        }
+
         public async Task<ActionResult> Details(int? id)
         {
             if (UserSession.GetUsers != null)
@@ -153,7 +184,7 @@ namespace SchoolDiarySystem.Controllers
             {
                 var comment = commentsDAL.Get(reviews.CommentID);
 
-                ViewBag.CommentID = comment.Comment;
+                ViewBag.CommentID = comment.Content;
             }
         }
     }

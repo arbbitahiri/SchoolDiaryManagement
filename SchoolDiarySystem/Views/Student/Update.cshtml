@@ -27,6 +27,7 @@
                 {
                     <form class="new-added-form">
                         <div class="row">
+                            @Html.HiddenFor(m => m.StudentID)
                             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                             <div class="col-xl-3 col-lg-6 col-12 form-group">
                                 <label>First Name *</label>
@@ -40,11 +41,11 @@
                                 @Html.ValidationMessageFor(m => m.LastName, "", new { @class = "text-danger" })
                             </div>
                             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                            <div class="col-xl-3 col-lg-6 col-12 form-group">
-                                <label>Gender *</label>
-                                @Html.DropDownList("GenderID", null, new { @class = "select2" })
-                                @Html.ValidationMessageFor(m => m.Gender, "", new { @class = "text-danger" })
-                            </div>
+                        <div class="col-xl-3 col-lg-6 col-12 form-group">
+                            <label>Gender *</label>
+                            @Html.DropDownListFor(m => m.Gender, Model.Genders, new { @class = "select2" })
+                            @Html.ValidationMessageFor(m => m.Gender, "", new { @class = "text-danger" })
+                        </div>
                             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                             <div class="col-xl-3 col-lg-6 col-12 form-group">
                                 <label>Date Of Birth *</label>
@@ -54,12 +55,12 @@
                             </div>
                             <div class="col-xl-3 col-lg-6 col-12 form-group">
                                 <label>Class *</label>
-                                @Html.DropDownList("ClassID", null, new { @class = "select2" })
+                                @Html.DropDownListFor(m => m.ClassID, Model.ClassesList, new { @class = "select2" })
                                 @Html.ValidationMessageFor(m => m.ClassID, "", new { @class = "text-danger" })
                             </div>
                             <div class="col-xl-3 col-lg-6 col-12 form-group">
                                 <label>Parent *</label>
-                                @Html.DropDownList("ParentID", null, new { @class = "select2" })
+                                @Html.DropDownListFor(m => m.ParentID, Model.ParentsList, new { @class = "select2" })
                                 @Html.ValidationMessageFor(m => m.ParentID, "", new { @class = "text-danger" })
                             </div>
                             <div class="col-12 form-group mg-t-8">

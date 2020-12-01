@@ -7,7 +7,6 @@
 
 <div class="dashboard-page-one">
     <div class="dashboard-content-one">
-        <!-- Breadcubs Area Start Here -->
         <div class="breadcrumbs-area">
             <h3>Comment</h3>
             <ul>
@@ -17,8 +16,6 @@
                 <li>Add New Comment</li>
             </ul>
         </div>
-        <!-- Breadcubs Area End Here -->
-        <!-- Add New Teacher Area Start Here -->
         <div class="card height-auto">
             <div class="card-body">
                 <div class="heading-layout1">
@@ -32,14 +29,14 @@
                         <div class="row">
                             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                             <div class="col-xl-3 col-lg-6 col-12 form-group">
-                                <label>Select Class *</label>
-                                @Html.DropDownList("ClassID", null, new { @class = "select2" })
-                                @Html.ValidationMessageFor(m => m.ClassID, "", new { @class = "text-danger" })
+                                <label>Select Student *</label>
+                                @Html.DropDownListFor(m => m.StudentID, Model.StudentsList, new { @class = "select2" })
+                                @Html.ValidationMessageFor(m => m.StudentID, "", new { @class = "text-danger" })
                             </div>
                             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                             <div class="col-xl-3 col-lg-6 col-12 form-group">
                                 <label>Select Subject *</label>
-                                @Html.DropDownList("SubjectID", null, new { @class = "select2" })
+                                @Html.DropDownListFor(m => m.SubjectID, Model.SubjectsList, new { @class = "select2" })
                                 @Html.ValidationMessageFor(m => m.SubjectID, "", new { @class = "text-danger" })
                             </div>
                             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
@@ -51,14 +48,13 @@
                             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                             <div class="col-xl-3 col-lg-6 col-12 form-group">
                                 <label>Select Time *</label>
-                                @Html.DropDownList("Time", null, new { @class = "select2" })
-                                @Html.ValidationMessageFor(m => m.ClassID, "", new { @class = "text-danger" })
-                                <i class="far fa-calendar-alt"></i>
+                                @Html.DropDownListFor(m => m.Time, Model.Times, new { @class = "select2" })
+                                @Html.ValidationMessageFor(m => m.Time, "", new { @class = "text-danger" })
                             </div>
                             <div class="col-xl-3 col-lg-6 col-12 form-group">
                                 <label>Comment *</label>
-                                @Html.TextBoxFor(m => m.Comment, new { @class = "textarea form-control", placeholder = "Last name...", id = "lastname" })
-                                @Html.ValidationMessageFor(m => m.Comment, "", new { @class = "text-danger" })
+                                @Html.TextAreaFor(m => m.Content, new { @class = "textarea form-control", placeholder = "Last name...", id = "lastname" })
+                                @Html.ValidationMessageFor(m => m.Content, "", new { @class = "text-danger" })
                             </div>
                             <div class="col-12 form-group mg-t-8">
                                 <input type="submit" value="Create" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark" />

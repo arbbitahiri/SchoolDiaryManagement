@@ -88,15 +88,10 @@ namespace SchoolDiarySystem.DAL
                                 review = ToObject(reader);
                                 review.Comment = new Comments
                                 {
-                                    Comment = reader["Comment"].ToString(),
+                                    Content = reader["Comment"].ToString(),
                                     CommentDate = DateTime.Parse(reader["Date"].ToString()),
                                     Time = int.Parse(reader["Time"].ToString()),
-                                    ClassID = int.Parse(reader["ClassID"].ToString()),
                                     SubjectID = int.Parse(reader["SubjectID"].ToString()),
-                                    Class = new Class
-                                    {
-                                        ClassNo = int.Parse(reader["Class_No"].ToString())
-                                    },
                                     Subject = new Subjects
                                     {
                                         SubjectTitle = reader["Subject_Title"].ToString()
@@ -137,15 +132,10 @@ namespace SchoolDiarySystem.DAL
                                 var review = ToObject(reader);
                                 review.Comment = new Comments
                                 {
-                                    Comment = reader["Comment"].ToString(),
+                                    Content = reader["Comment"].ToString(),
                                     CommentDate = DateTime.Parse(reader["Date"].ToString()),
                                     Time = int.Parse(reader["Time"].ToString()),
-                                    ClassID = int.Parse(reader["ClassID"].ToString()),
                                     SubjectID = int.Parse(reader["SubjectID"].ToString()),
-                                    Class = new Class
-                                    {
-                                        ClassNo = int.Parse(reader["Class_No"].ToString())
-                                    },
                                     Subject = new Subjects
                                     {
                                         SubjectTitle = reader["Subject_Title"].ToString()

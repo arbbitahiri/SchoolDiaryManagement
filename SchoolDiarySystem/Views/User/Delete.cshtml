@@ -132,7 +132,7 @@
                                     }
                                     <tr>
                                         <td>
-                                            @using (Html.BeginForm("Update", "User", new { id = Model.ParentID }, FormMethod.Post))
+                                            @using (Html.BeginForm("Update", "User", new { id = Model.UserID }, FormMethod.Post))
                                             {
                                                 <div class="col-12 form-group mg-t-8">
                                                     <input type="submit" value="Update" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark" />
@@ -140,7 +140,7 @@
                                             }
                                         </td>
                                         <td>
-                                            @using (Html.BeginForm("Delete", "User", new { id = Model.ParentID }, FormMethod.Post))
+                                            @using (Html.BeginForm("Delete", "User", new { id = Model.UserID }, FormMethod.Post))
                                             {
                                                 <div class="col-12 form-group mg-t-8">
                                                     <input type="submit" value="Delete" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark" />
@@ -159,12 +159,6 @@
                                 </tbody>
                             </table>
                         </div>
-                        @using (Html.BeginForm("Delete", "User", FormMethod.Post))
-                        {
-                            <div class="col-12 form-group mg-t-8">
-                                <input type="submit" value="Delete" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark" />
-                            </div>
-                        }
                     </div>
                 </div>
             </div>

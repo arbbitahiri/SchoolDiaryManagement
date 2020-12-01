@@ -27,46 +27,46 @@
                         </div>
                         <div class="kids-details-wrap">
                             <div class="row">
+                                @foreach (var item in Model)
+                                {
                                 <div class="col-12-xxxl col-xl-6 col-12">
-                                    @foreach (var item in Model)
-                                    {
-                                        <div class="kids-details-box mb-5">
-                                            <div class="item-img">
-                                                @if (item.Gender != "Male")
-                                                {
-                                                    <img src="~/Content/img/figure/student.png" alt="kids">
-                                                }
-                                                else
-                                                {
-                                                    <img src="~/Content/img/figure/student1.png" alt="kids">
-                                                }
-                                            </div>
-                                            <div class="item-content table-responsive">
-                                                <table class="table text-nowrap">
-                                                    <tbody>
-                                                        <tr>
-                                                            <td>Name:</td>
-                                                            <td>@Html.DisplayFor(m => item.FullName)</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>Gender:</td>
-                                                            <td>@Html.DisplayFor(m => item.Gender)</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>Class:</td>
-                                                            <td>@Html.DisplayFor(m => item.Class.ClassNo)</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>Birthday:</td>
-                                                            <td>@Html.DisplayFor(m => item.DayofBirth)</td>
-                                                        </tr>
-                                                    </tbody>
-                                                </table>
-                                            </div>
+                                    <div class="kids-details-box mb-5">
+                                        <div class="item-img">
+                                            @if (item.Gender != "Male")
+                                            {
+                                                <img src="~/Content/img/figure/student.png" alt="kids">
+                                            }
+                                            else
+                                            {
+                                                <img src="~/Content/img/figure/student1.png" alt="kids">
+                                            }
                                         </div>
-                                    }
+                                        <div class="item-content table-responsive">
+                                            <table class="table text-nowrap">
+                                                <tbody>
+                                                    <tr>
+                                                        <td>Name:</td>
+                                                        <td>@Html.DisplayFor(m => item.FullName)</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Gender:</td>
+                                                        <td>@Html.DisplayFor(m => item.Gender)</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Class:</td>
+                                                        <td>@Html.DisplayFor(m => item.Class.ClassNo)</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Birthday:</td>
+                                                        <td>@Html.DisplayFor(m => item.DayofBirth)</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
+                                        }
+                                </div>
                         </div>
                     </div>
                 </div>

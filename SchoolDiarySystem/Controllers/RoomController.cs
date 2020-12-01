@@ -143,6 +143,7 @@ namespace SchoolDiarySystem.Controllers
                         {
                             room.LUB = UserSession.GetUsers.Username;
                             room.LUN = ++room.LUN;
+
                             var result = await Task.Run(() => roomsDAL.Update(room));
                             return RedirectToAction(nameof(Index));
                         }

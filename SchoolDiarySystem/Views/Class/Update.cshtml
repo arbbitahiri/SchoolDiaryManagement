@@ -31,21 +31,21 @@
                             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                             <div class="col-xl-4 col-lg-6 col-12 form-group">
                                 <label>Teacher *</label>
-                                @Html.DropDownList("TeacherID", null, new { @class = "select2", placeholder = "Please select a teacher..." })
+                                @Html.DropDownListFor(m => m.TeacherID, Model.TeacherList, htmlAttributes: new { @class = "select2" })
                                 @Html.ValidationMessageFor(m => m.TeacherID, "", new { @class = "text-danger" })
                             </div>
                             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                             <div class="col-xl-4 col-lg-6 col-12 form-group">
                                 <label>Class Number *</label>
                                 @Html.TextBoxFor(m => m.ClassNo, new { @class = "form-control", placeholder = "Write class number...", id = "classNo", @readonly = "true" })
-                                @Html.ValidationMessageFor(m => m.ClassNo, "", new { @class = "text-danger" })
+                                @Html.ValidationMessageFor(m => m.ClassNo)
                             </div>
                             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                            <div class="col-xl-4 col-lg-6 col-12 form-group">
-                                <label>Room Type *</label>
-                                @Html.DropDownList("RoomID", null, new { @class = "select2" })
-                                @Html.ValidationMessageFor(m => m.RoomID, "", new { @class = "text-danger" })
-                            </div>
+                        <div class="col-xl-4 col-lg-6 col-12 form-group">
+                            <label>Room Type *</label>
+                            @Html.DropDownListFor(m => m.RoomID, Model.RoomList, htmlAttributes: new { @class = "select2" })
+                            @Html.ValidationMessageFor(m => m.RoomID, "", new { @class = "text-danger" })
+                        </div>
                             <div class="col-12 form-group mg-t-8">
                                 <input type="submit" value="Update" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark" />
                             </div>

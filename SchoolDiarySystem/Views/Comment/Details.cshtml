@@ -30,7 +30,7 @@
                                 </ul>
                             </div>
                         </div>
-                        <p>@Html.Label("Comment", Model.Comment.ToString(), new { @class = "font-medium text-dark-medium" })</p>
+                        <p>@Html.Label("Comment", Model.Content.ToString(), new { @class = "font-medium text-dark-medium" })</p>
                         <div class="info-table table-responsive">
                             <table class="table text-nowrap">
                                 <tbody>
@@ -43,8 +43,8 @@
                                         <td>@Html.Label(Model.Time.ToString(), new { @class = "font-medium text-dark-medium" })</td>
                                     </tr>
                                     <tr>
-                                        <td>Class:</td>
-                                        <td>@Html.Label(Model.Class.ClassNo.ToString(), new { @class = "font-medium text-dark-medium" })</td>
+                                        <td>Student:</td>
+                                        <td>@Html.Label(Model.Student.FullName, new { @class = "font-medium text-dark-medium" })</td>
                                     </tr>
                                     <tr>
                                         <td>Subject:</td>
@@ -52,20 +52,18 @@
                                     </tr>
                                     <tr>
                                         <td>
-                                            @using (Html.BeginForm("Update", "Comment", new { id = Model.CommentID }, FormMethod.Post))
-                                            {
+                                            <a href="@Url.Action("Update", "Comment", routeValues: new { id = Model.CommentID })">
                                                 <div class="col-12 form-group mg-t-8">
                                                     <input type="submit" value="Update" class="btn-fill-md text-light bg-dark-pastel-green" />
                                                 </div>
-                                            }
+                                            </a>
                                         </td>
                                         <td>
-                                            @using (Html.BeginForm("Index", "Comment", FormMethod.Post))
-                                            {
+                                            <a href="@Url.Action("Index", "Comment")">
                                                 <div class="col-12 form-group mg-t-8">
                                                     <input type="submit" value="Back to List" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark" />
                                                 </div>
-                                            }
+                                            </a>
                                         </td>
                                     </tr>
                                 </tbody>

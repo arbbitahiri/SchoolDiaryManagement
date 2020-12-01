@@ -22,7 +22,7 @@ namespace SchoolDiarySystem.Controllers
         {
             if (UserSession.GetUsers != null)
             {
-                if (UserSession.GetUsers.RoleID == 2 || UserSession.GetUsers.RoleID == 3)
+                if (UserSession.GetUsers.RoleID == 2)
                 {
                     var comments = await Task.Run(() => commentsDAL.GetAll());
 
@@ -55,11 +55,12 @@ namespace SchoolDiarySystem.Controllers
             {
                 if (UserSession.GetUsers.RoleID == 2)
                 {
+                    IEnumerable<int> times = new List<int>() { 1, 2, 3, 4, 5, 6 };
                     var comment = new Comments()
                     {
                         SubjectsList = new SelectList(subjectsDAL.GetAll(), "SubjectID", "SubjectTitle"),
-                        ClassesList = new SelectList(classDAL.GetAll(), "ClassID", "ClassNo"),
-                        StudentsList = new SelectList(studentsDAL.GetAll(), "StudentID", "FullName")
+                        StudentsList = new SelectList(studentsDAL.GetAll(), "StudentID", "FullName"),
+                        Times = new SelectList(times)
                     };
                     return View(comment);
                 }
@@ -83,6 +84,7 @@ namespace SchoolDiarySystem.Controllers
                 {
                     try
                     {
+                        var errors = ModelState.Values.SelectMany(s => s.Errors);
                         if (ModelState.IsValid)
                         {
                             comment.InsertBy = UserSession.GetUsers.Username;
@@ -115,7 +117,7 @@ namespace SchoolDiarySystem.Controllers
         {
             if (UserSession.GetUsers != null)
             {
-                if (UserSession.GetUsers.RoleID == 2)
+                if (UserSession.GetUsers.RoleID == 3)
                 {
                     if (id == null)
                     {
@@ -145,7 +147,7 @@ namespace SchoolDiarySystem.Controllers
         {
             if (UserSession.GetUsers != null)
             {
-                if (UserSession.GetUsers.RoleID == 2)
+                if (UserSession.GetUsers.RoleID == 3)
                 {
                     if (id != review.CommentID)
                     {
@@ -198,8 +200,9 @@ namespace SchoolDiarySystem.Controllers
                         return RedirectToAction(nameof(Index));
                     }
                     comment.SubjectsList = new SelectList(subjectsDAL.GetAll(), "SubjectID", "SubjectTitle", comment.SubjectID);
-                    comment.ClassesList = new SelectList(classDAL.GetAll(), "ClassID", "ClassNo", comment.ClassID);
                     comment.StudentsList = new SelectList(studentsDAL.GetAll(), "StudentID", "FullName", comment.StudentID);
+                    IEnumerable<int> times = new List<int>() { 1, 2, 3, 4, 5, 6 };
+                    comment.Times = new SelectList(times);
 
                     return View(comment);
                 }
@@ -319,7 +322,7 @@ namespace SchoolDiarySystem.Controllers
             {
                 var comment = commentsDAL.Get(reviews.CommentID);
 
-                ViewBag.CommentID = comment.Comment;
+                ViewBag.CommentID = comment.Content;
             }
         }
 

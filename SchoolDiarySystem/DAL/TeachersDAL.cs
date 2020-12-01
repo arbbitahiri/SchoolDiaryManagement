@@ -48,7 +48,7 @@ namespace SchoolDiarySystem.DAL
             {
                 using (var connection = DataConnection.GetConnection())
                 {
-                    string sqlproc = "dbo.usp_Teacher_Create";
+                    string sqlproc = "dbo.usp_Teacher_Update";
                     using (var command = DataConnection.GetCommand(connection, sqlproc, CommandType.StoredProcedure))
                     {
                         DataConnection.AddParameter(command, "teacherID", model.TeacherID);
@@ -80,7 +80,7 @@ namespace SchoolDiarySystem.DAL
             {
                 using (var connection = DataConnection.GetConnection())
                 {
-                    string sqlproc = "dbo.usp_Teachers_Delete";
+                    string sqlproc = "dbo.usp_Teacher_Delete";
                     using (var command = DataConnection.GetCommand(connection, sqlproc, CommandType.StoredProcedure))
                     {
                         DataConnection.AddParameter(command, "teacherID", id);
@@ -91,7 +91,7 @@ namespace SchoolDiarySystem.DAL
                     }
                 }
             }
-            catch (Exception)
+            catch (Exception e)
             {
                 return false;
             }
