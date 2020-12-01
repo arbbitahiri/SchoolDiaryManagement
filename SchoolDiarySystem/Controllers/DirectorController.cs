@@ -5,11 +5,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Threading.Tasks;
 
 namespace SchoolDiarySystem.Controllers
 {
     public class DirectorController : Controller
     {
+        private readonly CommentsDAL commentsDAL = new CommentsDAL();
         private readonly UsersDAL usersDAL = new UsersDAL();
 
         // GET: Director
@@ -28,6 +30,35 @@ namespace SchoolDiarySystem.Controllers
                         }
                     }
                     return View();
+                }
+                else
+                {
+                    return Content("You're not allowed to view this page!");
+                }
+            }
+            else
+            {
+                return RedirectToAction("Login", "Account");
+            }
+        }
+
+        public async Task<ActionResult> Details(int? id)
+        {
+            if (UserSession.GetUsers != null)
+            {
+                if (UserSession.GetUsers.RoleID == 2)
+                {
+                    if (id == null)
+                    {
+                        return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest);
+                    }
+
+                    var comment = await Task.Run(() => commentsDAL.Get((int)id));
+                    if (comment == null)
+                    {
+                        return RedirectToAction(nameof(Index));
+                    }
+                    return View(comment);
                 }
                 else
                 {
