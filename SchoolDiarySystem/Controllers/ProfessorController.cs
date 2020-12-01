@@ -15,14 +15,18 @@ namespace SchoolDiarySystem.Controllers
         private readonly StudentsDAL studentsDAL = new StudentsDAL();
 
         // GET: Professor
-        public async Task<ActionResult> Index()
+        public async Task<ActionResult> Index(string searchString)
         {
             if (UserSession.GetUsers != null)
             {
-                if (UserSession.GetUsers.RoleID == 4)
+                if (UserSession.GetUsers.RoleID == 2)
                 {
-                    var kids = await Task.Run(() => studentsDAL.GetAll());
-                    kids = kids.Where(k => k.ClassID == UserSession.GetUsers.).ToList();
+                    var kids = await Task.Run(() => studentsDAL.GetMyStudents(UserSession.GetUsers.TeacherID));
+
+                    if (!string.IsNullOrEmpty(searchString))
+                    {
+                        kids = kids.Where(f => f.FirstName == searchString || f.LastName == searchString || f.FullName == searchString).ToList();
+                    }
 
                     NumbersCount();
                     return View(kids);

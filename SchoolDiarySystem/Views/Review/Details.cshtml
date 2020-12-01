@@ -5,12 +5,12 @@
     <div class="dashboard-content-one">
         <!-- Breadcubs Area Start Here -->
         <div class="breadcrumbs-area">
-            <h3>Comment</h3>
+            <h3>Review</h3>
             <ul>
                 <li>
-                    <a href="index-2.html">Home</a>
+                    <a href="@Url.Action("Index", "Director")">Home</a>
                 </li>
-                <li>Comment Details</li>
+                <li>Review Details</li>
             </ul>
         </div>
         <!-- Breadcubs Area End Here -->
@@ -28,15 +28,16 @@
                                 </ul>
                             </div>
                         </div>
+                        <p>@Html.Label("Content", Model.Comment.Comment.ToString())</p>
                         <div class="info-table table-responsive">
                             <table class="table text-nowrap">
                                 <tbody>
                                     <tr>
-                                        <td>Date:</td>
-                                        <td><p>@Html.Label(Model.Review.ToString(), new { @class = "font-medium text-dark-medium" })</p></td>
+                                        <td>Review:</td>
+                                        <td><p>@Html.Label("Review", Model.Review.ToString(), new { @class = "font-medium text-dark-medium" })</p></td>
                                     </tr>
                                     <tr>
-                                        <td>Time:</td>
+                                        <td>Review Date:</td>
                                         <td>@Html.Label(Model.ReviewDate.ToString(), new { @class = "font-medium text-dark-medium" })</td>
                                     </tr>
                                     <tr>

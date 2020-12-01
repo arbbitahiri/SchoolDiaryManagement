@@ -22,7 +22,7 @@ namespace SchoolDiarySystem.Controllers
         {
             if (UserSession.GetUsers != null)
             {
-                if (UserSession.GetUsers.RoleID == 2)
+                if (UserSession.GetUsers.RoleID == 2 || UserSession.GetUsers.RoleID == 3)
                 {
                     var comments = await Task.Run(() => commentsDAL.GetAll());
 

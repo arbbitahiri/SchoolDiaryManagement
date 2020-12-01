@@ -107,12 +107,12 @@ namespace SchoolDiarySystem.DAL
                             while (reader.Read())
                             {
                                 subject = ToObject(reader);
-                                if (reader["First_Name"] != DBNull.Value && reader["Last_Name"] != DBNull.Value)
+                                if (reader["First_Name_T"] != DBNull.Value && reader["Last_Name_T"] != DBNull.Value)
                                 {
                                     subject.Teacher = new Teachers
                                     {
-                                        FirstName = reader["First_Name"].ToString(),
-                                        LastName = reader["Last_Name"].ToString()
+                                        FirstName = reader["First_Name_T"].ToString(),
+                                        LastName = reader["Last_Name_T"].ToString()
                                     };
                                 }
                             }
@@ -143,12 +143,12 @@ namespace SchoolDiarySystem.DAL
                             while (reader.Read())
                             {
                                 var subject = ToObject(reader);
-                                if (reader["First_Name"] != DBNull.Value && reader["Last_Name"] != DBNull.Value)
+                                if (reader["First_Name_T"] != DBNull.Value && reader["Last_Name_T"] != DBNull.Value)
                                 {
                                     subject.Teacher = new Teachers
                                     {
-                                        FirstName = reader["First_Name"].ToString(),
-                                        LastName = reader["Last_Name"].ToString()
+                                        FirstName = reader["First_Name_T"].ToString(),
+                                        LastName = reader["Last_Name_T"].ToString()
                                     };
                                 }
                                 MySubjects.Add(subject);
