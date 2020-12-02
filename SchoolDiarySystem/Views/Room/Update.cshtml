@@ -25,26 +25,26 @@
                 </div>
                 @using (Html.BeginForm("Update", "Room", FormMethod.Post))
                 {
-                    <form class="new-added-form">
-                        <div class="row">
-                            @Html.HiddenFor(m => m.RoomID)
-                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                            <div class="col-xl-6 col-lg-6 col-12 form-group">
-                                <label>Room Number *</label>
-                                @Html.TextBoxFor(m => m.RoomNo, new { @class = "form-control", placeholder = "Write room number...", type = "number", id = "roomNo", autocomplete = "off" })
-                                @Html.ValidationMessageFor(m => m.RoomNo, "", new { @class = "text-danger" })
-                            </div>
-                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                            <div class="col-xl-6 col-lg-6 col-12 form-group">
-                                <label>Room Type *</label>
-                                @Html.TextBoxFor(m => m.RoomType, new { @class = "form-control", placeholder = "Laboratory, Class,...", id = "roomtype", autocomplete = "off" })
-                                @Html.ValidationMessageFor(m => m.RoomType, "", new { @class = "text-danger" })
-                            </div>
-                            <div class="col-12 form-group mg-t-8">
-                                <input type="submit" value="Update" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark" />
-                            </div>
-                        </div>
-                    </form>
+            <form class="new-added-form">
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="row">
+                    @Html.HiddenFor(m => m.RoomID)
+                    <div class="col-xl-6 col-lg-6 col-12 form-group">
+                        <label>Room Number *</label>
+                        @Html.TextBoxFor(m => m.RoomNo, new { @class = "form-control", placeholder = "Write room number...", type = "number", id = "roomNo", autocomplete = "off" })
+                        @Html.ValidationMessageFor(m => m.RoomNo, "", new { @class = "text-danger" })
+                    </div>
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <div class="col-xl-6 col-lg-6 col-12 form-group">
+                        <label>Room Type *</label>
+                        @Html.TextBoxFor(m => m.RoomType, new { @class = "form-control", placeholder = "Laboratory, Class,...", id = "roomtype", autocomplete = "off" })
+                        @Html.ValidationMessageFor(m => m.RoomType, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="col-12 form-group mg-t-8">
+                        <input type="submit" value="Update" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark" />
+                    </div>
+                </div>
+            </form>
                 }
             </div>
         </div>

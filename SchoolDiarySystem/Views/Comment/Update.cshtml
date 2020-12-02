@@ -24,30 +24,30 @@
                 </div>
                 @using (Html.BeginForm("Update", "Comment", FormMethod.Post))
                 {
-                    <form class="new-added-form">
-                        <div class="row">
-                            @Html.HiddenFor(m => m.CommentID)
-                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                            <div class="col-xl-4 col-lg-6 col-12 form-group">
-                                <label>Select Date *</label>
-                                @Html.TextBoxFor(m => m.CommentDate, new { @class = "form-control air-datepicker", placeholder = "dd/MMMM/yyyy", id = "commentDate", autocomplete = "off" })
-                                @Html.ValidationMessageFor(m => m.CommentDate, "", new { @class = "text-danger" })
-                            </div>
-                        <div class="col-xl-4 col-lg-6 col-12 form-group">
-                            <label>Select Time *</label>
-                            @Html.DropDownListFor(m => m.Time, Model.Times, new { @class = "select2" })
-                            @Html.ValidationMessageFor(m => m.Time, "", new { @class = "text-danger" })
-                        </div>
-                            <div class="col-xl-4 col-lg-6 col-12 form-group">
-                                <label>Comment *</label>
-                                @Html.TextAreaFor(m => m.Content, new { @class = "textarea form-control", placeholder = "Last name...", id = "content", autocomplete = "off" })
-                                @Html.ValidationMessageFor(m => m.Content, "", new { @class = "text-danger" })
-                            </div>
-                            <div class="col-12 form-group mg-t-8">
-                                <input type="submit" value="Update" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark" />
-                            </div>
-                        </div>
-                    </form>
+            <form class="new-added-form">
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="row">
+                    @Html.HiddenFor(m => m.CommentID)
+                    <div class="col-xl-4 col-lg-6 col-12 form-group">
+                        <label>Select Date *</label>
+                        @Html.TextBoxFor(m => m.CommentDate, new { @class = "form-control air-datepicker", placeholder = "dd/MMMM/yyyy", id = "commentDate", autocomplete = "off" })
+                        @Html.ValidationMessageFor(m => m.CommentDate, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="col-xl-4 col-lg-6 col-12 form-group">
+                        <label>Select Time *</label>
+                        @Html.DropDownListFor(m => m.Time, Model.Times, new { @class = "select2" })
+                        @Html.ValidationMessageFor(m => m.Time, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="col-xl-4 col-lg-6 col-12 form-group">
+                        <label>Comment *</label>
+                        @Html.TextAreaFor(m => m.Content, new { @class = "textarea form-control", placeholder = "Last name...", id = "content", autocomplete = "off" })
+                        @Html.ValidationMessageFor(m => m.Content, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="col-12 form-group mg-t-8">
+                        <input type="submit" value="Update" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark" />
+                    </div>
+                </div>
+            </form>
                 }
             </div>
         </div>

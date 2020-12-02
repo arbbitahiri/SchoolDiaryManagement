@@ -44,21 +44,21 @@
                             }
                             else if (Model.RoleID == 2)
                             {
-                        <div class="col-xl-4 col-lg-6 col-12 form-group">
-                            @Html.HiddenFor(m => m.UserID)
-                            <label>Teacher *</label>
-                            @Html.DropDownList("TeacherID", null, new { @class = "select2" })
-                            @Html.ValidationMessageFor(m => m.TeacherID, "", new { @class = "text-danger" })
-                        </div>
+                                <div class="col-xl-4 col-lg-6 col-12 form-group">
+                                    @Html.HiddenFor(m => m.UserID)
+                                    <label>Teacher *</label>
+                                    @Html.DropDownList("TeacherID", null, new { @class = "select2" })
+                                    @Html.ValidationMessageFor(m => m.TeacherID, "", new { @class = "text-danger" })
+                                </div>
                             }
                             else if (Model.RoleID == 4)
                             {
-                        <div class="col-xl-4 col-lg-6 col-12 form-group">
-                            @Html.HiddenFor(m => m.UserID)
-                            <label>Parent *</label>
-                            @Html.DropDownList("ParentID", null, new { @class = "select2" })
-                            @Html.ValidationMessageFor(m => m.ParentID, "", new { @class = "text-danger" })
-                        </div>
+                                <div class="col-xl-4 col-lg-6 col-12 form-group">
+                                    @Html.HiddenFor(m => m.UserID)
+                                    <label>Parent *</label>
+                                    @Html.DropDownList("ParentID", null, new { @class = "select2" })
+                                    @Html.ValidationMessageFor(m => m.ParentID, "", new { @class = "text-danger" })
+                                </div>
                             }
                             <div class="col-xl-4 col-lg-4 col-12 form-group">
                                 <label>Expire Date *</label>
