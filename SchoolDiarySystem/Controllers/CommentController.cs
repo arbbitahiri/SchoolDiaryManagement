@@ -59,8 +59,8 @@ namespace SchoolDiarySystem.Controllers
                     IEnumerable<int> times = new List<int>() { 1, 2, 3, 4, 5, 6 };
                     var comment = new Comments()
                     {
-                        SubjectsList = new SelectList(subjectsDAL.GetAll(), "SubjectID", "SubjectTitle"),
-                        StudentsList = new SelectList(studentsDAL.GetAll(), "StudentID", "FullName"),
+                        SubjectsList = new SelectList(subjectsDAL.GetAllForTeacher(teacher), "SubjectID", "SubjectTitle"),
+                        StudentsList = new SelectList(studentsDAL.GetAllForTeacher(teacher), "StudentID", "FullName"),
                         Times = new SelectList(times)
                     };
                     return View(comment);
@@ -200,8 +200,8 @@ namespace SchoolDiarySystem.Controllers
                     {
                         return RedirectToAction(nameof(Index));
                     }
-                    comment.SubjectsList = new SelectList(subjectsDAL.GetAll(), "SubjectID", "SubjectTitle", comment.SubjectID);
-                    comment.StudentsList = new SelectList(studentsDAL.GetAll(), "StudentID", "FullName", comment.StudentID);
+                    comment.SubjectsList = new SelectList(subjectsDAL.GetAllForTeacher(teacher), "SubjectID", "SubjectTitle", comment.SubjectID);
+                    comment.StudentsList = new SelectList(studentsDAL.GetAllForTeacher(teacher), "StudentID", "FullName", comment.StudentID);
                     IEnumerable<int> times = new List<int>() { 1, 2, 3, 4, 5, 6 };
                     comment.Times = new SelectList(times);
 
