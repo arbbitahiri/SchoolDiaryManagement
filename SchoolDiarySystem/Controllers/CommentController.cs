@@ -16,6 +16,7 @@ namespace SchoolDiarySystem.Controllers
         private readonly StudentsDAL studentsDAL = new StudentsDAL();
         private readonly ClassDAL classDAL = new ClassDAL();
         private readonly ReviewsDAL reviewsDAL = new ReviewsDAL();
+        private readonly int teacher = UserSession.GetUsers.TeacherID;
 
         // GET: Comment
         public async Task<ActionResult> Index(string searchString, string searchString2)
@@ -24,7 +25,7 @@ namespace SchoolDiarySystem.Controllers
             {
                 if (UserSession.GetUsers.RoleID == 2)
                 {
-                    var comments = await Task.Run(() => commentsDAL.GetAll());
+                    var comments = await Task.Run(() => commentsDAL.GetAllForTeacher(teacher));
 
                     if (!string.IsNullOrEmpty(searchString))
                     {
@@ -33,7 +34,7 @@ namespace SchoolDiarySystem.Controllers
 
                     if (!string.IsNullOrEmpty(searchString2))
                     {
-                        comments = comments.Where(f => f.Subject.SubjectTitle == searchString2).ToList();
+                        comments = comments.Where(f => f.Student.FirstName == searchString2 || f.Student.LastName == searchString2 || f.Student.FullName == searchString2).ToList();
                     }
 
                     return View(comments);

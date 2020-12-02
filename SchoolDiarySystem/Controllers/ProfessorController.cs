@@ -13,6 +13,7 @@ namespace SchoolDiarySystem.Controllers
     public class ProfessorController : Controller
     {
         private readonly StudentsDAL studentsDAL = new StudentsDAL();
+        private readonly int teacher = UserSession.GetUsers.TeacherID;
 
         // GET: Professor
         public async Task<ActionResult> Index(string searchString)
@@ -21,7 +22,7 @@ namespace SchoolDiarySystem.Controllers
             {
                 if (UserSession.GetUsers.RoleID == 2)
                 {
-                    var kids = await Task.Run(() => studentsDAL.GetMyStudents(UserSession.GetUsers.TeacherID));
+                    var kids = await Task.Run(() => studentsDAL.GetMyStudents(teacher));
 
                     if (!string.IsNullOrEmpty(searchString))
                     {

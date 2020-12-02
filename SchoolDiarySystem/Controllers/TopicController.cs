@@ -14,6 +14,7 @@ namespace SchoolDiarySystem.Controllers
         private readonly TopicsDAL topicsDAL = new TopicsDAL();
         private readonly ClassDAL classDAL = new ClassDAL();
         private readonly SubjectsDAL subjectsDAL = new SubjectsDAL();
+        private readonly int teacher = UserSession.GetUsers.TeacherID;
 
         // GET: Topic
         public async Task<ActionResult> Index(string searchString, string searchString2, string searchString3)
@@ -22,7 +23,7 @@ namespace SchoolDiarySystem.Controllers
             {
                 if (UserSession.GetUsers.RoleID == 2)
                 {
-                    var topics = await Task.Run(() => topicsDAL.GetAll());
+                    var topics = await Task.Run(() => topicsDAL.GetAllForTeacher(teacher));
 
                     if (!string.IsNullOrEmpty(searchString))
                     {
@@ -61,8 +62,8 @@ namespace SchoolDiarySystem.Controllers
                     IEnumerable<int> times = new List<int>() { 1, 2, 3, 4, 5, 6 };
                     var topic = new Topics()
                     {
-                        ClassesList = new SelectList(classDAL.GetAll(), "ClassID", "ClassNo"),
-                        SubjectsList = new SelectList(subjectsDAL.GetAll(), "SubjectID", "SubjectTitle"),
+                        ClassesList = new SelectList(classDAL.GetAllForTeacher(teacher), "ClassID", "ClassNo"),
+                        SubjectsList = new SelectList(subjectsDAL.GetAllForTeacher(teacher), "SubjectID", "SubjectTitle"),
                         Times = new SelectList(times)
                     };
                     return View(topic);
@@ -131,8 +132,8 @@ namespace SchoolDiarySystem.Controllers
                     {
                         return RedirectToAction("Index");
                     }
-                    topic.SubjectsList = new SelectList(subjectsDAL.GetAll(), "SubjectID", "SubjectTitle", topic.SubjectID);
-                    topic.ClassesList = new SelectList(classDAL.GetAll(), "ClassID", "ClassNo", topic.ClassID);
+                    topic.SubjectsList = new SelectList(subjectsDAL.GetAllForTeacher(teacher), "SubjectID", "SubjectTitle", topic.SubjectID);
+                    topic.ClassesList = new SelectList(classDAL.GetAllForTeacher(teacher), "ClassID", "ClassNo", topic.ClassID);
                     IEnumerable<int> times = new List<int>() { 1, 2, 3, 4, 5, 6 };
                     topic.Times = new SelectList(times);
 

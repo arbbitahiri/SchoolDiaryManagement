@@ -165,6 +165,62 @@ namespace SchoolDiarySystem.DAL
             }
         }
 
+        public List<Comments> GetAllForTeacher(int teacherID)
+        {
+            try
+            {
+                List<Comments> MyComments = null;
+                using (var connection = DataConnection.GetConnection())
+                {
+                    string sqlproc = "dbo.usp_Comment_GetList_ForTeacher";
+                    using (var command = DataConnection.GetCommand(connection, sqlproc, CommandType.StoredProcedure))
+                    {
+                        DataConnection.AddParameter(command, "teacherID", teacherID);
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            MyComments = new List<Comments>();
+                            while (reader.Read())
+                            {
+                                var comment = ToObject(reader);
+                                if (reader["Subject_Title"] != DBNull.Value)
+                                {
+                                    comment.Subject = new Subjects { SubjectTitle = reader["Subject_Title"].ToString() };
+                                    if (reader["Review"] != DBNull.Value && reader["ReviewID"] != DBNull.Value && reader["ReviewDate"] != DBNull.Value)
+                                    {
+                                        comment.Review = new Reviews
+                                        {
+                                            Review = reader["Review"].ToString(),
+                                            ReviewID = int.Parse(reader["ReviewID"].ToString()),
+                                            ReviewDate = DateTime.Parse(reader["ReviewDate"].ToString())
+                                        };
+                                    }
+                                    else
+                                    {
+                                        comment.Review = new Reviews
+                                        {
+                                            Review = "Not reviewed yet!",
+                                            ReviewID = 0
+                                        };
+                                    }
+                                    comment.Student = new Students
+                                    {
+                                        FirstName = reader["First_Name"].ToString(),
+                                        LastName = reader["Last_Name"].ToString()
+                                    };
+                                }
+                                MyComments.Add(comment);
+                            }
+                        }
+                    }
+                }
+                return MyComments;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
         public Comments ToObject(SqlDataReader dataReader)
         {
             try

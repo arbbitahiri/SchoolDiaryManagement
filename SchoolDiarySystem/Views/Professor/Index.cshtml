@@ -118,7 +118,6 @@
                                             <th>Class</th>
                                             <th>Parent</th>
                                             <th>Date Of Birth</th>
-                                            <th></th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -155,9 +154,6 @@
                                                 </td>
                                                 <td>
                                                     @Html.DisplayFor(m => item.DayofBirth)
-                                                </td>
-                                                <td>
-                                                    <a href="@Url.Action("Details", "Student", new { id = item.StudentID })">Details</a>
                                                 </td>
                                             </tr>
                                         }

@@ -165,6 +165,45 @@ namespace SchoolDiarySystem.DAL
             }
         }
 
+        public List<Subjects> GetAllForTeacher(int teacherID)
+        {
+            try
+            {
+                List<Subjects> MySubjects = null;
+                using (var connection = DataConnection.GetConnection())
+                {
+                    string sqlproc = "dbo.usp_Subject_GetList_ForTeacher";
+                    using (var command = DataConnection.GetCommand(connection, sqlproc, CommandType.StoredProcedure))
+                    {
+                        DataConnection.AddParameter(command, "teacherID", teacherID);
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            MySubjects = new List<Subjects>();
+                            while (reader.Read())
+                            {
+                                var subject = ToObject(reader);
+                                if (reader["First_Name_T"] != DBNull.Value && reader["Last_Name_T"] != DBNull.Value)
+                                {
+                                    subject.Teacher = new Teachers
+                                    {
+                                        FirstName = reader["First_Name_T"].ToString(),
+                                        LastName = reader["Last_Name_T"].ToString()
+                                    };
+                                }
+                                MySubjects.Add(subject);
+                            }
+                        }
+                    }
+                }
+                return MySubjects;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
         public Subjects ToObject(SqlDataReader dataReader)
         {
             try
