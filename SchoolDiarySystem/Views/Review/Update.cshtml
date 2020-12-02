@@ -39,7 +39,6 @@
                         @Html.TextBoxFor(m => m.Review, new { @class = "textarea form-control", placeholder = "Last name...", id = "review", autocomplete = "off" })
                         @Html.ValidationMessageFor(m => m.Review, "", new { @class = "text-danger" })
                     </div>
-                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                     <div class="col-xl-3 col-lg-6 col-12 form-group">
                         <label>Select Date *</label>
                         @Html.TextBoxFor(m => m.ReviewDate, new { @class = "form-control air-datepicker", placeholder = "dd/MMMM/yyyy", id = "reveiwDate", autocomplete = "off" })

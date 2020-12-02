@@ -25,48 +25,45 @@
                 </div>
                 @using (Html.BeginForm("Create", "Student", FormMethod.Post))
                 {
-                    <form class="new-added-form">
-                        <div class="row">
-                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                            <div class="col-xl-3 col-lg-6 col-12 form-group">
-                                <label>First Name *</label>
-                                @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control", placeholder = "First name...", id = "firstname", autocomplete = "off" })
-                                @Html.ValidationMessageFor(m => m.FirstName, "", new { @class = "text-danger" })
-                            </div>
-                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                            <div class="col-xl-3 col-lg-6 col-12 form-group">
-                                <label>Last Name *</label>
-                                @Html.TextBoxFor(m => m.LastName, new { @class = "form-control", placeholder = "Last name...", id = "lastname", autocomplete = "off" })
-                                @Html.ValidationMessageFor(m => m.LastName, "", new { @class = "text-danger" })
-                            </div>
-                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                            <div class="col-xl-3 col-lg-6 col-12 form-group">
-                                <label>Gender *</label>
-                                @Html.DropDownListFor(m => m.Gender, Model.Genders, new { @class = "select2" })
-                                @Html.ValidationMessageFor(m => m.Gender, "", new { @class = "text-danger" })
-                            </div>
-                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                            <div class="col-xl-3 col-lg-6 col-12 form-group">
-                                <label>Date Of Birth *</label>
-                                @Html.TextBoxFor(m => m.DayofBirth, new { @class = "form-control air-datepicker", placeholder = "dd/MMMM/yyyy", id = "dob", autocomplete = "off" })
-                                @Html.ValidationMessageFor(m => m.DayofBirth, "", new { @class = "text-danger" })
-                                <i class="far fa-calendar-alt"></i>
-                            </div>
-                            <div class="col-xl-3 col-lg-6 col-12 form-group">
-                                <label>Class *</label>
-                                @Html.DropDownListFor(m => m.ClassID, Model.ClassesList, new { @class = "select2" })
-                                @Html.ValidationMessageFor(m => m.ClassID, "", new { @class = "text-danger" })
-                            </div>
-                            <div class="col-xl-3 col-lg-6 col-12 form-group">
-                                <label>Parent *</label>
-                                @Html.DropDownListFor(m => m.ParentID, Model.ParentsList, new { @class = "select2" })
-                                @Html.ValidationMessageFor(m => m.ParentID, "", new { @class = "text-danger" })
-                            </div>
-                            <div class="col-12 form-group mg-t-8">
-                                <input type="submit" value="Create" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark" />
-                            </div>
-                        </div>
-                    </form>
+            <form class="new-added-form">
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="row">
+                    <div class="col-xl-3 col-lg-6 col-12 form-group">
+                        <label>First Name *</label>
+                        @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control", placeholder = "First name...", id = "firstname", autocomplete = "off" })
+                        @Html.ValidationMessageFor(m => m.FirstName, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="col-xl-3 col-lg-6 col-12 form-group">
+                        <label>Last Name *</label>
+                        @Html.TextBoxFor(m => m.LastName, new { @class = "form-control", placeholder = "Last name...", id = "lastname", autocomplete = "off" })
+                        @Html.ValidationMessageFor(m => m.LastName, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="col-xl-3 col-lg-6 col-12 form-group">
+                        <label>Gender *</label>
+                        @Html.DropDownListFor(m => m.Gender, Model.Genders, new { @class = "select2" })
+                        @Html.ValidationMessageFor(m => m.Gender, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="col-xl-3 col-lg-6 col-12 form-group">
+                        <label>Date Of Birth *</label>
+                        @Html.TextBoxFor(m => m.DayofBirth, new { @class = "form-control air-datepicker", placeholder = "dd/MMMM/yyyy", id = "dob", autocomplete = "off" })
+                        @Html.ValidationMessageFor(m => m.DayofBirth, "", new { @class = "text-danger" })
+                        <i class="far fa-calendar-alt"></i>
+                    </div>
+                    <div class="col-xl-3 col-lg-6 col-12 form-group">
+                        <label>Class *</label>
+                        @Html.DropDownListFor(m => m.ClassID, Model.ClassesList, new { @class = "select2" })
+                        @Html.ValidationMessageFor(m => m.ClassID, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="col-xl-3 col-lg-6 col-12 form-group">
+                        <label>Parent *</label>
+                        @Html.DropDownListFor(m => m.ParentID, Model.ParentsList, new { @class = "select2" })
+                        @Html.ValidationMessageFor(m => m.ParentID, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="col-12 form-group mg-t-8">
+                        <input type="submit" value="Create" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark" />
+                    </div>
+                </div>
+            </form>
                 }
             </div>
         </div>
