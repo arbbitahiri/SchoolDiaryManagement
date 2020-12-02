@@ -1,5 +1,6 @@
 ﻿using SchoolDiarySystem.DAL;
 using SchoolDiarySystem.Models;
+using SchoolDiarySystem.Models.DataAnnotations;
 using System;
 using System.Threading.Tasks;
 using System.Web.Mvc;
@@ -16,11 +17,8 @@ namespace SchoolDiarySystem.Controllers
         [HttpPost]
         public async Task<ActionResult> Login(Users users)
         {
-            //if (!ModelState.IsValid)
-            //{
-            //    return View(users);
-            //}
-            var result = await Task.Run(() => usersDAL.Login(users.Username, users.Password));
+            string password = Validation.CalculateHASH(users.Password);
+            var result = await Task.Run(() => usersDAL.Login(users.Username, password));
             if (result != null)
             {
                 UserSession.GetUsers = result;

@@ -6,6 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Threading.Tasks;
+using SchoolDiarySystem.Models.DataAnnotations;
 
 namespace SchoolDiarySystem.Controllers
 {
@@ -80,6 +81,7 @@ namespace SchoolDiarySystem.Controllers
                             user.RoleID = 1;
                             user.TeacherID = 0;
                             user.ParentID = 0;
+                            user.Password = Validation.CalculateHASH(user.Password);
 
                             var result = await Task.Run(() => usersDAL.Create(user));
                             return RedirectToAction(nameof(Index));
@@ -355,8 +357,17 @@ namespace SchoolDiarySystem.Controllers
                             user.LUN = ++user.LUN;
                             user.IsPasswordChanged = true;
                             user.LastPasswordChangeDate = DateTime.Now;
+                            user.Password = Validation.CalculateHASH(user.Password);
 
                             var result = await Task.Run(() => usersDAL.ChangePassword(user));
+                            //if (result != true)
+                            //{
+                            //    ModelState.AddModelError(string.Empty, "An error occured while updating class.");
+                            //}
+                            //else
+                            //{
+                            //    return RedirectToAction(nameof(Index));
+                            //}
                             return RedirectToAction(nameof(Index));
                         }
                         catch (Exception)

@@ -162,6 +162,7 @@
     <Compile Include="Models\Dashboard\Statistics.cs" />
     <Compile Include="Models\DataAnnotations\CheckPhoneNo.cs" />
     <Compile Include="Models\DataAnnotations\ValidateClassNo.cs" />
+    <Compile Include="Models\DataAnnotations\Validation.cs" />
     <Compile Include="Models\Parents.cs" />
     <Compile Include="Models\Reviews.cs" />
     <Compile Include="Models\Roles.cs" />
