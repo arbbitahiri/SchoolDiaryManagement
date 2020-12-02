@@ -43,20 +43,18 @@
                                     </tr>
                                     <tr>
                                         <td>
-                                            @using (Html.BeginForm("Update", "Review", new { id = Model.CommentID }, FormMethod.Post))
-                                            {
+                                            <a href="@Url.Action("Update", "Review", routeValues: new { id = Model.CommentID })">
                                                 <div class="col-12 form-group mg-t-8">
-                                                    <input type="submit" value="Update" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark" />
+                                                    <input type="submit" value="Update" class="btn-fill-md text-light bg-dark-pastel-green" />
                                                 </div>
-                                            }
+                                            </a>
                                         </td>
                                         <td>
-                                            @using (Html.BeginForm("Index", "Review", FormMethod.Post))
-                                            {
+                                            <a href="@Url.Action("Index", "Review")">
                                                 <div class="col-12 form-group mg-t-8">
-                                                    <input type="submit" value="Back to List" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark" />
+                                                    <input type="submit" value="Back to List" class="btn-fill-md text-light bg-dark-pastel-green" />
                                                 </div>
-                                            }
+                                            </a>
                                         </td>
                                     </tr>
                                 </tbody>

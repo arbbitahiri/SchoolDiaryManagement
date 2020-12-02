@@ -42,28 +42,25 @@
                                     </tr>
                                     <tr>
                                         <td>
-                                            @using (Html.BeginForm("Update", "Room", new { id = Model.RoomID }))
-                                            {
+                                            <a href="@Url.Action("Update", "Room", routeValues: new { id = Model.RoomID })">
                                                 <div class="col-12 form-group mg-t-8">
-                                                    <input type="submit" value="Update" class="btn-fill-lmd radius-30 text-light bg-true-v" />
+                                                    <input type="submit" value="Update" class="btn-fill-md text-light bg-dark-pastel-green" />
                                                 </div>
-                                            }
+                                            </a>
                                         </td>
                                         <td>
-                                            @using (Html.BeginForm("Delete", "Room", new { id = Model.RoomID }))
-                                            {
+                                            <a href="@Url.Action("Delete", "Room", routeValues: new { id = Model.RoomID })">
                                                 <div class="col-12 form-group mg-t-8">
-                                                    <input type="submit" value="Delete" class="btn-fill-md radius-30 text-light bg-red" />
+                                                    <input type="submit" value="Delete" class="btn-fill-md text-light bg-dark-pastel-green" />
                                                 </div>
-                                            }
+                                            </a>
                                         </td>
                                         <td>
-                                            @using (Html.BeginForm("Index", "Room"))
-                                            {
+                                            <a href="@Url.Action("Index", "Room")">
                                                 <div class="col-12 form-group mg-t-8">
-                                                    <input type="button" value="Back to List" class="btn-fill-md radius-30 text-light bg-orange-peel" />
+                                                    <input type="submit" value="Back to List" class="btn-fill-md text-light bg-dark-pastel-green" />
                                                 </div>
-                                            }
+                                            </a>
                                         </td>
                                     </tr>
                                 </tbody>
