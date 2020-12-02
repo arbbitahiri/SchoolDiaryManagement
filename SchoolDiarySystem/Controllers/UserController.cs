@@ -141,6 +141,7 @@ namespace SchoolDiarySystem.Controllers
                             user.LUN++;
                             user.RoleID = 2;
                             user.ParentID = 0;
+                            user.Password = Validation.CalculateHASH(user.Password);
 
                             var result = await Task.Run(() => usersDAL.Create(user));
                             return RedirectToAction(nameof(Index));
@@ -200,6 +201,7 @@ namespace SchoolDiarySystem.Controllers
                             user.LUN++;
                             user.RoleID = 4;
                             user.TeacherID = 0;
+                            user.Password = Validation.CalculateHASH(user.Password);
 
                             var result = await Task.Run(() => usersDAL.Create(user));
                             return RedirectToAction(nameof(Index));
