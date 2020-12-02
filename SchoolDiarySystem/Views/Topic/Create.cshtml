@@ -42,7 +42,7 @@
                             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                             <div class="col-xl-3 col-lg-6 col-12 form-group">
                                 <label>Select Date *</label>
-                                @Html.TextBoxFor(m => m.TopicDate, new { @class = "form-control air-datepicker", placeholder = "dd/MMMM/yyyy", id = "dob" })
+                                @Html.TextBoxFor(m => m.TopicDate, new { @class = "form-control air-datepicker", placeholder = "dd/MMMM/yyyy", id = "topicdate", autocomplete = "off" })
                                 @Html.ValidationMessageFor(m => m.TopicDate, "", new { @class = "text-danger" })
                             </div>
                             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
@@ -55,7 +55,7 @@
                             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                             <div class="col-xl-6 col-lg-6 col-12 form-group">
                                 <label>Content *</label>
-                                @Html.TextAreaFor(m => m.Content, new { @class = "textarea form-control", placeholder = "Last name...", id = "lastname" })
+                                @Html.TextAreaFor(m => m.Content, new { @class = "textarea form-control", placeholder = "Last name...", id = "content", autocomplete = "off" })
                                 @Html.ValidationMessageFor(m => m.Content, "", new { @class = "text-danger" })
                             </div>
                             <div class="col-12 form-group mg-t-8">

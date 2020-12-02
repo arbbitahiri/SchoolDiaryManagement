@@ -31,19 +31,19 @@
                             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                             <div class="col-xl-3 col-lg-6 col-12 form-group">
                                 <label>Subject Title *</label>
-                                @Html.TextBoxFor(m => m.SubjectTitle, new { @class = "form-control", placeholder = "SubjectTitle...", id = "subjecttitle" })
+                                @Html.TextBoxFor(m => m.SubjectTitle, new { @class = "form-control", placeholder = "SubjectTitle...", id = "subjecttitle", autocomplete = "off" })
                                 @Html.ValidationMessageFor(m => m.SubjectTitle, "", new { @class = "text-danger" })
                             </div>
                             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                             <div class="col-xl-3 col-lg-6 col-12 form-group">
                                 <label>Book *</label>
-                                @Html.TextBoxFor(m => m.Book, new { @class = "form-control", placeholder = "Book...", id = "book" })
+                                @Html.TextBoxFor(m => m.Book, new { @class = "form-control", placeholder = "Book...", id = "book", autocomplete = "off" })
                                 @Html.ValidationMessageFor(m => m.Book, "", new { @class = "text-danger" })
                             </div>
                             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                             <div class="col-xl-3 col-lg-6 col-12 form-group">
                                 <label>Book Author *</label>
-                                @Html.TextBoxFor(m => m.BookAuthor, new { @class = "form-control", placeholder = "BookAuthor...", id = "bookauthor" })
+                                @Html.TextBoxFor(m => m.BookAuthor, new { @class = "form-control", placeholder = "BookAuthor...", id = "bookauthor", autocomplete = "off" })
                                 @Html.ValidationMessageFor(m => m.BookAuthor, "", new { @class = "text-danger" })
                             </div>
                             @Html.ValidationSummary(true, "", new { @class = "text-danger" })

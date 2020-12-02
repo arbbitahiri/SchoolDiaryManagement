@@ -30,12 +30,12 @@
                             <div class="col-xl-3 col-lg-6 col-12 form-group">
                                 @Html.HiddenFor(m => m.TeacherID)
                                 <label>First Name *</label>
-                                @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control", placeholder = "First name...", id = "firstname" })
+                                @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control", placeholder = "First name...", id = "firstname", autocomplete = "off" })
                                 @Html.ValidationMessageFor(m => m.FirstName, "", new { @class = "text-danger" })
                             </div>
                             <div class="col-xl-3 col-lg-6 col-12 form-group">
                                 <label>Last Name *</label>
-                                @Html.TextBoxFor(m => m.LastName, new { @class = "form-control", placeholder = "Last name...", id = "lastname" })
+                                @Html.TextBoxFor(m => m.LastName, new { @class = "form-control", placeholder = "Last name...", id = "lastname", autocomplete = "off" })
                                 @Html.ValidationMessageFor(m => m.LastName, "", new { @class = "text-danger" })
                             </div>
                             <div class="col-xl-3 col-lg-6 col-12 form-group">
@@ -45,28 +45,28 @@
                             </div>
                             <div class="col-xl-3 col-lg-6 col-12 form-group">
                                 <label>Date Of Birth *</label>
-                                @Html.TextBoxFor(m => m.DayofBirth, new { @class = "form-control air-datepicker", placeholder = "dd/MMMM/yyyy", id = "dob" })
+                                @Html.TextBoxFor(m => m.DayofBirth, new { @class = "form-control air-datepicker", placeholder = "dd/MMMM/yyyy", id = "dob", autocomplete = "off" })
                                 @Html.ValidationMessageFor(m => m.DayofBirth, "", new { @class = "text-danger" })
                                 <i class="far fa-calendar-alt"></i>
                             </div>
                             <div class="col-xl-3 col-lg-6 col-12 form-group">
                                 <label>City *</label>
-                                @Html.TextBoxFor(m => m.City, new { @class = "form-control", placeholder = "Write city...", id = "city" })
+                                @Html.TextBoxFor(m => m.City, new { @class = "form-control", placeholder = "Write city...", id = "city", autocomplete = "off" })
                                 @Html.ValidationMessageFor(m => m.City, "", new { @class = "text-danger" })
                             </div>
                             <div class="col-xl-3 col-lg-6 col-12 form-group">
                                 <label>Qualification *</label>
-                                @Html.TextBoxFor(m => m.Qualification, new { @class = "form-control", placeholder = "Write qualification...", id = "qualification" })
+                                @Html.TextBoxFor(m => m.Qualification, new { @class = "form-control", placeholder = "Write qualification...", id = "qualification", autocomplete = "off" })
                                 @Html.ValidationMessageFor(m => m.Qualification, "", new { @class = "text-danger" })
                             </div>
                             <div class="col-xl-3 col-lg-6 col-12 form-group">
                                 <label>E-Mail *</label>
-                                @Html.TextBoxFor(m => m.Email, new { @class = "form-control", placeholder = "example@mail.com", id = "email" })
+                                @Html.TextBoxFor(m => m.Email, new { @class = "form-control", placeholder = "example@mail.com", id = "email", autocomplete = "off" })
                                 @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
                             </div>
                             <div class="col-xl-3 col-lg-6 col-12 form-group">
                                 <label>Phone Number *</label>
-                                @Html.TextBoxFor(m => m.PhoneNo, new { @class = "form-control", placeholder = "+383 49 700 700", id = "phoneno" })
+                                @Html.TextBoxFor(m => m.PhoneNo, new { @class = "form-control", placeholder = "+383 49 700 700", id = "phoneno", autocomplete = "off" })
                                 @Html.ValidationMessageFor(m => m.PhoneNo, "", new { @class = "text-danger" })
                             </div>
                             <div class="col-12 form-group mg-t-8">
