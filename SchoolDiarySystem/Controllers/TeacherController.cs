@@ -74,6 +74,7 @@ namespace SchoolDiarySystem.Controllers
                 {
                     try
                     {
+
                         if (ModelState.IsValid)
                         {
                             teacher.InsertBy = UserSession.GetUsers.Username;

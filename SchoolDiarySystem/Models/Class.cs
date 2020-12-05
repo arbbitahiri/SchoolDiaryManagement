@@ -14,7 +14,7 @@ namespace SchoolDiarySystem.Models
         public int TeacherID { get; set; }
 
         [Display(Name = "Class")]
-        [Required(ErrorMessage = "Please write a class number, between 1 and 9")]
+        //[Required(ErrorMessage = "Please write a class number, between 1 and 9")]
         [ValidateClassNo]
         public int ClassNo { get; set; }
 

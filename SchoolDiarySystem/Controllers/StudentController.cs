@@ -77,6 +77,7 @@ namespace SchoolDiarySystem.Controllers
                 {
                     try
                     {
+                        var errors = ModelState.Values.SelectMany(s => s.Errors);
                         if (ModelState.IsValid)
                         {
                             student.InsertBy = UserSession.GetUsers.Username;
@@ -151,6 +152,7 @@ namespace SchoolDiarySystem.Controllers
                         return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest);
                     }
 
+                    var errors = ModelState.Values.SelectMany(s => s.Errors);
                     if (ModelState.IsValid)
                     {
                         try

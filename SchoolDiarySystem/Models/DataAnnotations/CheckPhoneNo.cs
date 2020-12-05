@@ -14,36 +14,43 @@ namespace SchoolDiarySystem.Models.DataAnnotations
 
         public override bool IsValid(object value)
         {
-            string strValue = value.ToString();
-            if (!string.IsNullOrEmpty(strValue))
+            if (value is null)
             {
-                int strLength = strValue.Length;
-                if (strLength == MaxLength)
+                return false;
+            }
+            else
+            {
+                string strValue = value.ToString();
+                if (!string.IsNullOrEmpty(strValue))
                 {
-                    if (strValue[0] != '+')
+                    int strLength = strValue.Length;
+                    if (strLength == MaxLength)
                     {
-                        return false;
-                    }
-                    else
-                    {
-                        string newStr = strValue.Remove(0, 1);
-                        bool IsANumber = newStr.All(char.IsDigit);
-                        if (!IsANumber)
+                        if (strValue[0] != '+')
                         {
                             return false;
                         }
                         else
                         {
-                            return true;
+                            string newStr = strValue.Remove(0, 1);
+                            bool IsANumber = newStr.All(char.IsDigit);
+                            if (!IsANumber)
+                            {
+                                return false;
+                            }
+                            else
+                            {
+                                return true;
+                            }
                         }
                     }
+                    else
+                    {
+                        return false;
+                    }
                 }
-                else
-                {
-                    return false;
-                }
+                return false;
             }
-            return false;
         }
     }
 }

@@ -9,12 +9,12 @@ namespace SchoolDiarySystem.Models
     {
         public int UserID { get; set; }
 
-        //[Display(Name = "Username")]
+        [Display(Name = "Username")]
         //[Required(ErrorMessage = "Please write user's username!")]
         public string Username { get; set; }
 
-        //[Display(Name = "Password")]
-        //[DataType(DataType.Password)]
+        [Display(Name = "Password")]
+        [DataType(DataType.Password)]
         //[Required(ErrorMessage = "Please write user's password!")]
         public string Password { get; set; }
 

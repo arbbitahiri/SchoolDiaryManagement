@@ -196,7 +196,7 @@ namespace SchoolDiarySystem.Controllers
             }
         }
 
-        public async Task<ActionResult> DeleteAsync(int? id)
+        public async Task<ActionResult> Delete(int? id)
         {
             if (UserSession.GetUsers != null)
             {

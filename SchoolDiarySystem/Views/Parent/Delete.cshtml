@@ -24,9 +24,9 @@
                     </div>
                 </div>
                 <div class="single-info-details">
-                    <div class="item-img">
+                    @*<div class="item-img">
                         <img src="~/Content/img/figure/teacher.jpg" alt="parent">
-                    </div>
+                    </div>*@
                     <div class="item-content">
                         <div class="header-inline item-header">
                             <h3 class="text-dark-medium font-medium">@Html.Label("FullName", Model.FullName, new { @class = "text-dark-medium font-medium" })</h3>
@@ -46,7 +46,7 @@
                                 </tbody>
                             </table>
                         </div>
-                        @using (Html.BeginForm("Delete", "Student", FormMethod.Post))
+                        @using (Html.BeginForm("Delete", "Parent", FormMethod.Post))
                         {
                             <div class="col-12 form-group mg-t-8">
                                 <input type="submit" value="Delete" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark" />

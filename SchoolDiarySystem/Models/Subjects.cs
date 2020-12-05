@@ -9,7 +9,7 @@ namespace SchoolDiarySystem.Models
         public int SubjectID { get; set; }
 
         [Display(Name = "Subject Title")]
-        [Required(ErrorMessage = "Please select a date!")]
+        //[Required(ErrorMessage = "Please select a date!")]
         public string SubjectTitle { get; set; }
 
         [Display(Name = "Book")]

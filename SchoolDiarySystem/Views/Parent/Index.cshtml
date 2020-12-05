@@ -47,7 +47,7 @@
                 {
                     <form class="mg-b-20">
                         <div class="row gutters-8">
-                            <div class="col-4-xxxl col-xl-4 col-lg-3 col-12 form-group">
+                            <div class="col-4-xxxl col-xl-10 col-lg-3 col-12 form-group">
                                 <input type="text" autocomplete="off" placeholder="Search by Name ..." name="searchString" class="form-control">
                             </div>
                             <div class="col-1-xxxl col-xl-2 col-lg-3 col-12 form-group">
@@ -88,7 +88,7 @@
                                                 <span class="flaticon-more-button-of-three-dots"></span>
                                             </a>
                                             <div class="dropdown-menu dropdown-menu-right">
-                                                <a class="dropdown-item" href="@Url.Action("Delete", "Parent", new { id = item.ParentID })"><i class="fas fa-times text-orange-red"></i>Delete</a>
+                                                @*<a class="dropdown-item" href="@Url.Action("Delete", "Parent", new { id = item.ParentID })"><i class="fas fa-times text-orange-red"></i>Delete</a>*@
                                                 <a class="dropdown-item" href="@Url.Action("Update", "Parent", new { id = item.ParentID })"><i class="fas fa-cogs text-dark-pastel-green"></i>Update</a>
                                                 <a class="dropdown-item" href="@Url.Action("Details", "Parent", new { id = item.ParentID })"><i class="fas fa-redo-alt text-orange-peel"></i>Details</a>
                                             </div>

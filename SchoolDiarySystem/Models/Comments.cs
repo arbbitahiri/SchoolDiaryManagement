@@ -15,11 +15,11 @@ namespace SchoolDiarySystem.Models
         public string Content { get; set; }
 
         [Display(Name = "Student")]
-        [Required(ErrorMessage = "Please select a student!")]
+        //[Required(ErrorMessage = "Please select a student!")]
         public int StudentID { get; set; }
 
         [Display(Name = "Subject")]
-        [Required(ErrorMessage = "Please select a subject!")]
+        //[Required(ErrorMessage = "Please select a subject!")]
         public int SubjectID { get; set; }
 
         [Display(Name = "Time")]
