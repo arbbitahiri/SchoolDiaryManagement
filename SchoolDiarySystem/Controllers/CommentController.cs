@@ -257,7 +257,7 @@ namespace SchoolDiarySystem.Controllers
         {
             if (UserSession.GetUsers != null)
             {
-                if (UserSession.GetUsers.RoleID == 2)
+                if (UserSession.GetUsers.RoleID == 2 || UserSession.GetUsers.RoleID == 4)
                 {
                     if (id == null)
                     {

@@ -1,0 +1,66 @@
+﻿@{
+    ViewBag.Title = "IndexTopic";
+    Layout = "~/Views/Shared/_LayoutParent.cshtml";
+}
+@using SchoolDiarySystem.Models
+@model IEnumerable<Topics>
+
+<div class="dashboard-page-one">
+    <div class="dashboard-content-one">
+        <div class="breadcrumbs-area">
+            <h3>Topic Board</h3>
+            <ul>
+                <li>
+                    <a href="@Url.Action("Index", "MyKids")">Home</a>
+                </li>
+                <li>Topic</li>
+            </ul>
+        </div>
+        <div class="row">
+            <div class="col-8-xxxl col-12">
+                <div class="card height-auto">
+                    <div class="card-body">
+                        <div class="heading-layout1">
+                            <div class="item-title">
+                                <h3>Notice Board</h3>
+                            </div>
+                        </div>
+                        @using (Html.BeginForm("IndexTopic", "MyKids", FormMethod.Get))
+                        {
+                            <form class="mg-b-20">
+                                <div class="row gutters-8">
+                                    <div class="col-lg-5 col-12 form-group">
+                                        <input type="text" autocomplete="off" placeholder="Search by Date ..." name="searchString" class="form-control air-datepicker">
+                                    </div>
+                                    <div class="col-lg-5 col-12 form-group">
+                                        <input type="text" autocomplete="off" placeholder="Search by Title ..." name="searchString2" class="form-control">
+                                    </div>
+                                    <div class="col-lg-2 col-12 form-group">
+                                        <button type="submit" class="fw-btn-fill btn-gradient-yellow">SEARCH</button>
+                                    </div>
+                                </div>
+                            </form>
+                        }
+                        <div class="notice-board-wrap">
+                            @foreach (var item in Model)
+                            {
+                                <div class="notice-list">
+                                    <div class="post-date bg-skyblue">@Html.DisplayFor(m => item.TopicDate)</div>
+                                    <h6 class="notice-title">
+                                        <a href="@Url.Action("Details", "Topic", new { id = item.TopicID })">
+                                            @Html.DisplayFor(m => item.Content)
+                                        </a>
+                                    </h6>
+                                    <div class="entry-meta">@Html.DisplayFor(m => item.Subject.SubjectTitle) | Class Time: @Html.DisplayFor(m => item.Time) / <span>Class: @Html.DisplayFor(m => item.Class.ClassNo)</span></div>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts {}

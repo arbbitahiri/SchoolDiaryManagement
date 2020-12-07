@@ -1,0 +1,77 @@
+﻿@{
+    ViewBag.Title = "IndexClass";
+    Layout = "~/Views/Shared/_LayoutParent.cshtml";
+}
+@using SchoolDiarySystem.Models
+@model IEnumerable<Class>
+
+<div class="dashboard-page-one">
+    <div class="dashboard-content-one">
+        <div class="breadcrumbs-area">
+            <h3>Class</h3>
+            <ul>
+                <li>
+                    <a href="@Url.Action("Index", "MyKids")">Home</a>
+                </li>
+                <li>My Kids Classes</li>
+            </ul>
+        </div>
+        <div class="card height-auto">
+            <div class="card-body">
+                <div class="heading-layout1">
+                    <div class="item-title">
+                        <h3>All Classes Data</h3>
+                    </div>
+                </div>
+                @using (Html.BeginForm("IndexClass", "MyKids", FormMethod.Get))
+                {
+                    <form class="mg-b-20">
+                        <div class="row gutters-8">
+                            <div class="col-4-xxxl col-xl-10 col-lg-3 col-12 form-group">
+                                <input type="number" autocomplete="off" name="searchString" placeholder="Search by class number ..." class="form-control">
+                            </div>
+                            <div class="col-1-xxxl col-xl-2 col-lg-3 col-12 form-group">
+                                <button type="submit" class="fw-btn-fill btn-gradient-yellow">SEARCH</button>
+                            </div>
+                        </div>
+                    </form>
+                }
+                <div class="table-responsive">
+                    <table class="table display data-table text-nowrap">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th>My Kid</th>
+                                <th>Teacher</th>
+                                <th>Class Number</th>
+                                <th>Room Type</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td></td>
+                                    <td>
+                                        @Html.DisplayFor(m => item.Student.FullName)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(m => item.Teacher.FullName)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(m => item.ClassNo)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(m => item.Room.RoomType)
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {}

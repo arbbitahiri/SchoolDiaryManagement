@@ -191,6 +191,44 @@ namespace SchoolDiarySystem.DAL
             }
         }
 
+        public List<Class> GetAllForParent(int parentID)
+        {
+            try
+            {
+                List<Class> MyClasses = null;
+                using (var connection = DataConnection.GetConnection())
+                {
+                    string sqlproc = "dbo.usp_Class_GetList_ForParent";
+                    using (var command = DataConnection.GetCommand(connection, sqlproc, CommandType.StoredProcedure))
+                    {
+                        DataConnection.AddParameter(command, "parentID", parentID);
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            MyClasses = new List<Class>();
+                            while (reader.Read())
+                            {
+                                var classes = ToObject(reader);
+                                if (reader["Room_Type"] != DBNull.Value && reader["First_Name_T"] != DBNull.Value && reader["Last_Name_T"] != DBNull.Value
+                                    && reader["First_Name"] != DBNull.Value && reader["Last_Name"] != DBNull.Value)
+                                {
+                                    classes.Room = new Rooms { RoomType = reader["Room_Type"].ToString() };
+                                    classes.Teacher = new Teachers { FirstName = reader["First_Name_T"].ToString(), LastName = reader["Last_Name_T"].ToString() };
+                                    classes.Student = new Students { FirstName = reader["First_Name"].ToString(), LastName = reader["Last_Name"].ToString() };
+                                }
+                                MyClasses.Add(classes);
+                            }
+                        }
+                    }
+                }
+                return MyClasses;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
         public Class ToObject(SqlDataReader dataReader)
         {
             try

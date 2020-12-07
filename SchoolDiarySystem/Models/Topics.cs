@@ -33,9 +33,6 @@ namespace SchoolDiarySystem.Models
 
         public virtual Class Class { get; set; }
         public virtual Subjects Subject { get; set; }
-
-        public IEnumerable<SelectListItem> ClassesList { get; set; }
-        public IEnumerable<SelectListItem> SubjectsList { get; set; }
-        public IEnumerable<SelectListItem> Times { get; set; }
+        public virtual Students Student { get; set; }
     }
 }

@@ -1,6 +1,6 @@
 ﻿@{
-    ViewBag.Title = "CommentList";
-    Layout = "~/Views/Shared/_LayoutDirector.cshtml";
+    ViewBag.Title = "IndexComment";
+    Layout = "~/Views/Shared/_LayoutParent.cshtml";
 }
 @using SchoolDiarySystem.Models
 @model IEnumerable<Comments>
@@ -8,10 +8,10 @@
 <div class="dashboard-page-one">
     <div class="dashboard-content-one">
         <div class="breadcrumbs-area">
-            <h3>Comment Board</h3>
+            <h3>Comment Board for My Kids</h3>
             <ul>
                 <li>
-                    <a href="@Url.Action("Index", "Professor")">Home</a>
+                    <a href="@Url.Action("Index", "MyKids")">Home</a>
                 </li>
                 <li>Comment</li>
             </ul>
@@ -25,15 +25,15 @@
                                 <h3>Comment Board</h3>
                             </div>
                         </div>
-                        @using (Html.BeginForm("CommentList", "Review", FormMethod.Get))
+                        @using (Html.BeginForm("IndexComment", "MyKids", FormMethod.Get))
                         {
                             <form class="mg-b-20">
                                 <div class="row gutters-8">
                                     <div class="col-lg-5 col-12 form-group">
-                                        <input type="text" autocomplete="off" placeholder="Search by Date ..." name="searchString" class="form-control air-datepicker">
+                                        <input type="text" autocomplete="off" placeholder="Search by date ..." name="searchString" class="form-control air-datepicker">
                                     </div>
                                     <div class="col-lg-5 col-12 form-group">
-                                        <input type="text" autocomplete="off" placeholder="Search by Subject ..." name="searchString2" class="form-control">
+                                        <input type="text" autocomplete="off" placeholder="Search by student ..." name="searchString2" class="form-control">
                                     </div>
                                     <div class="col-lg-2 col-12 form-group">
                                         <button type="submit" class="fw-btn-fill btn-gradient-yellow">SEARCH</button>
@@ -50,21 +50,18 @@
                                     {
                                         <a href="@Url.Action("Details", "Review", new { id = item.CommentID })">
                                             <div class="post-date bg-pink">
-                                                Reviewed on @Html.DisplayFor(m => item.Review.ReviewDate)
+                                                Reviewed
                                             </div>
                                         </a>
-                                        <h6 class="notice-title">
-                                            @Html.DisplayFor(m => item.Content)
-                                        </h6>
-                                        <div class="entry-meta"> @Html.DisplayFor(m => item.Review.Review)</div>
                                     }
-                                    else
+                                    <h6 class="notice-title">
+                                        <a href="@Url.Action("Details", "Comment", new { id = item.CommentID })">
+                                            @Html.DisplayFor(m => item.Content)
+                                        </a>
+                                    </h6>
+                                    @if (item.Review.ReviewID != 0)
                                     {
-                                        <h6 class="notice-title">
-                                            <a href="@Url.Action("Review", "Comment", new { id = item.CommentID })">
-                                                @Html.DisplayFor(m => item.Content)
-                                            </a>
-                                        </h6>
+                                        <div class="entry-meta"> @Html.DisplayFor(m => item.Review.Review)</div>
                                     }
                                     <br />
                                     <div class="entry-meta">  @Html.DisplayFor(m => item.Student.FullName) / <span>@Html.DisplayFor(m => item.Subject.SubjectTitle)</span></div>

@@ -25,8 +25,6 @@ namespace SchoolDiarySystem.Models
 
         public virtual Teachers Teacher { get; set; }
         public virtual Rooms Room { get; set; }
-
-        public IEnumerable<Teachers> TeacherList { get; set; }
-        public IEnumerable<SelectListItem> RoomList { get; set; }
+        public virtual Students Student { get; set; }
     }
 }

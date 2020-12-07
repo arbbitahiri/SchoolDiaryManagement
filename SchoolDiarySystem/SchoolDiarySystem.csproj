@@ -362,6 +362,11 @@
     <Content Include="Views\Class\Details.cshtml" />
     <Content Include="Views\Comment\ReviewDetails.cshtml" />
     <Content Include="Views\Review\CommentList.cshtml" />
+    <Content Include="Views\MyKids\IndexClass.cshtml" />
+    <Content Include="Views\MyKids\IndexTopic.cshtml" />
+    <Content Include="Views\MyKids\IndexAbsence.cshtml" />
+    <Content Include="Views\MyKids\IndexComment.cshtml" />
+    <Content Include="Views\MyKids\IndexSchedule.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

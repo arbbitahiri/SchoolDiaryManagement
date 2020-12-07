@@ -22,15 +22,15 @@ namespace SchoolDiarySystem.Controllers
             {
                 if (UserSession.GetUsers.RoleID == 2)
                 {
-                    var kids = await Task.Run(() => studentsDAL.GetMyStudents(teacher));
+                    var students = await Task.Run(() => studentsDAL.GetMyStudents(teacher));
 
                     if (!string.IsNullOrEmpty(searchString))
                     {
-                        kids = kids.Where(f => f.FirstName == searchString || f.LastName == searchString || f.FullName == searchString).ToList();
+                        students = students.Where(f => f.FirstName == searchString || f.LastName == searchString || f.FullName == searchString).ToList();
                     }
 
                     NumbersCount();
-                    return View(kids);
+                    return View(students);
                 }
                 else
                 {
