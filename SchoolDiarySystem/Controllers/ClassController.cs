@@ -125,8 +125,8 @@ namespace SchoolDiarySystem.Controllers
                     {
                         return RedirectToAction(nameof(Index));
                     }
-                    //_class.TeacherList = new SelectList(teachersDAL.GetAll(), "TeacherID", "FullName", _class.TeacherID);
-                    //_class.RoomList = new SelectList(roomsDAL.GetAll(), "RoomID", "RoomType", _class.RoomID);
+                    ViewBag.Teacher = teachersDAL.GetAll();
+                    ViewBag.Room = roomsDAL.GetAll();
 
                     return View(_class);
                 }
@@ -153,8 +153,9 @@ namespace SchoolDiarySystem.Controllers
                         return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest);
                     }
 
-                    //if (ModelState.IsValid)
-                    //{
+                    ViewBag.Teacher = teachersDAL.GetAll();
+                    ViewBag.Room = roomsDAL.GetAll();
+                    //var errors = ModelState.Values.SelectMany(m => m.Errors);
                     try
                     {
                         _class.LUB = UserSession.GetUsers.Username;
@@ -168,8 +169,6 @@ namespace SchoolDiarySystem.Controllers
                         ModelState.AddModelError(string.Empty, "An error occured while updating class.");
                         return View(_class);
                     }
-                    //}
-                    //return View(_class);
                 }
                 else
                 {

@@ -26,7 +26,7 @@
                         <div class="row">
                             <div class="col-xl-8 col-lg-6 col-12 form-group">
                                 <label>Review *</label>
-                                @Html.TextAreaFor(m => m.Review, new { @class = "textarea form-control", placeholder = "Last name...", id = "review", autocomplete = "off" })
+                                @Html.TextAreaFor(m => m.Review, new { @class = "textarea form-control", placeholder = "Last name...", id = "review", autocomplete = "off", rows = "5" })
                                 @Html.ValidationMessageFor(m => m.Review, "", new { @class = "text-danger" })
                             </div>
                             <div class="col-xl-3 col-lg-6 col-12 form-group">

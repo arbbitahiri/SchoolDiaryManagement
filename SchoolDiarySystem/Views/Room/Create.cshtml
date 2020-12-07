@@ -25,24 +25,24 @@
                 </div>
                 @using (Html.BeginForm("Create", "Room", FormMethod.Post))
                 {
-            <form class="new-added-form">
-                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                <div class="row">
-                    <div class="col-xl-6 col-lg-6 col-12 form-group">
-                        <label>Room Number *</label>
-                        @Html.TextBoxFor(m => m.RoomNo, new { @class = "form-control", placeholder = "Write room number...", type = "number", id = "firstname", autocomplete = "off" })
-                        @Html.ValidationMessageFor(m => m.RoomNo, "", new { @class = "text-danger" })
-                    </div>
-                    <div class="col-xl-6 col-lg-6 col-12 form-group">
-                        <label>Room Type *</label>
-                        @Html.TextBoxFor(m => m.RoomType, new { @class = "form-control", placeholder = "Laboratory, Class,...", id = "lastname", autocomplete = "off" })
-                        @Html.ValidationMessageFor(m => m.RoomType, "", new { @class = "text-danger" })
-                    </div>
-                    <div class="col-12 form-group mg-t-8">
-                        <input type="submit" value="Create" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark" />
-                    </div>
-                </div>
-            </form>
+                    <form class="new-added-form">
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        <div class="row">
+                            <div class="col-xl-6 col-lg-6 col-12 form-group">
+                                <label>Room Number *</label>
+                                @Html.TextBoxFor(m => m.RoomNo, new { @class = "form-control", placeholder = "Write room number...", type = "number", id = "firstname", autocomplete = "off" })
+                                @Html.ValidationMessageFor(m => m.RoomNo, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-xl-6 col-lg-6 col-12 form-group">
+                                <label>Room Type *</label>
+                                @Html.TextBoxFor(m => m.RoomType, new { @class = "form-control", placeholder = "Laboratory, Class,...", id = "lastname", autocomplete = "off" })
+                                @Html.ValidationMessageFor(m => m.RoomType, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-12 form-group mg-t-8">
+                                <input type="submit" value="Create" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark" />
+                            </div>
+                        </div>
+                    </form>
                 }
             </div>
         </div>

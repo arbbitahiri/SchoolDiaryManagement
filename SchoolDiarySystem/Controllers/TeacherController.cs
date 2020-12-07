@@ -47,11 +47,8 @@ namespace SchoolDiarySystem.Controllers
             {
                 if (UserSession.GetUsers.RoleID == 1)
                 {
-                    IEnumerable<string> genders = new List<string>() { "Male", "Female" };
-                    var teacher = new Teachers()
-                    {
-                        GenderEnumeration = new SelectList(genders)
-                    };
+                    var teacher = new Teachers();
+                    GetItemForSelectList();
                     return View(teacher);
                 }
                 else
@@ -74,7 +71,7 @@ namespace SchoolDiarySystem.Controllers
                 {
                     try
                     {
-
+                        GetItemForSelectList();
                         if (ModelState.IsValid)
                         {
                             teacher.InsertBy = UserSession.GetUsers.Username;
@@ -114,13 +111,12 @@ namespace SchoolDiarySystem.Controllers
                         return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest);
                     }
 
+                    GetItemForSelectList();
                     var teacher = await Task.Run(() => teachersDAL.Get((int)id));
                     if (teacher == null)
                     {
                         return RedirectToAction(nameof(Index));
                     }
-                    IEnumerable<string> genders = new List<string>() { "Male", "Female" };
-                    teacher.GenderEnumeration = new SelectList(genders);
                     return View(teacher);
                 }
                 else
@@ -146,6 +142,7 @@ namespace SchoolDiarySystem.Controllers
                         return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest);
                     }
 
+                    GetItemForSelectList();
                     if (ModelState.IsValid)
                     {
                         try
@@ -251,6 +248,12 @@ namespace SchoolDiarySystem.Controllers
             {
                 return RedirectToAction("Login", "Account");
             }
+        }
+
+        private void GetItemForSelectList()
+        {
+            IEnumerable<string> genders = new List<string>() { "Male", "Female" };
+            ViewBag.Gender = genders;
         }
     }
 }

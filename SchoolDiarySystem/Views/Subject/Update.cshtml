@@ -25,30 +25,30 @@
                 </div>
                 @using (Html.BeginForm("Update", "Subject", FormMethod.Post))
                 {
-            <form class="new-added-form">
-                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                <div class="row">
-                    @Html.HiddenFor(m => m.SubjectID)
-                    <div class="col-xl-3 col-lg-6 col-12 form-group">
-                        <label>Book *</label>
-                        @Html.TextBoxFor(m => m.Book, new { @class = "form-control", placeholder = "Book...", id = "book", autocomplete = "off" })
-                        @Html.ValidationMessageFor(m => m.Book, "", new { @class = "text-danger" })
-                    </div>
-                    <div class="col-xl-3 col-lg-6 col-12 form-group">
-                        <label>Book Author *</label>
-                        @Html.TextBoxFor(m => m.BookAuthor, new { @class = "form-control", placeholder = "BookAuthor...", id = "bookauthor", autocomplete = "off" })
-                        @Html.ValidationMessageFor(m => m.BookAuthor, "", new { @class = "text-danger" })
-                    </div>
-                    <div class="col-xl-3 col-lg-6 col-12 form-group">
-                        <label>Teacher *</label>
-                        @Html.DropDownListFor(m => m.TeacherID, Model.TeacherList, htmlAttributes: new { @class = "select2" })
-                        @Html.ValidationMessageFor(m => m.TeacherID, "", new { @class = "text-danger" })
-                    </div>
-                    <div class="col-12 form-group mg-t-8">
-                        <input type="submit" value="Update" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark" />
-                    </div>
-                </div>
-            </form>
+                    <form class="new-added-form">
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        <div class="row">
+                            @Html.HiddenFor(m => m.SubjectID)
+                            <div class="col-xl-3 col-lg-6 col-12 form-group">
+                                <label>Book *</label>
+                                @Html.TextBoxFor(m => m.Book, new { @class = "form-control", placeholder = "Book...", id = "book", autocomplete = "off" })
+                                @Html.ValidationMessageFor(m => m.Book, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-xl-3 col-lg-6 col-12 form-group">
+                                <label>Book Author *</label>
+                                @Html.TextBoxFor(m => m.BookAuthor, new { @class = "form-control", placeholder = "BookAuthor...", id = "bookauthor", autocomplete = "off" })
+                                @Html.ValidationMessageFor(m => m.BookAuthor, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-xl-3 col-lg-6 col-12 form-group">
+                                <label>Teacher *</label>
+                                @Html.DropDownListFor(m => m.TeacherID, new SelectList(ViewBag.Teacher, "TeacherID", "FullName"), htmlAttributes: new { @class = "select2" })
+                                @Html.ValidationMessageFor(m => m.TeacherID, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-12 form-group mg-t-8">
+                                <input type="submit" value="Update" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark" />
+                            </div>
+                        </div>
+                    </form>
                 }
             </div>
         </div>

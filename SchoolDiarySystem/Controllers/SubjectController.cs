@@ -47,10 +47,8 @@ namespace SchoolDiarySystem.Controllers
             {
                 if (UserSession.GetUsers.RoleID == 1)
                 {
-                    var subject = new Subjects()
-                    {
-                        TeacherList = new SelectList(teachersDAL.GetAll(), "TeacherID", "FullName")
-                    };
+                    var subject = new Subjects();
+                    GetItemForSelectList();
                     return View(subject);
                 }
                 else
@@ -73,6 +71,7 @@ namespace SchoolDiarySystem.Controllers
                 {
                     try
                     {
+                        GetItemForSelectList();
                         if (ModelState.IsValid)
                         {
                             subject.InsertBy = UserSession.GetUsers.Username;
@@ -113,13 +112,12 @@ namespace SchoolDiarySystem.Controllers
                         return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest);
                     }
 
+                    GetItemForSelectList();
                     var subject = await Task.Run(() => subjectsDAL.Get((int)id));
                     if (subject == null)
                     {
                         return RedirectToAction(nameof(Index));
                     }
-
-                    subject.TeacherList = new SelectList(teachersDAL.GetAll(), "TeacherID", "FullName", subject.TeacherID);
                     return View(subject);
                 }
                 else
@@ -145,6 +143,7 @@ namespace SchoolDiarySystem.Controllers
                         return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest);
                     }
 
+                    GetItemForSelectList();
                     if (ModelState.IsValid)
                     {
                         try
@@ -250,6 +249,11 @@ namespace SchoolDiarySystem.Controllers
             {
                 return RedirectToAction("Login", "Account");
             }
+        }
+
+        private void GetItemForSelectList()
+        {
+            ViewBag.Teacher = teachersDAL.GetAll();
         }
     }
 }

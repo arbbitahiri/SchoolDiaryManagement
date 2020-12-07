@@ -48,14 +48,8 @@ namespace SchoolDiarySystem.Controllers
             {
                 if (UserSession.GetUsers.RoleID == 1)
                 {
-                    IEnumerable<string> genders = new List<string>() { "Male", "Female" };
-                    var student = new Students
-                    {
-                        ClassesList = new SelectList(classDAL.GetAll(), "ClassID", "ClassNo"),
-                        ParentsList = new SelectList(parentsDAL.GetAll(), "ParentID", "FullName"),
-                        GenderEnumeration = new SelectList(genders)
-                    };
-                    ViewData["student"] = student;
+                    var student = new Students();
+                    GetItemForSelectList();
                     return View(student);
                 }
                 else
@@ -78,6 +72,7 @@ namespace SchoolDiarySystem.Controllers
                 {
                     try
                     {
+                        GetItemForSelectList();
                         var errors = ModelState.Values.SelectMany(s => s.Errors);
                         if (ModelState.IsValid)
                         {
@@ -118,15 +113,12 @@ namespace SchoolDiarySystem.Controllers
                         return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest);
                     }
 
+                    GetItemForSelectList();
                     var student = await Task.Run(() => studentsDAL.Get((int)id));
                     if (student == null)
                     {
                         return RedirectToAction(nameof(Index));
                     }
-                    student.ClassesList = new SelectList(classDAL.GetAll(), "ClassID", "ClassNo", student.ParentID);
-                    student.ParentsList = new SelectList(parentsDAL.GetAll(), "ParentID", "FullName", student.ClassID);
-                    IEnumerable<string> genders = new List<string>() { "Male", "Female" };
-                    student.GenderEnumeration = new SelectList(genders);
 
                     return View(student);
                 }
@@ -153,6 +145,7 @@ namespace SchoolDiarySystem.Controllers
                         return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest);
                     }
 
+                    GetItemForSelectList();
                     var errors = ModelState.Values.SelectMany(s => s.Errors);
                     if (ModelState.IsValid)
                     {
@@ -260,6 +253,15 @@ namespace SchoolDiarySystem.Controllers
             {
                 return RedirectToAction("Login", "Account");
             }
+        }
+
+        private void GetItemForSelectList()
+        {
+            IEnumerable<string> genders = new List<string>() { "Male", "Female" };
+
+            ViewBag.Class = classDAL.GetAll();
+            ViewBag.Parent = parentsDAL.GetAll();
+            ViewBag.Gender = genders;
         }
     }
 }

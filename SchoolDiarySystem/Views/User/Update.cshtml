@@ -26,57 +26,57 @@
                 </div>
                 @using (Html.BeginForm("Update", "User", FormMethod.Post))
                 {
-            <form class="new-added-form">
-                @Html.ValidationSummary(true, "", new { @class = "alert alert-danger" })
-                <div class="row">
-                    @if (Model.RoleID == 1 || Model.RoleID == 3)
-                    {
-                        <div class="col-xl-4 col-lg-6 col-12 form-group">
-                            @Html.HiddenFor(m => m.UserID)
-                            <label>First Name *</label>
-                            @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control", placeholder = "First name...", id = "firstname", autocomplete = "off" })
-                            @Html.ValidationMessageFor(m => m.FirstName, "", new { @class = "text-danger" })
+                    <form class="new-added-form">
+                        @Html.ValidationSummary(true, "", new { @class = "alert alert-danger" })
+                        <div class="row">
+                            @if (Model.RoleID == 1 || Model.RoleID == 3)
+                            {
+                                <div class="col-xl-4 col-lg-6 col-12 form-group">
+                                    @Html.HiddenFor(m => m.UserID)
+                                    <label>First Name *</label>
+                                    @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control", placeholder = "First name...", id = "firstname", autocomplete = "off" })
+                                    @Html.ValidationMessageFor(m => m.FirstName, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="col-xl-4 col-lg-6 col-12 form-group">
+                                    <label>Last Name *</label>
+                                    @Html.TextBoxFor(m => m.LastName, new { @class = "form-control", placeholder = "Last name...", id = "lastname", autocomplete = "off" })
+                                    @Html.ValidationMessageFor(m => m.LastName, "", new { @class = "text-danger" })
+                                </div>
+                            }
+                            else if (Model.RoleID == 2)
+                            {
+                                <div class="col-xl-4 col-lg-6 col-12 form-group">
+                                    @Html.HiddenFor(m => m.UserID)
+                                    <label>Teacher *</label>
+                                    @Html.DropDownListFor(m => m.TeacherID, new SelectList(ViewBag.Teacher, "TeacherID", "FullName"), htmlAttributes: new { @class = "select2" })
+                                    @Html.ValidationMessageFor(m => m.TeacherID, "", new { @class = "text-danger" })
+                                </div>
+                            }
+                            else if (Model.RoleID == 4)
+                            {
+                                <div class="col-xl-4 col-lg-6 col-12 form-group">
+                                    @Html.HiddenFor(m => m.UserID)
+                                    <label>Parent *</label>
+                                    @Html.DropDownListFor(m => m.ParentID, new SelectList(ViewBag.Parent, "ParentID", "FullName"), new { @class = "select2" })
+                                    @Html.ValidationMessageFor(m => m.ParentID, "", new { @class = "text-danger" })
+                                </div>
+                            }
+                            <div class="col-xl-4 col-lg-4 col-12 form-group">
+                                <label>Expire Date *</label>
+                                @Html.TextBoxFor(m => m.ExpiresDate, new { @class = "form-control air-datepicker", placeholder = "dd/MMMM/yyyy", id = "expire", autocomplete = "off" })
+                                @Html.ValidationMessageFor(m => m.ExpiresDate, "", new { @class = "text-danger" })
+                                <i class="far fa-calendar-alt"></i>
+                            </div>
+                            <div class="col-xl-4 col-lg-4 col-12 form-group">
+                                <label>Username *</label>
+                                @Html.TextBoxFor(m => m.Username, new { @class = "form-control", placeholder = "Last name...", id = "username", autocomplete = "off" })
+                                @Html.ValidationMessageFor(m => m.Username, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-12 form-group mg-t-8">
+                                <input type="submit" value="Update" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark" />
+                            </div>
                         </div>
-                        <div class="col-xl-4 col-lg-6 col-12 form-group">
-                            <label>Last Name *</label>
-                            @Html.TextBoxFor(m => m.LastName, new { @class = "form-control", placeholder = "Last name...", id = "lastname", autocomplete = "off" })
-                            @Html.ValidationMessageFor(m => m.LastName, "", new { @class = "text-danger" })
-                        </div>
-                    }
-                    else if (Model.RoleID == 2)
-                    {
-                        <div class="col-xl-4 col-lg-6 col-12 form-group">
-                            @Html.HiddenFor(m => m.UserID)
-                            <label>Teacher *</label>
-                            @Html.DropDownList("TeacherID", null, new { @class = "select2" })
-                            @Html.ValidationMessageFor(m => m.TeacherID, "", new { @class = "text-danger" })
-                        </div>
-                    }
-                    else if (Model.RoleID == 4)
-                    {
-                        <div class="col-xl-4 col-lg-6 col-12 form-group">
-                            @Html.HiddenFor(m => m.UserID)
-                            <label>Parent *</label>
-                            @Html.DropDownList("ParentID", null, new { @class = "select2" })
-                            @Html.ValidationMessageFor(m => m.ParentID, "", new { @class = "text-danger" })
-                        </div>
-                    }
-                    <div class="col-xl-4 col-lg-4 col-12 form-group">
-                        <label>Expire Date *</label>
-                        @Html.TextBoxFor(m => m.ExpiresDate, new { @class = "form-control air-datepicker", placeholder = "dd/MMMM/yyyy", id = "expire", autocomplete = "off" })
-                        @Html.ValidationMessageFor(m => m.ExpiresDate, "", new { @class = "text-danger" })
-                        <i class="far fa-calendar-alt"></i>
-                    </div>
-                    <div class="col-xl-4 col-lg-4 col-12 form-group">
-                        <label>Username *</label>
-                        @Html.TextBoxFor(m => m.Username, new { @class = "form-control", placeholder = "Last name...", id = "username", autocomplete = "off" })
-                        @Html.ValidationMessageFor(m => m.Username, "", new { @class = "text-danger" })
-                    </div>
-                    <div class="col-12 form-group mg-t-8">
-                        <input type="submit" value="Update" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark" />
-                    </div>
-                </div>
-            </form>
+                    </form>
                 }
             </div>
         </div>

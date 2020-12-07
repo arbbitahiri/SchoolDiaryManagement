@@ -30,12 +30,12 @@
                         <div class="row">
                             <div class="col-xl-3 col-lg-6 col-12 form-group">
                                 <label>Select Student *</label>
-                                @Html.DropDownListFor(m => m.StudentID, Model.StudentsList, new { @class = "select2" })
+                                @Html.DropDownListFor(m => m.StudentID, new SelectList(ViewBag.Student, "StudentID", "FullName"), new { @class = "select2" })
                                 @Html.ValidationMessageFor(m => m.StudentID, "", new { @class = "text-danger" })
                             </div>
                             <div class="col-xl-3 col-lg-6 col-12 form-group">
                                 <label>Select Subject *</label>
-                                @Html.DropDownListFor(m => m.SubjectID, Model.SubjectsList, new { @class = "select2" })
+                                @Html.DropDownListFor(m => m.SubjectID, new SelectList(ViewBag.Subject, "SubjectID", "SubjectTitle"), new { @class = "select2" })
                                 @Html.ValidationMessageFor(m => m.SubjectID, "", new { @class = "text-danger" })
                             </div>
                             <div class="col-xl-3 col-lg-6 col-12 form-group">
@@ -45,7 +45,7 @@
                             </div>
                             <div class="col-xl-3 col-lg-6 col-12 form-group">
                                 <label>Select Time *</label>
-                                @Html.DropDownListFor(m => m.Time, Model.Times, new { @class = "select2" })
+                                @Html.DropDownListFor(m => m.Time, new SelectList(ViewBag.Times), new { @class = "select2" })
                                 @Html.ValidationMessageFor(m => m.Time, "", new { @class = "text-danger" })
                             </div>
                             <div class="col-xl-3 col-lg-6 col-12 form-group">

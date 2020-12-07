@@ -56,13 +56,8 @@ namespace SchoolDiarySystem.Controllers
             {
                 if (UserSession.GetUsers.RoleID == 2)
                 {
-                    IEnumerable<int> times = new List<int>() { 1, 2, 3, 4, 5, 6 };
-                    var comment = new Comments()
-                    {
-                        SubjectsList = new SelectList(subjectsDAL.GetAllForTeacher(teacher), "SubjectID", "SubjectTitle"),
-                        StudentsList = new SelectList(studentsDAL.GetAllForTeacher(teacher), "StudentID", "FullName"),
-                        Times = new SelectList(times)
-                    };
+                    var comment = new Comments();
+                    GetItemForSelectList();
                     return View(comment);
                 }
                 else
@@ -85,6 +80,7 @@ namespace SchoolDiarySystem.Controllers
                 {
                     try
                     {
+                        GetItemForSelectList();
                         var errors = ModelState.Values.SelectMany(s => s.Errors);
                         if (ModelState.IsValid)
                         {
@@ -195,15 +191,12 @@ namespace SchoolDiarySystem.Controllers
                         return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest);
                     }
 
+                    GetItemForSelectList();
                     var comment = await Task.Run(() => commentsDAL.Get((int)id));
                     if (comment == null)
                     {
                         return RedirectToAction(nameof(Index));
                     }
-                    comment.SubjectsList = new SelectList(subjectsDAL.GetAllForTeacher(teacher), "SubjectID", "SubjectTitle", comment.SubjectID);
-                    comment.StudentsList = new SelectList(studentsDAL.GetAllForTeacher(teacher), "StudentID", "FullName", comment.StudentID);
-                    IEnumerable<int> times = new List<int>() { 1, 2, 3, 4, 5, 6 };
-                    comment.Times = new SelectList(times);
 
                     return View(comment);
                 }
@@ -230,6 +223,7 @@ namespace SchoolDiarySystem.Controllers
                         return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest);
                     }
 
+                    GetItemForSelectList();
                     if (ModelState.IsValid)
                     {
                         try
@@ -317,6 +311,7 @@ namespace SchoolDiarySystem.Controllers
                 return RedirectToAction("Login", "Account");
             }
         }
+
         private void GetComment(Reviews reviews)
         {
             if (reviews != null)
@@ -327,11 +322,13 @@ namespace SchoolDiarySystem.Controllers
             }
         }
 
-        private void GetTimes()
+        private void GetItemForSelectList()
         {
             List<int> times = new List<int>() { 1, 2, 3, 4, 5, 6 };
 
-            ViewBag.Time = new SelectList(times, "Time");
+            ViewBag.Subject = subjectsDAL.GetAll();
+            ViewBag.Student = studentsDAL.GetAll();
+            ViewBag.Times = times;
         }
     }
 }

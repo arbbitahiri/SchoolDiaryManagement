@@ -111,7 +111,7 @@ namespace SchoolDiarySystem.Controllers
             {
                 if (UserSession.GetUsers.RoleID == 3)
                 {
-                    GetTeacher();
+                    GetItemForSelectList();
                     return View();
                 }
                 else
@@ -134,6 +134,7 @@ namespace SchoolDiarySystem.Controllers
                 {
                     try
                     {
+                        GetItemForSelectList();
                         if (ModelState.IsValid)
                         {
                             user.InsertBy = UserSession.GetUsers.Username;
@@ -171,7 +172,7 @@ namespace SchoolDiarySystem.Controllers
             {
                 if (UserSession.GetUsers.RoleID == 3)
                 {
-                    GetParent();
+                    GetItemForSelectList();
                     return View();
                 }
                 else
@@ -194,6 +195,7 @@ namespace SchoolDiarySystem.Controllers
                 {
                     try
                     {
+                        GetItemForSelectList();
                         if (ModelState.IsValid)
                         {
                             user.InsertBy = UserSession.GetUsers.Username;
@@ -236,12 +238,12 @@ namespace SchoolDiarySystem.Controllers
                         return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest);
                     }
 
+                    GetItemForSelectList();
                     var user = await Task.Run(() => usersDAL.Get((int)id));
                     if (user == null)
                     {
                         return RedirectToAction(nameof(Index));
                     }
-                    GetParentsAndTeachers(user);
                     return View(user);
                 }
                 else
@@ -267,6 +269,7 @@ namespace SchoolDiarySystem.Controllers
                         return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest);
                     }
 
+                    GetItemForSelectList();
                     if (ModelState.IsValid)
                     {
                         try
@@ -320,12 +323,12 @@ namespace SchoolDiarySystem.Controllers
                         return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest);
                     }
 
+                    GetItemForSelectList();
                     var user = await Task.Run(() => usersDAL.Get((int)id));
                     if (user == null)
                     {
                         return RedirectToAction(nameof(Index));
                     }
-                    GetParentsAndTeachers(user);
                     return View(user);
                 }
                 else
@@ -351,6 +354,7 @@ namespace SchoolDiarySystem.Controllers
                         return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest);
                     }
 
+                    GetItemForSelectList();
                     if (ModelState.IsValid)
                     {
                         try
@@ -362,14 +366,6 @@ namespace SchoolDiarySystem.Controllers
                             user.Password = Validation.CalculateHASH(user.Password);
 
                             var result = await Task.Run(() => usersDAL.ChangePassword(user));
-                            //if (result != true)
-                            //{
-                            //    ModelState.AddModelError(string.Empty, "An error occured while updating class.");
-                            //}
-                            //else
-                            //{
-                            //    return RedirectToAction(nameof(Index));
-                            //}
                             return RedirectToAction(nameof(Index));
                         }
                         catch (Exception)
@@ -477,20 +473,10 @@ namespace SchoolDiarySystem.Controllers
             }
         }
 
-        private void GetParentsAndTeachers(Users users)
+        private void GetItemForSelectList()
         {
-            ViewBag.ParentID = new SelectList(parentsDAL.GetAll(), "ParentID", "FullName", users.ParentID);
-            ViewBag.TeacherID = new SelectList(teachersDAL.GetAll(), "TeacherID", "FullName", users.TeacherID);
-        }
-
-        private void GetParent()
-        {
-            ViewBag.ParentID = new SelectList(parentsDAL.GetAll(), "ParentID", "FullName");
-        }
-
-        private void GetTeacher()
-        {
-            ViewBag.TeacherID = new SelectList(teachersDAL.GetAll(), "TeacherID", "FullName");
+            ViewBag.Parent = parentsDAL.GetAll();
+            ViewBag.Teacher = teachersDAL.GetAll();
         }
     }
 }

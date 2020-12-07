@@ -9,17 +9,17 @@ namespace SchoolDiarySystem.Models
     {
         public int ClassID { get; set; }
 
-        //[Display(Name = "Teacher")]
+        [Display(Name = "Teacher")]
         //[Required(ErrorMessage = "Please select a teacher!")]
         public int TeacherID { get; set; }
 
-        //[Display(Name = "Class")]
+        [Display(Name = "Class")]
         //[Required(ErrorMessage = "Please write a class number, between 1 and 9")]
         //[ValidateClassNo]
-        [Range(1, 9, ErrorMessage = "Shkruani mes 0 10")]
+        [Range(1, 9, ErrorMessage = "Please write a class number, between 1 and 9")]
         public int ClassNo { get; set; }
 
-        //[Display(Name = "Room")]
+        [Display(Name = "Room")]
         //[Required(ErrorMessage = "Please select a room!")]
         public int RoomID { get; set; }
 
