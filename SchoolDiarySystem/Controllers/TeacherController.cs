@@ -50,7 +50,7 @@ namespace SchoolDiarySystem.Controllers
                     IEnumerable<string> genders = new List<string>() { "Male", "Female" };
                     var teacher = new Teachers()
                     {
-                        Genders = new SelectList(genders)
+                        GenderEnumeration = new SelectList(genders)
                     };
                     return View(teacher);
                 }
@@ -120,7 +120,7 @@ namespace SchoolDiarySystem.Controllers
                         return RedirectToAction(nameof(Index));
                     }
                     IEnumerable<string> genders = new List<string>() { "Male", "Female" };
-                    teacher.Genders = new SelectList(genders);
+                    teacher.GenderEnumeration = new SelectList(genders);
                     return View(teacher);
                 }
                 else

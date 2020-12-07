@@ -3,9 +3,10 @@
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 @using SchoolDiarySystem.Models
+@using SchoolDiarySystem.DAL
 @model Class
 
-<div class="dashboard-page-one">
+@*<div class="dashboard-page-one">*@
     <div class="dashboard-content-one">
         <div class="breadcrumbs-area">
             <h3>Class Create Form</h3>
@@ -25,34 +26,36 @@
                 </div>
                 @using (Html.BeginForm("Create", "Class", FormMethod.Post))
                 {
-            <form class="new-added-form">
-                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                <div class="row">
-                    <div class="col-xl-4 col-lg-6 col-12 form-group">
-                        <label>Teacher *</label>
-                        @Html.DropDownListFor(m => m.TeacherID, Model.TeacherList, htmlAttributes: new { @class = "select2" })
-                        @Html.ValidationMessageFor(m => m.TeacherID, "", new { @class = "text-danger" })
-                    </div>
-                    <div class="col-xl-4 col-lg-6 col-12 form-group">
-                        <label>Class Number *</label>
-                        @Html.TextBoxFor(m => m.ClassNo, new { @class = "form-control", @placeholder = "Write class number...", @type = "number", @maxlength = 1, autocomplete = "off" })
-                        @Html.ValidationMessageFor(m => m.ClassNo)
-                    </div>
-                    <div class="col-xl-4 col-lg-6 col-12 form-group">
-                        <label>Room Type *</label>
-                        @Html.DropDownListFor(m => m.RoomID, Model.RoomList, htmlAttributes: new { @class = "select2" })
-                        @Html.ValidationMessageFor(m => m.RoomID, "", new { @class = "text-danger" })
-                    </div>
-                    <div class="col-12 form-group mg-t-8">
-                        <input type="submit" value="Create" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark" />
-                    </div>
-                </div>
-            </form>
+                    @Html.AntiForgeryToken()
+
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <form class="new-added-form">
+                        <div class="row">
+                            <div class="col-xl-4 col-lg-6 col-12 form-group">
+                                <label>Teacher *</label>
+                                @Html.DropDownListFor(m => m.TeacherID, new SelectList(ViewBag.Teacher, "TeacherID", "FullName"), htmlAttributes: new { @class = "select2" })
+                                @Html.ValidationMessageFor(m => m.TeacherID, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-xl-4 col-lg-6 col-12 form-group">
+                                <label>Class Number *</label>
+                                @Html.TextBoxFor(m => m.ClassNo, new { @class = "form-control", @placeholder = "Write class number...", @type = "number", @maxlength = 1, autocomplete = "off" })
+                                @Html.ValidationMessageFor(m => m.ClassNo)
+                            </div>
+                            <div class="col-xl-4 col-lg-6 col-12 form-group">
+                                <label>Room Type *</label>
+                                @Html.DropDownListFor(m => m.RoomID, new SelectList(ViewBag.Room, "RoomID", "RoomType"), htmlAttributes: new { @class = "select2" })
+                                @Html.ValidationMessageFor(m => m.RoomID, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-12 form-group mg-t-8">
+                                <input type="submit" value="Create" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark" />
+                            </div>
+                        </div>
+                    </form>
                 }
             </div>
         </div>
     </div>
-</div>
+@*</div>*@
 
 
 @section Scripts {}

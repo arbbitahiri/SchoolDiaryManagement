@@ -53,8 +53,9 @@ namespace SchoolDiarySystem.Controllers
                     {
                         ClassesList = new SelectList(classDAL.GetAll(), "ClassID", "ClassNo"),
                         ParentsList = new SelectList(parentsDAL.GetAll(), "ParentID", "FullName"),
-                        Genders = new SelectList(genders)
+                        GenderEnumeration = new SelectList(genders)
                     };
+                    ViewData["student"] = student;
                     return View(student);
                 }
                 else
@@ -125,7 +126,7 @@ namespace SchoolDiarySystem.Controllers
                     student.ClassesList = new SelectList(classDAL.GetAll(), "ClassID", "ClassNo", student.ParentID);
                     student.ParentsList = new SelectList(parentsDAL.GetAll(), "ParentID", "FullName", student.ClassID);
                     IEnumerable<string> genders = new List<string>() { "Male", "Female" };
-                    student.Genders = new SelectList(genders);
+                    student.GenderEnumeration = new SelectList(genders);
 
                     return View(student);
                 }

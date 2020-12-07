@@ -56,6 +56,6 @@ namespace SchoolDiarySystem.Models
             }
         }
 
-        public IEnumerable<SelectListItem> Genders { get; set; }
+        public IEnumerable<SelectListItem> GenderEnumeration { get; set; }
     }
 }

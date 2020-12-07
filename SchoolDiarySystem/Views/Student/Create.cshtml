@@ -40,7 +40,7 @@
                     </div>
                     <div class="col-xl-3 col-lg-6 col-12 form-group">
                         <label>Gender *</label>
-                        @Html.DropDownListFor(m => m.Gender, Model.Genders, new { @class = "select2" })
+                        @Html.DropDownListFor(m => m.Gender, (IEnumerable<SelectListItem>)Model.GenderEnumeration, new { @class = "select2" })
                         @Html.ValidationMessageFor(m => m.Gender)@*, "", new { @class = "text-danger" }*@
                     </div>
                     <div class="col-xl-3 col-lg-6 col-12 form-group">

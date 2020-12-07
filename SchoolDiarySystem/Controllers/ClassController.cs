@@ -48,11 +48,14 @@ namespace SchoolDiarySystem.Controllers
             {
                 if (UserSession.GetUsers.RoleID == 1)
                 {
-                    var _class = new Class
-                    {
-                        TeacherList = new SelectList(teachersDAL.GetAll(), "TeacherID", "FullName"),
-                        RoomList = new SelectList(roomsDAL.GetAll(), "RoomID", "RoomType")
-                    };
+                    //var _class = new Class
+                    //{
+                    //    TeacherList = new SelectList(teachersDAL.GetAll(), "TeacherID", "FullName"),
+                    //    RoomList = new SelectList(roomsDAL.GetAll(), "RoomID", "RoomType")
+                    //};
+                    var _class = new Class();
+                    ViewBag.Teacher = teachersDAL.GetAll();
+                    ViewBag.Room = roomsDAL.GetAll();
                     return View(_class);
                 }
                 else
@@ -75,6 +78,8 @@ namespace SchoolDiarySystem.Controllers
                 {
                     try
                     {
+                        ViewBag.Teacher = teachersDAL.GetAll();
+                        ViewBag.Room = roomsDAL.GetAll();
                         var errors = ModelState.Values.SelectMany(m => m.Errors);
                         if (ModelState.IsValid)
                         {
@@ -120,8 +125,8 @@ namespace SchoolDiarySystem.Controllers
                     {
                         return RedirectToAction(nameof(Index));
                     }
-                    _class.TeacherList = new SelectList(teachersDAL.GetAll(), "TeacherID", "FullName", _class.TeacherID);
-                    _class.RoomList = new SelectList(roomsDAL.GetAll(), "RoomID", "RoomType", _class.RoomID);
+                    //_class.TeacherList = new SelectList(teachersDAL.GetAll(), "TeacherID", "FullName", _class.TeacherID);
+                    //_class.RoomList = new SelectList(roomsDAL.GetAll(), "RoomID", "RoomType", _class.RoomID);
 
                     return View(_class);
                 }
