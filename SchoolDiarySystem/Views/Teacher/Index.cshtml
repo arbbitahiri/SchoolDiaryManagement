@@ -6,160 +6,160 @@
 @model IEnumerable<Teachers>
 
     @*<div class="dashboard-page-one">*@
-        <div class="dashboard-content-one">
-            <div class="breadcrumbs-area">
-                <h3>Teacher</h3>
-                <ul>
-                    <li>
-                        <a href="@Url.Action("Index", "Admin")">Home</a>
-                    </li>
-                    <li>All Teachers</li>
-                </ul>
-            </div>
-            <div class="col-4-xxxl col-12">
-                <div class="card height-auto">
-                    <div class="card-body">
-                        <div class="heading-layout1">
-                            <div class="item-title">
-                                <h3>Create A Teacher</h3>
-                            </div>
-                        </div>
-                        <form class="new-added-form">
-                            <div class="row">
-                                <div class="col-12 form-group mg-t-8">
-                                    <p>
-                                        @Html.ActionLink("Create", "Create", "Teacher", null, new { @class = "btn-fill-lg font-normal text-light gradient-pastel-green" })
-                                    </p>
-                                </div>
-                            </div>
-                        </form>
+@*<div class="dashboard-content-one">*@
+    <div class="breadcrumbs-area">
+        <h3>Teacher</h3>
+        <ul>
+            <li>
+                <a href="@Url.Action("Index", "Admin")">Home</a>
+            </li>
+            <li>All Teachers</li>
+        </ul>
+    </div>
+    <div class="col-4-xxxl col-12" style="display:contents">
+        <div class="card height-auto">
+            <div class="card-body">
+                <div class="heading-layout1">
+                    <div class="item-title">
+                        <h3>Create A Teacher</h3>
                     </div>
                 </div>
-            </div>
-            <div class="card height-auto">
-                <div class="card-body">
-                    <div class="heading-layout1">
-                        <div class="item-title">
-                            <h3>All Teachers Data</h3>
+                <form class="new-added-form">
+                    <div class="row">
+                        <div class="col-12 form-group mg-t-8">
+                            <p>
+                                @Html.ActionLink("Create", "Create", "Teacher", null, new { @class = "btn-fill-lg font-normal text-light gradient-pastel-green" })
+                            </p>
                         </div>
                     </div>
-                    @using (Html.BeginForm("Index", "Teacher", FormMethod.Get))
-                    {
-                        <form class="mg-b-20">
-                            <div class="row gutters-8">
-                                <div class="col-4-xxxl col-xl-10 col-lg-3 col-12 form-group">
-                                    <input type="text" autocomplete="off" placeholder="Search by Name ..." name="searchString" class="form-control">
-                                </div>
-                                <div class="col-1-xxxl col-xl-2 col-lg-3 col-12 form-group">
-                                    <button type="submit" class="fw-btn-fill btn-gradient-yellow">SEARCH</button>
-                                </div>
-                            </div>
-                        </form>
-                    }
-                    <div class="table-responsive">
-                        <div class="dataTables_wrapper no-footer">
-                            <table class="table display data-table text-nowrap">
-                                <thead>
-                                    <tr>
-                                        <th></th>
-                                        <th>First Name</th>
-                                        <th>Last Name</th>
-                                        <th>Gender</th>
-                                        <th>City</th>
-                                        <th>Qualification</th>
-                                        <th>Day of Birth</th>
-                                        <th>E-mail</th>
-                                        <th>Phone Number</th>
-                                        <th></th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach (var item in Model)
-                                    {
-                                    <tr>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="card height-auto">
+        <div class="card-body">
+            <div class="heading-layout1">
+                <div class="item-title">
+                    <h3>All Teachers Data</h3>
+                </div>
+            </div>
+            @using (Html.BeginForm("Index", "Teacher", FormMethod.Get))
+            {
+                <form class="mg-b-20">
+                    <div class="row gutters-8">
+                        <div class="col-4-xxxl col-xl-10 col-lg-3 col-12 form-group">
+                            <input type="text" autocomplete="off" placeholder="Search by Name ..." name="searchString" class="form-control">
+                        </div>
+                        <div class="col-1-xxxl col-xl-2 col-lg-3 col-12 form-group">
+                            <button type="submit" class="fw-btn-fill btn-gradient-yellow">SEARCH</button>
+                        </div>
+                    </div>
+                </form>
+            }
+            <div class="table-responsive">
+                <div class="dataTables_wrapper no-footer">
+                    <table class="table display data-table text-nowrap">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th>First Name</th>
+                                <th>Last Name</th>
+                                <th>Gender</th>
+                                <th>City</th>
+                                <th>Qualification</th>
+                                <th>Day of Birth</th>
+                                <th>E-mail</th>
+                                <th>Phone Number</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
 
-                                        <td class="text-center">
-                                                @if (item.Gender == "Male")
-                                                {
-                                                    <img src="~/Content/img/figure/student4.png" alt="teacher">
-                                                }
-                                                else
-                                                {
-                                                    <img src="~/Content/img/figure/student9.png" alt="teacher">
-                                                }
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(m => item.FirstName)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(m => item.LastName)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(m => item.Gender)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(m => item.City)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(m => item.Qualification)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(m => item.DayofBirth)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(m => item.Email)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(m => item.PhoneNo)
-                                        </td>
+                                    <td class="text-center">
+                                        @if (item.Gender == "Male")
+                                        {
+                                            <img src="~/Content/img/figure/student4.png" alt="teacher">
+                                        }
+                                        else
+                                        {
+                                            <img src="~/Content/img/figure/student9.png" alt="teacher">
+                                        }
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(m => item.FirstName)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(m => item.LastName)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(m => item.Gender)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(m => item.City)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(m => item.Qualification)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(m => item.DayofBirth)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(m => item.Email)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(m => item.PhoneNo)
+                                    </td>
 
-                                        <td>
-                                            <div class="dropdown">
-                                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                                                    <span class="flaticon-more-button-of-three-dots"></span>
-                                                </a>
-                                                <div class="dropdown-menu dropdown-menu-right">
-                                                    <a class="dropdown-item" data-toggle="modal" data-target="#standard-modal"><i class="fas fa-times text-orange-red"></i>Delete</a>
-                                                    @*<a class="dropdown-item" href="@Url.Action("Delete", "Teacher", new { id = item.TeacherID })"><i class="fas fa-times text-orange-red"></i>Delete</a>*@
-                                                    <a class="dropdown-item" href="@Url.Action("Update", "Teacher", new { id = item.TeacherID })"><i class="fas fa-cogs text-dark-pastel-green"></i>Update</a>
-                                                    <a class="dropdown-item" href="@Url.Action("Details", "Teacher", new { id = item.TeacherID })"><i class="fas fa-redo-alt text-orange-peel"></i>Details</a>
-                                                </div>
-                                                <div class="modal-box">
-                                                    <!-- Modal -->
-                                                    <div class="modal fade" id="standard-modal" tabindex="-1" role="dialog" aria-hidden="true" style="display: none;">
-                                                        <div class="modal-dialog" role="document">
-                                                            <div class="modal-content">
-                                                                <div class="modal-header">
-                                                                    <h5 class="modal-title">Sure?</h5>
-                                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                                        <span aria-hidden="true">×</span>
-                                                                    </button>
-                                                                </div>
-                                                                <div class="modal-body">
-                                                                    Are you sure you want to delete @Html.DisplayFor(m => item.FullName)?
-                                                                </div>
-                                                                <div class="modal-footer">
-                                                                    <button type="button" class="footer-btn bg-dark-low" data-dismiss="modal">No</button>
-                                                                    @using (Html.BeginForm("Delete", "Teacher", new { id = item.TeacherID }, FormMethod.Post))
-                                                                    {
-                                                                        <input type="submit" value="Yes" class="footer-btn bg-linkedin" />
-                                                                    }
-                                                                </div>
+                                    <td>
+                                        <div class="dropdown">
+                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                                <span class="flaticon-more-button-of-three-dots"></span>
+                                            </a>
+                                            <div class="dropdown-menu dropdown-menu-right">
+                                                <a class="dropdown-item" data-toggle="modal" data-target="#standard-modal"><i class="fas fa-times text-orange-red"></i>Delete</a>
+                                                @*<a class="dropdown-item" href="@Url.Action("Delete", "Teacher", new { id = item.TeacherID })"><i class="fas fa-times text-orange-red"></i>Delete</a>*@
+                                                <a class="dropdown-item" href="@Url.Action("Update", "Teacher", new { id = item.TeacherID })"><i class="fas fa-cogs text-dark-pastel-green"></i>Update</a>
+                                                <a class="dropdown-item" href="@Url.Action("Details", "Teacher", new { id = item.TeacherID })"><i class="fas fa-redo-alt text-orange-peel"></i>Details</a>
+                                            </div>
+                                            <div class="modal-box">
+                                                <!-- Modal -->
+                                                <div class="modal fade" id="standard-modal" tabindex="-1" role="dialog" aria-hidden="true" style="display: none;">
+                                                    <div class="modal-dialog" role="document">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title">Sure?</h5>
+                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                    <span aria-hidden="true">×</span>
+                                                                </button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                Are you sure you want to delete @Html.DisplayFor(m => item.FullName)?
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="footer-btn bg-dark-low" data-dismiss="modal">No</button>
+                                                                @using (Html.BeginForm("Delete", "Teacher", new { id = item.TeacherID }, FormMethod.Post))
+                                                                {
+                                                                    <input type="submit" value="Yes" class="footer-btn bg-linkedin" />
+                                                                }
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </td>
-                                    </tr>
-                                    }
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
+    </div>
+@*</div>*@
     @*</div>*@
 
 @section Scripts {}sy

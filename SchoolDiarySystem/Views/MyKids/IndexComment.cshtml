@@ -6,7 +6,7 @@
 @model IEnumerable<Comments>
 
 @*<div class="dashboard-page-one">*@
-    <div class="dashboard-content-one">
+    @*<div class="dashboard-content-one">*@
         <div class="breadcrumbs-area">
             <h3>Comment Board for My Kids</h3>
             <ul>
@@ -44,35 +44,31 @@
                         <div class="notice-board-wrap">
                             @foreach (var item in Model)
                             {
-                                <div class="notice-list">
-                                    <div class="post-date bg-skyblue">@Html.DisplayFor(m => item.CommentDate)</div>
-                                    @if (item.Review.ReviewID != 0)
-                                    {
-                                        <a href="@Url.Action("Details", "Review", new { id = item.CommentID })">
-                                            <div class="post-date bg-pink">
-                                                Reviewed
-                                            </div>
-                                        </a>
-                                    }
-                                    <h6 class="notice-title">
-                                        <a href="@Url.Action("Details", "Comment", new { id = item.CommentID })">
-                                            @Html.DisplayFor(m => item.Content)
-                                        </a>
-                                    </h6>
-                                    @if (item.Review.ReviewID != 0)
-                                    {
-                                        <div class="entry-meta"> @Html.DisplayFor(m => item.Review.Review)</div>
-                                    }
-                                    <br />
-                                    <div class="entry-meta">  @Html.DisplayFor(m => item.Student.FullName) / <span>@Html.DisplayFor(m => item.Subject.SubjectTitle)</span></div>
-                                </div>
+                            <div class="notice-list">
+                                <div class="post-date bg-skyblue">@Html.DisplayFor(m => item.CommentDate)</div>
+                                @if (item.Review.ReviewID != 0)
+                                {
+                                    <div class="post-date bg-pink">
+                                        Reviewed on @Html.DisplayFor(m => item.Review.ReviewDate)
+                                    </div>
+                                }
+                                <h6 class="notice-title">
+                                    Comment: @Html.DisplayFor(m => item.Content)
+                                </h6>
+                                @if (item.Review.ReviewID != 0)
+                                {
+                                    <div class="entry-meta">Review: @Html.DisplayFor(m => item.Review.Review)</div>
+                                }
+                                <br />
+                                <div class="entry-meta">  @Html.DisplayFor(m => item.Student.FullName) / <span>@Html.DisplayFor(m => item.Subject.SubjectTitle)</span></div>
+                            </div>
                             }
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+    @*</div>*@
 @*</div>*@
 
 

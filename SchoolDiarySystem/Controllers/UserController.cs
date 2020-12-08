@@ -426,35 +426,6 @@ namespace SchoolDiarySystem.Controllers
             }
         }
 
-        public async Task<ActionResult> Delete(int? id)
-        {
-            if (UserSession.GetUsers != null)
-            {
-                if (UserSession.GetUsers.RoleID == 3)
-                {
-                    if (id == null)
-                    {
-                        return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest);
-                    }
-
-                    var user = await Task.Run(() => usersDAL.Get((int)id));
-                    if (user == null)
-                    {
-                        return RedirectToAction(nameof(Index));
-                    }
-                    return View(user);
-                }
-                else
-                {
-                    return Content("You're not allowed to view this page!");
-                }
-            }
-            else
-            {
-                return RedirectToAction("Login", "Account");
-            }
-        }
-
         [HttpPost]
         public async Task<ActionResult> Delete(int id)
         {

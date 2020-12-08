@@ -6,17 +6,17 @@
 @model IEnumerable<Users>
 
 @*<div class="dashboard-page-one">*@
-    <div class="dashboard-content-one">
+    @*<div class="dashboard-content-one">*@
         <div class="breadcrumbs-area">
             <h3>User</h3>
             <ul>
                 <li>
-                    <a href="~/Views/Admin/Index.cshtml">Home</a>
+                    <a href="@Url.Action("Index", "Director")">Home</a>
                 </li>
                 <li>All Users</li>
             </ul>
         </div>
-        <div class="col-4-xxxl col-12">
+        <div class="col-4-xxxl col-12" style="display:contents">
             <div class="card height-auto">
                 <div class="card-body">
                     <div class="heading-layout1">
@@ -26,29 +26,11 @@
                     </div>
                     <form class="new-added-form">
                         <div class="col-12 form-group mg-t-8">
-                            <table>
-                                <tr>
-                                    <td>
-                                        @Html.ActionLink("Admin", "CreateAdmin", "User", null, new { @class = "btn-fill-lg font-normal text-light gradient-pastel-green" })
-                                    </td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td>
-                                        @Html.ActionLink("Teacher", "CreateTeacher", "User", null, new { @class = "btn-fill-lg font-normal text-light gradient-pastel-green" })
-                                    </td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td>
-                                        @Html.ActionLink("Parent", "CreateParent", "User", null, new { @class = "btn-fill-lg font-normal text-light gradient-pastel-green" })
-                                    </td>
-                                </tr>
-                            </table>
+                            <div class="heading-layout1">
+                                @Html.ActionLink("Admin", "CreateAdmin", "User", null, new { @class = "btn-fill-lg font-normal text-light gradient-pastel-green" })
+                                @Html.ActionLink("Teacher", "CreateTeacher", "User", null, new { @class = "btn-fill-lg font-normal text-light gradient-pastel-green" })
+                                @Html.ActionLink("Parent", "CreateParent", "User", null, new { @class = "btn-fill-lg font-normal text-light gradient-pastel-green" })
+                            </div>
                         </div>
                     </form>
                 </div>
@@ -142,10 +124,8 @@
                                             </a>
                                             <div class="dropdown-menu dropdown-menu-right">
                                                 <a class="dropdown-item" data-toggle="modal" data-target="#standard-modal"><i class="fas fa-times text-orange-red"></i>Delete</a>
-                                                @*<a class="dropdown-item" href="@Url.Action("Delete", "User", new { id = item.UserID })"><i class="fas fa-times text-orange-red"></i>Delete</a>*@
                                                 <a class="dropdown-item" href="@Url.Action("Update", "User", new { id = item.UserID })"><i class="fas fa-cogs text-dark-pastel-green"></i>Update</a>
                                                 <a class="dropdown-item" href="@Url.Action("ChangePassword", "User", new { id = item.UserID })"><i class="fas fa-redo-alt text-orange-peel"></i>Change Password</a>
-                                                <a class="dropdown-item" href="@Url.Action("Details", "User", new { id = item.UserID })"><i class="fas fa-redo-alt text-orange-peel"></i>Details</a>
                                             </div>
                                             <div class="modal-box">
                                                 <!-- Modal -->
@@ -181,7 +161,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    @*</div>*@
 @*</div>*@
 
 @section Scripts {}

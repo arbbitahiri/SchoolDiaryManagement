@@ -6,7 +6,7 @@
 @model IEnumerable<Topics>
 
 @*<div class="dashboard-page-one">*@
-    <div class="dashboard-content-one">
+    @*<div class="dashboard-content-one">*@
         <div class="breadcrumbs-area">
             <h3>Topic Board</h3>
             <ul>
@@ -47,9 +47,7 @@
                                 <div class="notice-list">
                                     <div class="post-date bg-skyblue">@Html.DisplayFor(m => item.TopicDate)</div>
                                     <h6 class="notice-title">
-                                        <a href="@Url.Action("Details", "Topic", new { id = item.TopicID })">
                                             @Html.DisplayFor(m => item.Content)
-                                        </a>
                                     </h6>
                                     <div class="entry-meta">@Html.DisplayFor(m => item.Subject.SubjectTitle) | Class Time: @Html.DisplayFor(m => item.Time) / <span>Class: @Html.DisplayFor(m => item.Class.ClassNo)</span></div>
                                 </div>
@@ -59,7 +57,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    @*</div>*@
 @*</div>*@
 
 
