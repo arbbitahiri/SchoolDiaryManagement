@@ -72,16 +72,26 @@ namespace SchoolDiarySystem.Controllers
                     try
                     {
                         GetItemForSelectList();
-                        if (ModelState.IsValid)
+                        var subjects = await Task.Run(() => subjectsDAL.GetAll());
+                        var checkSubjects = subjects.Where(s => s.SubjectTitle == subject.SubjectTitle && s.TeacherID == subject.TeacherID).ToList();
+                        if (checkSubjects.Count > 0)
                         {
-                            subject.InsertBy = UserSession.GetUsers.Username;
-                            subject.LUB = UserSession.GetUsers.Username;
-                            subject.LUN++;
-
-                            var result = await Task.Run(() => subjectsDAL.Create(subject));
-                            return RedirectToAction(nameof(Index));
+                            ModelState.AddModelError(string.Empty, "Subject you're trying to create, already exists!");
+                            return View(subject);
                         }
-                        return View(subject);
+                        else
+                        {
+                            if (ModelState.IsValid)
+                            {
+                                subject.InsertBy = UserSession.GetUsers.Username;
+                                subject.LUB = UserSession.GetUsers.Username;
+                                subject.LUN++;
+
+                                var result = await Task.Run(() => subjectsDAL.Create(subject));
+                                return RedirectToAction(nameof(Index));
+                            }
+                            return View(subject);
+                        }
                     }
                     catch (Exception)
                     {

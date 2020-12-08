@@ -16,7 +16,7 @@ namespace SchoolDiarySystem.Controllers
         private readonly StudentsDAL studentsDAL = new StudentsDAL();
         private readonly ClassDAL classDAL = new ClassDAL();
         private readonly ReviewsDAL reviewsDAL = new ReviewsDAL();
-        private readonly int teacher = UserSession.GetUsers.TeacherID;
+        private readonly int teacher = !string.IsNullOrEmpty(UserSession.GetUsers.TeacherID.ToString()) ? UserSession.GetUsers.TeacherID : 0;
 
         // GET: Comment
         public async Task<ActionResult> Index(string searchString, string searchString2)
@@ -326,8 +326,8 @@ namespace SchoolDiarySystem.Controllers
         {
             List<int> times = new List<int>() { 1, 2, 3, 4, 5, 6 };
 
-            ViewBag.Subject = subjectsDAL.GetAll();
-            ViewBag.Student = studentsDAL.GetAll();
+            ViewBag.Subject = subjectsDAL.GetAllForTeacher(teacher);
+            ViewBag.Student = studentsDAL.GetAllForTeacher(teacher);
             ViewBag.Times = times;
         }
     }

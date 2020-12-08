@@ -135,19 +135,29 @@ namespace SchoolDiarySystem.Controllers
                     try
                     {
                         GetItemForSelectList();
-                        if (ModelState.IsValid)
+                        var users = await Task.Run(() => usersDAL.GetAll());
+                        var checkUsers = users.Where(u => u.Username == user.Username).ToList();
+                        if (checkUsers.Count > 0)
                         {
-                            user.InsertBy = UserSession.GetUsers.Username;
-                            user.LUB = UserSession.GetUsers.Username;
-                            user.LUN++;
-                            user.RoleID = 2;
-                            user.ParentID = 0;
-                            user.Password = Validation.CalculateHASH(user.Password);
-
-                            var result = await Task.Run(() => usersDAL.Create(user));
-                            return RedirectToAction(nameof(Index));
+                            ModelState.AddModelError(string.Empty, "Username you're trying to create, already exists!");
+                            return View(user);
                         }
-                        return View(user);
+                        else
+                        {
+                            if (ModelState.IsValid)
+                            {
+                                user.InsertBy = UserSession.GetUsers.Username;
+                                user.LUB = UserSession.GetUsers.Username;
+                                user.LUN++;
+                                user.RoleID = 2;
+                                user.ParentID = 0;
+                                user.Password = Validation.CalculateHASH(user.Password);
+
+                                var result = await Task.Run(() => usersDAL.Create(user));
+                                return RedirectToAction(nameof(Index));
+                            }
+                            return View(user);
+                        }
                     }
                     catch (Exception)
                     {

@@ -15,7 +15,7 @@ namespace SchoolDiarySystem.Controllers
         private readonly ClassDAL classesDAL = new ClassDAL();
         private readonly CommentsDAL commentsDAL = new CommentsDAL();
         private readonly TopicsDAL topicsDAL = new TopicsDAL();
-        private readonly int parent = UserSession.GetUsers.ParentID;
+        private readonly int parent = !string.IsNullOrEmpty(UserSession.GetUsers.ParentID.ToString()) ? UserSession.GetUsers.ParentID : 0;
 
         // GET: MyKids
         public async Task<ActionResult> Index()

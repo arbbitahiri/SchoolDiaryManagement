@@ -68,16 +68,26 @@ namespace SchoolDiarySystem.Controllers
                 {
                     try
                     {
-                        if (ModelState.IsValid)
+                        var rooms = await Task.Run(() => roomsDAL.GetAll());
+                        var checkRooms = rooms.Where(r => r.RoomNo == room.RoomNo).ToList();
+                        if (checkRooms.Count > 0)
                         {
-                            room.InsertBy = UserSession.GetUsers.Username;
-                            room.LUB = UserSession.GetUsers.Username;
-                            room.LUN++;
-
-                            var result = await Task.Run(() => roomsDAL.Create(room));
-                            return RedirectToAction(nameof(Index));
+                            ModelState.AddModelError(string.Empty, "Room you're trying to create, already exists!");
+                            return View(room);
                         }
-                        return View(room);
+                        else
+                        {
+                            if (ModelState.IsValid)
+                            {
+                                room.InsertBy = UserSession.GetUsers.Username;
+                                room.LUB = UserSession.GetUsers.Username;
+                                room.LUN++;
+
+                                var result = await Task.Run(() => roomsDAL.Create(room));
+                                return RedirectToAction(nameof(Index));
+                            }
+                            return View(room);
+                        }
                     }
                     catch (Exception)
                     {

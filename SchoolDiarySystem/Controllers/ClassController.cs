@@ -48,11 +48,6 @@ namespace SchoolDiarySystem.Controllers
             {
                 if (UserSession.GetUsers.RoleID == 1)
                 {
-                    //var _class = new Class
-                    //{
-                    //    TeacherList = new SelectList(teachersDAL.GetAll(), "TeacherID", "FullName"),
-                    //    RoomList = new SelectList(roomsDAL.GetAll(), "RoomID", "RoomType")
-                    //};
                     var _class = new Class();
                     ViewBag.Teacher = teachersDAL.GetAll();
                     ViewBag.Room = roomsDAL.GetAll();
@@ -80,17 +75,27 @@ namespace SchoolDiarySystem.Controllers
                     {
                         ViewBag.Teacher = teachersDAL.GetAll();
                         ViewBag.Room = roomsDAL.GetAll();
-                        var errors = ModelState.Values.SelectMany(m => m.Errors);
-                        if (ModelState.IsValid)
-                        {
-                            _class.InsertBy = UserSession.GetUsers.Username;
-                            _class.LUB = UserSession.GetUsers.Username;
-                            _class.LUN++;
 
-                            var result = await Task.Run(() => classDAL.Create(_class));
-                            return RedirectToAction(nameof(Index));
+                        var classes = await Task.Run(() => classDAL.GetAll());
+                        var checkClasses = classes.Where(c => c.ClassNo == _class.ClassNo && c.TeacherID == _class.TeacherID).ToList();
+                        if (checkClasses.Count > 0)
+                        {
+                            ModelState.AddModelError(string.Empty, "Class you're trying to create, already exists!");
+                            return View(_class);
                         }
-                        return View(_class);
+                        else
+                        {
+                            if (ModelState.IsValid)
+                            {
+                                _class.InsertBy = UserSession.GetUsers.Username;
+                                _class.LUB = UserSession.GetUsers.Username;
+                                _class.LUN++;
+
+                                var result = await Task.Run(() => classDAL.Create(_class));
+                                return RedirectToAction(nameof(Index));
+                            }
+                            return View(_class);
+                        }
                     }
                     catch (Exception)
                     {

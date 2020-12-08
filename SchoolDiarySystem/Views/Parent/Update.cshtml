@@ -25,30 +25,30 @@
                 </div>
                 @using (Html.BeginForm("Update", "Parent", FormMethod.Post))
                 {
-            <form class="new-added-form">
-                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                <div class="row">
-                    @Html.HiddenFor(m => m.ParentID)
-                    <div class="col-xl-3 col-lg-6 col-12 form-group">
-                        <label>First Name *</label>
-                        @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control", placeholder = "First name...", id = "firstname", autocomplete = "off" })
-                        @Html.ValidationMessageFor(m => m.FirstName, "", new { @class = "text-danger" })
-                    </div>
-                    <div class="col-xl-3 col-lg-6 col-12 form-group">
-                        <label>Last Name *</label>
-                        @Html.TextBoxFor(m => m.LastName, new { @class = "form-control", placeholder = "Last name...", id = "lastname", autocomplete = "off" })
-                        @Html.ValidationMessageFor(m => m.LastName, "", new { @class = "text-danger" })
-                    </div>
-                    <div class="col-xl-3 col-lg-6 col-12 form-group">
-                        <label>City *</label>
-                        @Html.TextBoxFor(m => m.City, new { @class = "form-control", placeholder = "City...", id = "city", autocomplete = "off" })
-                        @Html.ValidationMessageFor(m => m.City, "", new { @class = "text-danger" })
-                    </div>
-                    <div class="col-12 form-group mg-t-8">
-                        <input type="submit" value="Update" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark" />
-                    </div>
-                </div>
-            </form>
+                    @Html.ValidationSummary(true, "", new { @class = "alert alert-danger" })
+                    <form class="new-added-form">
+                        <div class="row">
+                            @Html.HiddenFor(m => m.ParentID)
+                            <div class="col-xl-3 col-lg-6 col-12 form-group">
+                                <label>First Name *</label>
+                                @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control", placeholder = "First name...", id = "firstname", autocomplete = "off" })
+                                @Html.ValidationMessageFor(m => m.FirstName, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-xl-3 col-lg-6 col-12 form-group">
+                                <label>Last Name *</label>
+                                @Html.TextBoxFor(m => m.LastName, new { @class = "form-control", placeholder = "Last name...", id = "lastname", autocomplete = "off" })
+                                @Html.ValidationMessageFor(m => m.LastName, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-xl-3 col-lg-6 col-12 form-group">
+                                <label>City *</label>
+                                @Html.TextBoxFor(m => m.City, new { @class = "form-control", placeholder = "City...", id = "city", autocomplete = "off" })
+                                @Html.ValidationMessageFor(m => m.City, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-12 form-group mg-t-8">
+                                <input type="submit" value="Update" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark" />
+                            </div>
+                        </div>
+                    </form>
                 }
             </div>
         </div>

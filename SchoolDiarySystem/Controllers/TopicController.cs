@@ -14,7 +14,7 @@ namespace SchoolDiarySystem.Controllers
         private readonly TopicsDAL topicsDAL = new TopicsDAL();
         private readonly ClassDAL classDAL = new ClassDAL();
         private readonly SubjectsDAL subjectsDAL = new SubjectsDAL();
-        private readonly int teacher = UserSession.GetUsers.TeacherID;
+        private readonly int teacher = !string.IsNullOrEmpty(UserSession.GetUsers.TeacherID.ToString()) ? UserSession.GetUsers.TeacherID : 0;
 
         // GET: Topic
         public async Task<ActionResult> Index(string searchString, string searchString2, string searchString3)
@@ -60,7 +60,7 @@ namespace SchoolDiarySystem.Controllers
                 if (UserSession.GetUsers.RoleID == 2)
                 {
                     var topic = new Topics();
-                    GetItemForSelectList();
+                    GetItemForSelectList(teacher);
                     return View(topic);
                 }
                 else
@@ -83,17 +83,28 @@ namespace SchoolDiarySystem.Controllers
                 {
                     try
                     {
-                        GetItemForSelectList();
-                        if (ModelState.IsValid)
+                        GetItemForSelectList(teacher);
+                        var topics = await Task.Run(() => topicsDAL.GetAll());
+                        var checkTopics = topics.Where(t => t.ClassID == topic.ClassID && t.SubjectID == topic.SubjectID
+                            && t.Time == topic.Time && t.TopicDate == topic.TopicDate).ToList();
+                        if (checkTopics.Count > 0)
                         {
-                            topic.InsertBy = UserSession.GetUsers.Username;
-                            topic.LUB = UserSession.GetUsers.Username;
-                            topic.LUN++;
-
-                            var result = await Task.Run(() => topicsDAL.Create(topic));
-                            return RedirectToAction(nameof(Index));
+                            ModelState.AddModelError(string.Empty, "Topic you're trying to create, already exists!");
+                            return View(topic);
                         }
-                        return View(topic);
+                        else
+                        {
+                            if (ModelState.IsValid)
+                            {
+                                topic.InsertBy = UserSession.GetUsers.Username;
+                                topic.LUB = UserSession.GetUsers.Username;
+                                topic.LUN++;
+
+                                var result = await Task.Run(() => topicsDAL.Create(topic));
+                                return RedirectToAction(nameof(Index));
+                            }
+                            return View(topic);
+                        }
                     }
                     catch (Exception)
                     {
@@ -123,7 +134,7 @@ namespace SchoolDiarySystem.Controllers
                         return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest);
                     }
 
-                    GetItemForSelectList();
+                    GetItemForSelectList(teacher);
                     var topic = await Task.Run(() => topicsDAL.Get((int)id));
                     if (topic == null)
                     {
@@ -154,7 +165,7 @@ namespace SchoolDiarySystem.Controllers
                         return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest);
                     }
 
-                    GetItemForSelectList();
+                    GetItemForSelectList(teacher);
                     var errors = ModelState.Values.SelectMany(s => s.Errors);
                     if (ModelState.IsValid)
                     {
@@ -264,12 +275,12 @@ namespace SchoolDiarySystem.Controllers
             }
         }
 
-        private void GetItemForSelectList()
+        private void GetItemForSelectList(int teacherID)
         {
             IEnumerable<int> times = new List<int>() { 1, 2, 3, 4, 5, 6 };
 
-            ViewBag.Class = classDAL.GetAll();
-            ViewBag.Subject = subjectsDAL.GetAll();
+            ViewBag.Class = classDAL.GetAllForTeacher(teacherID);
+            ViewBag.Subject = subjectsDAL.GetAllForTeacher(teacherID);
             ViewBag.Times = times;
         }
     }

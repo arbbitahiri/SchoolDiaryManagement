@@ -26,8 +26,8 @@
                 </div>
                 @using (Html.BeginForm("Update", "User", FormMethod.Post))
                 {
+                    @Html.ValidationSummary(true, "", new { @class = "alert alert-danger" })
                     <form class="new-added-form">
-                        @Html.ValidationSummary(true, "", new { @class = "alert alert-danger" })
                         <div class="row">
                             @if (Model.RoleID == 1 || Model.RoleID == 3)
                             {

@@ -21,8 +21,8 @@
                 </div>
                 @using (Html.BeginForm("Review", "Comment", FormMethod.Post))
                 {
+                    @Html.ValidationSummary(true, "", new { @class = "alert alert-danger" })
                     <form class="new-added-form">
-                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                         <div class="row">
                             <div class="col-xl-8 col-lg-6 col-12 form-group">
                                 <label>Review *</label>

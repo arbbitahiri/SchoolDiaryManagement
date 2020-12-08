@@ -13,7 +13,7 @@ namespace SchoolDiarySystem.Controllers
     public class ProfessorController : Controller
     {
         private readonly StudentsDAL studentsDAL = new StudentsDAL();
-        private readonly int teacher = UserSession.GetUsers.TeacherID;
+        private readonly int teacher = !string.IsNullOrEmpty(UserSession.GetUsers.TeacherID.ToString()) ? UserSession.GetUsers.TeacherID : 0;
 
         // GET: Professor
         public async Task<ActionResult> Index(string searchString)
