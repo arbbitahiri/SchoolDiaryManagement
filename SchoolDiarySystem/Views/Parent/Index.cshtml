@@ -5,7 +5,7 @@
 @using SchoolDiarySystem.Models
 @model IEnumerable<Parents>
 
-<div class="dashboard-page-one">
+@*<div class="dashboard-page-one">*@
     <div class="dashboard-content-one">
         <div class="breadcrumbs-area">
             <h3>Parent</h3>
@@ -88,35 +88,8 @@
                                                 <span class="flaticon-more-button-of-three-dots"></span>
                                             </a>
                                             <div class="dropdown-menu dropdown-menu-right">
-                                                <a class="dropdown-item modal-trigger" data-toggle="modal" data-target="#standard-modal"><i class="fas fa-times text-orange-red"></i>Delete</a>
-                                                @*<a class="dropdown-item" href="@Url.Action("Delete", "Parent", new { id = item.ParentID })"><i class="fas fa-times text-orange-red"></i>Delete</a>*@
                                                 <a class="dropdown-item" href="@Url.Action("Update", "Parent", new { id = item.ParentID })"><i class="fas fa-cogs text-dark-pastel-green"></i>Update</a>
                                                 <a class="dropdown-item" href="@Url.Action("Details", "Parent", new { id = item.ParentID })"><i class="fas fa-redo-alt text-orange-peel"></i>Details</a>
-                                            </div>
-                                            <div class="modal-box">
-                                                <!-- Modal -->
-                                                <div class="modal fade" id="standard-modal" tabindex="-1" role="dialog" aria-hidden="true" style="display: none;">
-                                                    <div class="modal-dialog" role="document">
-                                                        <div class="modal-content">
-                                                            <div class="modal-header">
-                                                                <h5 class="modal-title">Sure?</h5>
-                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                                    <span aria-hidden="true">×</span>
-                                                                </button>
-                                                            </div>
-                                                            <div class="modal-body">
-                                                                Are you sure you want to delete @Html.DisplayFor(m => item.FullName)?
-                                                            </div>
-                                                            <div class="modal-footer">
-                                                                <button type="button" class="footer-btn bg-dark-low" data-dismiss="modal">No</button>
-                                                                @using (Html.BeginForm("Delete", "Parent", new { id = item.ParentID }, FormMethod.Post))
-                                                                {
-                                                                    <input type="submit" value="Yes" class="footer-btn bg-linkedin" />
-                                                                }
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
                                             </div>
                                         </div>
                                     </td>
@@ -128,6 +101,6 @@
             </div>
         </div>
     </div>
-</div>
+@*</div>*@
 
 @section Scripts {}

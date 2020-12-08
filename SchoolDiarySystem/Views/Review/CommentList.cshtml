@@ -5,7 +5,7 @@
 @using SchoolDiarySystem.Models
 @model IEnumerable<Comments>
 
-<div class="dashboard-page-one">
+@*<div class="dashboard-page-one">*@
     <div class="dashboard-content-one">
         <div class="breadcrumbs-area">
             <h3>Comment Board</h3>
@@ -48,11 +48,9 @@
                                     <div class="post-date bg-skyblue">@Html.DisplayFor(m => item.CommentDate)</div>
                                     @if (item.Review.ReviewID != 0)
                                     {
-                                        <a href="@Url.Action("Details", "Review", new { id = item.CommentID })">
-                                            <div class="post-date bg-pink">
-                                                Reviewed on @Html.DisplayFor(m => item.Review.ReviewDate)
-                                            </div>
-                                        </a>
+                                        <div class="post-date bg-pink">
+                                            Reviewed on @Html.DisplayFor(m => item.Review.ReviewDate)
+                                        </div>
                                         <h6 class="notice-title">
                                             @Html.DisplayFor(m => item.Content)
                                         </h6>
@@ -76,7 +74,7 @@
             </div>
         </div>
     </div>
-</div>
+@*</div>*@
 
 
 @section Scripts {}

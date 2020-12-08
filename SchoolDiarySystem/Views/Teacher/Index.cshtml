@@ -5,9 +5,7 @@
 @using SchoolDiarySystem.Models
 @model IEnumerable<Teachers>
 
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<div id="wrapper" class="wrapper bg-ash">
-    <div class="dashboard-page-one">
+    @*<div class="dashboard-page-one">*@
         <div class="dashboard-content-one">
             <div class="breadcrumbs-area">
                 <h3>Teacher</h3>
@@ -121,7 +119,7 @@
                                                     <span class="flaticon-more-button-of-three-dots"></span>
                                                 </a>
                                                 <div class="dropdown-menu dropdown-menu-right">
-                                                    <a class="dropdown-item modal-trigger" data-toggle="modal" data-target="#standard-modal"><i class="fas fa-times text-orange-red"></i>Delete</a>
+                                                    <a class="dropdown-item" data-toggle="modal" data-target="#standard-modal"><i class="fas fa-times text-orange-red"></i>Delete</a>
                                                     @*<a class="dropdown-item" href="@Url.Action("Delete", "Teacher", new { id = item.TeacherID })"><i class="fas fa-times text-orange-red"></i>Delete</a>*@
                                                     <a class="dropdown-item" href="@Url.Action("Update", "Teacher", new { id = item.TeacherID })"><i class="fas fa-cogs text-dark-pastel-green"></i>Update</a>
                                                     <a class="dropdown-item" href="@Url.Action("Details", "Teacher", new { id = item.TeacherID })"><i class="fas fa-redo-alt text-orange-peel"></i>Details</a>
@@ -162,7 +160,6 @@
                 </div>
             </div>
         </div>
-    </div>
-</div>
+    @*</div>*@
 
-@section Scripts {}
+@section Scripts {}sy

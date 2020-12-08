@@ -5,7 +5,7 @@
 @using SchoolDiarySystem.Models
 @model IEnumerable<Reviews>
 
-<div class="dashboard-page-one">
+@*<div class="dashboard-page-one">*@
     <div class="dashboard-content-one">
         <div class="breadcrumbs-area">
             <h3>Review Board</h3>
@@ -31,7 +31,6 @@
                                 <div class="row gutters-8">
                                     <div class="col-lg-5 col-12 form-group">
                                         <input type="tel"  autocomplete="off" name="searchString" placeholder="Search by Date ..." class="form-control air-datepicker">
-                                        <i class="far fa-calendar-alt"></i>
                                     </div>
                                     <div class="col-lg-5 col-12 form-group">
                                         <input type="text"  autocomplete="off" name="searchString2" placeholder="Search by Subject ..." class="form-control">
@@ -46,13 +45,19 @@
                             @foreach (var item in Model)
                             {
                                 <div class="notice-list">
-                                    <div class="post-date bg-skyblue">@Html.DisplayFor(m => item.ReviewDate)</div>
-                                    <h6 class="notice-title">
-                                        <a href="@Url.Action("Details", new { id = item.ReviewID })">
-                                            @Html.DisplayFor(m => item.Review)
-                                        </a>
-                                    </h6>
-                                    <div class="entry-meta"> @Html.DisplayFor(m => item.Comment.Content)</div>
+                                    <div class="heading-layout1">
+                                        <div class="post-date bg-skyblue">@Html.DisplayFor(m => item.ReviewDate)</div>
+                                        <div class="dropdown">
+                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                                <span class="flaticon-more-button-of-three-dots"></span>
+                                            </a>
+                                            <div class="dropdown-menu dropdown-menu-right">
+                                                <a class="dropdown-item" href="@Url.Action("Update", "Review", new { id = item.ReviewID })"><i class="fas fa-cogs text-dark-pastel-green"></i>Update</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <h6 class="notice-title">Review: @Html.DisplayFor(m => item.Review)</h6>
+                                    <div class="entry-meta">Comment: @Html.DisplayFor(m => item.Comment.Content)</div>
                                     <br />
                                     <div class="entry-meta">  @Html.DisplayFor(m => item.Comment.Student.FullName) / <span>@Html.DisplayFor(m => item.Comment.Subject.SubjectTitle)</span></div>
                                 </div>
@@ -63,7 +68,7 @@
             </div>
         </div>
     </div>
-</div>
+@*</div>*@
 
 
 @section Scripts {}

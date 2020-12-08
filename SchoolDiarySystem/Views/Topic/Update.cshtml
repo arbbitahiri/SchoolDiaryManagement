@@ -5,7 +5,7 @@
 @using SchoolDiarySystem.Models
 @model Topics
 
-<div class="dashboard-page-one">
+@*<div class="dashboard-page-one">*@
     <div class="dashboard-content-one">
         <div class="breadcrumbs-area">
             <h3>Topic</h3>
@@ -38,16 +38,16 @@
                                 <label>Select Date *</label>
                                 @Html.TextBoxFor(m => m.TopicDate, new { @class = "form-control air-datepicker", placeholder = "dd/MMMM/yyyy", id = "topicdate", autocomplete = "off" })
                                 @Html.ValidationMessageFor(m => m.TopicDate, "", new { @class = "text-danger" })
+                                <i class="far fa-calendar-alt"></i>
                             </div>
                             <div class="col-xl-4 col-lg-6 col-12 form-group">
                                 <label>Select Time *</label>
                                 @Html.DropDownListFor(m => m.Time, new SelectList(ViewBag.Times), new { @class = "select2" })
                                 @Html.ValidationMessageFor(m => m.Time, "", new { @class = "text-danger" })
-                                <i class="far fa-calendar-alt"></i>
                             </div>
                             <div class="col-xl-6 col-lg-6 col-12 form-group">
                                 <label>Content *</label>
-                                @Html.TextAreaFor(m => m.Content, new { @class = "textarea form-control", placeholder = "Last name...", id = "content", autocomplete = "off" })
+                                @Html.TextAreaFor(m => m.Content, new { @class = "textarea form-control", placeholder = "Last name...", id = "content", autocomplete = "off", style = "margin-top: 0px; margin-bottom: 0px; height: 150px;" })
                                 @Html.ValidationMessageFor(m => m.Content, "", new { @class = "text-danger" })
                             </div>
                             <div class="col-12 form-group mg-t-8">
@@ -59,6 +59,6 @@
             </div>
         </div>
     </div>
-</div>
+@*</div>*@
 
 @section Scripts {}
