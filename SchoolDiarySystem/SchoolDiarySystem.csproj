@@ -331,7 +331,7 @@
     <Content Include="Views\Comment\Create.cshtml" />
     <Content Include="Views\Comment\Update.cshtml" />
     <Content Include="Views\Review\Index.cshtml" />
-    <Content Include="Views\Comment\Review.cshtml" />
+    <Content Include="Views\Review\Review.cshtml" />
     <Content Include="Views\Review\Update.cshtml" />
     <Content Include="Views\Shared\_LayoutTeacher.cshtml" />
     <Content Include="Views\Shared\_LayoutDirector.cshtml" />

@@ -73,12 +73,11 @@
                                     }
                                     <tr>
                                         <td>
-                                            @using (Html.BeginForm("Update", "User", new { id = Model.ParentID }, FormMethod.Post))
-                                            {
+                                            <a href="@Url.Action("Update", "User", new { id = Model.UserID })">
                                                 <div class="col-12 form-group mg-t-8">
                                                     <input type="submit" value="Update" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark" />
                                                 </div>
-                                            }
+                                            </a>
                                         </td>
                                     </tr>
                                 </tbody>

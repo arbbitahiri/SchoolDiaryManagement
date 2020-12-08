@@ -4,110 +4,174 @@
 }
 
 @*<div class="dashboard-page-one">*@
-    @*<div class="dashboard-content-one">*@
-        <div class="breadcrumbs-area">
-            <h3>Admin Dashboard</h3>
-            <ul>
-                <li>
-                    <a href="@Url.Action("Index", "Admin")">Home</a>
-                </li>
-                <li>Admin</li>
-            </ul>
-        </div>
-        <div class="row gutters-20">
-            <div class="col-xl-4 col-sm-6 col-12">
-                <div class="dashboard-summery-one mg-b-20">
-                    <div class="row align-items-center">
-                        <div class="col-6">
-                            <div class="item-icon bg-light-green ">
-                                <i class="flaticon-classmates text-green"></i>
-                            </div>
-                        </div>
-                        <div class="col-6">
-                            <div class="item-content">
-                                <div class="item-title">Students</div>
-                                <div class="item-number"><span class="counter" data-num="@ViewBag.Students">@ViewBag.Students</span></div>
-                            </div>
-                        </div>
+@*<div class="dashboard-content-one">*@
+<div class="breadcrumbs-area">
+    <h3>Admin Dashboard</h3>
+    <ul>
+        <li>
+            <a href="@Url.Action("Index", "Admin")">Home</a>
+        </li>
+        <li>Admin</li>
+    </ul>
+</div>
+<div class="row gutters-20">
+    <div class="col-xl-4 col-sm-6 col-12">
+        <div class="dashboard-summery-one mg-b-20">
+            <div class="row align-items-center">
+                <div class="col-6">
+                    <div class="item-icon bg-light-green ">
+                        <i class="flaticon-classmates text-green"></i>
                     </div>
                 </div>
-            </div>
-            <div class="col-xl-4 col-sm-6 col-12">
-                <div class="dashboard-summery-one mg-b-20">
-                    <div class="row align-items-center">
-                        <div class="col-6">
-                            <div class="item-icon bg-light-blue">
-                                <i class="flaticon-multiple-users-silhouette text-blue"></i>
-                            </div>
-                        </div>
-                        <div class="col-6">
-                            <div class="item-content">
-                                <div class="item-title">Teachers</div>
-                                <div class="item-number"><span class="counter" data-num="@ViewBag.Teachers">@ViewBag.Teachers</span></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xl-4 col-sm-6 col-12">
-                <div class="dashboard-summery-one mg-b-20">
-                    <div class="row align-items-center">
-                        <div class="col-6">
-                            <div class="item-icon bg-light-yellow">
-                                <i class="flaticon-couple text-orange"></i>
-                            </div>
-                        </div>
-                        <div class="col-6">
-                            <div class="item-content">
-                                <div class="item-title">Parents</div>
-                                <div class="item-number"><span class="counter" data-num="@ViewBag.Parents">@ViewBag.Parents</span></div>
-                            </div>
-                        </div>
+                <div class="col-6">
+                    <div class="item-content">
+                        <div class="item-title">Students</div>
+                        <div class="item-number"><span class="counter" data-num="@ViewBag.Students">@ViewBag.Students</span></div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="row gutters-20">
-            <div class="col-12 col-xl-6 col-3-xxxl">
-                <div class="card dashboard-card-three pd-b-20">
-                    <div class="card-body">
-                        <div class="heading-layout1">
-                            <div class="item-title">
-                                <h3>Students</h3>
-                            </div>
-                        </div>
-                        <div class="doughnut-chart-wrap">
-                            <canvas id="student-doughnut-chart" width="100" height="300"></canvas>
-                        </div>
-                        <div class="student-report">
-                            <div class="student-count pseudo-bg-blue">
-                                <h4 class="item-title">Female Students</h4>
-                                <div class="item-number">45,000</div>
-                            </div>
-                            <div class="student-count pseudo-bg-yellow">
-                                <h4 class="item-title">Male Students</h4>
-                                <div class="item-number">5,000</div>
-                            </div>
-                        </div>
+    </div>
+    <div class="col-xl-4 col-sm-6 col-12">
+        <div class="dashboard-summery-one mg-b-20">
+            <div class="row align-items-center">
+                <div class="col-6">
+                    <div class="item-icon bg-light-blue">
+                        <i class="flaticon-multiple-users-silhouette text-blue"></i>
                     </div>
                 </div>
-            </div>
-            <div class="col-12 col-xl-6 col-4-xxxl">
-                <div class="card dashboard-card-four pd-b-20">
-                    <div class="card-body">
-                        <div class="heading-layout1">
-                            <div class="item-title">
-                                <h3>Event Calender</h3>
-                            </div>
-                        </div>
-                        <div class="calender-wrap">
-                            <div id="fc-calender" class="fc-calender"></div>
-                        </div>
+                <div class="col-6">
+                    <div class="item-content">
+                        <div class="item-title">Teachers</div>
+                        <div class="item-number"><span class="counter" data-num="@ViewBag.Teachers">@ViewBag.Teachers</span></div>
                     </div>
                 </div>
             </div>
         </div>
-    @*</div>*@
+    </div>
+    <div class="col-xl-4 col-sm-6 col-12">
+        <div class="dashboard-summery-one mg-b-20">
+            <div class="row align-items-center">
+                <div class="col-6">
+                    <div class="item-icon bg-light-yellow">
+                        <i class="flaticon-couple text-orange"></i>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="item-content">
+                        <div class="item-title">Parents</div>
+                        <div class="item-number"><span class="counter" data-num="@ViewBag.Parents">@ViewBag.Parents</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row gutters-20">
+    <div class="col-12 col-xl-6 col-3-xxxl">
+        <div class="card dashboard-card-three pd-b-20">
+            <div class="card-body">
+                <div class="heading-layout1">
+                    <div class="item-title">
+                        <h3>Students</h3>
+                    </div>
+                </div>
+                <div class="doughnut-chart-wrap">
+                    <canvas id="student-doughnut-chart" width="100" height="300"></canvas>
+                </div>
+                <div class="student-report">
+                    <div class="student-count pseudo-bg-blue">
+                        <h4 class="item-title">Female Students</h4>
+                        <div class="item-number" id="female">45,000</div>
+                    </div>
+                    <div class="student-count pseudo-bg-yellow">
+                        <h4 class="item-title">Male Students</h4>
+                        <div class="item-number" id="male">5,000</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-12 col-xl-6 col-4-xxxl">
+        <div class="card dashboard-card-four pd-b-20">
+            <div class="card-body">
+                <div class="heading-layout1">
+                    <div class="item-title">
+                        <h3>Event Calender</h3>
+                    </div>
+                </div>
+                <div class="calender-wrap">
+                    <div id="fc-calender" class="fc-calender"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@*</div>*@
 @*</div>*@
 
-@section Scripts {}
+@section Scripts {
+    <script src="~/Content/Chart.min.js"></script>
+    <script src="~/Content/utils.js"></script>
+    <style>
+        canvas {
+            -moz-user-select: none;
+            -webkit-user-select: none;
+            -ms-user-select: none;
+        }
+    </style>
+    <script>
+        var randomScalingFactor = function () {
+            return Math.round(Math.random() * 100);
+        };
+
+        var config = {
+            type: 'doughnut',
+            data: {
+                datasets: [{
+                    data: [
+                        randomScalingFactor(),
+                        randomScalingFactor(),
+                        randomScalingFactor(),
+                        randomScalingFactor(),
+                        randomScalingFactor(),
+                    ],
+                    backgroundColor: [
+                        window.chartColors.red,
+                        window.chartColors.orange,
+                        window.chartColors.yellow,
+                        window.chartColors.green,
+                        window.chartColors.blue,
+                    ],
+                    label: 'Dataset 1'
+                }],
+                labels: [
+                    'Red',
+                    'Orange',
+                    'Yellow',
+                    'Green',
+                    'Blue'
+                ]
+            },
+            options: {
+                responsive: true,
+                legend: {
+                    position: 'top',
+                },
+                title: {
+                    display: true,
+                    text: 'Chart.js Doughnut Chart'
+                },
+                animation: {
+                    animateScale: true,
+                    animateRotate: true
+                }
+            }
+        };
+
+        window.onload = function () {
+            var ctx = document.getElementById('chart-area').getContext('2d');
+            window.myDoughnut = new Chart(ctx, config);
+        };
+    </script>
+}

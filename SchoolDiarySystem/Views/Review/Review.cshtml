@@ -19,7 +19,7 @@
                         <h3>Review Comment</h3>
                     </div>
                 </div>
-                @using (Html.BeginForm("Review", "Comment", FormMethod.Post))
+                @using (Html.BeginForm("Review", "Review", FormMethod.Post))
                 {
                     @Html.ValidationSummary(true, "", new { @class = "alert alert-danger" })
                     <form class="new-added-form">

@@ -60,63 +60,41 @@
                         <div class="notice-board-wrap">
                             @foreach (var item in Model)
                             {
-                            <div class="notice-list">
-                                <div class="heading-layout1">
-                                    <div class="post-date bg-skyblue">@Html.DisplayFor(m => item.CommentDate)</div>
-                                    @if (item.Review.ReviewID != 0)
-                                    {
-                                        <div class="post-date bg-pink">
-                                            Reviewed on @Html.DisplayFor(m => item.Review.ReviewDate)
-                                        </div>
-                                    }
-                                    <div class="dropdown">
-                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                                            <span class="flaticon-more-button-of-three-dots"></span>
-                                        </a>
-                                        <div class="dropdown-menu dropdown-menu-right">
-                                            <a class="dropdown-item" data-toggle="modal" data-target="#standard-modal"><i class="fas fa-times text-orange-red"></i>Delete</a>
-                                            <a class="dropdown-item" href="@Url.Action("Update", "Comment", new { id = item.CommentID })"><i class="fas fa-cogs text-dark-pastel-green"></i>Update</a>
-                                        </div>
-                                        <div class="modal-box">
-                                            <!-- Modal -->
-                                            <div class="modal fade" id="standard-modal" tabindex="-1" role="dialog" aria-hidden="true" style="display: none;">
-                                                <div class="modal-dialog" role="document">
-                                                    <div class="modal-content">
-                                                        <div class="modal-header">
-                                                            <h5 class="modal-title">Sure?</h5>
-                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                                <span aria-hidden="true">×</span>
-                                                            </button>
-                                                        </div>
-                                                        <div class="modal-body">
-                                                            Are you sure you want to delete this comment?
-                                                        </div>
-                                                        <div class="modal-footer">
-                                                            <button type="button" class="footer-btn bg-dark-low" data-dismiss="modal">No</button>
-                                                            @using (Html.BeginForm("Delete", "Comment", new { id = item.CommentID }, FormMethod.Post))
-                                                            {
-                                                                <input type="submit" value="Yes" class="footer-btn bg-linkedin" />
-                                                            }
-                                                        </div>
-                                                    </div>
+                                <div class="notice-list">
+                                    <div class="heading-layout1">
+                                        <div class="post-date bg-skyblue">@Html.DisplayFor(m => item.CommentDate)</div>
+                                        @if (item.Review.ReviewID != 0)
+                                        {
+                                            <div class="post-date bg-pink">
+                                                Reviewed on @Html.DisplayFor(m => item.Review.ReviewDate)
+                                            </div>
+                                        }
+
+                                        @if (item.Review.ReviewID == 0)
+                                        {
+                                            <div class="dropdown">
+                                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                                    <span class="flaticon-more-button-of-three-dots"></span>
+                                                </a>
+                                                <div class="dropdown-menu dropdown-menu-right">
+                                                    <a class="dropdown-item" href="@Url.Action("Update", "Comment", new { id = item.CommentID })"><i class="fas fa-cogs text-dark-pastel-green"></i>Update</a>
                                                 </div>
                                             </div>
-                                        </div>
+                                        }
+                                    </div>
+                                    <h6 class="notice-title">
+                                        @Html.DisplayFor(m => item.Content)
+                                    </h6>
+                                    @if (item.Review.ReviewID != 0)
+                                    {
+                                        <div class="entry-meta"> @Html.DisplayFor(m => item.Review.Review)</div>
+                                    }
+                                    <br />
+                                    <div class="entry-meta">
+                                        @Html.DisplayFor(m => item.Student.FullName) /
+                                        <span>@Html.DisplayFor(m => item.Subject.SubjectTitle)</span>
                                     </div>
                                 </div>
-                                <h6 class="notice-title">
-                                    @Html.DisplayFor(m => item.Content)
-                                </h6>
-                                @if (item.Review.ReviewID != 0)
-                                {
-                                    <div class="entry-meta"> @Html.DisplayFor(m => item.Review.Review)</div>
-                                }
-                                <br />
-                                <div class="entry-meta">
-                                    @Html.DisplayFor(m => item.Student.FullName) /
-                                    <span>@Html.DisplayFor(m => item.Subject.SubjectTitle)</span>
-                                </div>
-                            </div>
                             }
                         </div>
                     </div>

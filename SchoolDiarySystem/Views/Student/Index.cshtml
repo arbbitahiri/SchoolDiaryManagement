@@ -113,7 +113,6 @@
                                         </a>
                                         <div class="dropdown-menu dropdown-menu-right">
                                             <a class="dropdown-item" data-toggle="modal" data-target="#standard-modal"><i class="fas fa-times text-orange-red"></i>Delete</a>
-                                            @*<a class="dropdown-item" href="@Url.Action("Delete", "Student", new { id = item.StudentID })"><i class="fas fa-times text-orange-red"></i>Delete</a>*@
                                             <a class="dropdown-item" href="@Url.Action("Update", "Student", new { id = item.StudentID })"><i class="fas fa-cogs text-dark-pastel-green"></i>Update</a>
                                             <a class="dropdown-item" href="@Url.Action("Details", "Student", new { id = item.StudentID })"><i class="fas fa-redo-alt text-orange-peel"></i>Details</a>
                                         </div>
@@ -133,7 +132,7 @@
                                                         </div>
                                                         <div class="modal-footer">
                                                             <button type="button" class="footer-btn bg-dark-low" data-dismiss="modal">No</button>
-                                                            @using (Html.BeginForm("Delete", "Student", new { id = item.ClassID }, FormMethod.Post))
+                                                            @using (Html.BeginForm("Delete", "Student", new { id = item.StudentID }, FormMethod.Post))
                                                             {
                                                                 <input type="submit" value="Yes" class="footer-btn bg-linkedin" />
                                                             }

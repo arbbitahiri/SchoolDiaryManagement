@@ -91,7 +91,23 @@ namespace SchoolDiarySystem.DAL
                                 if (reader["Subject_Title"] != DBNull.Value)
                                 {
                                     comment.Subject = new Subjects { SubjectTitle = reader["Subject_Title"].ToString() };
-                                    comment.Review = new Reviews { Review = reader["Review"].ToString(), ReviewID = int.Parse(reader["ReviewID"].ToString()), ReviewDate = DateTime.Parse(reader["ReviewDate"].ToString()) };
+                                    if (reader["Review"] != DBNull.Value && reader["ReviewID"] != DBNull.Value && reader["ReviewDate"] != DBNull.Value)
+                                    {
+                                        comment.Review = new Reviews
+                                        {
+                                            Review = reader["Review"].ToString(),
+                                            ReviewID = int.Parse(reader["ReviewID"].ToString()),
+                                            ReviewDate = DateTime.Parse(reader["ReviewDate"].ToString())
+                                        };
+                                    }
+                                    else
+                                    {
+                                        comment.Review = new Reviews
+                                        {
+                                            Review = "Not reviewed yet!",
+                                            ReviewID = 0
+                                        };
+                                    }
                                     comment.Student = new Students
                                     {
                                         FirstName = reader["First_Name"].ToString(),
@@ -104,7 +120,7 @@ namespace SchoolDiarySystem.DAL
                 }
                 return comment;
             }
-            catch (Exception)
+            catch (Exception e)
             {
                 throw;
             }
