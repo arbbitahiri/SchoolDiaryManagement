@@ -5,8 +5,6 @@
 @using SchoolDiarySystem.Models
 @model IEnumerable<Subjects>
 
-@*<div class="dashboard-page-one">*@
-@*<div class="dashboard-content-one">*@
     <div class="breadcrumbs-area">
         <h3>Subject</h3>
         <ul>
@@ -48,7 +46,7 @@
                 <form class="mg-b-20">
                     <div class="row gutters-8">
                         <div class="col-4-xxxl col-xl-10 col-lg-3 col-12 form-group">
-                            <input type="text" autocomplete="off" placeholder="Search by Subject Title ..." name="searchString" class="form-control">
+                            <input type="text" autocomplete="off" placeholder="Search by subject..." name="searchString" class="form-control">
                         </div>
                         <div class="col-1-xxxl col-xl-2 col-lg-3 col-12 form-group">
                             <button type="submit" class="fw-btn-fill btn-gradient-yellow">SEARCH</button>
@@ -93,9 +91,7 @@
                                         </a>
                                         <div class="dropdown-menu dropdown-menu-right">
                                             <a class="dropdown-item" data-toggle="modal" data-target="#standard-modal"><i class="fas fa-times text-orange-red"></i>Delete</a>
-                                            @*<a class="dropdown-item" href="@Url.Action("Delete", "Subject", new { id = item.SubjectID })"><i class="fas fa-times text-orange-red"></i>Delete</a>*@
                                             <a class="dropdown-item" href="@Url.Action("Update", "Subject", new { id = item.SubjectID })"><i class="fas fa-cogs text-dark-pastel-green"></i>Update</a>
-                                            <a class="dropdown-item" href="@Url.Action("Details", "Subject", new { id = item.SubjectID })"><i class="fas fa-redo-alt text-orange-peel"></i>Details</a>
                                         </div>
                                         <div class="modal-box">
                                             <!-- Modal -->
@@ -131,7 +127,5 @@
             </div>
         </div>
     </div>
-@*</div>*@
-@*</div>*@
 
 @section Scripts {}

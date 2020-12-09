@@ -5,8 +5,6 @@
 @using SchoolDiarySystem.Models
 @model Comments
 
-@*<div class="dashboard-page-one">*@
-    @*<div class="dashboard-content-one">*@
         <div class="breadcrumbs-area">
             <h3>Comment</h3>
             <ul>
@@ -31,7 +29,7 @@
                             @Html.HiddenFor(m => m.CommentID)
                             <div class="col-xl-4 col-lg-6 col-12 form-group">
                                 <label>Select Date *</label>
-                                @Html.TextBoxFor(m => m.CommentDate, new { @class = "form-control air-datepicker", placeholder = "dd/MMMM/yyyy", id = "commentDate", autocomplete = "off" })
+                                @Html.TextBoxFor(m => m.CommentDate, new { @class = "form-control", @type="date", placeholder = "dd/MMMM/yyyy", id = "commentDate", autocomplete = "off" })
                                 @Html.ValidationMessageFor(m => m.CommentDate, "", new { @class = "text-danger" })
                             </div>
                             <div class="col-xl-4 col-lg-6 col-12 form-group">
@@ -52,7 +50,5 @@
                 }
             </div>
         </div>
-    @*</div>*@
-@*</div>*@
 
 @section Scripts {}

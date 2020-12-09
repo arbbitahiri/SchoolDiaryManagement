@@ -198,6 +198,7 @@
     <Content Include="Content\images\sort_both.html" />
     <Content Include="Content\images\sort_desc.html" />
     <Content Include="Content\images\sort_desc_disabled.html" />
+    <Content Include="Content\img\Diary.png" />
     <Content Include="Content\img\favicon.png" />
     <Content Include="Content\img\figure\admin.jpg" />
     <Content Include="Content\img\figure\login-bg.jpg" />
@@ -229,6 +230,8 @@
     <Content Include="Content\img\logo2.png" />
     <Content Include="Content\img\logoSchool.png" />
     <Content Include="Content\img\preloader.gif" />
+    <Content Include="Content\img\SDMLogo.png" />
+    <Content Include="Content\img\SDMLogoWhite.png" />
     <Content Include="Content\js\bootstrap.min.js" />
     <Content Include="Content\js\Chart.min.js" />
     <Content Include="Content\js\datepicker.min.js" />
@@ -309,12 +312,10 @@
     <Content Include="Views\Shared\_LayoutAdmin.cshtml" />
     <Content Include="Views\Student\Index.cshtml" />
     <Content Include="Views\Student\Create.cshtml" />
-    <Content Include="Views\Student\Details.cshtml" />
     <Content Include="Views\Student\Update.cshtml" />
     <Content Include="Views\Parent\Index.cshtml" />
     <Content Include="Views\Parent\Create.cshtml" />
     <Content Include="Views\Parent\Update.cshtml" />
-    <Content Include="Views\Parent\Details.cshtml" />
     <Content Include="Views\Room\Index.cshtml" />
     <Content Include="Views\Room\Create.cshtml" />
     <Content Include="Views\Room\Update.cshtml" />

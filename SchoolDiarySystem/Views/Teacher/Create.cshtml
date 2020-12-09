@@ -5,8 +5,6 @@
 @using SchoolDiarySystem.Models
 @model Teachers
 
-@*<div class="dashboard-page-one">*@
-    @*<div class="dashboard-content-one">*@
         <div class="breadcrumbs-area">
             <h3>Teacher</h3>
             <ul>
@@ -30,12 +28,12 @@
                         <div class="row">
                             <div class="col-xl-3 col-lg-6 col-12 form-group">
                                 <label>First Name *</label>
-                                @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control", placeholder = "First name...", id = "firstname", autocomplete = "off" })
+                                @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control", placeholder = "First Name", id = "firstname", autocomplete = "off" })
                                 @Html.ValidationMessageFor(m => m.FirstName, "", new { @class = "text-danger" })
                             </div>
                             <div class="col-xl-3 col-lg-6 col-12 form-group">
                                 <label>Last Name *</label>
-                                @Html.TextBoxFor(m => m.LastName, new { @class = "form-control", placeholder = "Last name...", id = "lastname", autocomplete = "off" })
+                                @Html.TextBoxFor(m => m.LastName, new { @class = "form-control", placeholder = "Last Name", id = "lastname", autocomplete = "off" })
                                 @Html.ValidationMessageFor(m => m.LastName, "", new { @class = "text-danger" })
                             </div>
                             <div class="col-xl-3 col-lg-6 col-12 form-group">
@@ -51,12 +49,12 @@
                             </div>
                             <div class="col-xl-3 col-lg-6 col-12 form-group">
                                 <label>City *</label>
-                                @Html.TextBoxFor(m => m.City, new { @class = "form-control", placeholder = "Write city...", id = "city", autocomplete = "off" })
+                                @Html.TextBoxFor(m => m.City, new { @class = "form-control", placeholder = "Write teacher's city...", id = "city", autocomplete = "off" })
                                 @Html.ValidationMessageFor(m => m.City, "", new { @class = "text-danger" })
                             </div>
                             <div class="col-xl-3 col-lg-6 col-12 form-group">
                                 <label>Qualification *</label>
-                                @Html.TextBoxFor(m => m.Qualification, new { @class = "form-control", placeholder = "Write qualification...", id = "qualification", autocomplete = "off" })
+                                @Html.TextBoxFor(m => m.Qualification, new { @class = "form-control", placeholder = "Write teacher's qualification...", id = "qualification", autocomplete = "off" })
                                 @Html.ValidationMessageFor(m => m.Qualification, "", new { @class = "text-danger" })
                             </div>
                             <div class="col-xl-3 col-lg-6 col-12 form-group">
@@ -66,7 +64,7 @@
                             </div>
                             <div class="col-xl-3 col-lg-6 col-12 form-group">
                                 <label>Phone Number *</label>
-                                @Html.TextBoxFor(m => m.PhoneNo, new { @class = "form-control", placeholder = "+38349700700", id = "phoneno", autocomplete = "off" })
+                                @Html.TextBoxFor(m => m.PhoneNo, new { @class = "form-control", placeholder = "ex. +38349700700", id = "phoneno", autocomplete = "off" })
                                 @Html.ValidationMessageFor(m => m.PhoneNo, "", new { @class = "text-danger" })
                             </div>
                             <div class="col-12 form-group mg-t-8">
@@ -77,7 +75,5 @@
                 }
             </div>
         </div>
-    @*</div>*@
-@*</div>*@
 
 @section Scripts {}

@@ -5,8 +5,6 @@
 @using SchoolDiarySystem.Models
 @model IEnumerable<Users>
 
-@*<div class="dashboard-page-one">*@
-    @*<div class="dashboard-content-one">*@
         <div class="breadcrumbs-area">
             <h3>User</h3>
             <ul>
@@ -48,7 +46,7 @@
                     <form class="mg-b-20">
                         <div class="row gutters-8">
                             <div class="col-4-xxxl col-xl-10 col-lg-3 col-12 form-group">
-                                <input type="text" placeholder="Search by Name ..." name="searchString" class="form-control" autocomplete="off">
+                                <input type="text" placeholder="Search by first or last name, or username..." name="searchString" class="form-control" autocomplete="off">
                             </div>
                             <div class="col-1-xxxl col-xl-2 col-lg-3 col-12 form-group">
                                 <button type="submit" class="fw-btn-fill btn-gradient-yellow">SEARCH</button>
@@ -112,12 +110,24 @@
                                 <td>
                                     @Html.DisplayFor(m => item.ExpiresDate)
                                 </td>
-                                <td>
-                                    @Html.DisplayFor(m => item.LastLoginDate)
-                                </td>
-                                <td class="text-center">
-                                    @Html.DisplayFor(m => item.LastLoginTime)
-                                </td>
+                                @if (item.LastLoginDate < item.InsertDate)
+                                {
+                                    <td class="text-center">
+                                        Newly created!
+                                    </td>
+                                    <td class="text-center">
+                                        Newly created!
+                                    </td>
+                                }
+                                else
+                                {
+                                    <td>
+                                        @Html.DisplayFor(m => item.LastLoginDate)
+                                    </td>
+                                    <td class="text-center">
+                                        @Html.DisplayFor(m => item.LastLoginTime)
+                                    </td>
+                                }
 
                                 <td>
                                     <div class="dropdown">
@@ -163,7 +173,5 @@
                 </div>
             </div>
         </div>
-    @*</div>*@
-@*</div>*@
 
 @section Scripts {}

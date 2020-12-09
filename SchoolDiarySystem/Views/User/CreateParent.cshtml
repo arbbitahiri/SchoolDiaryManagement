@@ -5,8 +5,6 @@
 @using SchoolDiarySystem.Models
 @model Users
 
-@*<div class="dashboard-page-one">*@
-    @*<div class="dashboard-content-one">*@
         <div class="breadcrumbs-area">
             <h3>Create Parent</h3>
             <ul>
@@ -41,7 +39,7 @@
                             </div>
                             <div class="col-xl-4 col-lg-4 col-12 form-group">
                                 <label>Username *</label>
-                                @Html.TextBoxFor(m => m.Username, new { @class = "form-control", placeholder = "Last name...", id = "username", autocomplete = "off" })
+                                @Html.TextBoxFor(m => m.Username, new { @class = "form-control", placeholder = "Username", id = "username", autocomplete = "off" })
                                 @Html.ValidationMessageFor(m => m.Username, "", new { @class = "text-danger" })
                             </div>
                             <div class="col-xl-4 col-lg-4 col-12 form-group">
@@ -62,7 +60,5 @@
                 }
             </div>
         </div>
-    @*</div>*@
-@*</div>*@
 
 @section Scripts {}

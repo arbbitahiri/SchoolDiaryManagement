@@ -5,8 +5,6 @@
 @using SchoolDiarySystem.Models
 @model Students
 
-@*<div class="dashboard-page-one">*@
-    @*<div class="dashboard-content-one">*@
         <div class="breadcrumbs-area">
             <h3>Student</h3>
             <ul>
@@ -31,12 +29,12 @@
                             @Html.HiddenFor(m => m.StudentID)
                             <div class="col-xl-3 col-lg-6 col-12 form-group">
                                 <label>First Name *</label>
-                                @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control", placeholder = "First name...", id = "firstname", autocomplete = "off" })
+                                @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control", placeholder = "First Name", id = "firstname", autocomplete = "off" })
                                 @Html.ValidationMessageFor(m => m.FirstName, "", new { @class = "text-danger" })
                             </div>
                             <div class="col-xl-3 col-lg-6 col-12 form-group">
                                 <label>Last Name *</label>
-                                @Html.TextBoxFor(m => m.LastName, new { @class = "form-control", placeholder = "Last name...", id = "lastname", autocomplete = "off" })
+                                @Html.TextBoxFor(m => m.LastName, new { @class = "form-control", placeholder = "Last Name", id = "lastname", autocomplete = "off" })
                                 @Html.ValidationMessageFor(m => m.LastName, "", new { @class = "text-danger" })
                             </div>
                             <div class="col-xl-3 col-lg-6 col-12 form-group">
@@ -63,7 +61,5 @@
                 }
             </div>
         </div>
-    @*</div>*@
-@*</div>*@
 
 @section Scripts {}

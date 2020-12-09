@@ -5,8 +5,6 @@
 @using SchoolDiarySystem.Models
 @model IEnumerable<Rooms>
 
-@*<div class="dashboard-page-one">*@
-@*<div class="dashboard-content-one">*@
     <div class="breadcrumbs-area">
         <h3>Room</h3>
         <ul>
@@ -40,7 +38,7 @@
             <div class="card-body">
                 <div class="heading-layout1">
                     <div class="item-title">
-                        <h3>Room Lists</h3>
+                        <h3>Rooms List</h3>
                     </div>
                 </div>
                 @using (Html.BeginForm("Index", "Room", FormMethod.Get))
@@ -48,7 +46,7 @@
                     <form class="mg-b-20">
                         <div class="row gutters-8">
                             <div class="col-lg-10 form-group">
-                                <input type="text" autocomplete="off" placeholder="Search by Room Type ..." name="searchString" class="form-control">
+                                <input type="text" autocomplete="off" placeholder="Search by room type ..." name="searchString" class="form-control">
                             </div>
                             <div class="col-lg-2 col-12 form-group">
                                 <button type="submit" class="fw-btn-fill btn-gradient-yellow">SEARCH</button>
@@ -85,9 +83,7 @@
                                             </a>
                                             <div class="dropdown-menu dropdown-menu-right">
                                                 <a class="dropdown-item" data-toggle="modal" data-target="#standard-modal"><i class="fas fa-times text-orange-red"></i>Delete</a>
-                                                @*<a class="dropdown-item" href="@Url.Action("Delete", "Room", new { id = item.RoomID })"><i class="fas fa-times text-orange-red"></i>Delete</a>*@
                                                 <a class="dropdown-item" href="@Url.Action("Update", "Room", new { id = item.RoomID })"><i class="fas fa-cogs text-dark-pastel-green"></i>Update</a>
-                                                <a class="dropdown-item" href="@Url.Action("Details", "Room", new { id = item.RoomID })"><i class="fas fa-redo-alt text-orange-peel"></i>Details</a>
                                             </div>
                                             <div class="modal-box">
                                                 <!-- Modal -->
@@ -123,7 +119,5 @@
                 </div>
             </div>
         </div>
-@*</div>*@
-@*</div>*@
 
 @section Scripts {}

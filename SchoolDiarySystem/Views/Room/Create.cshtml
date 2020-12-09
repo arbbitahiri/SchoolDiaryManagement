@@ -5,9 +5,6 @@
 @using SchoolDiarySystem.Models
 @model Rooms
 
-
-@*<div class="dashboard-page-one">*@
-@*<div class="dashboard-content-one">*@
     <div class="breadcrumbs-area">
         <h3>Room</h3>
         <ul>
@@ -31,12 +28,12 @@
                     <div class="row">
                         <div class="col-xl-6 col-lg-6 col-12 form-group">
                             <label>Room Number *</label>
-                            @Html.TextBoxFor(m => m.RoomNo, new { @class = "form-control", placeholder = "Write room number...", type = "number", id = "firstname", autocomplete = "off" })
+                            @Html.TextBoxFor(m => m.RoomNo, new { @class = "form-control", placeholder = "Write room number ...", type = "number", id = "firstname", autocomplete = "off" })
                             @Html.ValidationMessageFor(m => m.RoomNo, "", new { @class = "text-danger" })
                         </div>
                         <div class="col-xl-6 col-lg-6 col-12 form-group">
                             <label>Room Type *</label>
-                            @Html.TextBoxFor(m => m.RoomType, new { @class = "form-control", placeholder = "Laboratory, Class,...", id = "lastname", autocomplete = "off" })
+                            @Html.TextBoxFor(m => m.RoomType, new { @class = "form-control", placeholder = "ex. Laboratory, Class,...", id = "lastname", autocomplete = "off" })
                             @Html.ValidationMessageFor(m => m.RoomType, "", new { @class = "text-danger" })
                         </div>
                         <div class="col-12 form-group mg-t-8">
@@ -47,7 +44,5 @@
             }
         </div>
     </div>
-@*</div>*@
-@*</div>*@
 
 @section Scripts {}

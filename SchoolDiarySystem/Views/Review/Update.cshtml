@@ -5,8 +5,6 @@
 @using SchoolDiarySystem.Models
 @model Reviews
 
-@*<div class="dashboard-page-one">*@
-    @*<div class="dashboard-content-one">*@
         <div class="breadcrumbs-area">
             <h3>Review</h3>
             <ul>
@@ -31,7 +29,7 @@
                             @Html.HiddenFor(m => m.ReviewID)
                             <div class="col-xl-6 col-lg-6 col-12 form-group">
                                 <label>Review *</label>
-                                @Html.TextAreaFor(m => m.Review, new { @class = "textarea form-control", placeholder = "Write your review...", id = "review", autocomplete = "off", style = "margin-top: 0px; margin-bottom: 0px; height: 150px;" })
+                                @Html.TextAreaFor(m => m.Review, new { @class = "textarea form-control", placeholder = "Write your review here...", id = "review", autocomplete = "off", style = "margin-top: 0px; margin-bottom: 0px; height: 150px;" })
                                 @Html.ValidationMessageFor(m => m.Review, "", new { @class = "text-danger" })
                             </div>
                             <div class="col-xl-3 col-lg-6 col-12 form-group">
@@ -47,7 +45,5 @@
                 }
             </div>
         </div>
-    @*</div>*@
-@*</div>*@
 
 @section Scripts {}
