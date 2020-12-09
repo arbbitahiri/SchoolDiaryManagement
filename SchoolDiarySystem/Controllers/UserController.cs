@@ -28,8 +28,11 @@ namespace SchoolDiarySystem.Controllers
 
                     if (!string.IsNullOrEmpty(searchString))
                     {
-                        users = users.Where(f => f.FirstName == searchString || f.LastName == searchString
-                        || f.Username == searchString || f.FullName == searchString).ToList();
+                        users = users.Where(f => f.FirstName.ToLower() == searchString.ToLower() || f.LastName.ToLower() == searchString.ToLower()
+                        || f.Username.ToLower() == searchString.ToLower() || f.FullName.ToLower() == searchString.ToLower()
+                        || f.Teacher.FirstName.ToLower() == searchString.ToLower() || f.Teacher.LastName.ToLower() == searchString.ToLower()
+                        || f.Teacher.FullName.ToLower() == searchString.ToLower() || f.Parent.FullName.ToLower() == searchString.ToLower()
+                        || f.Parent.FirstName.ToLower() == searchString.ToLower() || f.Parent.LastName.ToLower() == searchString.ToLower()).ToList();
                     }
 
                     return View(users);
@@ -136,7 +139,7 @@ namespace SchoolDiarySystem.Controllers
                     {
                         GetItemForSelectList();
                         var users = await Task.Run(() => usersDAL.GetAll());
-                        var checkUsers = users.Where(u => u.Username == user.Username).ToList();
+                        var checkUsers = users.Where(u => u.Username.ToLower() == user.Username.ToLower()).ToList();
                         if (checkUsers.Count > 0)
                         {
                             ModelState.AddModelError(string.Empty, "Username you're trying to create, already exists!");

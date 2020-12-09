@@ -29,11 +29,14 @@
                         {
                             <form class="mg-b-20">
                                 <div class="row gutters-8">
-                                    <div class="col-lg-5 col-12 form-group">
-                                        <input type="text" autocomplete="off" placeholder="Search by date ..." name="searchString" class="form-control air-datepicker">
+                                    <div class="col-lg-4 col-12 form-group">
+                                        <input type="date" autocomplete="off" placeholder="Search by date ..." name="searchString" class="form-control">
                                     </div>
-                                    <div class="col-lg-5 col-12 form-group">
-                                        <input type="text" autocomplete="off" placeholder="Search by student ..." name="searchString2" class="form-control">
+                                    <div class="col-lg-3 col-12 form-group">
+                                        <input type="text" autocomplete="off" placeholder="Search by subject ..." name="searchString2" class="form-control">
+                                    </div>
+                                    <div class="col-lg-3 col-12 form-group">
+                                        <input type="text" autocomplete="off" placeholder="Search by student ..." name="searchString3" class="form-control">
                                     </div>
                                     <div class="col-lg-2 col-12 form-group">
                                         <button type="submit" class="fw-btn-fill btn-gradient-yellow">SEARCH</button>
@@ -45,13 +48,15 @@
                             @foreach (var item in Model)
                             {
                             <div class="notice-list">
-                                <div class="post-date bg-skyblue">@Html.DisplayFor(m => item.CommentDate)</div>
-                                @if (item.Review.ReviewID != 0)
-                                {
-                                    <div class="post-date bg-pink">
-                                        Reviewed on @Html.DisplayFor(m => item.Review.ReviewDate)
-                                    </div>
-                                }
+                                <div class="heading-layout1">
+                                    <div class="post-date bg-skyblue">@Html.DisplayFor(m => item.CommentDate)</div>
+                                    @if (item.Review.ReviewID != 0)
+                                    {
+                                        <div class="post-date bg-pink">
+                                            Reviewed on @Html.DisplayFor(m => item.Review.ReviewDate)
+                                        </div>
+                                    }
+                                </div>
                                 <h6 class="notice-title">
                                     Comment: @Html.DisplayFor(m => item.Content)
                                 </h6>

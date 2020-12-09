@@ -30,7 +30,7 @@ namespace SchoolDiarySystem.Controllers
 
                     if (!string.IsNullOrEmpty(searchString2))
                     {
-                        reviews = reviews.Where(f => f.Comment.Subject.SubjectTitle == searchString2).ToList();
+                        reviews = reviews.Where(f => f.Comment.Subject.SubjectTitle.ToLower() == searchString2.ToLower()).ToList();
                     }
 
                     return View(reviews);
@@ -46,7 +46,7 @@ namespace SchoolDiarySystem.Controllers
             }
         }
 
-        public async Task<ActionResult> Review(int? id)
+        public async Task<ActionResult> ReviewComment(int? id)
         {
             if (UserSession.GetUsers != null)
             {
@@ -76,12 +76,13 @@ namespace SchoolDiarySystem.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> Review(int id, Reviews review)
+        public async Task<ActionResult> ReviewComment(int id, Reviews review)
         {
             if (UserSession.GetUsers != null)
             {
                 if (UserSession.GetUsers.RoleID == 3)
                 {
+                    var error = ModelState.Values.SelectMany(e => e.Errors);
                     if (id != review.CommentID)
                     {
                         return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest);

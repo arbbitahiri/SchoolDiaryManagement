@@ -34,7 +34,8 @@ namespace SchoolDiarySystem.Controllers
 
                     if (!string.IsNullOrEmpty(searchString2))
                     {
-                        comments = comments.Where(f => f.Student.FirstName == searchString2 || f.Student.LastName == searchString2 || f.Student.FullName == searchString2).ToList();
+                        comments = comments.Where(f => f.Student.FirstName.ToLower() == searchString2.ToLower()
+                        || f.Student.LastName.ToLower() == searchString2.ToLower() || f.Student.FullName.ToLower() == searchString2.ToLower()).ToList();
                     }
 
                     return View(comments);

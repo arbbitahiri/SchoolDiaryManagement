@@ -32,12 +32,12 @@ namespace SchoolDiarySystem.Controllers
 
                     if (!string.IsNullOrEmpty(searchString2))
                     {
-                        topics = topics.Where(f => f.Subject.SubjectTitle == searchString2).ToList();
+                        topics = topics.Where(f => f.Subject.SubjectTitle.ToLower() == searchString2.ToLower()).ToList();
                     }
 
                     if (!string.IsNullOrEmpty(searchString3))
                     {
-                        topics = topics.Where(f => f.Time == int.Parse(searchString2)).ToList();
+                        topics = topics.Where(f => f.Time == int.Parse(searchString3)).ToList();
                     }
 
                     return View(topics);

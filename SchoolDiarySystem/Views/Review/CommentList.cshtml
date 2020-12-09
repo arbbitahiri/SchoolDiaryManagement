@@ -45,12 +45,17 @@
                             @foreach (var item in Model)
                             {
                                 <div class="notice-list">
-                                    <div class="post-date bg-skyblue">@Html.DisplayFor(m => item.CommentDate)</div>
+                                    <div class="heading-layout1">
+                                        <div class="post-date bg-skyblue">@Html.DisplayFor(m => item.CommentDate)</div>
+                                        @if (item.Review.ReviewID != 0)
+                                        {
+                                            <div class="post-date bg-pink">
+                                                Reviewed on @Html.DisplayFor(m => item.Review.ReviewDate)
+                                            </div>
+                                        }
+                                    </div>
                                     @if (item.Review.ReviewID != 0)
                                     {
-                                        <div class="post-date bg-pink">
-                                            Reviewed on @Html.DisplayFor(m => item.Review.ReviewDate)
-                                        </div>
                                         <h6 class="notice-title">
                                             @Html.DisplayFor(m => item.Content)
                                         </h6>
@@ -59,7 +64,7 @@
                                     else
                                     {
                                         <h6 class="notice-title">
-                                            <a href="@Url.Action("Review", "Review", new { id = item.CommentID })">
+                                            <a href="@Url.Action("ReviewComment", "Review", new { id = item.CommentID })">
                                                 @Html.DisplayFor(m => item.Content)
                                             </a>
                                         </h6>

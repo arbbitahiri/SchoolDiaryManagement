@@ -25,7 +25,7 @@ namespace SchoolDiarySystem.Controllers
 
                     if (!string.IsNullOrEmpty(searchString))
                     {
-                        subjects = subjects.Where(f => f.SubjectTitle == searchString).ToList();
+                        subjects = subjects.Where(f => f.SubjectTitle.ToLower() == searchString.ToLower()).ToList();
                     }
 
                     return View(subjects);

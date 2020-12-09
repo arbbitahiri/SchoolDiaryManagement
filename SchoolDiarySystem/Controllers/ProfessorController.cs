@@ -47,7 +47,7 @@ namespace SchoolDiarySystem.Controllers
         {
             Statistics statistics = new Statistics
             {
-                NoStudents = studentsDAL.Count()
+                NoStudents = studentsDAL.Count(teacher)
             };
             ViewBag.Students = statistics.NoStudents;
         }

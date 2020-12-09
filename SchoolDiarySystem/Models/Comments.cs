@@ -11,15 +11,12 @@ namespace SchoolDiarySystem.Models
 
         [Display(Name = "Comment")]
         [Required(ErrorMessage = "Please write a comment!")]
-        //[StringLength(250, MinimumLength = 5, ErrorMessage = "Comment is to short!")]
         public string Content { get; set; }
 
         [Display(Name = "Student")]
-        //[Required(ErrorMessage = "Please select a student!")]
         public int StudentID { get; set; }
 
         [Display(Name = "Subject")]
-        //[Required(ErrorMessage = "Please select a subject!")]
         public int SubjectID { get; set; }
 
         [Display(Name = "Time")]
@@ -34,9 +31,5 @@ namespace SchoolDiarySystem.Models
         public virtual Subjects Subject { get; set; }
         public virtual Students Student { get; set; }
         public virtual Reviews Review { get; set; }
-
-        public IEnumerable<SelectListItem> SubjectsList { get; set; }
-        public IEnumerable<SelectListItem> StudentsList { get; set; }
-        public IEnumerable<SelectListItem> Times { get; set; }
     }
 }

@@ -23,7 +23,5 @@ namespace SchoolDiarySystem.Models
         public DateTime ReviewDate { get; set; }
 
         public virtual Comments Comment { get; set; }
-
-        public IEnumerable<SelectListItem> SubjectsList { get; set; }
     }
 }

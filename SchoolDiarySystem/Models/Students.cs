@@ -47,8 +47,6 @@ namespace SchoolDiarySystem.Models
             }
         }
 
-        public IEnumerable<SelectListItem> ParentsList { get; set; }
-        public IEnumerable<SelectListItem> ClassesList { get; set; }
-        public IEnumerable<SelectListItem> GenderEnumeration { get; set; }
+        public int MyStudentsCount { get; set; }
     }
 }

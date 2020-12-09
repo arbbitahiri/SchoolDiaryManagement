@@ -254,6 +254,29 @@ namespace SchoolDiarySystem.DAL
             }
         }
 
+        public int Count(int teacherID)
+        {
+            try
+            {
+                int result = 0;
+                using (var connection = DataConnection.GetConnection())
+                {
+                    string sqlproc = "dbo.usp_Count_MyStudents";
+                    using (var command = DataConnection.GetCommand(connection, sqlproc, CommandType.StoredProcedure))
+                    {
+                        DataConnection.AddParameter(command, "teacherID", teacherID);
+                        result = (int)command.ExecuteScalar();
+                    }
+                }
+                return result;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
         public Students ToObject(SqlDataReader dataReader)
         {
             try

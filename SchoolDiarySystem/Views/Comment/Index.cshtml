@@ -12,7 +12,7 @@
                 <li>Comment</li>
             </ul>
         </div>
-        <div class="col-4-xxxl col-12">
+        <div class="col-4-xxxl col-12" style="padding:0; flex: 0 0 auto;">
             <div class="card height-auto">
                 <div class="card-body">
                     <div class="heading-layout1">
@@ -92,7 +92,7 @@
                                     <br />
                                     <div class="entry-meta">
                                         @Html.DisplayFor(m => item.Student.FullName) /
-                                        <span>@Html.DisplayFor(m => item.Subject.SubjectTitle)</span>
+                                        <span>@Html.DisplayFor(m => item.Subject.SubjectTitle) Time: @Html.DisplayFor(m => item.Time)</span>
                                     </div>
                                 </div>
                             }

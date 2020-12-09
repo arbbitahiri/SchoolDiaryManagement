@@ -24,7 +24,7 @@ namespace SchoolDiarySystem.Controllers
 
                     if (!string.IsNullOrEmpty(searchString))
                     {
-                        rooms = rooms.Where(f => f.RoomType == searchString).ToList();
+                        rooms = rooms.Where(f => f.RoomType.ToLower() == searchString.ToLower()).ToList();
                     }
 
                     return View(rooms);
