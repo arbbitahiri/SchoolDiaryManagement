@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SchoolDiarySystem.Models.DataAnnotations;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Web.Mvc;
@@ -24,6 +25,7 @@ namespace SchoolDiarySystem.Models
         [Display(Name = "Day of Birth")]
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd MMMM yyyy}")]
         [Required(ErrorMessage = "Please select a date!")]
+        [StudentsBirthDate]
         public DateTime DayofBirth { get; set; }
 
         [Display(Name = "Class")]

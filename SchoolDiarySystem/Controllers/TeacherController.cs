@@ -82,6 +82,10 @@ namespace SchoolDiarySystem.Controllers
                             var result = await Task.Run(() => teachersDAL.Create(teacher));
                             return RedirectToAction(nameof(Index));
                         }
+                        else
+                        {
+                            ModelState.AddModelError(string.Empty, "Invalid attempt");
+                        }
                         return View(teacher);
                     }
                     catch (Exception)
@@ -159,6 +163,10 @@ namespace SchoolDiarySystem.Controllers
                             return View(teacher);
                         }
                     }
+                    else
+                    {
+                        ModelState.AddModelError(string.Empty, "Invalid attempt");
+                    }
                     return View(teacher);
                 }
                 else
@@ -173,35 +181,6 @@ namespace SchoolDiarySystem.Controllers
         }
 
         public async Task<ActionResult> Details(int? id)
-        {
-            if (UserSession.GetUsers != null)
-            {
-                if (UserSession.GetUsers.RoleID == 1)
-                {
-                    if (id == null)
-                    {
-                        return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest);
-                    }
-
-                    var teacher = await Task.Run(() => teachersDAL.Get((int)id));
-                    if (teacher == null)
-                    {
-                        return RedirectToAction(nameof(Index));
-                    }
-                    return View(teacher);
-                }
-                else
-                {
-                    return Content("You're not allowed to view this page!");
-                }
-            }
-            else
-            {
-                return RedirectToAction("Login", "Account");
-            }
-        }
-
-        public async Task<ActionResult> Delete(int? id)
         {
             if (UserSession.GetUsers != null)
             {

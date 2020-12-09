@@ -68,16 +68,16 @@ namespace SchoolDiarySystem.Controllers
                 {
                     try
                     {
-                        var rooms = await Task.Run(() => roomsDAL.GetAll());
-                        var checkRooms = rooms.Where(r => r.RoomNo == room.RoomNo).ToList();
-                        if (checkRooms.Count > 0)
+                        if (ModelState.IsValid)
                         {
-                            ModelState.AddModelError(string.Empty, "Room you're trying to create, already exists!");
-                            return View(room);
-                        }
-                        else
-                        {
-                            if (ModelState.IsValid)
+                            var rooms = await Task.Run(() => roomsDAL.GetAll());
+                            var checkRooms = rooms.Where(r => r.RoomNo == room.RoomNo).ToList();
+                            if (checkRooms.Count > 0)
+                            {
+                                ModelState.AddModelError(string.Empty, "Room you're trying to create, already exists!");
+                                return View(room);
+                            }
+                            else
                             {
                                 room.InsertBy = UserSession.GetUsers.Username;
                                 room.LUB = UserSession.GetUsers.Username;
@@ -86,8 +86,12 @@ namespace SchoolDiarySystem.Controllers
                                 var result = await Task.Run(() => roomsDAL.Create(room));
                                 return RedirectToAction(nameof(Index));
                             }
-                            return View(room);
                         }
+                        else
+                        {
+                            ModelState.AddModelError(string.Empty, "Invalid attempt");
+                        }
+                        return View(room);
                     }
                     catch (Exception)
                     {
@@ -163,34 +167,9 @@ namespace SchoolDiarySystem.Controllers
                             return View(room);
                         }
                     }
-                    return View(room);
-                }
-                else
-                {
-                    return Content("You're not allowed to view this page!");
-                }
-            }
-            else
-            {
-                return RedirectToAction("Login", "Account");
-            }
-        }
-
-        public async Task<ActionResult> Details(int? id)
-        {
-            if (UserSession.GetUsers != null)
-            {
-                if (UserSession.GetUsers.RoleID == 1)
-                {
-                    if (id == null)
+                    else
                     {
-                        return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest);
-                    }
-
-                    var room = await Task.Run(() => roomsDAL.Get((int)id));
-                    if (room == null)
-                    {
-                        return RedirectToAction("Index");
+                        ModelState.AddModelError(string.Empty, "Invalid attempt");
                     }
                     return View(room);
                 }
@@ -204,36 +183,6 @@ namespace SchoolDiarySystem.Controllers
                 return RedirectToAction("Login", "Account");
             }
         }
-
-        public async Task<ActionResult> Delete(int? id)
-        {
-            if (UserSession.GetUsers != null)
-            {
-                if (UserSession.GetUsers.RoleID == 1)
-                {
-                    if (id == null)
-                    {
-                        return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest);
-                    }
-
-                    var room = await Task.Run(() => roomsDAL.Get((int)id));
-                    if (room == null)
-                    {
-                        return RedirectToAction("Index");
-                    }
-                    return View(room);
-                }
-                else
-                {
-                    return Content("You're not allowed to view this page!");
-                }
-            }
-            else
-            {
-                return RedirectToAction("Login", "Account");
-            }
-        }
-
 
         [HttpPost]
         public async Task<ActionResult> Delete(int id)

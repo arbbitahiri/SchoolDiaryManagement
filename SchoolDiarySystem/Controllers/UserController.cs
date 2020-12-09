@@ -78,16 +78,40 @@ namespace SchoolDiarySystem.Controllers
                     {
                         if (ModelState.IsValid)
                         {
-                            user.InsertBy = UserSession.GetUsers.Username;
-                            user.LUB = UserSession.GetUsers.Username;
-                            user.LUN++;
-                            user.RoleID = 1;
-                            user.TeacherID = 0;
-                            user.ParentID = 0;
-                            user.Password = Validation.CalculateHASH(user.Password);
+                            var users = await Task.Run(() => usersDAL.GetAll());
 
-                            var result = await Task.Run(() => usersDAL.Create(user));
-                            return RedirectToAction(nameof(Index));
+                            var checkUsers = users.Where(u => u.Username.ToLower() == user.Username.ToLower()).ToList();
+                            if (checkUsers.Count > 0)
+                            {
+                                ModelState.AddModelError(string.Empty, "Username you're trying to create, already exists!");
+                                return View(user);
+                            }
+                            else
+                            {
+                                var checkAdmin = users.Where(u => u.FirstName == user.FirstName && u.LastName == user.LastName).ToList();
+                                if (checkAdmin.Count > 0)
+                                {
+                                    ModelState.AddModelError(string.Empty, $"{user.FullName} already has an account!");
+                                    return View(user);
+                                }
+                                else
+                                {
+                                    user.InsertBy = UserSession.GetUsers.Username;
+                                    user.LUB = UserSession.GetUsers.Username;
+                                    user.LUN++;
+                                    user.RoleID = 1;
+                                    user.TeacherID = 0;
+                                    user.ParentID = 0;
+                                    user.Password = Validation.CalculateHASH(user.Password);
+
+                                    var result = await Task.Run(() => usersDAL.Create(user));
+                                    return RedirectToAction(nameof(Index));
+                                }
+                            }
+                        }
+                        else
+                        {
+                            ModelState.AddModelError(string.Empty, "Invalid attempt");
                         }
                         return View(user);
                     }
@@ -138,29 +162,44 @@ namespace SchoolDiarySystem.Controllers
                     try
                     {
                         GetItemForSelectList();
-                        var users = await Task.Run(() => usersDAL.GetAll());
-                        var checkUsers = users.Where(u => u.Username.ToLower() == user.Username.ToLower()).ToList();
-                        if (checkUsers.Count > 0)
+
+                        if (ModelState.IsValid)
                         {
-                            ModelState.AddModelError(string.Empty, "Username you're trying to create, already exists!");
-                            return View(user);
+                            var users = await Task.Run(() => usersDAL.GetAll());
+
+                            var checkUsers = users.Where(u => u.Username.ToLower() == user.Username.ToLower()).ToList();
+                            if (checkUsers.Count > 0)
+                            {
+                                ModelState.AddModelError(string.Empty, "Username you're trying to create, already exists!");
+                                return View(user);
+                            }
+                            else
+                            {
+                                var checkTeacher = users.Where(u => u.TeacherID == user.TeacherID).ToList();
+                                if (checkTeacher.Count > 0)
+                                {
+                                    ModelState.AddModelError(string.Empty, $"{user.Teacher.FullName} already has an account!");
+                                    return View(user);
+                                }
+                                else
+                                {
+                                    user.InsertBy = UserSession.GetUsers.Username;
+                                    user.LUB = UserSession.GetUsers.Username;
+                                    user.LUN++;
+                                    user.RoleID = 2;
+                                    user.ParentID = 0;
+                                    user.Password = Validation.CalculateHASH(user.Password);
+
+                                    var result = await Task.Run(() => usersDAL.Create(user));
+                                    return RedirectToAction(nameof(Index));
+                                }
+                            }
                         }
                         else
                         {
-                            if (ModelState.IsValid)
-                            {
-                                user.InsertBy = UserSession.GetUsers.Username;
-                                user.LUB = UserSession.GetUsers.Username;
-                                user.LUN++;
-                                user.RoleID = 2;
-                                user.ParentID = 0;
-                                user.Password = Validation.CalculateHASH(user.Password);
-
-                                var result = await Task.Run(() => usersDAL.Create(user));
-                                return RedirectToAction(nameof(Index));
-                            }
-                            return View(user);
+                            ModelState.AddModelError(string.Empty, "Invalid attempt");
                         }
+                        return View(user);
                     }
                     catch (Exception)
                     {
@@ -209,17 +248,42 @@ namespace SchoolDiarySystem.Controllers
                     try
                     {
                         GetItemForSelectList();
+
                         if (ModelState.IsValid)
                         {
-                            user.InsertBy = UserSession.GetUsers.Username;
-                            user.LUB = UserSession.GetUsers.Username;
-                            user.LUN++;
-                            user.RoleID = 4;
-                            user.TeacherID = 0;
-                            user.Password = Validation.CalculateHASH(user.Password);
+                            var users = await Task.Run(() => usersDAL.GetAll());
 
-                            var result = await Task.Run(() => usersDAL.Create(user));
-                            return RedirectToAction(nameof(Index));
+                        var checkUsers = users.Where(u => u.Username.ToLower() == user.Username.ToLower()).ToList();
+                            if (checkUsers.Count > 0)
+                            {
+                                ModelState.AddModelError(string.Empty, "Username you're trying to create, already exists!");
+                                return View(user);
+                            }
+                            else
+                            {
+                                var checkTeacher = users.Where(u => u.ParentID == user.ParentID).ToList();
+                                if (checkTeacher.Count > 0)
+                                {
+                                    ModelState.AddModelError(string.Empty, $"{user.Parent.FullName} already has an account!");
+                                    return View(user);
+                                }
+                                else
+                                {
+                                    user.InsertBy = UserSession.GetUsers.Username;
+                                    user.LUB = UserSession.GetUsers.Username;
+                                    user.LUN++;
+                                    user.RoleID = 4;
+                                    user.TeacherID = 0;
+                                    user.Password = Validation.CalculateHASH(user.Password);
+
+                                    var result = await Task.Run(() => usersDAL.Create(user));
+                                    return RedirectToAction(nameof(Index));
+                                }
+                            }
+                        }
+                        else
+                        {
+                            ModelState.AddModelError(string.Empty, "Invalid attempt");
                         }
                         return View(user);
                     }
@@ -312,6 +376,10 @@ namespace SchoolDiarySystem.Controllers
                             return View(user);
                         }
                     }
+                    else
+                    {
+                        ModelState.AddModelError(string.Empty, "Invalid attempt");
+                    }
                     return View(user);
                 }
                 else
@@ -387,34 +455,9 @@ namespace SchoolDiarySystem.Controllers
                             return View(user);
                         }
                     }
-                    return View(user);
-                }
-                else
-                {
-                    return Content("You're not allowed to view this page!");
-                }
-            }
-            else
-            {
-                return RedirectToAction("Login", "Account");
-            }
-        }
-
-        public async Task<ActionResult> Details(int? id)
-        {
-            if (UserSession.GetUsers != null)
-            {
-                if (UserSession.GetUsers.RoleID == 3)
-                {
-                    if (id == null)
+                    else
                     {
-                        return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest);
-                    }
-
-                    var user = await Task.Run(() => usersDAL.Get((int)id));
-                    if (user == null)
-                    {
-                        return RedirectToAction(nameof(Index));
+                        ModelState.AddModelError(string.Empty, "Invalid attempt");
                     }
                     return View(user);
                 }

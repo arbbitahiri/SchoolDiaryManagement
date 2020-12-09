@@ -76,16 +76,16 @@ namespace SchoolDiarySystem.Controllers
                         ViewBag.Teacher = teachersDAL.GetAll();
                         ViewBag.Room = roomsDAL.GetAll();
 
-                        var classes = await Task.Run(() => classDAL.GetAll());
-                        var checkClasses = classes.Where(c => c.ClassNo == _class.ClassNo && c.TeacherID == _class.TeacherID).ToList();
-                        if (checkClasses.Count > 0)
+                        if (ModelState.IsValid)
                         {
-                            ModelState.AddModelError(string.Empty, "Class you're trying to create, already exists!");
-                            return View(_class);
-                        }
-                        else
-                        {
-                            if (ModelState.IsValid)
+                            var classes = await Task.Run(() => classDAL.GetAll());
+                            var checkClasses = classes.Where(c => c.ClassNo == _class.ClassNo && c.TeacherID == _class.TeacherID).ToList();
+                            if (checkClasses.Count > 0)
+                            {
+                                ModelState.AddModelError(string.Empty, "Class you're trying to create, already exists!");
+                                return View(_class);
+                            }
+                            else
                             {
                                 _class.InsertBy = UserSession.GetUsers.Username;
                                 _class.LUB = UserSession.GetUsers.Username;
@@ -94,8 +94,12 @@ namespace SchoolDiarySystem.Controllers
                                 var result = await Task.Run(() => classDAL.Create(_class));
                                 return RedirectToAction(nameof(Index));
                             }
-                            return View(_class);
                         }
+                        else
+                        {
+                            ModelState.AddModelError(string.Empty, "Invalid attempt");
+                        }
+                        return View(_class);
                     }
                     catch (Exception)
                     {
@@ -161,75 +165,25 @@ namespace SchoolDiarySystem.Controllers
                     ViewBag.Teacher = teachersDAL.GetAll();
                     ViewBag.Room = roomsDAL.GetAll();
                     //var errors = ModelState.Values.SelectMany(m => m.Errors);
-                    try
+                    if (ModelState.IsValid)
                     {
-                        _class.LUB = UserSession.GetUsers.Username;
-                        _class.LUN = ++_class.LUN;
+                        try
+                        {
+                            _class.LUB = UserSession.GetUsers.Username;
+                            _class.LUN = ++_class.LUN;
 
-                        var result = await Task.Run(() => classDAL.Update(_class));
-                        return RedirectToAction(nameof(Index));
+                            var result = await Task.Run(() => classDAL.Update(_class));
+                            return RedirectToAction(nameof(Index));
+                        }
+                        catch (Exception)
+                        {
+                            ModelState.AddModelError(string.Empty, "An error occured while updating class.");
+                            return View(_class);
+                        }
                     }
-                    catch (Exception)
+                    else
                     {
-                        ModelState.AddModelError(string.Empty, "An error occured while updating class.");
-                        return View(_class);
-                    }
-                }
-                else
-                {
-                    return Content("You're not allowed to view this page!");
-                }
-            }
-            else
-            {
-                return RedirectToAction("Login", "Account");
-            }
-        }
-
-        public async Task<ActionResult> Details(int? id)
-        {
-            if (UserSession.GetUsers != null)
-            {
-                if (UserSession.GetUsers.RoleID == 1)
-                {
-                    if (id == null)
-                    {
-                        return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest);
-                    }
-
-                    var _class = await Task.Run(() => classDAL.Get((int)id));
-                    if (_class == null)
-                    {
-                        return RedirectToAction(nameof(Index));
-                    }
-                    return View(_class);
-                }
-                else
-                {
-                    return Content("You're not allowed to view this page!");
-                }
-            }
-            else
-            {
-                return RedirectToAction("Login", "Account");
-            }
-        }
-
-        public async Task<ActionResult> Delete(int? id)
-        {
-            if (UserSession.GetUsers != null)
-            {
-                if (UserSession.GetUsers.RoleID == 1)
-                {
-                    if (id == null)
-                    {
-                        return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest);
-                    }
-
-                    var _class = await Task.Run(() => classDAL.Get((int)id));
-                    if (_class == null)
-                    {
-                        return RedirectToAction(nameof(Index));
+                        ModelState.AddModelError(string.Empty, "Invalid attempt");
                     }
                     return View(_class);
                 }

@@ -52,8 +52,8 @@
                         <img src="~/Content/img/favicon.png" alt="logo">
                         <img src="~/Content/img/SDMLogo.png" alt="logo">
                     </div>
+                    @Html.ValidationSummary(true, string.Empty, new { @class = "text-danger" })
                     <form class="login-form">
-                        @Html.ValidationSummary(true, string.Empty, new { @class = "text-danger" })
                         <div class="form-group">
                             <label>Username</label>
                             @Html.TextBoxFor(m => m.Username, new { @class = "form-control", placeholder = "Username", id = "username", autocomplete = "off" })

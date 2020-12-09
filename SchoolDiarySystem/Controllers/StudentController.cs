@@ -84,6 +84,10 @@ namespace SchoolDiarySystem.Controllers
                             var result = await Task.Run(() => studentsDAL.Create(student));
                             return RedirectToAction(nameof(Index));
                         }
+                        else
+                        {
+                            ModelState.AddModelError(string.Empty, "Invalid attempt");
+                        }
                         return View(student);
                     }
                     catch (Exception)
@@ -164,63 +168,9 @@ namespace SchoolDiarySystem.Controllers
                             return View(student);
                         }
                     }
-                    return View(student);
-                }
-                else
-                {
-                    return Content("You're not allowed to view this page!");
-                }
-            }
-            else
-            {
-                return RedirectToAction("Login", "Account");
-            }
-        }
-
-        public async Task<ActionResult> Details(int? id)
-        {
-            if (UserSession.GetUsers != null)
-            {
-                if (UserSession.GetUsers.RoleID == 1)
-                {
-                    if (id == null)
+                    else
                     {
-                        return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest);
-                    }
-
-                    var student = await Task.Run(() => studentsDAL.Get((int)id));
-                    if (student == null)
-                    {
-                        return RedirectToAction(nameof(Index));
-                    }
-                    return View(student);
-                }
-                else
-                {
-                    return Content("You're not allowed to view this page!");
-                }
-            }
-            else
-            {
-                return RedirectToAction("Login", "Account");
-            }
-        }
-
-        public async Task<ActionResult> Delete(int? id)
-        {
-            if (UserSession.GetUsers != null)
-            {
-                if (UserSession.GetUsers.RoleID == 1)
-                {
-                    if (id == null)
-                    {
-                        return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest);
-                    }
-
-                    var student = await Task.Run(() => studentsDAL.Get((int)id));
-                    if (student == null)
-                    {
-                        return RedirectToAction(nameof(Index));
+                        ModelState.AddModelError(string.Empty, "Invalid attempt");
                     }
                     return View(student);
                 }

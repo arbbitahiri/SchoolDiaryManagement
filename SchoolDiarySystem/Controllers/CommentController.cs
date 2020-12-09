@@ -16,6 +16,7 @@ namespace SchoolDiarySystem.Controllers
         private readonly StudentsDAL studentsDAL = new StudentsDAL();
         private readonly ClassDAL classDAL = new ClassDAL();
         private readonly ReviewsDAL reviewsDAL = new ReviewsDAL();
+
         private readonly int teacher = !string.IsNullOrEmpty(UserSession.GetUsers.TeacherID.ToString()) ? UserSession.GetUsers.TeacherID : 0;
 
         // GET: Comment
@@ -91,6 +92,10 @@ namespace SchoolDiarySystem.Controllers
 
                             var result = await Task.Run(() => commentsDAL.Create(comment));
                             return RedirectToAction(nameof(Index));
+                        }
+                        else
+                        {
+                            ModelState.AddModelError(string.Empty, "Invalid attempt");
                         }
                         return View(comment);
                     }
@@ -171,34 +176,9 @@ namespace SchoolDiarySystem.Controllers
                             return View(comment);
                         }
                     }
-                    return View(comment);
-                }
-                else
-                {
-                    return Content("You're not allowed to view this page!");
-                }
-            }
-            else
-            {
-                return RedirectToAction("Login", "Account");
-            }
-        }
-
-        public async Task<ActionResult> Details(int? id)
-        {
-            if (UserSession.GetUsers != null)
-            {
-                if (UserSession.GetUsers.RoleID == 2 || UserSession.GetUsers.RoleID == 4)
-                {
-                    if (id == null)
+                    else
                     {
-                        return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest);
-                    }
-
-                    var comment = await Task.Run(() => commentsDAL.Get((int)id));
-                    if (comment == null)
-                    {
-                        return RedirectToAction(nameof(Index));
+                        ModelState.AddModelError(string.Empty, "Invalid attempt");
                     }
                     return View(comment);
                 }

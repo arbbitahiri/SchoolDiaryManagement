@@ -33,11 +33,11 @@ namespace SchoolDiarySystem.Models
         [Display(Name = "Day of Birth")]
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd MMMM yyyy}")]
         [Required(ErrorMessage = "Please select a date!")]
+        [TeacherBirthDate]
         public DateTime DayofBirth { get; set; }
 
         [Display(Name = "E-mail")]
-        [DataType(DataType.EmailAddress)]
-        //[RegularExpression(@" ^ ([\w\.\-] +)@([\w\-] +)\.([\w] +)$", ErrorMessage = "Please write in correct format: example@gmail.com")]
+        [EmailAddress(ErrorMessage = "E-mail is not valid!")]
         [Required(ErrorMessage = "Please write an e-mail!")]
         public string Email { get; set; }
 

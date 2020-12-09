@@ -104,6 +104,10 @@ namespace SchoolDiarySystem.Controllers
                             return View(review);
                         }
                     }
+                    else
+                    {
+                        ModelState.AddModelError(string.Empty, "Invalid attempt");
+                    }
                     return View(review);
                 }
                 else
@@ -133,7 +137,6 @@ namespace SchoolDiarySystem.Controllers
                     {
                         return RedirectToAction(nameof(Index));
                     }
-                    GetComment(review);
                     return View(review);
                 }
                 else
@@ -174,6 +177,10 @@ namespace SchoolDiarySystem.Controllers
                             ModelState.AddModelError(string.Empty, "An error occured while updating class.");
                             return View(review);
                         }
+                    }
+                    else
+                    {
+                        ModelState.AddModelError(string.Empty, "Invalid attempt");
                     }
                     return View(review);
                 }
@@ -216,46 +223,6 @@ namespace SchoolDiarySystem.Controllers
             else
             {
                 return RedirectToAction("Login", "Account");
-            }
-        }
-
-        public async Task<ActionResult> Details(int? id)
-        {
-            if (UserSession.GetUsers != null)
-            {
-                if (UserSession.GetUsers.RoleID != 1)
-                {
-                    if (id == null)
-                    {
-                        return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest);
-                    }
-
-                    var review = await Task.Run(() => reviewsDAL.Get((int)id));
-                    if (review == null)
-                    {
-                        return RedirectToAction("Index");
-                    }
-                    GetComment(review);
-                    return View(review);
-                }
-                else
-                {
-                    return Content("You're not allowed to view this page!");
-                }
-            }
-            else
-            {
-                return RedirectToAction("Login", "Account");
-            }
-        }
-
-        private void GetComment(Reviews reviews)
-        {
-            if (reviews != null)
-            {
-                var comment = commentsDAL.Get(reviews.CommentID);
-
-                ViewBag.CommentID = comment.Content;
             }
         }
     }

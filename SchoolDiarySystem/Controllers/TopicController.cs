@@ -84,17 +84,18 @@ namespace SchoolDiarySystem.Controllers
                     try
                     {
                         GetItemForSelectList(teacher);
-                        var topics = await Task.Run(() => topicsDAL.GetAll());
-                        var checkTopics = topics.Where(t => t.ClassID == topic.ClassID && t.SubjectID == topic.SubjectID
-                            && t.Time == topic.Time && t.TopicDate == topic.TopicDate).ToList();
-                        if (checkTopics.Count > 0)
+
+                        if (ModelState.IsValid)
                         {
-                            ModelState.AddModelError(string.Empty, "Topic you're trying to create, already exists!");
-                            return View(topic);
-                        }
-                        else
-                        {
-                            if (ModelState.IsValid)
+                            var topics = await Task.Run(() => topicsDAL.GetAll());
+                            var checkTopics = topics.Where(t => t.ClassID == topic.ClassID && t.SubjectID == topic.SubjectID
+                                && t.Time == topic.Time && t.TopicDate == topic.TopicDate).ToList();
+                            if (checkTopics.Count > 0)
+                            {
+                                ModelState.AddModelError(string.Empty, "Topic you're trying to create, already exists!");
+                                return View(topic);
+                            }
+                            else
                             {
                                 topic.InsertBy = UserSession.GetUsers.Username;
                                 topic.LUB = UserSession.GetUsers.Username;
@@ -103,8 +104,12 @@ namespace SchoolDiarySystem.Controllers
                                 var result = await Task.Run(() => topicsDAL.Create(topic));
                                 return RedirectToAction(nameof(Index));
                             }
-                            return View(topic);
                         }
+                        else
+                        {
+                            ModelState.AddModelError(string.Empty, "Invalid attempt");
+                        }
+                        return View(topic);
                     }
                     catch (Exception)
                     {
@@ -183,63 +188,9 @@ namespace SchoolDiarySystem.Controllers
                             return View(topic);
                         }
                     }
-                    return View(topic);
-                }
-                else
-                {
-                    return Content("You're not allowed to view this page!");
-                }
-            }
-            else
-            {
-                return RedirectToAction("Login", "Account");
-            }
-        }
-
-        public async Task<ActionResult> Details(int? id)
-        {
-            if (UserSession.GetUsers != null)
-            {
-                if (UserSession.GetUsers.RoleID == 2 || UserSession.GetUsers.RoleID == 4)
-                {
-                    if (id == null)
+                    else
                     {
-                        return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest);
-                    }
-
-                    var topic = await Task.Run(() => topicsDAL.Get((int)id));
-                    if (topic == null)
-                    {
-                        return RedirectToAction(nameof(Index));
-                    }
-                    return View(topic);
-                }
-                else
-                {
-                    return Content("You're not allowed to view this page!");
-                }
-            }
-            else
-            {
-                return RedirectToAction("Login", "Account");
-            }
-        }
-
-        public async Task<ActionResult> Delete(int? id)
-        {
-            if (UserSession.GetUsers != null)
-            {
-                if (UserSession.GetUsers.RoleID == 2)
-                {
-                    if (id == null)
-                    {
-                        return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest);
-                    }
-
-                    var topic = await Task.Run(() => topicsDAL.Get((int)id));
-                    if (topic == null)
-                    {
-                        return RedirectToAction(nameof(Index));
+                        ModelState.AddModelError(string.Empty, "Invalid attempt");
                     }
                     return View(topic);
                 }

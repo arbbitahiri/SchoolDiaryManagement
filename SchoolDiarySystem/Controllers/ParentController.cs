@@ -79,6 +79,10 @@ namespace SchoolDiarySystem.Controllers
                             var result = await Task.Run(() => parentsDAL.Create(parent));
                             return RedirectToAction(nameof(Index));
                         }
+                        else
+                        {
+                            ModelState.AddModelError(string.Empty, "Invalid attempt");
+                        }
                         return View(parent);
                     }
                     catch (Exception)
@@ -155,63 +159,9 @@ namespace SchoolDiarySystem.Controllers
                             return View(parent);
                         }
                     }
-                    return View(parent);
-                }
-                else
-                {
-                    return Content("You're not allowed to view this page!");
-                }
-            }
-            else
-            {
-                return RedirectToAction("Login", "Account");
-            }
-        }
-
-        public async Task<ActionResult> Details(int? id)
-        {
-            if (UserSession.GetUsers != null)
-            {
-                if (UserSession.GetUsers.RoleID == 1)
-                {
-                    if (id == null)
+                    else
                     {
-                        return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest);
-                    }
-
-                    var parent = await Task.Run(() => parentsDAL.Get((int)id));
-                    if (parent == null)
-                    {
-                        return RedirectToAction(nameof(Index));
-                    }
-                    return View(parent);
-                }
-                else
-                {
-                    return Content("You're not allowed to view this page!");
-                }
-            }
-            else
-            {
-                return RedirectToAction("Login", "Account");
-            }
-        }
-
-        public async Task<ActionResult> Delete(int? id)
-        {
-            if (UserSession.GetUsers != null)
-            {
-                if (UserSession.GetUsers.RoleID == 1)
-                {
-                    if (id == null)
-                    {
-                        return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest);
-                    }
-
-                    var parent = await Task.Run(() => parentsDAL.Get((int)id));
-                    if (parent == null)
-                    {
-                        return RedirectToAction(nameof(Index));
+                        ModelState.AddModelError(string.Empty, "Invalid attempt");
                     }
                     return View(parent);
                 }
