@@ -61,7 +61,7 @@
                             }
                             <div class="col-xl-4 col-lg-4 col-12 form-group">
                                 <label>Expire Date *</label>
-                                @Html.TextBoxFor(m => m.ExpiresDate, new { @class = "form-control air-datepicker", placeholder = "dd/MMMM/yyyy", id = "expire", autocomplete = "off" })
+                                @Html.TextBoxFor(m => m.ExpiresDate, new { @class = "form-control", type = "date", placeholder = "dd/MMMM/yyyy", id = "expire", autocomplete = "off" })
                                 @Html.ValidationMessageFor(m => m.ExpiresDate, "", new { @class = "text-danger" })
                                 <i class="far fa-calendar-alt"></i>
                             </div>

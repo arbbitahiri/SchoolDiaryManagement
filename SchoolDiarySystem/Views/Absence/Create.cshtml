@@ -1,35 +1,35 @@
 ﻿@{
-    ViewBag.Title = "Create Comment";
+    ViewBag.Title = "Create Absence";
     Layout = "~/Views/Shared/_LayoutTeacher.cshtml";
 }
 @using SchoolDiarySystem.Models
-@model Comments
+@model Absences
 
 <div class="breadcrumbs-area">
-    <h3>Comment</h3>
+    <h3>Absence</h3>
     <ul>
         <li>
             <a href="@Url.Action("Index", "Professor")">Home</a>
         </li>
-        <li>Add New Comment</li>
+        <li>Add New Absence</li>
     </ul>
 </div>
 <div class="card height-auto">
     <div class="card-body">
         <div class="heading-layout1">
             <div class="item-title">
-                <h3>Add New Comment</h3>
+                <h3>Add New Absence</h3>
             </div>
         </div>
-        @using (Html.BeginForm("Create", "Comment", FormMethod.Post))
+        @using (Html.BeginForm("Create", "Absence", FormMethod.Post))
         {
             @Html.ValidationSummary(true, "", new { @class = "alert alert-danger" })
             <form class="new-added-form">
                 <div class="row">
                     <div class="col-xl-3 col-lg-6 col-12 form-group">
                         <label>Select Student *</label>
-                        @Html.DropDownListFor(m => m.StudentID, new SelectList(ViewBag.Student, "StudentID", "FullName"), new { @class = "select2" })
-                        @Html.ValidationMessageFor(m => m.StudentID, "", new { @class = "text-danger" })
+                        @Html.DropDownListFor(m => m.ClassID, new SelectList(ViewBag.Student, "StudentID", "FullName"), new { @class = "select2" })
+                        @Html.ValidationMessageFor(m => m.ClassID, "", new { @class = "text-danger" })
                     </div>
                     <div class="col-xl-3 col-lg-6 col-12 form-group">
                         <label>Select Subject *</label>
@@ -38,18 +38,18 @@
                     </div>
                     <div class="col-xl-3 col-lg-6 col-12 form-group">
                         <label>Select Date *</label>
-                        @Html.TextBoxFor(m => m.CommentDate, new { @class = "form-control", type="date", placeholder = "dd/MMMM/yyyy", autocomplete = "off" })
-                        @Html.ValidationMessageFor(m => m.CommentDate, "", new { @class = "text-danger" })
+                        @Html.TextBoxFor(m => m.AbsenceDate, new { @class = "form-control", type = "date", placeholder = "dd/MMMM/yyyy", autocomplete = "off" })
+                        @Html.ValidationMessageFor(m => m.AbsenceDate, "", new { @class = "text-danger" })
                     </div>
                     <div class="col-xl-3 col-lg-6 col-12 form-group">
                         <label>Select Time *</label>
-                        @Html.DropDownListFor(m => m.Time, new SelectList(ViewBag.Times), new { @class = "select2" })
+                        @Html.DropDownListFor(m => m.AbsenceReasoning, new SelectList(ViewBag.AbsenceReasoning), new { @class = "select2" })
                         @Html.ValidationMessageFor(m => m.Time, "", new { @class = "text-danger" })
                     </div>
-                    <div class="col-xl-6 col-lg-6 col-12 form-group">
-                        <label>Comment *</label>
-                        @Html.TextAreaFor(m => m.Content, new { @class = "textarea form-control", placeholder = "Type your comment here...", id = "content", autocomplete = "off", style = "margin-top: 0px; margin-bottom: 0px; height: 150px;" })
-                        @Html.ValidationMessageFor(m => m.Content, "", new { @class = "text-danger" })
+                    <div class="col-xl-3 col-lg-6 col-12 form-group">
+                        <label>Select Time *</label>
+                        @Html.DropDownListFor(m => m.StudentID, new SelectList(ViewBag.Student), new { @class = "select2" })
+                        @Html.ValidationMessageFor(m => m.StudentID, "", new { @class = "text-danger" })
                     </div>
                     <div class="col-12 form-group mg-t-8">
                         <input type="submit" value="Create" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark" />

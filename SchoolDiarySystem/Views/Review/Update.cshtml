@@ -9,7 +9,7 @@
             <h3>Review</h3>
             <ul>
                 <li>
-                    <a href="index-2.html">Home</a>
+                    <a href="@Url.Action("Index", "Director")">Home</a>
                 </li>
                 <li>Update Review</li>
             </ul>
@@ -34,7 +34,7 @@
                             </div>
                             <div class="col-xl-3 col-lg-6 col-12 form-group">
                                 <label>Select Date *</label>
-                                @Html.TextBoxFor(m => m.ReviewDate, new { @class = "form-control air-datepicker", placeholder = "dd/MMMM/yyyy", id = "reveiwDate", autocomplete = "off" })
+                                @Html.TextBoxFor(m => m.ReviewDate, new { @class = "form-control", type = "date", placeholder = "dd/MMMM/yyyy", id = "reveiwDate", autocomplete = "off" })
                                 @Html.ValidationMessageFor(m => m.ReviewDate, "", new { @class = "text-danger" })
                             </div>
                             <div class="col-12 form-group mg-t-8">

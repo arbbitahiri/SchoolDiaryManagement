@@ -34,7 +34,7 @@
                             </div>
                             <div class="col-xl-4 col-lg-6 col-12 form-group">
                                 <label>Select Date *</label>
-                                @Html.TextBoxFor(m => m.TopicDate, new { @class = "form-control air-datepicker", placeholder = "dd/MMMM/yyyy", id = "topicdate", autocomplete = "off" })
+                                @Html.TextBoxFor(m => m.TopicDate, new { @class = "form-control", type = "date", placeholder = "dd/MMMM/yyyy", id = "topicdate", autocomplete = "off" })
                                 @Html.ValidationMessageFor(m => m.TopicDate, "", new { @class = "text-danger" })
                                 <i class="far fa-calendar-alt"></i>
                             </div>

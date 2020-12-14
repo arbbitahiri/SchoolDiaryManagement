@@ -120,6 +120,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AbsenceController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\ClassController.cs" />
@@ -355,6 +356,9 @@
     <Content Include="Views\MyKids\IndexComment.cshtml" />
     <Content Include="Views\MyKids\IndexSchedule.cshtml" />
     <Content Include="Views\MyKids\TeacherDetails.cshtml" />
+    <Content Include="Views\Absence\Index.cshtml" />
+    <Content Include="Views\Absence\Create.cshtml" />
+    <Content Include="Views\Absence\Update.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

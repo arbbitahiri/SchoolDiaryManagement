@@ -1,39 +1,43 @@
-﻿using SchoolDiarySystem.DAL;
-using SchoolDiarySystem.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using System.Web;
+using System.Threading.Tasks;
 using System.Web.Mvc;
+using SchoolDiarySystem.DAL;
+using SchoolDiarySystem.Models;
 
 namespace SchoolDiarySystem.Controllers
 {
-    public class ReviewController : Controller
+    public class AbsenceController : Controller
     {
-        private readonly ReviewsDAL reviewsDAL = new ReviewsDAL();
-        private readonly CommentsDAL commentsDAL = new CommentsDAL();
+        private readonly AbsencesDAL absencesDAL = new AbsencesDAL();
+        private readonly StudentsDAL studentsDAL = new StudentsDAL();
+        private readonly SubjectsDAL subjectsDAL = new SubjectsDAL();
+        private readonly ClassDAL classDAL = new ClassDAL();
 
-        // GET: Review
+        private readonly int teacher = !string.IsNullOrEmpty(UserSession.GetUsers.TeacherID.ToString()) ? UserSession.GetUsers.TeacherID : 0;
+
+        // GET: Absence
         public async Task<ActionResult> Index(string searchString, string searchString2)
         {
             if (UserSession.GetUsers != null)
             {
-                if (UserSession.GetUsers.RoleID == 3)
+                if (UserSession.GetUsers.RoleID == 2)
                 {
-                    var reviews = await Task.Run(() => reviewsDAL.GetAll());
+                    var absences = await Task.Run(() => absencesDAL.GetAllForTeacher(teacher));
 
                     if (!string.IsNullOrEmpty(searchString))
                     {
-                        reviews = reviews.Where(f => f.ReviewDate.Date == Convert.ToDateTime(searchString).Date).ToList();
+                        absences = absences.Where(f => f.AbsenceDate.Date == Convert.ToDateTime(searchString).Date).ToList();
                     }
 
                     if (!string.IsNullOrEmpty(searchString2))
                     {
-                        reviews = reviews.Where(f => f.Comment.Subject.SubjectTitle.ToLower() == searchString2.ToLower()).ToList();
+                        absences = absences.Where(f => f.Student.FirstName.ToLower() == searchString2.ToLower() || f.Student.LastName.ToLower() == searchString2.ToLower() || f.Student.FullName.ToLower() == searchString2.ToLower()).ToList();
                     }
 
-                    return View(reviews);
+                    return View(absences);
                 }
                 else
                 {
@@ -46,23 +50,15 @@ namespace SchoolDiarySystem.Controllers
             }
         }
 
-        public async Task<ActionResult> ReviewComment(int? id)
+        public async Task<ActionResult> Create()
         {
             if (UserSession.GetUsers != null)
             {
-                if (UserSession.GetUsers.RoleID == 3)
+                if (UserSession.GetUsers.RoleID == 2)
                 {
-                    if (id == null)
-                    {
-                        return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest);
-                    }
-
-                    var review = await Task.Run(() => reviewsDAL.Get((int)id));
-                    if (review == null)
-                    {
-                        return RedirectToAction(nameof(Index));
-                    }
-                    return View(review);
+                    GetItemForSelectList();
+                    var absence = new Absences();
+                    return View(absence);
                 }
                 else
                 {
@@ -76,39 +72,35 @@ namespace SchoolDiarySystem.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> ReviewComment(Reviews model)
+        public async Task<ActionResult> Create(Absences absence)
         {
             if (UserSession.GetUsers != null)
             {
-                if (UserSession.GetUsers.RoleID == 3)
+                if (UserSession.GetUsers.RoleID == 2)
                 {
-                    var error = ModelState.Values.SelectMany(e => e.Errors);
-                    //if (id != review.CommentID)
-                    //{
-                    //    return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest);
-                    //}
-
+                    GetItemForSelectList();
                     if (ModelState.IsValid)
                     {
                         try
                         {
-                            model.LUB = UserSession.GetUsers.Username;
-                            model.LUN = ++model.LUN;
+                            absence.InsertBy = UserSession.GetUsers.Username;
+                            absence.LUB = UserSession.GetUsers.Username;
+                            absence.LUN++;
 
-                            var result = await Task.Run(() => reviewsDAL.Create(model));
+                            var result = await Task.Run(() => absencesDAL.Create(absence));
                             return RedirectToAction(nameof(Index));
                         }
                         catch (Exception)
                         {
                             ModelState.AddModelError(string.Empty, "An error occured while updating class.");
-                            return View(model);
+                            return View(absence);
                         }
                     }
                     else
                     {
                         ModelState.AddModelError(string.Empty, "Invalid attempt");
                     }
-                    return View(model);
+                    return View(absence);
                 }
                 else
                 {
@@ -125,19 +117,16 @@ namespace SchoolDiarySystem.Controllers
         {
             if (UserSession.GetUsers != null)
             {
-                if (UserSession.GetUsers.RoleID == 3)
+                if (UserSession.GetUsers.RoleID == 2)
                 {
                     if (id == null)
                     {
                         return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest);
                     }
 
-                    var review = await Task.Run(() => reviewsDAL.Get((int)id));
-                    if (review == null)
-                    {
-                        return RedirectToAction(nameof(Index));
-                    }
-                    return View(review);
+                    GetItemForSelectList();
+                    var absence = await Task.Run(() => absencesDAL.Get((int)id));
+                    return View(absence);
                 }
                 else
                 {
@@ -151,38 +140,39 @@ namespace SchoolDiarySystem.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> Update(int id, Reviews review)
+        public async Task<ActionResult> Update(int id, Absences absence)
         {
             if (UserSession.GetUsers != null)
             {
-                if (UserSession.GetUsers.RoleID == 3)
+                if (UserSession.GetUsers.RoleID == 2)
                 {
-                    if (id != review.ReviewID)
+                    if (id != absence.AbsenceID)
                     {
                         return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest);
                     }
 
+                    GetItemForSelectList();
                     if (ModelState.IsValid)
                     {
                         try
                         {
-                            review.LUB = UserSession.GetUsers.Username;
-                            review.LUN = ++review.LUN;
+                            absence.LUB = UserSession.GetUsers.Username;
+                            absence.LUN = ++absence.LUN;
 
-                            var result = await Task.Run(() => reviewsDAL.Update(review));
+                            var result = await Task.Run(() => absencesDAL.Create(absence));
                             return RedirectToAction(nameof(Index));
                         }
                         catch (Exception)
                         {
                             ModelState.AddModelError(string.Empty, "An error occured while updating class.");
-                            return View(review);
+                            return View(absence);
                         }
                     }
                     else
                     {
                         ModelState.AddModelError(string.Empty, "Invalid attempt");
                     }
-                    return View(review);
+                    return View(absence);
                 }
                 else
                 {
@@ -195,35 +185,14 @@ namespace SchoolDiarySystem.Controllers
             }
         }
 
-        public async Task<ActionResult> CommentList(string searchString, string searchString2)
+        private void GetItemForSelectList()
         {
-            if (UserSession.GetUsers != null)
-            {
-                if (UserSession.GetUsers.RoleID == 3)
-                {
-                    var comments = await Task.Run(() => commentsDAL.GetAll());
+            List<string> reasons = new List<string>() { "Reasonable", "Unreasonable" };
 
-                    if (!string.IsNullOrEmpty(searchString))
-                    {
-                        comments = comments.Where(f => f.CommentDate.Date == Convert.ToDateTime(searchString).Date).ToList();
-                    }
-
-                    if (!string.IsNullOrEmpty(searchString2))
-                    {
-                        comments = comments.Where(f => f.Subject.SubjectTitle == searchString2).ToList();
-                    }
-
-                    return View(comments);
-                }
-                else
-                {
-                    return Content("You're not allowed to view this page!");
-                }
-            }
-            else
-            {
-                return RedirectToAction("Login", "Account");
-            }
+            ViewBag.Subject = subjectsDAL.GetAllForTeacher(teacher);
+            ViewBag.Class = classDAL.GetAllForTeacher(teacher);
+            ViewBag.Student = studentsDAL.GetAllForTeacher(teacher);
+            ViewBag.AbsenceReasoning = reasons;
         }
     }
 }
