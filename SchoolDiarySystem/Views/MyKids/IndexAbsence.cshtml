@@ -1,8 +1,80 @@
-﻿
-@{
-    ViewBag.Title = "IndexAbsence";
+﻿@{
+    ViewBag.Title = "Absence's List";
     Layout = "~/Views/Shared/_LayoutParent.cshtml";
 }
+@using SchoolDiarySystem.Models
+@model IEnumerable<Absences>
 
-<h2>IndexAbsence</h2>
+<div class="breadcrumbs-area">
+    <h3>Absence</h3>
+    <ul>
+        <li>
+            <a href="@Url.Action("Index", "MyKids")">Home</a>
+        </li>
+        <li>All Absences</li>
+    </ul>
+</div>
+<div class="card height-auto">
+    <div class="card-body">
+        <div class="heading-layout1">
+            <div class="item-title">
+                <h3>All Absences Data</h3>
+            </div>
+        </div>
+        @using (Html.BeginForm("IndexAbsence", "MyKids", FormMethod.Get))
+        {
+            <form class="mg-b-20">
+                <div class="row gutters-8">
+                    <div class="col-4-xxxl col-xl-5 col-lg-3 col-12 form-group">
+                        <input type="text" autocomplete="off" name="searchString" placeholder="Search by date ..." class="form-control air-datepicker">
+                    </div>
+                    <div class="col-4-xxxl col-xl-5 col-lg-3 col-12 form-group">
+                        <input type="text" autocomplete="off" name="searchString2" placeholder="Search by student's name ..." class="form-control">
+                    </div>
+                    <div class="col-1-xxxl col-xl-2 col-lg-3 col-12 form-group">
+                        <button type="submit" class="fw-btn-fill btn-gradient-yellow">SEARCH</button>
+                    </div>
+                </div>
+            </form>
+        }
+        <div class="table-responsive">
+            <table class="table display data-table text-nowrap">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>Date</th>
+                        <th>Reasoning</th>
+                        <th>Student</th>
+                        <th>Class</th>
+                        <th>Subject</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td></td>
+                            <td>
+                                @Html.DisplayFor(m => item.AbsenceDate)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(m => item.AbsenceReasoning)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(m => item.Student.FullName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(m => item.Class.ClassNo)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(m => item.Subject.SubjectTitle)
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
 
+@section Scripts {}

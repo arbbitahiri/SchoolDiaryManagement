@@ -51,7 +51,6 @@ namespace SchoolDiarySystem.DAL
                     {
                         DataConnection.AddParameter(command, "absenceID", model.AbsenceID);
                         DataConnection.AddParameter(command, "classID", model.ClassID);
-                        DataConnection.AddParameter(command, "subjectID", model.SubjectID);
                         DataConnection.AddParameter(command, "date", model.AbsenceDate);
                         DataConnection.AddParameter(command, "absencereasoning", model.AbsenceReasoning);
                         DataConnection.AddParameter(command, "studentID", model.StudentID);
@@ -63,7 +62,7 @@ namespace SchoolDiarySystem.DAL
                     }
                 }
             }
-            catch (Exception)
+            catch (Exception e)
             {
 
                 return false;
@@ -103,6 +102,7 @@ namespace SchoolDiarySystem.DAL
                     string sqlproc = "dbo.usp_Absence_Get";
                     using (var command = DataConnection.GetCommand(connection, sqlproc, CommandType.StoredProcedure))
                     {
+                        DataConnection.AddParameter(command, "absenceID", id);
                         using (SqlDataReader reader = command.ExecuteReader())
                         {
                             absence = new Absences();
@@ -183,6 +183,47 @@ namespace SchoolDiarySystem.DAL
                     using (var command = DataConnection.GetCommand(connection, sqlproc, CommandType.StoredProcedure))
                     {
                         DataConnection.AddParameter(command, "teacherID", teacherID);
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            MyAbsences = new List<Absences>();
+                            while (reader.Read())
+                            {
+                                var absence = ToObject(reader);
+                                if (reader["Class_No"] != DBNull.Value && reader["Subject_Title"] != DBNull.Value
+                                    && reader["First_Name"] != DBNull.Value && reader["Last_Name"] != DBNull.Value)
+                                {
+                                    absence.Class = new Class { ClassNo = int.Parse(reader["Class_No"].ToString()) };
+                                    absence.Subject = new Subjects { SubjectTitle = reader["Subject_Title"].ToString() };
+                                    absence.Student = new Students
+                                    {
+                                        FirstName = reader["First_Name"].ToString(),
+                                        LastName = reader["Last_Name"].ToString()
+                                    };
+                                }
+                                MyAbsences.Add(absence);
+                            }
+                        }
+                    }
+                }
+                return MyAbsences;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public List<Absences> GetAllForParent(int parentID)
+        {
+            try
+            {
+                List<Absences> MyAbsences = null;
+                using (var connection = DataConnection.GetConnection())
+                {
+                    string sqlproc = "dbo.usp_Absence_GetList_ForParent";
+                    using (var command = DataConnection.GetCommand(connection, sqlproc, CommandType.StoredProcedure))
+                    {
+                        DataConnection.AddParameter(command, "parentID", parentID);
                         using (SqlDataReader reader = command.ExecuteReader())
                         {
                             MyAbsences = new List<Absences>();

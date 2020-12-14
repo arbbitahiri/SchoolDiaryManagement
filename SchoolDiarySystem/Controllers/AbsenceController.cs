@@ -50,7 +50,7 @@ namespace SchoolDiarySystem.Controllers
             }
         }
 
-        public async Task<ActionResult> Create()
+        public ActionResult Create()
         {
             if (UserSession.GetUsers != null)
             {
@@ -159,7 +159,7 @@ namespace SchoolDiarySystem.Controllers
                             absence.LUB = UserSession.GetUsers.Username;
                             absence.LUN = ++absence.LUN;
 
-                            var result = await Task.Run(() => absencesDAL.Create(absence));
+                            var result = await Task.Run(() => absencesDAL.Update(absence));
                             return RedirectToAction(nameof(Index));
                         }
                         catch (Exception)
