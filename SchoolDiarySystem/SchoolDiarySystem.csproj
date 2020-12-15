@@ -131,6 +131,8 @@
     <Compile Include="Controllers\ProfessorController.cs" />
     <Compile Include="Controllers\ReviewController.cs" />
     <Compile Include="Controllers\RoomController.cs" />
+    <Compile Include="Controllers\ScheduleController.cs" />
+    <Compile Include="Controllers\StaffAbsenceController.cs" />
     <Compile Include="Controllers\StudentController.cs" />
     <Compile Include="Controllers\SubjectController.cs" />
     <Compile Include="Controllers\TeacherController.cs" />
@@ -145,6 +147,7 @@
     <Compile Include="DAL\ReviewsDAL.cs" />
     <Compile Include="DAL\RolesDAL.cs" />
     <Compile Include="DAL\RoomsDAL.cs" />
+    <Compile Include="DAL\StaffAbsenceDAL.cs" />
     <Compile Include="DAL\StudentsDAL.cs" />
     <Compile Include="DAL\SubjectsDAL.cs" />
     <Compile Include="DAL\TeachersDAL.cs" />
@@ -170,6 +173,7 @@
     <Compile Include="Models\Reviews.cs" />
     <Compile Include="Models\Roles.cs" />
     <Compile Include="Models\Rooms.cs" />
+    <Compile Include="Models\StaffAbsence.cs" />
     <Compile Include="Models\Students.cs" />
     <Compile Include="Models\Subjects.cs" />
     <Compile Include="Models\Teachers.cs" />
@@ -359,9 +363,13 @@
     <Content Include="Views\Absence\Index.cshtml" />
     <Content Include="Views\Absence\Create.cshtml" />
     <Content Include="Views\Absence\Update.cshtml" />
+    <Content Include="Views\Schedule\Create.cshtml" />
+    <Content Include="Views\Schedule\Index.cshtml" />
+    <Content Include="Views\Schedule\Update.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\StaffAbsence\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

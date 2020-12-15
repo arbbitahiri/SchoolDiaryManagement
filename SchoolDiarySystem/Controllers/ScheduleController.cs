@@ -9,31 +9,32 @@ using System.Web.Mvc;
 
 namespace SchoolDiarySystem.Controllers
 {
-    public class ReviewController : Controller
+    public class ScheduleController : Controller
     {
-        private readonly ReviewsDAL reviewsDAL = new ReviewsDAL();
-        private readonly CommentsDAL commentsDAL = new CommentsDAL();
+        private readonly ClassSchedulesDAL schedulesDAL = new ClassSchedulesDAL();
+        private readonly ClassDAL classDAL = new ClassDAL();
+        private readonly SubjectsDAL subjectsDAL = new SubjectsDAL();
 
-        // GET: Review
+        // GET: Schedule
         public async Task<ActionResult> Index(string searchString, string searchString2)
         {
             if (UserSession.GetUsers != null)
             {
-                if (UserSession.GetUsers.RoleID == 3)
+                if (UserSession.GetUsers.RoleID == 1)
                 {
-                    var reviews = await Task.Run(() => reviewsDAL.GetAll());
+                    var schedules = await Task.Run(() => schedulesDAL.GetAll());
 
                     if (!string.IsNullOrEmpty(searchString))
                     {
-                        reviews = reviews.Where(f => f.ReviewDate.Date == Convert.ToDateTime(searchString).Date).ToList();
+                        schedules = schedules.Where(f => f.Class.ClassNo == int.Parse(searchString)).ToList();
                     }
 
                     if (!string.IsNullOrEmpty(searchString2))
                     {
-                        reviews = reviews.Where(f => f.Comment.Subject.SubjectTitle.ToLower() == searchString2.ToLower()).ToList();
+                        schedules = schedules.Where(f => f.Subject.SubjectTitle.ToLower() == searchString2.ToLower()).ToList();
                     }
 
-                    return View(reviews);
+                    return View(schedules);
                 }
                 else
                 {
@@ -46,23 +47,15 @@ namespace SchoolDiarySystem.Controllers
             }
         }
 
-        public async Task<ActionResult> ReviewComment(int? id)
+        public ActionResult Create()
         {
             if (UserSession.GetUsers != null)
             {
-                if (UserSession.GetUsers.RoleID == 3)
+                if (UserSession.GetUsers.RoleID == 1)
                 {
-                    if (id == null)
-                    {
-                        return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest);
-                    }
-
-                    var review = await Task.Run(() => reviewsDAL.Get((int)id));
-                    if (review == null)
-                    {
-                        return RedirectToAction(nameof(Index));
-                    }
-                    return View(review);
+                    GetItemForSelectList();
+                    var schedule = new ClassSchedules();
+                    return View(schedule);
                 }
                 else
                 {
@@ -76,40 +69,47 @@ namespace SchoolDiarySystem.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> ReviewComment(int commentID, Reviews model)
+        public async Task<ActionResult> Create(ClassSchedules schedule)
         {
             if (UserSession.GetUsers != null)
             {
-                if (UserSession.GetUsers.RoleID == 3)
+                if (UserSession.GetUsers.RoleID == 1)
                 {
-                    var error = ModelState.Values.SelectMany(e => e.Errors);
-                    if (commentID != model.CommentID)
+                    try
                     {
-                        return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest);
-                    }
+                        GetItemForSelectList();
 
-                    if (ModelState.IsValid)
-                    {
-                        try
+                        if (ModelState.IsValid)
                         {
-                            model.CommentID = commentID;
-                            model.LUB = UserSession.GetUsers.Username;
-                            model.LUN = ++model.LUN;
+                            var schedules = await Task.Run(() => schedulesDAL.GetAll());
+                            var checkSchedules = schedules.Where(t => t.ClassID == schedule.ClassID && t.Day == schedule.Day && t.Time == schedule.Time).ToList();
 
-                            var result = await Task.Run(() => reviewsDAL.Create(model));
-                            return RedirectToAction(nameof(Index));
+                            if (checkSchedules.Count > 0)
+                            {
+                                ModelState.AddModelError(string.Empty, "Schedule you're trying to create, already exists!");
+                                return View(schedule);
+                            }
+                            else
+                            {
+                                schedule.InsertBy = UserSession.GetUsers.Username;
+                                schedule.LUB = UserSession.GetUsers.Username;
+                                schedule.LUN++;
+
+                                var result = await Task.Run(() => schedulesDAL.Create(schedule));
+                                return RedirectToAction(nameof(Index));
+                            }
                         }
-                        catch (Exception)
+                        else
                         {
-                            ModelState.AddModelError(string.Empty, "An error occured while updating class.");
-                            return View(model);
+                            ModelState.AddModelError(string.Empty, "Invalid attempt");
                         }
+                        return View(schedule);
                     }
-                    else
+                    catch (Exception)
                     {
-                        ModelState.AddModelError(string.Empty, "Invalid attempt");
+                        ModelState.AddModelError(string.Empty, "An error occured while creating schedule.");
+                        return View(schedule);
                     }
-                    return View(model);
                 }
                 else
                 {
@@ -126,19 +126,21 @@ namespace SchoolDiarySystem.Controllers
         {
             if (UserSession.GetUsers != null)
             {
-                if (UserSession.GetUsers.RoleID == 3)
+                if (UserSession.GetUsers.RoleID == 1)
                 {
                     if (id == null)
                     {
                         return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest);
                     }
 
-                    var review = await Task.Run(() => reviewsDAL.Get((int)id));
-                    if (review == null)
+                    var schedule = await Task.Run(() => schedulesDAL.Get((int)id));
+                    if (schedule == null)
                     {
                         return RedirectToAction(nameof(Index));
                     }
-                    return View(review);
+
+                    GetItemForSelectList();
+                    return View(schedule);
                 }
                 else
                 {
@@ -152,38 +154,39 @@ namespace SchoolDiarySystem.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> Update(int id, Reviews review)
+        public async Task<ActionResult> Update(int id, ClassSchedules schedule)
         {
             if (UserSession.GetUsers != null)
             {
-                if (UserSession.GetUsers.RoleID == 3)
+                if (UserSession.GetUsers.RoleID == 1)
                 {
-                    if (id != review.ReviewID)
+                    if (id != schedule.ScheduleID)
                     {
                         return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest);
                     }
 
+                    GetItemForSelectList();
                     if (ModelState.IsValid)
                     {
                         try
                         {
-                            review.LUB = UserSession.GetUsers.Username;
-                            review.LUN = ++review.LUN;
+                            schedule.LUB = UserSession.GetUsers.Username;
+                            schedule.LUN = ++schedule.LUN;
 
-                            var result = await Task.Run(() => reviewsDAL.Update(review));
+                            var result = await Task.Run(() => schedulesDAL.Update(schedule));
                             return RedirectToAction(nameof(Index));
                         }
                         catch (Exception)
                         {
                             ModelState.AddModelError(string.Empty, "An error occured while updating class.");
-                            return View(review);
+                            return View(schedule);
                         }
                     }
                     else
                     {
                         ModelState.AddModelError(string.Empty, "Invalid attempt");
                     }
-                    return View(review);
+                    return View(schedule);
                 }
                 else
                 {
@@ -196,25 +199,15 @@ namespace SchoolDiarySystem.Controllers
             }
         }
 
-        public async Task<ActionResult> CommentList(string searchString, string searchString2)
+        [HttpPost]
+        public async Task<ActionResult> Delete(int id)
         {
             if (UserSession.GetUsers != null)
             {
-                if (UserSession.GetUsers.RoleID == 3)
+                if (UserSession.GetUsers.RoleID == 1)
                 {
-                    var comments = await Task.Run(() => commentsDAL.GetAll());
-
-                    if (!string.IsNullOrEmpty(searchString))
-                    {
-                        comments = comments.Where(f => f.CommentDate.Date == Convert.ToDateTime(searchString).Date).ToList();
-                    }
-
-                    if (!string.IsNullOrEmpty(searchString2))
-                    {
-                        comments = comments.Where(f => f.Subject.SubjectTitle == searchString2).ToList();
-                    }
-
-                    return View(comments);
+                    await Task.Run(() => schedulesDAL.Delete(id));
+                    return RedirectToAction(nameof(Index));
                 }
                 else
                 {
@@ -225,6 +218,17 @@ namespace SchoolDiarySystem.Controllers
             {
                 return RedirectToAction("Login", "Account");
             }
+        }
+
+        private void GetItemForSelectList()
+        {
+            List<string> days = new List<string>() { "Monday", "Tuesday", "Wednesday", "Thursday", "Friday" };
+            List<int> times = new List<int>() { 1, 2, 3, 4, 5, 6 };
+
+            ViewBag.Times = times;
+            ViewBag.Days = days;
+            ViewBag.Class = classDAL.GetAll();
+            ViewBag.Subject = subjectsDAL.GetAll();
         }
     }
 }

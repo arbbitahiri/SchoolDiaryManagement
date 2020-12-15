@@ -1,0 +1,59 @@
+﻿@{
+    ViewBag.Title = "Update Schedule";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+@using SchoolDiarySystem.Models
+@model ClassSchedules
+
+<div class="breadcrumbs-area">
+    <h3>Schedule Update Form</h3>
+    <ul>
+        <li>
+            <a href="@Url.Action("Index", "Admin")">Home</a>
+        </li>
+        <li>Update Schedule</li>
+    </ul>
+</div>
+<div class="card height-auto">
+    <div class="card-body">
+        <div class="heading-layout1">
+            <div class="item-title">
+                <h3>Update Schedule</h3>
+            </div>
+        </div>
+        @using (Html.BeginForm("Update", "Schedule", FormMethod.Post))
+        {
+            @Html.ValidationSummary(true, "", new { @class = "alert alert-danger" })
+            <form class="new-added-form">
+                <div class="row">
+                    <div class="col-xl-4 col-lg-6 col-12 form-group">
+                        @Html.HiddenFor(m => m.ScheduleID)
+                        <label>Class Number *</label>
+                        @Html.DropDownListFor(m => m.ClassID, new SelectList(ViewBag.Class, "ClassID", "ClassNo"), htmlAttributes: new { @class = "select2" })
+                        @Html.ValidationMessageFor(m => m.ClassID, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="col-xl-4 col-lg-6 col-12 form-group">
+                        <label>Subject *</label>
+                        @Html.DropDownListFor(m => m.SubjectID, new SelectList(ViewBag.Subject, "SubjectID", "SubjectTitle"), htmlAttributes: new { @class = "select2" })
+                        @Html.ValidationMessageFor(m => m.SubjectID, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="col-xl-4 col-lg-6 col-12 form-group">
+                        <label>Time *</label>
+                        @Html.DropDownListFor(m => m.Time, new SelectList(ViewBag.Times), htmlAttributes: new { @class = "select2" })
+                        @Html.ValidationMessageFor(m => m.Time, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="col-xl-4 col-lg-6 col-12 form-group">
+                        <label>Time *</label>
+                        @Html.DropDownListFor(m => m.Day, new SelectList(ViewBag.Days), htmlAttributes: new { @class = "select2" })
+                        @Html.ValidationMessageFor(m => m.Day, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="col-12 form-group mg-t-8">
+                        <input type="submit" value="Create" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark" />
+                    </div>
+                </div>
+            </form>
+        }
+    </div>
+</div>
+
+@section Scripts {}

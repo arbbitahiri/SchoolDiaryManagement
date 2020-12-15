@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Web.Mvc;
 
 namespace SchoolDiarySystem.Models
 {
@@ -36,13 +34,6 @@ namespace SchoolDiarySystem.Models
         //[Required(ErrorMessage = "Please select a date!")]
         public DateTime ExpiresDate { get; set; }
 
-        [Display(Name = "Absence Date")]
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd MMMM yyyy}")]
-        public DateTime AbsenceDate { get; set; }
-
-        [Display(Name = "Reasoning")]
-        public string AbsenceReasoning { get; set; }
-
         [Display(Name = "Last Login Date")]
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd MMMM yyyy}")]
         public DateTime LastLoginDate { get; set; }
@@ -74,9 +65,5 @@ namespace SchoolDiarySystem.Models
         public virtual Roles Role { get; set; }
         public virtual Parents Parent { get; set; }
         public virtual Teachers Teacher { get; set; }
-
-        public IEnumerable<SelectListItem> RolesList { get; set; }
-        public IEnumerable<SelectListItem> ParentsList { get; set; }
-        public IEnumerable<SelectListItem> TeachersList { get; set; }
     }
 }
