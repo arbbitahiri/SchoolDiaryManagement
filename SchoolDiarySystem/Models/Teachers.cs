@@ -26,10 +26,6 @@ namespace SchoolDiarySystem.Models
         [Required(ErrorMessage = "Please write teacher's city!")]
         public string City { get; set; }
 
-        [Display(Name = "Qualification")]
-        [Required(ErrorMessage = "Please write teacher's qualification!")]
-        public string Qualification { get; set; }
-
         [Display(Name = "Day of Birth")]
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd MMMM yyyy}")]
         [Required(ErrorMessage = "Please select a date!")]

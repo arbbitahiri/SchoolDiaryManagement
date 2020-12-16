@@ -184,6 +184,26 @@ namespace SchoolDiarySystem.Controllers
             }
         }
 
+        public async Task<ActionResult> Delete(int? id)
+        {
+            if (UserSession.GetUsers != null)
+            {
+                if (UserSession.GetUsers.RoleID == 1)
+                {
+                    var room = await Task.Run(() => roomsDAL.Get((int)id));
+                    return View(room);
+                }
+                else
+                {
+                    return Content("You're not allowed to view this page!");
+                }
+            }
+            else
+            {
+                return RedirectToAction("Login", "Account");
+            }
+        }
+
         [HttpPost]
         public async Task<ActionResult> Delete(int id)
         {

@@ -23,7 +23,6 @@ namespace SchoolDiarySystem.DAL
                         DataConnection.AddParameter(command, "lastname", model.LastName);
                         DataConnection.AddParameter(command, "gender", model.Gender);
                         DataConnection.AddParameter(command, "city", model.City);
-                        DataConnection.AddParameter(command, "qualification", model.Qualification);
                         DataConnection.AddParameter(command, "dayofbirth", model.DayofBirth);
                         DataConnection.AddParameter(command, "email", model.Email);
                         DataConnection.AddParameter(command, "phoneno", model.PhoneNo);
@@ -56,7 +55,6 @@ namespace SchoolDiarySystem.DAL
                         DataConnection.AddParameter(command, "lastname", model.LastName);
                         DataConnection.AddParameter(command, "gender", model.Gender);
                         DataConnection.AddParameter(command, "city", model.City);
-                        DataConnection.AddParameter(command, "qualification", model.Qualification);
                         DataConnection.AddParameter(command, "dayofbirth", model.DayofBirth);
                         DataConnection.AddParameter(command, "email", model.Email);
                         DataConnection.AddParameter(command, "phoneno", model.PhoneNo);
@@ -197,9 +195,6 @@ namespace SchoolDiarySystem.DAL
 
                 if (dataReader["City"] != DBNull.Value)
                     teacher.City = dataReader["City"].ToString();
-
-                if (dataReader["Qualification"] != DBNull.Value)
-                    teacher.Qualification = dataReader["Qualification"].ToString();
 
                 if (dataReader["Day_of_Birth"] != DBNull.Value)
                     teacher.DayofBirth = DateTime.Parse(dataReader["Day_of_Birth"].ToString());

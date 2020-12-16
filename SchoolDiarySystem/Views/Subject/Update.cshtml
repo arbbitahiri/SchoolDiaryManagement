@@ -27,6 +27,12 @@
                     <form class="new-added-form">
                         <div class="row">
                             @Html.HiddenFor(m => m.SubjectID)
+                            @Html.HiddenFor(m => m.SubjectTitle)
+                            <div class="col-xl-3 col-lg-6 col-12 form-group">
+                                <label>Subject Title *</label>
+                                @Html.TextBoxFor(m => m.SubjectTitle, new { @class = "form-control", placeholder = "Subject", disabled="true", id = "subjecttitle", autocomplete = "off" })
+                                @Html.ValidationMessageFor(m => m.SubjectTitle, "", new { @class = "text-danger" })
+                            </div>
                             <div class="col-xl-3 col-lg-6 col-12 form-group">
                                 <label>Book *</label>
                                 @Html.TextBoxFor(m => m.Book, new { @class = "form-control", placeholder = "Subject's Book", id = "book", autocomplete = "off" })
@@ -43,7 +49,7 @@
                                 @Html.ValidationMessageFor(m => m.TeacherID, "", new { @class = "text-danger" })
                             </div>
                             <div class="col-12 form-group mg-t-8">
-                                <input type="submit" value="Update" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark" />
+                                <input type="submit" value="Update" class="btn-fill-lmd radius-4 text-light bg-violet-blue" />
                             </div>
                         </div>
                     </form>

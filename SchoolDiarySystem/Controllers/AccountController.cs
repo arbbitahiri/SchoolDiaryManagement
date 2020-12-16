@@ -15,10 +15,10 @@ namespace SchoolDiarySystem.Controllers
         public ActionResult Login() => View();
 
         [HttpPost]
-        public async Task<ActionResult> Login(Users users)
+        public ActionResult Login(Users users)
         {
             string password = Validation.CalculateHASH(users.Password);
-            var result = await Task.Run(() => usersDAL.Login(users.Username, password));
+            var result = usersDAL.Login(users.Username, password);
             if (result != null)
             {
                 UserSession.GetUsers = result;
@@ -50,6 +50,10 @@ namespace SchoolDiarySystem.Controllers
                 {
                     ModelState.AddModelError(string.Empty, "Your user has expired!");
                 }
+            }
+            else
+            {
+                ModelState.AddModelError(string.Empty, "Username or password is incorrect!");
             }
             return View(users);
         }

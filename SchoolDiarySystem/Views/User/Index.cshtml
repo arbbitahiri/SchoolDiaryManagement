@@ -135,7 +135,7 @@
                                             <span class="flaticon-more-button-of-three-dots"></span>
                                         </a>
                                         <div class="dropdown-menu dropdown-menu-right">
-                                            <a class="dropdown-item" data-toggle="modal" data-target="#standard-modal"><i class="fas fa-times text-orange-red"></i>Delete</a>
+                                            <a class="dropdown-item" href="@Url.Action("Delete", "User", new { id = item.UserID })"><i class="fas fa-times text-orange-red"></i>Delete</a>
                                             <a class="dropdown-item" href="@Url.Action("Update", "User", new { id = item.UserID })"><i class="fas fa-cogs text-dark-pastel-green"></i>Update</a>
                                             <a class="dropdown-item" href="@Url.Action("ChangePassword", "User", new { id = item.UserID })"><i class="fas fa-redo-alt text-orange-peel"></i>Change Password</a>
                                         </div>

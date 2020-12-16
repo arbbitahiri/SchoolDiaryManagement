@@ -1,0 +1,54 @@
+﻿@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+@using SchoolDiarySystem.Models
+@model Rooms
+
+<div class="breadcrumbs-area">
+    <h3>Room</h3>
+    <ul>
+        <li>
+            <a href="@Url.Action("Index", "Admin")">Home</a>
+        </li>
+        <li>Room Details</li>
+    </ul>
+</div>
+<div class="card height-auto">
+    <div class="card-body">
+        <div class="heading-layout1">
+            <div class="item-title">
+                <h3>Are you sure you want to delete this room?</h3>
+            </div>
+        </div>
+        <div class="single-info-details">
+            <div class="item-content">
+                <div class="header-inline item-header">
+                    <h3 class="text-dark-medium font-medium">@Html.Label("RoomType", Model.RoomType, new { @class = "text-dark-medium font-medium" })</h3>
+                </div>
+                <div class="info-table table-responsive">
+                    <table class="table text-nowrap">
+                        <tbody>
+                            <tr>
+                                <td>Room Number:</td>
+                                <td>@Html.Label(Model.RoomNo.ToString(), new { @class = "font-medium text-dark-medium" })</td>
+                            </tr>
+                            <tr>
+                                <td>Room Type:</td>
+                                <td>@Html.Label(Model.RoomType, new { @class = "font-medium text-dark-medium" })</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                @using (Html.BeginForm("Delete", "Room", FormMethod.Post))
+                {
+                    <div class="col-12 form-group mg-t-8">
+                        <input type="submit" value="Delete" class="btn-fill-md radius-4 text-light bg-orange-red" />
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {}

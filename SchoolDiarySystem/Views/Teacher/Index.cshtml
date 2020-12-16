@@ -64,7 +64,6 @@
                             <th>Last Name</th>
                             <th>Gender</th>
                             <th>City</th>
-                            <th>Qualification</th>
                             <th>Day of Birth</th>
                             <th>E-mail</th>
                             <th>Phone Number</th>
@@ -77,14 +76,6 @@
                             <tr>
 
                                 <td class="text-center">
-                                    @if (item.Gender == "Male")
-                                    {
-                                        <img src="~/Content/img/figure/student4.png" alt="teacher">
-                                    }
-                                    else
-                                    {
-                                        <img src="~/Content/img/figure/student9.png" alt="teacher">
-                                    }
                                 </td>
                                 <td>
                                     @Html.DisplayFor(m => item.FirstName)
@@ -97,9 +88,6 @@
                                 </td>
                                 <td>
                                     @Html.DisplayFor(m => item.City)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(m => item.Qualification)
                                 </td>
                                 <td>
                                     @Html.DisplayFor(m => item.DayofBirth)
@@ -117,7 +105,7 @@
                                             <span class="flaticon-more-button-of-three-dots"></span>
                                         </a>
                                         <div class="dropdown-menu dropdown-menu-right">
-                                            <a class="dropdown-item" data-toggle="modal" data-target="#standard-modal"><i class="fas fa-times text-orange-red"></i>Delete</a>
+                                            <a class="dropdown-item" href="@Url.Action("Delete", "Teacher", new { id = item.TeacherID })"><i class="fas fa-times text-orange-red"></i>Delete</a>
                                             <a class="dropdown-item" href="@Url.Action("Update", "Teacher", new { id = item.TeacherID })"><i class="fas fa-cogs text-dark-pastel-green"></i>Update</a>
                                             <a class="dropdown-item" href="@Url.Action("Details", "Teacher", new { id = item.TeacherID })"><i class="fas fa-redo-alt text-orange-peel"></i>Details</a>
                                         </div>

@@ -54,11 +54,6 @@
                                 @Html.ValidationMessageFor(m => m.City, "", new { @class = "text-danger" })
                             </div>
                             <div class="col-xl-3 col-lg-6 col-12 form-group">
-                                <label>Qualification *</label>
-                                @Html.TextBoxFor(m => m.Qualification, new { @class = "form-control", placeholder = "Write teacher's qualification...", id = "qualification", autocomplete = "off" })
-                                @Html.ValidationMessageFor(m => m.Qualification, "", new { @class = "text-danger" })
-                            </div>
-                            <div class="col-xl-3 col-lg-6 col-12 form-group">
                                 <label>E-Mail *</label>
                                 @Html.TextBoxFor(m => m.Email, new { @class = "form-control", placeholder = "example@mail.com", id = "email", autocomplete = "off" })
                                 @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
@@ -69,7 +64,7 @@
                                 @Html.ValidationMessageFor(m => m.PhoneNo, "", new { @class = "text-danger" })
                             </div>
                             <div class="col-12 form-group mg-t-8">
-                                <input type="submit" value="Update" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark" />
+                                <input type="submit" value="Update" class="btn-fill-lmd radius-4 text-light bg-violet-blue" />
                             </div>
                         </div>
                     </form>

@@ -79,7 +79,7 @@ namespace SchoolDiarySystem.Controllers
                         if (ModelState.IsValid)
                         {
                             var classes = await Task.Run(() => classDAL.GetAll());
-                            var checkClasses = classes.Where(c => c.ClassNo == _class.ClassNo && c.TeacherID == _class.TeacherID).ToList();
+                            var checkClasses = classes.Where(c => c.ClassNo == _class.ClassNo).ToList();
                             if (checkClasses.Count > 0)
                             {
                                 ModelState.AddModelError(string.Empty, "Class you're trying to create, already exists!");
@@ -185,6 +185,26 @@ namespace SchoolDiarySystem.Controllers
                     {
                         ModelState.AddModelError(string.Empty, "Invalid attempt");
                     }
+                    return View(_class);
+                }
+                else
+                {
+                    return Content("You're not allowed to view this page!");
+                }
+            }
+            else
+            {
+                return RedirectToAction("Login", "Account");
+            }
+        }
+
+        public async Task<ActionResult> Delete(int? id)
+        {
+            if (UserSession.GetUsers != null)
+            {
+                if (UserSession.GetUsers.RoleID == 1)
+                {
+                    var _class = await Task.Run(() => classDAL.Get((int)id));
                     return View(_class);
                 }
                 else

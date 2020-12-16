@@ -80,7 +80,7 @@ namespace SchoolDiarySystem.DAL
                     }
                 }
             }
-            catch (Exception)
+            catch (Exception e)
             {
                 return false;
             }
