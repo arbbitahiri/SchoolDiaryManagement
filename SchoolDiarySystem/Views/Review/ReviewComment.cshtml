@@ -28,6 +28,7 @@
             <form class="new-added-form">
                 <div class="row">
                     @Html.HiddenFor(m => m.ReviewID)
+                    @Html.HiddenFor(m => m.CommentID)
                     <div class="col-xl-6 col-lg-6 col-12 form-group">
                         <label>Review *</label>
                         @Html.TextAreaFor(m => m.Review, new { @class = "textarea form-control", placeholder = "Write your review here...", autocomplete = "off", style = "margin-top: 0px; margin-bottom: 0px; height: 150px;" })

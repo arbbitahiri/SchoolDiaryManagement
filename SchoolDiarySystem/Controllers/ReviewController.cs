@@ -46,18 +46,19 @@ namespace SchoolDiarySystem.Controllers
             }
         }
 
-        public async Task<ActionResult> ReviewComment(int? id)
+        public async Task<ActionResult> ReviewComment(int? commentID)
         {
             if (UserSession.GetUsers != null)
             {
                 if (UserSession.GetUsers.RoleID == 3)
                 {
-                    if (id == null)
+                    if (commentID == null)
                     {
                         return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest);
                     }
 
-                    var review = await Task.Run(() => reviewsDAL.Get((int)id));
+                    var review = await Task.Run(() => reviewsDAL.Get((int)commentID));
+                    review.CommentID = (int)commentID;
                     if (review == null)
                     {
                         return RedirectToAction(nameof(Index));
@@ -94,6 +95,7 @@ namespace SchoolDiarySystem.Controllers
                         {
                             model.CommentID = commentID;
                             model.LUB = UserSession.GetUsers.Username;
+                            model.InsertBy = UserSession.GetUsers.Username;
                             model.LUN = ++model.LUN;
 
                             var result = await Task.Run(() => reviewsDAL.Create(model));

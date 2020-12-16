@@ -62,7 +62,7 @@
                                     else
                                     {
                                         <h6 class="notice-title">
-                                            <a href="@Url.Action("ReviewComment", "Review", new { id = item.CommentID })">
+                                            <a href="@Url.Action("ReviewComment", "Review", new { commentID = item.CommentID })">
                                                 @Html.DisplayFor(m => item.Content)
                                             </a>
                                         </h6>
