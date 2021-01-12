@@ -6,12 +6,12 @@
 @model IEnumerable<ClassSchedules>
 
 <div class="breadcrumbs-area">
-    <h3>Class</h3>
+    <h3>Class Schedule</h3>
     <ul>
         <li>
             <a href="@Url.Action("Index", "Admin")">Home</a>
         </li>
-        <li>All Classes</li>
+        <li>All Classes Schedule</li>
     </ul>
 </div>
 <div class="col-4-xxxl col-12" style="display:contents">
@@ -19,7 +19,7 @@
         <div class="card-body">
             <div class="heading-layout1">
                 <div class="item-title">
-                    <h3>Create A Class</h3>
+                    <h3>Create A Schedule</h3>
                 </div>
             </div>
             <form class="new-added-form">
@@ -38,7 +38,7 @@
     <div class="card-body">
         <div class="heading-layout1">
             <div class="item-title">
-                <h3>All Classes Data</h3>
+                <h3>All Classes Schedule Data</h3>
             </div>
         </div>
         @using (Html.BeginForm("Index", "Schedule", FormMethod.Get))
@@ -46,7 +46,7 @@
             <form class="mg-b-20">
                 <div class="row gutters-8">
                     <div class="col-4-xxxl col-xl-10 col-lg-3 col-12 form-group">
-                        <input type="number" autocomplete="off" name="searchString" placeholder="Search by class number ..." class="form-control">
+                        <input type="text" autocomplete="off" name="searchString" placeholder="Search by class, subject or day ..." class="form-control">
                     </div>
                     <div class="col-1-xxxl col-xl-2 col-lg-3 col-12 form-group">
                         <button type="submit" class="fw-btn-fill btn-gradient-yellow">SEARCH</button>
@@ -59,10 +59,10 @@
                 <thead>
                     <tr>
                         <th></th>
-                        <th>Time</th>
-                        <th>Day</th>
-                        <th>Class</th>
                         <th>Subject</th>
+                        <th>Class</th>
+                        <th>Day</th>
+                        <th>Time</th>
                         <th></th>
                     </tr>
                 </thead>
@@ -72,16 +72,16 @@
                         <tr>
                             <td></td>
                             <td>
-                                @Html.DisplayFor(m => item.Time)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(m => item.Day)
+                                @Html.DisplayFor(m => item.Subject.SubjectTitle)
                             </td>
                             <td>
                                 @Html.DisplayFor(m => item.Class.ClassNo)
                             </td>
                             <td>
-                                @Html.DisplayFor(m => item.Subject.SubjectTitle)
+                                @Html.DisplayFor(m => item.Day)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(m => item.Time)
                             </td>
 
                             <td>
@@ -90,12 +90,13 @@
                                         <span class="flaticon-more-button-of-three-dots"></span>
                                     </a>
                                     <div class="dropdown-menu dropdown-menu-right">
-                                        <a class="dropdown-item" data-toggle="modal" data-target="#standard-modal"><i class="fas fa-times text-orange-red"></i>Delete</a>
+                                        <a class="dropdown-item" href="@Url.Action("Delete", "Schedule", new { id = item.ScheduleID })"><i class="fas fa-times text-orange-red"></i>Delete</a>
+                                        @*<a class="dropdown-item" data-toggle="modal" data-target="#standard-modal"><i class="fas fa-times text-orange-red"></i>Delete</a>*@
                                         <a class="dropdown-item" href="@Url.Action("Update", "Schedule", new { id = item.ScheduleID })"><i class="fas fa-cogs text-dark-pastel-green"></i>Update</a>
                                     </div>
-                                    <div class="modal-box">
+                                    <!--<div class="modal-box">-->
                                         <!-- Modal -->
-                                        <div class="modal fade" id="standard-modal" tabindex="-1" role="dialog" aria-hidden="true" style="display: none;">
+                                        <!--<div class="modal fade" id="standard-modal" tabindex="-1" role="dialog" aria-hidden="true" style="display: none;">
                                             <div class="modal-dialog" role="document">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
@@ -117,7 +118,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
+                                    </div>-->
                                 </div>
                             </td>
                         </tr>

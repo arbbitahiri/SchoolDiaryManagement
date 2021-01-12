@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
-using System.Threading.Tasks;
 using System.Web.Mvc;
 using SchoolDiarySystem.DAL;
 using SchoolDiarySystem.Models;
@@ -19,13 +17,13 @@ namespace SchoolDiarySystem.Controllers
         private readonly int teacher = !string.IsNullOrEmpty(UserSession.GetUsers.TeacherID.ToString()) ? UserSession.GetUsers.TeacherID : 0;
 
         // GET: Absence
-        public async Task<ActionResult> Index(string searchString, string searchString2)
+        public ActionResult Index(string searchString, string searchString2)
         {
             if (UserSession.GetUsers != null)
             {
                 if (UserSession.GetUsers.RoleID == 2)
                 {
-                    var absences = await Task.Run(() => absencesDAL.GetAllForTeacher(teacher));
+                    var absences = absencesDAL.GetAllForTeacher(teacher);
 
                     if (!string.IsNullOrEmpty(searchString))
                     {
@@ -72,7 +70,7 @@ namespace SchoolDiarySystem.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> Create(Absences absence)
+        public ActionResult Create(Absences absence)
         {
             if (UserSession.GetUsers != null)
             {
@@ -87,7 +85,7 @@ namespace SchoolDiarySystem.Controllers
                             absence.LUB = UserSession.GetUsers.Username;
                             absence.LUN++;
 
-                            var result = await Task.Run(() => absencesDAL.Create(absence));
+                            var result = absencesDAL.Create(absence);
                             return RedirectToAction(nameof(Index));
                         }
                         catch (Exception)
@@ -113,7 +111,7 @@ namespace SchoolDiarySystem.Controllers
             }
         }
 
-        public async Task<ActionResult> Update(int? id)
+        public ActionResult Update(int? id)
         {
             if (UserSession.GetUsers != null)
             {
@@ -125,7 +123,7 @@ namespace SchoolDiarySystem.Controllers
                     }
 
                     GetItemForSelectList();
-                    var absence = await Task.Run(() => absencesDAL.Get((int)id));
+                    var absence = absencesDAL.Get((int)id);
                     return View(absence);
                 }
                 else
@@ -140,7 +138,7 @@ namespace SchoolDiarySystem.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> Update(int id, Absences absence)
+        public ActionResult Update(int id, Absences absence)
         {
             if (UserSession.GetUsers != null)
             {
@@ -159,7 +157,7 @@ namespace SchoolDiarySystem.Controllers
                             absence.LUB = UserSession.GetUsers.Username;
                             absence.LUN = ++absence.LUN;
 
-                            var result = await Task.Run(() => absencesDAL.Update(absence));
+                            absencesDAL.Update(absence);
                             return RedirectToAction(nameof(Index));
                         }
                         catch (Exception)

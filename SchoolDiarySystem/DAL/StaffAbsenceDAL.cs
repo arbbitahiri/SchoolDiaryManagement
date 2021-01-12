@@ -97,7 +97,7 @@ namespace SchoolDiarySystem.DAL
                     string sqlproc = "dbo.usp_StaffAbsence_Get";
                     using (var command = DataConnection.GetCommand(connection, sqlproc, CommandType.StoredProcedure))
                     {
-                        DataConnection.AddParameter(command, "scheduleID", id);
+                        DataConnection.AddParameter(command, "staffID", id);
                         using (SqlDataReader reader = command.ExecuteReader())
                         {
                             staffAbsence = new StaffAbsence();
@@ -109,7 +109,11 @@ namespace SchoolDiarySystem.DAL
                                     staffAbsence.User = new Users
                                     {
                                         FirstName = reader["First_Name"].ToString(),
-                                        LastName = reader["Last_Name"].ToString()
+                                        LastName = reader["Last_Name"].ToString(),
+                                        Role = new Roles
+                                        {
+                                            RoleName = reader["RoleName"].ToString()
+                                        }
                                     };
                                 }
                                 else if (reader["First_Name_T"] != DBNull.Value && reader["Last_Name_T"] != DBNull.Value)
@@ -120,17 +124,6 @@ namespace SchoolDiarySystem.DAL
                                         {
                                             FirstName = reader["First_Name_T"].ToString(),
                                             LastName = reader["Last_Name_T"].ToString()
-                                        }
-                                    };
-                                }
-                                else if (reader["First_Name_P"] != DBNull.Value && reader["Last_Name_P"] != DBNull.Value)
-                                {
-                                    staffAbsence.User = new Users
-                                    {
-                                        Parent = new Parents
-                                        {
-                                            FirstName = reader["First_Name_P"].ToString(),
-                                            LastName = reader["Last_Name_P"].ToString()
                                         }
                                     };
                                 }
@@ -168,7 +161,11 @@ namespace SchoolDiarySystem.DAL
                                     staffAbsence.User = new Users
                                     {
                                         FirstName = reader["First_Name"].ToString(),
-                                        LastName = reader["Last_Name"].ToString()
+                                        LastName = reader["Last_Name"].ToString(),
+                                        Role = new Roles
+                                        {
+                                            RoleName = reader["RoleName"].ToString()
+                                        }
                                     };
                                 }
                                 else if (reader["First_Name_T"] != DBNull.Value && reader["Last_Name_T"] != DBNull.Value)
@@ -182,17 +179,6 @@ namespace SchoolDiarySystem.DAL
                                         }
                                     };
                                 }
-                                else if (reader["First_Name_P"] != DBNull.Value && reader["Last_Name_P"] != DBNull.Value)
-                                {
-                                    staffAbsence.User = new Users
-                                    {
-                                        Parent = new Parents
-                                        {
-                                            FirstName = reader["First_Name_P"].ToString(),
-                                            LastName = reader["Last_Name_P"].ToString()
-                                        }
-                                    };
-                                }
                                 MyStaffAbsences.Add(staffAbsence);
                             }
                         }
@@ -200,9 +186,9 @@ namespace SchoolDiarySystem.DAL
                 }
                 return MyStaffAbsences;
             }
-            catch (Exception)
+            catch (Exception e)
             {
-
+                string s = e.Message;
                 throw;
             }
         }

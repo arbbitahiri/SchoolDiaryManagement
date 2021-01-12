@@ -1,0 +1,51 @@
+﻿@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_LayoutDirector.cshtml";
+}
+@using SchoolDiarySystem.Models
+@model StaffAbsence
+
+<div class="breadcrumbs-area">
+    <h3>Absence</h3>
+    <ul>
+        <li>
+            <a href="@Url.Action("Index", "Director")">Home</a>
+        </li>
+        <li>Add New Absence</li>
+    </ul>
+</div>
+<div class="card height-auto">
+    <div class="card-body">
+        <div class="heading-layout1">
+            <div class="item-title">
+                <h3>Add New Absence</h3>
+            </div>
+        </div>
+        @using (Html.BeginForm("Create", "StaffAbsence", FormMethod.Post))
+        {
+            @Html.ValidationSummary(true, "", new { @class = "alert alert-danger" })
+            <form class="new-added-form">
+                <div class="row">
+                    <div class="col-xl-4 col-lg-6 col-12 form-group">
+                        <label>Select Staff Member *</label>
+                        @Html.DropDownListFor(m => m.UserID, new SelectList(ViewBag.User, "UserID", "FullName"), new { @class = "select2" })
+                        @Html.ValidationMessageFor(m => m.UserID, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="col-xl-4 col-lg-6 col-12 form-group">
+                        <label>Select Reason *</label>
+                        @Html.DropDownListFor(m => m.AbsenceReasoning, new SelectList(ViewBag.AbsenceReasoning), new { @class = "select2" })
+                        @Html.ValidationMessageFor(m => m.AbsenceReasoning, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="col-xl-4 col-lg-6 col-12 form-group">
+                        <label>Select Date *</label>
+                        @Html.TextBoxFor(m => m.AbsenceDate, new { @class = "form-control", type = "date", placeholder = "dd/MMMM/yyyy", autocomplete = "off" })
+                        @Html.ValidationMessageFor(m => m.AbsenceDate, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="col-12 form-group mg-t-8">
+                        <input type="submit" value="Create" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark" />
+                    </div>
+                </div>
+            </form>
+        }
+    </div>
+</div>

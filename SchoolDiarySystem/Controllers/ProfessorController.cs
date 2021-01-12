@@ -16,13 +16,13 @@ namespace SchoolDiarySystem.Controllers
         private readonly int teacher = !string.IsNullOrEmpty(UserSession.GetUsers.TeacherID.ToString()) ? UserSession.GetUsers.TeacherID : 0;
 
         // GET: Professor
-        public async Task<ActionResult> Index(string searchString)
+        public ActionResult Index(string searchString)
         {
             if (UserSession.GetUsers != null)
             {
                 if (UserSession.GetUsers.RoleID == 2)
                 {
-                    var students = await Task.Run(() => studentsDAL.GetMyStudents(teacher));
+                    var students = studentsDAL.GetMyStudents(teacher);
 
                     if (!string.IsNullOrEmpty(searchString))
                     {

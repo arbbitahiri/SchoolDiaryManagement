@@ -42,7 +42,7 @@ namespace SchoolDiarySystem.Controllers
             }
         }
 
-        public async Task<ActionResult> Details(int? id)
+        public ActionResult Details(int? id)
         {
             if (UserSession.GetUsers != null)
             {
@@ -53,7 +53,7 @@ namespace SchoolDiarySystem.Controllers
                         return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest);
                     }
 
-                    var comment = await Task.Run(() => commentsDAL.Get((int)id));
+                    var comment = commentsDAL.Get((int)id);
                     if (comment == null)
                     {
                         return RedirectToAction(nameof(Index));

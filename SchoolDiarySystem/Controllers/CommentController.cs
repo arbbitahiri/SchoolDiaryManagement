@@ -20,13 +20,13 @@ namespace SchoolDiarySystem.Controllers
         private readonly int teacher = !string.IsNullOrEmpty(UserSession.GetUsers.TeacherID.ToString()) ? UserSession.GetUsers.TeacherID : 0;
 
         // GET: Comment
-        public async Task<ActionResult> Index(string searchString, string searchString2)
+        public ActionResult Index(string searchString, string searchString2)
         {
             if (UserSession.GetUsers != null)
             {
                 if (UserSession.GetUsers.RoleID == 2)
                 {
-                    var comments = await Task.Run(() => commentsDAL.GetAllForTeacher(teacher));
+                    var comments = commentsDAL.GetAllForTeacher(teacher);
 
                     if (!string.IsNullOrEmpty(searchString))
                     {
@@ -74,7 +74,7 @@ namespace SchoolDiarySystem.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> Create(Comments comment)
+        public ActionResult Create(Comments comment)
         {
             if (UserSession.GetUsers != null)
             {
@@ -90,7 +90,7 @@ namespace SchoolDiarySystem.Controllers
                             comment.LUB = UserSession.GetUsers.Username;
                             comment.LUN++;
 
-                            var result = await Task.Run(() => commentsDAL.Create(comment));
+                            var result = commentsDAL.Create(comment);
                             return RedirectToAction(nameof(Index));
                         }
                         else
@@ -116,7 +116,7 @@ namespace SchoolDiarySystem.Controllers
             }
         }
 
-        public async Task<ActionResult> Update(int? id)
+        public ActionResult Update(int? id)
         {
             if (UserSession.GetUsers != null)
             {
@@ -128,7 +128,7 @@ namespace SchoolDiarySystem.Controllers
                     }
 
                     GetItemForSelectList();
-                    var comment = await Task.Run(() => commentsDAL.Get((int)id));
+                    var comment = commentsDAL.Get((int)id);
                     if (comment == null)
                     {
                         return RedirectToAction(nameof(Index));
@@ -148,7 +148,7 @@ namespace SchoolDiarySystem.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> Update(int id, Comments comment)
+        public ActionResult Update(int id, Comments comment)
         {
             if (UserSession.GetUsers != null)
             {
@@ -167,7 +167,7 @@ namespace SchoolDiarySystem.Controllers
                             comment.LUB = UserSession.GetUsers.Username;
                             comment.LUN = ++comment.LUN;
 
-                            var result = await Task.Run(() => commentsDAL.Update(comment));
+                            var result = commentsDAL.Update(comment);
                             return RedirectToAction(nameof(Index));
                         }
                         catch (Exception)
@@ -193,7 +193,7 @@ namespace SchoolDiarySystem.Controllers
             }
         }
 
-        public async Task<ActionResult> ReviewDetails(int? id)
+        public ActionResult ReviewDetails(int? id)
         {
             if (UserSession.GetUsers != null)
             {
@@ -204,7 +204,7 @@ namespace SchoolDiarySystem.Controllers
                         return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest);
                     }
 
-                    var review = await Task.Run(() => reviewsDAL.Get((int)id));
+                    var review = reviewsDAL.Get((int)id);
                     if (review == null)
                     {
                         return RedirectToAction("Index");

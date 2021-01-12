@@ -17,9 +17,59 @@ namespace SchoolDiarySystem.Controllers
         private readonly ParentsDAL parentsDAL = new ParentsDAL();
 
         // GET: StaffAbsence
-        public ActionResult Index()
+        public ActionResult Index(string searchString, string searchString2)
         {
-            return View();
+            if (UserSession.GetUsers != null)
+            {
+                if (UserSession.GetUsers.RoleID == 3)
+                {
+                    var absences = staffAbsenceDAL.GetAll();
+                    var teachers = teachersDAL.GetAll();
+
+                    foreach (var teacher in teachers)
+                    {
+                        foreach (var us in absences.ToList())
+                        {
+                            if (us.User.Role.RoleName == "Teacher")
+                            {
+                                us.User.FirstName = teacher.FirstName;
+                                us.User.LastName = teacher.LastName;
+                            }
+                            //else if (us.User.Role.RoleName == "Parent")
+                            //{
+                            //    absences.Remove(us);
+                            //}
+                            //else if (us.User.Role.RoleName == "Director")
+                            //{
+                            //    absences.Remove(us);
+                            //}
+                        }
+                    }
+
+                    if (!string.IsNullOrEmpty(searchString))
+                    {
+                        absences = absences.Where(f => f.AbsenceDate.Date == Convert.ToDateTime(searchString).Date).ToList();
+                    }
+
+                    if (!string.IsNullOrEmpty(searchString2))
+                    {
+                        absences = absences.Where(f => f.User.Teacher.FirstName.ToLower() == searchString2.ToLower()
+                        || f.User.Teacher.LastName.ToLower() == searchString2.ToLower() || f.User.Teacher.FullName.ToLower() == searchString2.ToLower()
+                        || f.User.FirstName.ToLower() == searchString2.ToLower() || f.User.LastName.ToLower() == searchString2.ToLower()
+                        || f.User.FullName.ToLower() == searchString2.ToLower()).ToList();
+                    }
+
+                    return View(absences);
+                }
+                else
+                {
+                    return Content("You're not allowed to view this page!");
+                }
+            }
+            else
+            {
+                return RedirectToAction("Login", "Account");
+            }
         }
 
         public ActionResult Create()
@@ -44,7 +94,7 @@ namespace SchoolDiarySystem.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> Create(StaffAbsence staffAbsence)
+        public ActionResult Create(StaffAbsence staffAbsence)
         {
             if (UserSession.GetUsers != null)
             {
@@ -56,7 +106,7 @@ namespace SchoolDiarySystem.Controllers
 
                         if (ModelState.IsValid)
                         {
-                            var staffAbsences = await Task.Run(() => staffAbsenceDAL.GetAll());
+                            var staffAbsences = staffAbsenceDAL.GetAll();
                             var checkStaffAbsences = staffAbsences.Where(t => t.UserID == staffAbsence.UserID && t.AbsenceDate == staffAbsence.AbsenceDate).ToList();
                             if (checkStaffAbsences.Count > 0)
                             {
@@ -69,7 +119,7 @@ namespace SchoolDiarySystem.Controllers
                                 staffAbsence.LUB = UserSession.GetUsers.Username;
                                 staffAbsence.LUN++;
 
-                                var result = await Task.Run(() => staffAbsenceDAL.Create(staffAbsence));
+                                var result = staffAbsenceDAL.Create(staffAbsence);
                                 return RedirectToAction(nameof(Index));
                             }
                         }
@@ -96,7 +146,7 @@ namespace SchoolDiarySystem.Controllers
             }
         }
 
-        public async Task<ActionResult> Update(int? id)
+        public ActionResult Update(int? id)
         {
             if (UserSession.GetUsers != null)
             {
@@ -107,7 +157,7 @@ namespace SchoolDiarySystem.Controllers
                         return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest);
                     }
 
-                    var staffAbsence = await Task.Run(() => staffAbsenceDAL.Get((int)id));
+                    var staffAbsence = staffAbsenceDAL.Get((int)id);
                     if (staffAbsence == null)
                     {
                         return RedirectToAction(nameof(Index));
@@ -128,7 +178,7 @@ namespace SchoolDiarySystem.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> Update(int id, StaffAbsence staffAbsence)
+        public ActionResult Update(int id, StaffAbsence staffAbsence)
         {
             if (UserSession.GetUsers != null)
             {
@@ -146,7 +196,7 @@ namespace SchoolDiarySystem.Controllers
                             staffAbsence.LUB = UserSession.GetUsers.Username;
                             staffAbsence.LUN = ++staffAbsence.LUN;
 
-                            var result = await Task.Run(() => staffAbsenceDAL.Update(staffAbsence));
+                            var result = staffAbsenceDAL.Update(staffAbsence);
                             return RedirectToAction(nameof(Index));
                         }
                         catch (Exception)
@@ -173,13 +223,13 @@ namespace SchoolDiarySystem.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> Delete(int id)
+        public ActionResult Delete(int id)
         {
             if (UserSession.GetUsers != null)
             {
                 if (UserSession.GetUsers.RoleID == 3)
                 {
-                    await Task.Run(() => staffAbsenceDAL.Delete(id));
+                    staffAbsenceDAL.Delete(id);
                     return RedirectToAction(nameof(Index));
                 }
                 else
@@ -195,25 +245,33 @@ namespace SchoolDiarySystem.Controllers
 
         private void GetItemForSelectList()
         {
-            var parents = parentsDAL.GetAll();
             var teachers = teachersDAL.GetAll();
             var users = usersDAL.GetAll();
 
-            Users _user = new Users();
-
-            foreach (var parent in parents)
-            {
-                _user.Parent = parent;
-            }
-
             foreach (var teacher in teachers)
             {
-                _user.Teacher = teacher;
+                foreach (var us in users.ToList())
+                {
+                    if (us.Role.RoleName == "Teacher")
+                    {
+                        us.FirstName = teacher.FirstName;
+                        us.LastName = teacher.LastName;
+                    }
+                    else if (us.Role.RoleName == "Parent")
+                    {
+                        users.Remove(us);
+                    }
+                    else if (us.Role.RoleName == "Director")
+                    {
+                        users.Remove(us);
+                    }
+                }
             }
 
-            users.Add(_user);
+            List<string> reasons = new List<string>() { "Reasonable", "Unreasonable" };
 
             ViewBag.User = users;
+            ViewBag.AbsenceReasoning = reasons;
         }
     }
 }

@@ -16,13 +16,13 @@ namespace SchoolDiarySystem.Controllers
         private readonly ClassDAL classDAL = new ClassDAL();
 
         // GET: Student
-        public async Task<ActionResult> Index(string searchString)
+        public ActionResult Index(string searchString)
         {
             if (UserSession.GetUsers != null)
             {
                 if (UserSession.GetUsers.RoleID == 1)
                 {
-                    var students = await Task.Run(() => studentsDAL.GetAll());
+                    var students = studentsDAL.GetAll();
 
                     if (!string.IsNullOrEmpty(searchString))
                     {
@@ -65,7 +65,7 @@ namespace SchoolDiarySystem.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> Create(Students student)
+        public ActionResult Create(Students student)
         {
             if (UserSession.GetUsers != null)
             {
@@ -81,7 +81,7 @@ namespace SchoolDiarySystem.Controllers
                             student.LUB = UserSession.GetUsers.Username;
                             student.LUN++;
 
-                            var result = await Task.Run(() => studentsDAL.Create(student));
+                            var result = studentsDAL.Create(student);
                             return RedirectToAction(nameof(Index));
                         }
                         else
@@ -107,7 +107,7 @@ namespace SchoolDiarySystem.Controllers
             }
         }
 
-        public async Task<ActionResult> Update(int? id)
+        public ActionResult Update(int? id)
         {
             if (UserSession.GetUsers != null)
             {
@@ -119,7 +119,7 @@ namespace SchoolDiarySystem.Controllers
                     }
 
                     GetItemForSelectList();
-                    var student = await Task.Run(() => studentsDAL.Get((int)id));
+                    var student = studentsDAL.Get((int)id);
                     if (student == null)
                     {
                         return RedirectToAction(nameof(Index));
@@ -139,7 +139,7 @@ namespace SchoolDiarySystem.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> Update(int id, Students student)
+        public ActionResult Update(int id, Students student)
         {
             if (UserSession.GetUsers != null)
             {
@@ -159,7 +159,7 @@ namespace SchoolDiarySystem.Controllers
                             student.LUB = UserSession.GetUsers.Username;
                             student.LUN = ++student.LUN;
 
-                            var result = await Task.Run(() => studentsDAL.Update(student));
+                            var result = studentsDAL.Update(student);
                             return RedirectToAction(nameof(Index));
                         }
                         catch (Exception)
@@ -185,13 +185,18 @@ namespace SchoolDiarySystem.Controllers
             }
         }
 
-        public async Task<ActionResult> Delete(int? id)
+        public ActionResult Delete(int? id)
         {
             if (UserSession.GetUsers != null)
             {
                 if (UserSession.GetUsers.RoleID == 1)
                 {
-                    var student = await Task.Run(() => studentsDAL.Get((int)id));
+                    if (id == null)
+                    {
+                        return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest);
+                    }
+
+                    var student = studentsDAL.Get((int)id);
                     return View(student);
                 }
                 else
@@ -206,13 +211,13 @@ namespace SchoolDiarySystem.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> Delete(int id)
+        public ActionResult Delete(int id)
         {
             if (UserSession.GetUsers != null)
             {
                 if (UserSession.GetUsers.RoleID == 1)
                 {
-                    await Task.Run(() => studentsDAL.Delete(id));
+                    studentsDAL.Delete(id);
                     return RedirectToAction(nameof(Index));
                 }
                 else

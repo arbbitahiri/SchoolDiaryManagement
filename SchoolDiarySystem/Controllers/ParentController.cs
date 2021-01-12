@@ -14,13 +14,13 @@ namespace SchoolDiarySystem.Controllers
         private readonly ParentsDAL parentsDAL = new ParentsDAL();
 
         // GET: Parent
-        public async Task<ActionResult> Index(string searchString)
+        public ActionResult Index(string searchString)
         {
             if (UserSession.GetUsers != null)
             {
                 if (UserSession.GetUsers.RoleID == 1)
                 {
-                    var parents = await Task.Run(() => parentsDAL.GetAll());
+                    var parents = parentsDAL.GetAll();
 
                     if (!string.IsNullOrEmpty(searchString))
                     {
@@ -62,7 +62,7 @@ namespace SchoolDiarySystem.Controllers
 
 
         [HttpPost]
-        public async Task<ActionResult> Create(Parents parent)
+        public ActionResult Create(Parents parent)
         {
             if (UserSession.GetUsers != null)
             {
@@ -76,7 +76,7 @@ namespace SchoolDiarySystem.Controllers
                             parent.LUB = UserSession.GetUsers.Username;
                             parent.LUN++;
 
-                            var result = await Task.Run(() => parentsDAL.Create(parent));
+                            var result = parentsDAL.Create(parent);
                             return RedirectToAction(nameof(Index));
                         }
                         else
@@ -102,7 +102,7 @@ namespace SchoolDiarySystem.Controllers
             }
         }
 
-        public async Task<ActionResult> Update(int? id)
+        public ActionResult Update(int? id)
         {
             if (UserSession.GetUsers != null)
             {
@@ -113,7 +113,7 @@ namespace SchoolDiarySystem.Controllers
                         return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest);
                     }
 
-                    var parent = await Task.Run(() => parentsDAL.Get((int)id));
+                    var parent = parentsDAL.Get((int)id);
                     if (parent == null)
                     {
                         return RedirectToAction(nameof(Index));
@@ -132,7 +132,7 @@ namespace SchoolDiarySystem.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> Update(int id, Parents parent)
+        public ActionResult Update(int id, Parents parent)
         {
             if (UserSession.GetUsers != null)
             {
@@ -150,7 +150,7 @@ namespace SchoolDiarySystem.Controllers
                             parent.LUB = UserSession.GetUsers.Username;
                             parent.LUN = ++parent.LUN;
 
-                            var result = await Task.Run(() => parentsDAL.Update(parent));
+                            var result = parentsDAL.Update(parent);
                             return RedirectToAction(nameof(Index));
                         }
                         catch (Exception)
@@ -176,14 +176,39 @@ namespace SchoolDiarySystem.Controllers
             }
         }
 
-        [HttpPost]
-        public async Task<ActionResult> Delete(int id)
+        public ActionResult Delete(int? id)
         {
             if (UserSession.GetUsers != null)
             {
                 if (UserSession.GetUsers.RoleID == 1)
                 {
-                    await Task.Run(() => parentsDAL.Delete(id));
+                    if (id == null)
+                    {
+                        return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest);
+                    }
+
+                    var result = parentsDAL.Get((int)id);
+                    return View(result);
+                }
+                else
+                {
+                    return Content("You're not allowed to view this page!");
+                }
+            }
+            else
+            {
+                return RedirectToAction("Login", "Account");
+            }
+        }
+
+        [HttpPost]
+        public ActionResult Delete(int id)
+        {
+            if (UserSession.GetUsers != null)
+            {
+                if (UserSession.GetUsers.RoleID == 1)
+                {
+                    parentsDAL.Delete(id);
                     return RedirectToAction(nameof(Index));
                 }
                 else

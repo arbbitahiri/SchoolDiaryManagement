@@ -15,13 +15,13 @@ namespace SchoolDiarySystem.Controllers
         private readonly TeachersDAL teachersDAL = new TeachersDAL();
 
         // GET: Teacher
-        public async Task<ActionResult> Index(string searchString)
+        public ActionResult Index(string searchString)
         {
             if (UserSession.GetUsers != null)
             {
                 if (UserSession.GetUsers.RoleID == 1)
                 {
-                    var teachers = await Task.Run(() => teachersDAL.GetAll());
+                    var teachers = teachersDAL.GetAll();
 
                     if (!string.IsNullOrEmpty(searchString))
                     {
@@ -64,7 +64,7 @@ namespace SchoolDiarySystem.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> Create(Teachers teacher)
+        public ActionResult Create(Teachers teacher)
         {
             if (UserSession.GetUsers != null)
             {
@@ -79,7 +79,7 @@ namespace SchoolDiarySystem.Controllers
                             teacher.LUB = UserSession.GetUsers.Username;
                             teacher.LUN++;
 
-                            var result = await Task.Run(() => teachersDAL.Create(teacher));
+                            var result = teachersDAL.Create(teacher);
                             return RedirectToAction(nameof(Index));
                         }
                         else
@@ -105,7 +105,7 @@ namespace SchoolDiarySystem.Controllers
             }
         }
 
-        public async Task<ActionResult> Update(int? id)
+        public ActionResult Update(int? id)
         {
             if (UserSession.GetUsers != null)
             {
@@ -117,7 +117,7 @@ namespace SchoolDiarySystem.Controllers
                     }
 
                     GetItemForSelectList();
-                    var teacher = await Task.Run(() => teachersDAL.Get((int)id));
+                    var teacher = teachersDAL.Get((int)id);
                     if (teacher == null)
                     {
                         return RedirectToAction(nameof(Index));
@@ -136,7 +136,7 @@ namespace SchoolDiarySystem.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> Update(int id, Teachers teacher)
+        public ActionResult Update(int id, Teachers teacher)
         {
             if (UserSession.GetUsers != null)
             {
@@ -154,7 +154,7 @@ namespace SchoolDiarySystem.Controllers
                         {
                             teacher.LUB = UserSession.GetUsers.Username;
                             teacher.LUN = ++teacher.LUN;
-                            var result = await Task.Run(() => teachersDAL.Update(teacher));
+                            var result = teachersDAL.Update(teacher);
                             return RedirectToAction(nameof(Index));
                         }
                         catch (Exception)
@@ -180,7 +180,7 @@ namespace SchoolDiarySystem.Controllers
             }
         }
 
-        public async Task<ActionResult> Details(int? id)
+        public ActionResult Details(int? id)
         {
             if (UserSession.GetUsers != null)
             {
@@ -191,7 +191,7 @@ namespace SchoolDiarySystem.Controllers
                         return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest);
                     }
 
-                    var teacher = await Task.Run(() => teachersDAL.Get((int)id));
+                    var teacher = teachersDAL.Get((int)id);
                     if (teacher == null)
                     {
                         return RedirectToAction(nameof(Index));
@@ -209,13 +209,18 @@ namespace SchoolDiarySystem.Controllers
             }
         }
 
-        public async Task<ActionResult> Delete(int? id)
+        public ActionResult Delete(int? id)
         {
             if (UserSession.GetUsers != null)
             {
                 if (UserSession.GetUsers.RoleID == 1)
                 {
-                    var teacher = await Task.Run(() => teachersDAL.Get((int)id));
+                    if (id == null)
+                    {
+                        return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest);
+                    }
+
+                    var teacher = teachersDAL.Get((int)id);
                     return View(teacher);
                 }
                 else
@@ -230,13 +235,13 @@ namespace SchoolDiarySystem.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> Delete(int id)
+        public ActionResult Delete(int id)
         {
             if (UserSession.GetUsers != null)
             {
                 if (UserSession.GetUsers.RoleID == 1)
                 {
-                    var result = await Task.Run(() => teachersDAL.Delete(id));
+                    var result = teachersDAL.Delete(id);
                     return RedirectToAction(nameof(Index));
                 }
                 else

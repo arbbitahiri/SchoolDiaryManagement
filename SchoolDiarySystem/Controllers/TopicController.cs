@@ -17,13 +17,13 @@ namespace SchoolDiarySystem.Controllers
         private readonly int teacher = !string.IsNullOrEmpty(UserSession.GetUsers.TeacherID.ToString()) ? UserSession.GetUsers.TeacherID : 0;
 
         // GET: Topic
-        public async Task<ActionResult> Index(string searchString, string searchString2, string searchString3)
+        public ActionResult Index(string searchString, string searchString2, string searchString3)
         {
             if (UserSession.GetUsers != null)
             {
                 if (UserSession.GetUsers.RoleID == 2)
                 {
-                    var topics = await Task.Run(() => topicsDAL.GetAllForTeacher(teacher));
+                    var topics = topicsDAL.GetAllForTeacher(teacher);
 
                     if (!string.IsNullOrEmpty(searchString))
                     {
@@ -75,7 +75,7 @@ namespace SchoolDiarySystem.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> Create(Topics topic)
+        public ActionResult Create(Topics topic)
         {
             if (UserSession.GetUsers != null)
             {
@@ -87,7 +87,7 @@ namespace SchoolDiarySystem.Controllers
 
                         if (ModelState.IsValid)
                         {
-                            var topics = await Task.Run(() => topicsDAL.GetAll());
+                            var topics = topicsDAL.GetAll();
                             var checkTopics = topics.Where(t => t.ClassID == topic.ClassID && t.SubjectID == topic.SubjectID
                                 && t.Time == topic.Time && t.TopicDate == topic.TopicDate).ToList();
                             if (checkTopics.Count > 0)
@@ -101,7 +101,7 @@ namespace SchoolDiarySystem.Controllers
                                 topic.LUB = UserSession.GetUsers.Username;
                                 topic.LUN++;
 
-                                var result = await Task.Run(() => topicsDAL.Create(topic));
+                                var result = topicsDAL.Create(topic);
                                 return RedirectToAction(nameof(Index));
                             }
                         }
@@ -128,7 +128,7 @@ namespace SchoolDiarySystem.Controllers
             }
         }
 
-        public async Task<ActionResult> Update(int? id)
+        public ActionResult Update(int? id)
         {
             if (UserSession.GetUsers != null)
             {
@@ -140,7 +140,7 @@ namespace SchoolDiarySystem.Controllers
                     }
 
                     GetItemForSelectList(teacher);
-                    var topic = await Task.Run(() => topicsDAL.Get((int)id));
+                    var topic = topicsDAL.Get((int)id);
                     if (topic == null)
                     {
                         return RedirectToAction("Index");
@@ -159,7 +159,7 @@ namespace SchoolDiarySystem.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> Update(int id, Topics topic)
+        public ActionResult Update(int id, Topics topic)
         {
             if (UserSession.GetUsers != null)
             {
@@ -179,7 +179,7 @@ namespace SchoolDiarySystem.Controllers
                             topic.LUB = UserSession.GetUsers.Username;
                             topic.LUN = ++topic.LUN;
 
-                            var result = await Task.Run(() => topicsDAL.Update(topic));
+                            var result = topicsDAL.Update(topic);
                             return RedirectToAction(nameof(Index));
                         }
                         catch (Exception)
@@ -206,13 +206,13 @@ namespace SchoolDiarySystem.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> Delete(int id)
+        public ActionResult Delete(int id)
         {
             if (UserSession.GetUsers != null)
             {
                 if (UserSession.GetUsers.RoleID == 2)
                 {
-                    await Task.Run(() => topicsDAL.Delete(id));
+                    topicsDAL.Delete(id);
                     return RedirectToAction(nameof(Index));
                 }
                 else

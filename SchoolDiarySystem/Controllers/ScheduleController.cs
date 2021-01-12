@@ -16,22 +16,25 @@ namespace SchoolDiarySystem.Controllers
         private readonly SubjectsDAL subjectsDAL = new SubjectsDAL();
 
         // GET: Schedule
-        public async Task<ActionResult> Index(string searchString, string searchString2)
+        public ActionResult Index(string searchString)
         {
             if (UserSession.GetUsers != null)
             {
                 if (UserSession.GetUsers.RoleID == 1)
                 {
-                    var schedules = await Task.Run(() => schedulesDAL.GetAll());
+                    var schedules = schedulesDAL.GetAll();
 
                     if (!string.IsNullOrEmpty(searchString))
                     {
-                        schedules = schedules.Where(f => f.Class.ClassNo == int.Parse(searchString)).ToList();
-                    }
-
-                    if (!string.IsNullOrEmpty(searchString2))
-                    {
-                        schedules = schedules.Where(f => f.Subject.SubjectTitle.ToLower() == searchString2.ToLower()).ToList();
+                        if (searchString.All(char.IsDigit))
+                        {
+                            schedules = schedules.Where(f => f.Class.ClassNo == int.Parse(searchString)).ToList();
+                        }
+                        else
+                        {
+                            schedules = schedules.Where(f => f.Subject.SubjectTitle.ToLower() == searchString.ToLower()
+                            || f.Day.ToLower() == searchString.ToLower()).ToList();
+                        }
                     }
 
                     return View(schedules);
@@ -69,7 +72,7 @@ namespace SchoolDiarySystem.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> Create(ClassSchedules schedule)
+        public ActionResult Create(ClassSchedules schedule)
         {
             if (UserSession.GetUsers != null)
             {
@@ -81,7 +84,7 @@ namespace SchoolDiarySystem.Controllers
 
                         if (ModelState.IsValid)
                         {
-                            var schedules = await Task.Run(() => schedulesDAL.GetAll());
+                            var schedules = schedulesDAL.GetAll();
                             var checkSchedules = schedules.Where(t => t.ClassID == schedule.ClassID && t.Day == schedule.Day && t.Time == schedule.Time).ToList();
 
                             if (checkSchedules.Count > 0)
@@ -95,7 +98,7 @@ namespace SchoolDiarySystem.Controllers
                                 schedule.LUB = UserSession.GetUsers.Username;
                                 schedule.LUN++;
 
-                                var result = await Task.Run(() => schedulesDAL.Create(schedule));
+                                var result = schedulesDAL.Create(schedule);
                                 return RedirectToAction(nameof(Index));
                             }
                         }
@@ -122,7 +125,7 @@ namespace SchoolDiarySystem.Controllers
             }
         }
 
-        public async Task<ActionResult> Update(int? id)
+        public ActionResult Update(int? id)
         {
             if (UserSession.GetUsers != null)
             {
@@ -133,7 +136,7 @@ namespace SchoolDiarySystem.Controllers
                         return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest);
                     }
 
-                    var schedule = await Task.Run(() => schedulesDAL.Get((int)id));
+                    var schedule = schedulesDAL.Get((int)id);
                     if (schedule == null)
                     {
                         return RedirectToAction(nameof(Index));
@@ -154,7 +157,7 @@ namespace SchoolDiarySystem.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> Update(int id, ClassSchedules schedule)
+        public ActionResult Update(int id, ClassSchedules schedule)
         {
             if (UserSession.GetUsers != null)
             {
@@ -173,7 +176,7 @@ namespace SchoolDiarySystem.Controllers
                             schedule.LUB = UserSession.GetUsers.Username;
                             schedule.LUN = ++schedule.LUN;
 
-                            var result = await Task.Run(() => schedulesDAL.Update(schedule));
+                            var result = schedulesDAL.Update(schedule);
                             return RedirectToAction(nameof(Index));
                         }
                         catch (Exception)
@@ -199,14 +202,39 @@ namespace SchoolDiarySystem.Controllers
             }
         }
 
-        [HttpPost]
-        public async Task<ActionResult> Delete(int id)
+        public ActionResult Delete(int? id)
         {
             if (UserSession.GetUsers != null)
             {
                 if (UserSession.GetUsers.RoleID == 1)
                 {
-                    await Task.Run(() => schedulesDAL.Delete(id));
+                    if (id == null)
+                    {
+                        return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest);
+                    }
+
+                    var schedule = schedulesDAL.Get((int)id);
+                    return View(schedule);
+                }
+                else
+                {
+                    return Content("You're not allowed to view this page!");
+                }
+            }
+            else
+            {
+                return RedirectToAction("Login", "Account");
+            }
+        }
+
+        [HttpPost]
+        public ActionResult Delete(int id)
+        {
+            if (UserSession.GetUsers != null)
+            {
+                if (UserSession.GetUsers.RoleID == 1)
+                {
+                    schedulesDAL.Delete(id);
                     return RedirectToAction(nameof(Index));
                 }
                 else

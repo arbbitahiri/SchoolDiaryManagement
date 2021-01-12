@@ -18,13 +18,13 @@ namespace SchoolDiarySystem.Controllers
         private readonly TeachersDAL teachersDAL = new TeachersDAL();
 
         // GET: User
-        public async Task<ActionResult> Index(string searchString)
+        public ActionResult Index(string searchString)
         {
             if (UserSession.GetUsers != null)
             {
                 if (UserSession.GetUsers.RoleID == 3)
                 {
-                    var users = await Task.Run(() => usersDAL.GetAll());
+                    var users = usersDAL.GetAll();
 
                     if (!string.IsNullOrEmpty(searchString))
                     {
@@ -68,7 +68,7 @@ namespace SchoolDiarySystem.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> CreateAdmin(Users user)
+        public ActionResult CreateAdmin(Users user)
         {
             if (UserSession.GetUsers != null)
             {
@@ -78,7 +78,7 @@ namespace SchoolDiarySystem.Controllers
                     {
                         if (ModelState.IsValid)
                         {
-                            var users = await Task.Run(() => usersDAL.GetAll());
+                            var users = usersDAL.GetAll();
 
                             var checkUsers = users.Where(u => u.Username.ToLower() == user.Username.ToLower()).ToList();
                             if (checkUsers.Count > 0)
@@ -104,7 +104,7 @@ namespace SchoolDiarySystem.Controllers
                                     user.ParentID = 0;
                                     user.Password = Validation.CalculateHASH(user.Password);
 
-                                    var result = await Task.Run(() => usersDAL.Create(user));
+                                    var result = usersDAL.Create(user);
                                     return RedirectToAction(nameof(Index));
                                 }
                             }
@@ -153,7 +153,7 @@ namespace SchoolDiarySystem.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> CreateTeacher(Users user)
+        public ActionResult CreateTeacher(Users user)
         {
             if (UserSession.GetUsers != null)
             {
@@ -165,7 +165,7 @@ namespace SchoolDiarySystem.Controllers
 
                         if (ModelState.IsValid)
                         {
-                            var users = await Task.Run(() => usersDAL.GetAll());
+                            var users = usersDAL.GetAll();
 
                             var checkUsers = users.Where(u => u.Username.ToLower() == user.Username.ToLower()).ToList();
                             if (checkUsers.Count > 0)
@@ -190,7 +190,7 @@ namespace SchoolDiarySystem.Controllers
                                     user.ParentID = 0;
                                     user.Password = Validation.CalculateHASH(user.Password);
 
-                                    var result = await Task.Run(() => usersDAL.Create(user));
+                                    var result = usersDAL.Create(user);
                                     return RedirectToAction(nameof(Index));
                                 }
                             }
@@ -239,7 +239,7 @@ namespace SchoolDiarySystem.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> CreateParent(Users user)
+        public ActionResult CreateParent(Users user)
         {
             if (UserSession.GetUsers != null)
             {
@@ -251,7 +251,7 @@ namespace SchoolDiarySystem.Controllers
 
                         if (ModelState.IsValid)
                         {
-                            var users = await Task.Run(() => usersDAL.GetAll());
+                            var users = usersDAL.GetAll();
 
                         var checkUsers = users.Where(u => u.Username.ToLower() == user.Username.ToLower()).ToList();
                             if (checkUsers.Count > 0)
@@ -276,7 +276,7 @@ namespace SchoolDiarySystem.Controllers
                                     user.TeacherID = 0;
                                     user.Password = Validation.CalculateHASH(user.Password);
 
-                                    var result = await Task.Run(() => usersDAL.Create(user));
+                                    var result = usersDAL.Create(user);
                                     return RedirectToAction(nameof(Index));
                                 }
                             }
@@ -304,7 +304,7 @@ namespace SchoolDiarySystem.Controllers
             }
         }
 
-        public async Task<ActionResult> Update(int? id)
+        public ActionResult Update(int? id)
         {
             if (UserSession.GetUsers != null)
             {
@@ -316,7 +316,7 @@ namespace SchoolDiarySystem.Controllers
                     }
 
                     GetItemForSelectList();
-                    var user = await Task.Run(() => usersDAL.Get((int)id));
+                    var user = usersDAL.Get((int)id);
                     if (user == null)
                     {
                         return RedirectToAction(nameof(Index));
@@ -335,7 +335,7 @@ namespace SchoolDiarySystem.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> Update(int id, Users user)
+        public ActionResult Update(int id, Users user)
         {
             if (UserSession.GetUsers != null)
             {
@@ -367,7 +367,7 @@ namespace SchoolDiarySystem.Controllers
                                 user.TeacherID = 0;
                             }
 
-                            var result = await Task.Run(() => usersDAL.Update(user));
+                            var result = usersDAL.Update(user);
                             return RedirectToAction(nameof(Index));
                         }
                         catch (Exception)
@@ -393,7 +393,7 @@ namespace SchoolDiarySystem.Controllers
             }
         }
 
-        public async Task<ActionResult> ChangePassword(int? id)
+        public ActionResult ChangePassword(int? id)
         {
             if (UserSession.GetUsers != null)
             {
@@ -405,7 +405,7 @@ namespace SchoolDiarySystem.Controllers
                     }
 
                     GetItemForSelectList();
-                    var user = await Task.Run(() => usersDAL.Get((int)id));
+                    var user = usersDAL.Get((int)id);
                     if (user == null)
                     {
                         return RedirectToAction(nameof(Index));
@@ -424,7 +424,7 @@ namespace SchoolDiarySystem.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> ChangePassword(int id, Users user)
+        public ActionResult ChangePassword(int id, Users user)
         {
             if (UserSession.GetUsers != null)
             {
@@ -446,7 +446,7 @@ namespace SchoolDiarySystem.Controllers
                             user.LastPasswordChangeDate = DateTime.Now;
                             user.Password = Validation.CalculateHASH(user.Password);
 
-                            var result = await Task.Run(() => usersDAL.ChangePassword(user));
+                            var result = usersDAL.ChangePassword(user);
                             return RedirectToAction(nameof(Index));
                         }
                         catch (Exception)
@@ -472,13 +472,18 @@ namespace SchoolDiarySystem.Controllers
             }
         }
 
-        public async Task<ActionResult> Delete(int? id)
+        public ActionResult Delete(int? id)
         {
             if (UserSession.GetUsers != null)
             {
                 if (UserSession.GetUsers.RoleID == 3)
                 {
-                    var user = await Task.Run(() => usersDAL.Get((int)id));
+                    if (id == null)
+                    {
+                        return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest);
+                    }
+
+                    var user = usersDAL.Get((int)id);
                     return View(user);
                 }
                 else
@@ -493,7 +498,7 @@ namespace SchoolDiarySystem.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> Delete(int id)
+        public ActionResult Delete(int id)
         {
             if (UserSession.GetUsers != null)
             {
@@ -501,7 +506,7 @@ namespace SchoolDiarySystem.Controllers
                 {
                     if (id != 3)
                     {
-                        await Task.Run(() => usersDAL.Delete(id));
+                        usersDAL.Delete(id);
                         return RedirectToAction(nameof(Index));
                     }
                     else

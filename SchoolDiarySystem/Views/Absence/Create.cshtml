@@ -27,7 +27,7 @@
             <form class="new-added-form">
                 <div class="row">
                     <div class="col-xl-3 col-lg-6 col-12 form-group">
-                        <label>Select Student *</label>
+                        <label>Select Class *</label>
                         @Html.DropDownListFor(m => m.ClassID, new SelectList(ViewBag.Class, "ClassID", "ClassNo"), new { @class = "select2" })
                         @Html.ValidationMessageFor(m => m.ClassID, "", new { @class = "text-danger" })
                     </div>

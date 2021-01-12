@@ -28,6 +28,7 @@
                         <div class="row">
                             <div class="col-xl-3 col-lg-6 col-12 form-group">
                                 @Html.HiddenFor(m => m.TeacherID)
+                                @Html.HiddenFor(m => m.DayofBirth)
                                 <label>First Name *</label>
                                 @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control", placeholder = "First Name", id = "firstname", autocomplete = "off" })
                                 @Html.ValidationMessageFor(m => m.FirstName, "", new { @class = "text-danger" })
@@ -44,7 +45,7 @@
                             </div>
                             <div class="col-xl-3 col-lg-6 col-12 form-group">
                                 <label>Date Of Birth *</label>
-                                @Html.TextBoxFor(m => m.DayofBirth, new { @class = "form-control", type = "date", placeholder = "dd/MMMM/yyyy", id = "dob", autocomplete = "off" })
+                                @Html.TextBoxFor(m => m.DayofBirth, new { @class = "form-control air-datepicker", type = "text", disabled="true", placeholder = "dd/MMMM/yyyy", id = "dob", autocomplete = "off" })
                                 @Html.ValidationMessageFor(m => m.DayofBirth, "", new { @class = "text-danger" })
                                 <i class="far fa-calendar-alt"></i>
                             </div>

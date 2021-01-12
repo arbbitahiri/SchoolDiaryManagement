@@ -12,10 +12,12 @@ namespace SchoolDiarySystem.Models
 
         [Display(Name = "First Name")]
         [Required(ErrorMessage = "Please write teacher's first name!")]
+        [CheckIsLetter]
         public string FirstName { get; set; }
 
         [Display(Name = "Last Name")]
         [Required(ErrorMessage = "Please write teacher's last name!")]
+        [CheckIsLetter]
         public string LastName { get; set; }
 
         [Display(Name = "Gender")]
@@ -24,6 +26,7 @@ namespace SchoolDiarySystem.Models
 
         [Display(Name = "City")]
         [Required(ErrorMessage = "Please write teacher's city!")]
+        [CheckIsLetter]
         public string City { get; set; }
 
         [Display(Name = "Day of Birth")]

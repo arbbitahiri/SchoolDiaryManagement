@@ -15,13 +15,13 @@ namespace SchoolDiarySystem.Controllers
         private readonly CommentsDAL commentsDAL = new CommentsDAL();
 
         // GET: Review
-        public async Task<ActionResult> Index(string searchString, string searchString2)
+        public ActionResult Index(string searchString, string searchString2)
         {
             if (UserSession.GetUsers != null)
             {
                 if (UserSession.GetUsers.RoleID == 3)
                 {
-                    var reviews = await Task.Run(() => reviewsDAL.GetAll());
+                    var reviews = reviewsDAL.GetAll();
 
                     if (!string.IsNullOrEmpty(searchString))
                     {
@@ -46,7 +46,7 @@ namespace SchoolDiarySystem.Controllers
             }
         }
 
-        public async Task<ActionResult> ReviewComment(int? commentID)
+        public ActionResult ReviewComment(int? commentID)
         {
             if (UserSession.GetUsers != null)
             {
@@ -57,7 +57,7 @@ namespace SchoolDiarySystem.Controllers
                         return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest);
                     }
 
-                    var review = await Task.Run(() => reviewsDAL.Get((int)commentID));
+                    var review = reviewsDAL.Get((int)commentID);
                     review.CommentID = (int)commentID;
                     if (review == null)
                     {
@@ -77,7 +77,7 @@ namespace SchoolDiarySystem.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> ReviewComment(int commentID, Reviews model)
+        public ActionResult ReviewComment(int commentID, Reviews model)
         {
             if (UserSession.GetUsers != null)
             {
@@ -98,7 +98,7 @@ namespace SchoolDiarySystem.Controllers
                             model.InsertBy = UserSession.GetUsers.Username;
                             model.LUN = ++model.LUN;
 
-                            var result = await Task.Run(() => reviewsDAL.Create(model));
+                            var result = reviewsDAL.Create(model);
                             return RedirectToAction(nameof(Index));
                         }
                         catch (Exception)
@@ -124,7 +124,7 @@ namespace SchoolDiarySystem.Controllers
             }
         }
 
-        public async Task<ActionResult> Update(int? id)
+        public ActionResult Update(int? id)
         {
             if (UserSession.GetUsers != null)
             {
@@ -135,7 +135,7 @@ namespace SchoolDiarySystem.Controllers
                         return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest);
                     }
 
-                    var review = await Task.Run(() => reviewsDAL.Get((int)id));
+                    var review = reviewsDAL.Get((int)id);
                     if (review == null)
                     {
                         return RedirectToAction(nameof(Index));
@@ -154,7 +154,7 @@ namespace SchoolDiarySystem.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> Update(int id, Reviews review)
+        public ActionResult Update(int id, Reviews review)
         {
             if (UserSession.GetUsers != null)
             {
@@ -172,7 +172,7 @@ namespace SchoolDiarySystem.Controllers
                             review.LUB = UserSession.GetUsers.Username;
                             review.LUN = ++review.LUN;
 
-                            var result = await Task.Run(() => reviewsDAL.Update(review));
+                            var result = reviewsDAL.Update(review);
                             return RedirectToAction(nameof(Index));
                         }
                         catch (Exception)
@@ -198,13 +198,13 @@ namespace SchoolDiarySystem.Controllers
             }
         }
 
-        public async Task<ActionResult> CommentList(string searchString, string searchString2)
+        public ActionResult CommentList(string searchString, string searchString2)
         {
             if (UserSession.GetUsers != null)
             {
                 if (UserSession.GetUsers.RoleID == 3)
                 {
-                    var comments = await Task.Run(() => commentsDAL.GetAll());
+                    var comments = commentsDAL.GetAll();
 
                     if (!string.IsNullOrEmpty(searchString))
                     {

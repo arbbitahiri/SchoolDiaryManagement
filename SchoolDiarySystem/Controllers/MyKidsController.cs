@@ -21,13 +21,13 @@ namespace SchoolDiarySystem.Controllers
         private readonly int parent = !string.IsNullOrEmpty(UserSession.GetUsers.ParentID.ToString()) ? UserSession.GetUsers.ParentID : 0;
 
         // GET: MyKids
-        public async Task<ActionResult> Index()
+        public ActionResult Index()
         {
             if (UserSession.GetUsers != null)
             {
                 if (UserSession.GetUsers.RoleID == 4)
                 {
-                    var kids = await Task.Run(() => studentsDAL.GetAll());
+                    var kids = studentsDAL.GetAll();
                     kids = kids.Where(k => k.ParentID == UserSession.GetUsers.ParentID).ToList();
 
                     return View(kids);
@@ -43,13 +43,13 @@ namespace SchoolDiarySystem.Controllers
             }
         }
 
-        public async Task<ActionResult> IndexTopic(string searchString, string searchString2, string searchString3)
+        public ActionResult IndexTopic(string searchString, string searchString2, string searchString3)
         {
             if (UserSession.GetUsers != null)
             {
                 if (UserSession.GetUsers.RoleID == 4)
                 {
-                    var kids = await Task.Run(() => topicsDAL.GetAllForParent(parent));
+                    var kids = topicsDAL.GetAllForParent(parent);
                     if (!string.IsNullOrEmpty(searchString3))
                     {
                         kids = kids.Where(f => f.Student.FirstName.ToLower() == searchString3.ToLower() || f.Student.LastName.ToLower() == searchString3.ToLower()
@@ -78,13 +78,13 @@ namespace SchoolDiarySystem.Controllers
             }
         }
 
-        public async Task<ActionResult> IndexAbsence(string searchString, string searchString2)
+        public ActionResult IndexAbsence(string searchString, string searchString2)
         {
             if (UserSession.GetUsers != null)
             {
                 if (UserSession.GetUsers.RoleID == 4)
                 {
-                    var absences = await Task.Run(() => absencesDAL.GetAllForParent(parent));
+                    var absences = absencesDAL.GetAllForParent(parent);
 
                     if (!string.IsNullOrEmpty(searchString))
                     {
@@ -109,13 +109,13 @@ namespace SchoolDiarySystem.Controllers
             }
         }
 
-        public async Task<ActionResult> IndexComment(string searchString, string searchString2, string searchString3)
+        public ActionResult IndexComment(string searchString, string searchString2, string searchString3)
         {
             if (UserSession.GetUsers != null)
             {
                 if (UserSession.GetUsers.RoleID == 4)
                 {
-                    var kids = await Task.Run(() => commentsDAL.GetAllForParent(parent));
+                    var kids = commentsDAL.GetAllForParent(parent);
                     if (!string.IsNullOrEmpty(searchString3))
                     {
                         kids = kids.Where(f => f.Student.FirstName.ToLower() == searchString3.ToLower() || f.Student.LastName.ToLower() == searchString3.ToLower()
@@ -144,13 +144,13 @@ namespace SchoolDiarySystem.Controllers
             }
         }
 
-        public async Task<ActionResult> IndexClass(string searchString, string searchString2)
+        public ActionResult IndexClass(string searchString, string searchString2)
         {
             if (UserSession.GetUsers != null)
             {
                 if (UserSession.GetUsers.RoleID == 4)
                 {
-                    var kids = await Task.Run(() => classesDAL.GetAllForParent(parent));
+                    var kids = classesDAL.GetAllForParent(parent);
                     if (!string.IsNullOrEmpty(searchString))
                     {
                         kids = kids.Where(f => f.ClassNo == int.Parse(searchString)).ToList();
@@ -174,7 +174,7 @@ namespace SchoolDiarySystem.Controllers
             }
         }
 
-        public async Task<ActionResult> TeacherDetails(int? id)
+        public ActionResult TeacherDetails(int? id)
         {
             if (UserSession.GetUsers != null)
             {
@@ -185,7 +185,7 @@ namespace SchoolDiarySystem.Controllers
                         return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest);
                     }
 
-                    var teacher = await Task.Run(() => teachersDAL.Get((int)id));
+                    var teacher = teachersDAL.Get((int)id);
                     if (teacher == null)
                     {
                         return RedirectToAction(nameof(Index));

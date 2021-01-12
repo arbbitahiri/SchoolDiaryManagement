@@ -12,10 +12,12 @@ namespace SchoolDiarySystem.Models
 
         [Display(Name = "First Name")]
         [Required(ErrorMessage = "Please write student's first name!")]
+        [CheckIsLetter]
         public string FirstName { get; set; }
 
         [Display(Name = "Last Name")]
         [Required(ErrorMessage = "Please write student's last name!")]
+        [CheckIsLetter]
         public string LastName { get; set; }
 
         [Display(Name = "Gender")]

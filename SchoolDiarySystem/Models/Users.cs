@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SchoolDiarySystem.Models.DataAnnotations;
+using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace SchoolDiarySystem.Models
@@ -24,9 +25,11 @@ namespace SchoolDiarySystem.Models
         public int RoleID { get; set; }
 
         [Display(Name = "First Name")]
+        [CheckIsLetter]
         public string FirstName { get; set; }
 
         [Display(Name = "Last Name")]
+        [CheckIsLetter]
         public string LastName { get; set; }
 
         [Display(Name = "Expire Date")]

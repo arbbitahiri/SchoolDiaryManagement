@@ -42,9 +42,9 @@
                         @Html.ValidationMessageFor(m => m.Time, "", new { @class = "text-danger" })
                     </div>
                     <div class="col-xl-4 col-lg-6 col-12 form-group">
-                        <label>Time *</label>
-                        @Html.DropDownListFor(m => m.Time, new SelectList(ViewBag.Times), htmlAttributes: new { @class = "select2" })
-                        @Html.ValidationMessageFor(m => m.Time, "", new { @class = "text-danger" })
+                        <label>Day *</label>
+                        @Html.DropDownListFor(m => m.Day, new SelectList(ViewBag.Days), htmlAttributes: new { @class = "select2" })
+                        @Html.ValidationMessageFor(m => m.Day, "", new { @class = "text-danger" })
                     </div>
                     <div class="col-12 form-group mg-t-8">
                         <input type="submit" value="Create" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark" />

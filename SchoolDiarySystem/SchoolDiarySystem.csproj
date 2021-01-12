@@ -164,6 +164,7 @@
     <Compile Include="Models\ClassSchedules.cs" />
     <Compile Include="Models\Comments.cs" />
     <Compile Include="Models\Dashboard\Statistics.cs" />
+    <Compile Include="Models\DataAnnotations\CheckIsLetter.cs" />
     <Compile Include="Models\DataAnnotations\CheckPhoneNo.cs" />
     <Compile Include="Models\DataAnnotations\StudentsBirthDate.cs" />
     <Compile Include="Models\DataAnnotations\TeacherBirthDate.cs" />
@@ -373,10 +374,13 @@
     <Content Include="Views\Teacher\Delete.cshtml" />
     <Content Include="Views\User\Delete.cshtml" />
     <Content Include="Views\Parent\Delete.cshtml" />
+    <Content Include="Views\StaffAbsence\Index.cshtml" />
+    <Content Include="Views\StaffAbsence\Create.cshtml" />
+    <Content Include="Views\StaffAbsence\Update.cshtml" />
+    <Content Include="Views\Schedule\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\StaffAbsence\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
