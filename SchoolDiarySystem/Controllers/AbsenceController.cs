@@ -4,6 +4,9 @@ using System.Linq;
 using System.Web.Mvc;
 using SchoolDiarySystem.DAL;
 using SchoolDiarySystem.Models;
+using ClosedXML.Excel;
+using System.IO;
+using System.Data;
 
 namespace SchoolDiarySystem.Controllers
 {
@@ -81,6 +84,15 @@ namespace SchoolDiarySystem.Controllers
                     {
                         try
                         {
+                            var students = studentsDAL.GetAll();
+                            foreach (var item in students)
+                            {
+                                if (item.StudentID == absence.StudentID)
+                                {
+                                    absence.ClassID = item.ClassID;
+                                }
+                            }
+
                             absence.InsertBy = UserSession.GetUsers.Username;
                             absence.LUB = UserSession.GetUsers.Username;
                             absence.LUN++;
@@ -154,6 +166,15 @@ namespace SchoolDiarySystem.Controllers
                     {
                         try
                         {
+                            var students = studentsDAL.GetAll();
+                            foreach (var item in students)
+                            {
+                                if (item.StudentID == absence.StudentID)
+                                {
+                                    absence.ClassID = item.ClassID;
+                                }
+                            }
+
                             absence.LUB = UserSession.GetUsers.Username;
                             absence.LUN = ++absence.LUN;
 
@@ -180,6 +201,36 @@ namespace SchoolDiarySystem.Controllers
             else
             {
                 return RedirectToAction("Login", "Account");
+            }
+        }
+
+        [HttpPost]
+        public ActionResult Export()
+        {
+            DataTable dt = new DataTable("Grid");
+            dt.Columns.AddRange(new DataColumn[5] {
+                new DataColumn("Date"),
+                new DataColumn("Reasoning"),
+                new DataColumn("Student"),
+                new DataColumn("Class"),
+                new DataColumn("Subject"),
+            });
+
+            var absences = absencesDAL.GetAll();
+
+            foreach (var item in absences)
+            {
+                dt.Rows.Add(item.AbsenceDate, item.AbsenceReasoning, item.Student.FullName, item.Class.ClassNo, item.Subject.SubjectTitle);
+            }
+
+            using (XLWorkbook wb = new XLWorkbook())
+            {
+                wb.Worksheets.Add(dt);
+                using (MemoryStream stream = new MemoryStream())
+                {
+                    wb.SaveAs(stream);
+                    return File(stream.ToArray(), "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "AbsencesList.xlsx");
+                }
             }
         }
 

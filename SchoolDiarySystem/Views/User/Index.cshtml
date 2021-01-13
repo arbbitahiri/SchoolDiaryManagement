@@ -72,72 +72,121 @@
                         <tbody>
                             @foreach (var item in Model)
                             {
-                            <tr>
-                                <th></th>
-                                @if (item.RoleID == 2)
-                                {
+                                <tr>
+                                    <th></th>
+                                    @if (item.RoleID == 2)
+                                    {
+                                        <td>
+                                            @Html.DisplayFor(m => item.Teacher.FirstName)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(m => item.Teacher.LastName)
+                                        </td>
+                                    }
+                                    else if (item.RoleID == 4)
+                                    {
+                                        <td>
+                                            @Html.DisplayFor(m => item.Parent.FirstName)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(m => item.Parent.LastName)
+                                        </td>
+                                    }
+                                    else
+                                    {
+                                        <td>
+                                            @Html.DisplayFor(m => item.FirstName)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(m => item.LastName)
+                                        </td>
+                                    }
                                     <td>
-                                        @Html.DisplayFor(m => item.Teacher.FirstName)
+                                        @Html.DisplayFor(m => item.Username)
                                     </td>
                                     <td>
-                                        @Html.DisplayFor(m => item.Teacher.LastName)
-                                    </td>
-                                }
-                                else if (item.RoleID == 4)
-                                {
-                                    <td>
-                                        @Html.DisplayFor(m => item.Parent.FirstName)
+                                        @Html.DisplayFor(m => item.Role.RoleName)
                                     </td>
                                     <td>
-                                        @Html.DisplayFor(m => item.Parent.LastName)
+                                        @Html.DisplayFor(m => item.ExpiresDate)
                                     </td>
-                                }
-                                else
-                                {
-                                    <td>
-                                        @Html.DisplayFor(m => item.FirstName)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(m => item.LastName)
-                                    </td>
-                                }
-                                <td>
-                                    @Html.DisplayFor(m => item.Username)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(m => item.Role.RoleName)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(m => item.ExpiresDate)
-                                </td>
-                                @if (item.LastLoginDate < item.InsertDate)
-                                {
-                                    <td class="text-center">
-                                        Newly created!
-                                    </td>
-                                    <td class="text-center">
-                                        Newly created!
-                                    </td>
-                                }
-                                else
-                                {
-                                    <td>
-                                        @Html.DisplayFor(m => item.LastLoginDate)
-                                    </td>
-                                    <td class="text-center">
-                                        @Html.DisplayFor(m => item.LastLoginTime)
-                                    </td>
-                                }
+                                    @if (item.LastLoginDate < item.InsertDate)
+                                    {
+                                        <td class="text-center">
+                                            Newly created!
+                                        </td>
+                                        <td class="text-center">
+                                            Newly created!
+                                        </td>
+                                    }
+                                    else
+                                    {
+                                        <td>
+                                            @Html.DisplayFor(m => item.LastLoginDate)
+                                        </td>
+                                        <td class="text-center">
+                                            @Html.DisplayFor(m => item.LastLoginTime)
+                                        </td>
+                                    }
 
+                                    <td>
+                                        <div class="dropdown">
+                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                                <span class="flaticon-more-button-of-three-dots"></span>
+                                            </a>
+                                            <div class="dropdown-menu dropdown-menu-right">
+                                                <a class="dropdown-item" href="@Url.Action("Delete", "User", new { id = item.UserID })"><i class="fas fa-times text-orange-red"></i>Delete</a>
+                                                <a class="dropdown-item" href="@Url.Action("Update", "User", new { id = item.UserID })"><i class="fas fa-cogs text-dark-pastel-green"></i>Update</a>
+                                                <a class="dropdown-item" href="@Url.Action("ChangePassword", "User", new { id = item.UserID })"><i class="fas fa-redo-alt text-orange-peel"></i>Change Password</a>
+                                            </div>
+                                            <div class="modal-box">
+                                                <!-- Modal -->
+                                                <div class="modal fade" id="standard-modal" tabindex="-1" role="dialog" aria-hidden="true" style="display: none;">
+                                                    <div class="modal-dialog" role="document">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title">Sure?</h5>
+                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                    <span aria-hidden="true">×</span>
+                                                                </button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                Are you sure you want to delete user: @Html.DisplayFor(m => item.Username)?
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="footer-btn bg-dark-low" data-dismiss="modal">No</button>
+                                                                @using (Html.BeginForm("Delete", "User", new { id = item.UserID }, FormMethod.Post))
+                                                                {
+                                                                    <input type="submit" value="Yes" class="footer-btn bg-linkedin" />
+                                                                }
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
                                 <td>
                                     <div class="dropdown">
                                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
                                             <span class="flaticon-more-button-of-three-dots"></span>
                                         </a>
                                         <div class="dropdown-menu dropdown-menu-right">
-                                            <a class="dropdown-item" href="@Url.Action("Delete", "User", new { id = item.UserID })"><i class="fas fa-times text-orange-red"></i>Delete</a>
-                                            <a class="dropdown-item" href="@Url.Action("Update", "User", new { id = item.UserID })"><i class="fas fa-cogs text-dark-pastel-green"></i>Update</a>
-                                            <a class="dropdown-item" href="@Url.Action("ChangePassword", "User", new { id = item.UserID })"><i class="fas fa-redo-alt text-orange-peel"></i>Change Password</a>
+                                            <a class="dropdown-item" data-toggle="modal" data-target="#standard-modal"><i class="fas fa-download"></i>Download Excel</a>
+                                            @*<a class="dropdown-item" onclick="PrintTable();"><i class="fas fa-print"></i>Print</a>*@
                                         </div>
                                         <div class="modal-box">
                                             <!-- Modal -->
@@ -145,19 +194,19 @@
                                                 <div class="modal-dialog" role="document">
                                                     <div class="modal-content">
                                                         <div class="modal-header">
-                                                            <h5 class="modal-title">Sure?</h5>
+                                                            <h5 class="modal-title">Download Excel</h5>
                                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                                 <span aria-hidden="true">×</span>
                                                             </button>
                                                         </div>
                                                         <div class="modal-body">
-                                                            Are you sure you want to delete user: @Html.DisplayFor(m => item.Username)?
+                                                            Are you sure you want to download?
                                                         </div>
                                                         <div class="modal-footer">
                                                             <button type="button" class="footer-btn bg-dark-low" data-dismiss="modal">No</button>
-                                                            @using (Html.BeginForm("Delete", "User", new { id = item.UserID }, FormMethod.Post))
+                                                            @using (Html.BeginForm("Export", "User", FormMethod.Post))
                                                             {
-                                                                <input type="submit" value="Yes" class="footer-btn bg-linkedin" />
+                                                                <input type="submit" value="Download Excel" class="footer-btn bg-linkedin" aria-label="Close" />
                                                             }
                                                         </div>
                                                     </div>
@@ -167,8 +216,7 @@
                                     </div>
                                 </td>
                             </tr>
-                            }
-                        </tbody>
+                        </tfoot>
                     </table>
                 </div>
             </div>

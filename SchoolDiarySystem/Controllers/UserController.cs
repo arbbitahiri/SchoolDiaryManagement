@@ -7,6 +7,9 @@ using System.Web;
 using System.Web.Mvc;
 using System.Threading.Tasks;
 using SchoolDiarySystem.Models.DataAnnotations;
+using ClosedXML.Excel;
+using System.IO;
+using System.Data;
 
 namespace SchoolDiarySystem.Controllers
 {
@@ -522,6 +525,37 @@ namespace SchoolDiarySystem.Controllers
             else
             {
                 return RedirectToAction("Login", "Account");
+            }
+        }
+
+        [HttpPost]
+        public ActionResult Export()
+        {
+            DataTable dt = new DataTable("Grid");
+            dt.Columns.AddRange(new DataColumn[6] {
+                new DataColumn("Name"),
+                new DataColumn("Username"),
+                new DataColumn("Role"),
+                new DataColumn("Expire Date"),
+                new DataColumn("Last Login Date"),
+                new DataColumn("Last Login Time"),
+            });
+
+            var users = usersDAL.GetAll();
+
+            foreach (var item in users)
+            {
+                dt.Rows.Add(item.FullName, item.Username, item.Role.RoleName, item.ExpiresDate, item.LastLoginDate, item.LastLoginTime);
+            }
+
+            using (XLWorkbook wb = new XLWorkbook())
+            {
+                wb.Worksheets.Add(dt);
+                using (MemoryStream stream = new MemoryStream())
+                {
+                    wb.SaveAs(stream);
+                    return File(stream.ToArray(), "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "UsersList.xlsx");
+                }
             }
         }
 

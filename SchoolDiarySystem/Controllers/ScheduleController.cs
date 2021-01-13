@@ -6,6 +6,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using ClosedXML.Excel;
+using System.IO;
+using System.Data;
 
 namespace SchoolDiarySystem.Controllers
 {
@@ -257,6 +260,35 @@ namespace SchoolDiarySystem.Controllers
             ViewBag.Days = days;
             ViewBag.Class = classDAL.GetAll();
             ViewBag.Subject = subjectsDAL.GetAll();
+        }
+
+        [HttpPost]
+        public ActionResult Export()
+        {
+            DataTable dt = new DataTable("Grid");
+            dt.Columns.AddRange(new DataColumn[4] {
+                new DataColumn("Subject"),
+                new DataColumn("Class"),
+                new DataColumn("Day"),
+                new DataColumn("Time"),
+            });
+
+            var schedules = schedulesDAL.GetAll();
+
+            foreach (var item in schedules)
+            {
+                dt.Rows.Add(item.Subject.SubjectTitle, item.Class.ClassNo, item.Day, item.Time);
+            }
+
+            using (XLWorkbook wb = new XLWorkbook())
+            {
+                wb.Worksheets.Add(dt);
+                using (MemoryStream stream = new MemoryStream())
+                {
+                    wb.SaveAs(stream);
+                    return File(stream.ToArray(), "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "SchedulesList.xlsx");
+                }
+            }
         }
     }
 }

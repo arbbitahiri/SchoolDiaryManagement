@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 using System.Web.Mvc;
 using SchoolDiarySystem.DAL;
 using SchoolDiarySystem.Models;
+using ClosedXML.Excel;
+using System.IO;
+using System.Data;
 
 namespace SchoolDiarySystem.Controllers
 {
@@ -240,6 +243,34 @@ namespace SchoolDiarySystem.Controllers
             else
             {
                 return RedirectToAction("Login", "Account");
+            }
+        }
+
+        [HttpPost]
+        public ActionResult Export()
+        {
+            DataTable dt = new DataTable("Grid");
+            dt.Columns.AddRange(new DataColumn[3] {
+                new DataColumn("Date"),
+                new DataColumn("Reasoning"),
+                new DataColumn("Staff Member"),
+            });
+
+            var staffAbsences = staffAbsenceDAL.GetAll();
+
+            foreach (var item in staffAbsences)
+            {
+                dt.Rows.Add(item.AbsenceDate, item.AbsenceReasoning, item.User.FullName);
+            }
+
+            using (XLWorkbook wb = new XLWorkbook())
+            {
+                wb.Worksheets.Add(dt);
+                using (MemoryStream stream = new MemoryStream())
+                {
+                    wb.SaveAs(stream);
+                    return File(stream.ToArray(), "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "StaffAbsencesList.xlsx");
+                }
             }
         }
 

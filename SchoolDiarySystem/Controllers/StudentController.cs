@@ -6,6 +6,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using ClosedXML.Excel;
+using System.IO;
+using System.Data;
 
 namespace SchoolDiarySystem.Controllers
 {
@@ -228,6 +231,36 @@ namespace SchoolDiarySystem.Controllers
             else
             {
                 return RedirectToAction("Login", "Account");
+            }
+        }
+
+        [HttpPost]
+        public ActionResult Export()
+        {
+            DataTable dt = new DataTable("Grid");
+            dt.Columns.AddRange(new DataColumn[5] {
+                new DataColumn("Name"),
+                new DataColumn("Gender"),
+                new DataColumn("Class"),
+                new DataColumn("Parent"),
+                new DataColumn("Birthday"),
+            });
+
+            var students = studentsDAL.GetAll();
+
+            foreach (var item in students)
+            {
+                dt.Rows.Add(item.FullName, item.Gender, item.Class.ClassNo, item.Parent.FullName, item.DayofBirth);
+            }
+
+            using (XLWorkbook wb = new XLWorkbook())
+            {
+                wb.Worksheets.Add(dt);
+                using (MemoryStream stream = new MemoryStream())
+                {
+                    wb.SaveAs(stream);
+                    return File(stream.ToArray(), "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "StudentsList.xlsx");
+                }
             }
         }
 

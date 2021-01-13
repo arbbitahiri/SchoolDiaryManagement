@@ -27,11 +27,11 @@
             <form class="new-added-form">
                 <div class="row">
                     @Html.HiddenFor(m => m.AbsenceID)
-                    <div class="col-xl-3 col-lg-6 col-12 form-group">
+                    @*<div class="col-xl-3 col-lg-6 col-12 form-group">
                         <label>Select Class *</label>
                         @Html.DropDownListFor(m => m.ClassID, new SelectList(ViewBag.Class, "ClassID", "ClassNo"), new { @class = "select2" })
                         @Html.ValidationMessageFor(m => m.ClassID, "", new { @class = "text-danger" })
-                    </div>
+                    </div>*@
                     <div class="col-xl-3 col-lg-6 col-12 form-group">
                         <label>Select Date *</label>
                         @Html.TextBoxFor(m => m.AbsenceDate, new { @class = "form-control", type = "date", placeholder = "dd/MMMM/yyyy", autocomplete = "off" })

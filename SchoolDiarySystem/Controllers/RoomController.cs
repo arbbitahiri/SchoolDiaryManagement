@@ -6,6 +6,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using ClosedXML.Excel;
+using System.IO;
+using System.Data;
 
 namespace SchoolDiarySystem.Controllers
 {
@@ -227,6 +230,33 @@ namespace SchoolDiarySystem.Controllers
             else
             {
                 return Content("You're not allowed to view this page!");
+            }
+        }
+
+        [HttpPost]
+        public ActionResult Export()
+        {
+            DataTable dt = new DataTable("Grid");
+            dt.Columns.AddRange(new DataColumn[2] {
+                new DataColumn("Room No."),
+                new DataColumn("Room Type"),
+            });
+
+            var rooms = roomsDAL.GetAll();
+
+            foreach (var item in rooms)
+            {
+                dt.Rows.Add(item.RoomNo, item.RoomType);
+            }
+
+            using (XLWorkbook wb = new XLWorkbook())
+            {
+                wb.Worksheets.Add(dt);
+                using (MemoryStream stream = new MemoryStream())
+                {
+                    wb.SaveAs(stream);
+                    return File(stream.ToArray(), "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "RoomsList.xlsx");
+                }
             }
         }
     }

@@ -16,7 +16,7 @@ namespace SchoolDiarySystem.Models
         public int StudentID { get; set; }
 
         [Display(Name = "Class")]
-        [Required(ErrorMessage = "Please select a class!")]
+        //[Required(ErrorMessage = "Please select a class!")]
         public int ClassID { get; set; }
 
         [Display(Name = "Subject")]
