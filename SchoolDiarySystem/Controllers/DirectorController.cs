@@ -1,11 +1,6 @@
-﻿using System;
-using SchoolDiarySystem.DAL;
+﻿using SchoolDiarySystem.DAL;
 using SchoolDiarySystem.Models;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
-using System.Threading.Tasks;
 
 namespace SchoolDiarySystem.Controllers
 {
@@ -19,7 +14,7 @@ namespace SchoolDiarySystem.Controllers
         {
             if (UserSession.GetUsers != null)
             {
-                if (UserSession.GetUsers.RoleID == 3)
+                if (UserSession.GetUsers.Role.RoleName == UserRoles.DIRECTOR)
                 {
                     var users = usersDAL.GetAll();
                     foreach (var user in users)

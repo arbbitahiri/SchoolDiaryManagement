@@ -1,15 +1,12 @@
-﻿using System;
+﻿using ClosedXML.Excel;
 using SchoolDiarySystem.DAL;
 using SchoolDiarySystem.Models;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-using System.Threading.Tasks;
 using SchoolDiarySystem.Models.DataAnnotations;
-using ClosedXML.Excel;
-using System.IO;
+using System;
 using System.Data;
+using System.IO;
+using System.Linq;
+using System.Web.Mvc;
 
 namespace SchoolDiarySystem.Controllers
 {
@@ -25,7 +22,7 @@ namespace SchoolDiarySystem.Controllers
         {
             if (UserSession.GetUsers != null)
             {
-                if (UserSession.GetUsers.RoleID == 3)
+                if (UserSession.GetUsers.Role.RoleName == UserRoles.DIRECTOR)
                 {
                     var users = usersDAL.GetAll();
 
@@ -55,7 +52,7 @@ namespace SchoolDiarySystem.Controllers
         {
             if (UserSession.GetUsers != null)
             {
-                if (UserSession.GetUsers.RoleID == 3)
+                if (UserSession.GetUsers.Role.RoleName == UserRoles.DIRECTOR)
                 {
                     return View();
                 }
@@ -75,7 +72,7 @@ namespace SchoolDiarySystem.Controllers
         {
             if (UserSession.GetUsers != null)
             {
-                if (UserSession.GetUsers.RoleID == 3)
+                if (UserSession.GetUsers.Role.RoleName == UserRoles.DIRECTOR)
                 {
                     try
                     {
@@ -139,7 +136,7 @@ namespace SchoolDiarySystem.Controllers
         {
             if (UserSession.GetUsers != null)
             {
-                if (UserSession.GetUsers.RoleID == 3)
+                if (UserSession.GetUsers.Role.RoleName == UserRoles.DIRECTOR)
                 {
                     GetItemForSelectList();
                     return View();
@@ -160,7 +157,7 @@ namespace SchoolDiarySystem.Controllers
         {
             if (UserSession.GetUsers != null)
             {
-                if (UserSession.GetUsers.RoleID == 3)
+                if (UserSession.GetUsers.Role.RoleName == UserRoles.DIRECTOR)
                 {
                     try
                     {
@@ -225,7 +222,7 @@ namespace SchoolDiarySystem.Controllers
         {
             if (UserSession.GetUsers != null)
             {
-                if (UserSession.GetUsers.RoleID == 3)
+                if (UserSession.GetUsers.Role.RoleName == UserRoles.DIRECTOR)
                 {
                     GetItemForSelectList();
                     return View();
@@ -246,7 +243,7 @@ namespace SchoolDiarySystem.Controllers
         {
             if (UserSession.GetUsers != null)
             {
-                if (UserSession.GetUsers.RoleID == 3)
+                if (UserSession.GetUsers.Role.RoleName == UserRoles.DIRECTOR)
                 {
                     try
                     {
@@ -311,7 +308,7 @@ namespace SchoolDiarySystem.Controllers
         {
             if (UserSession.GetUsers != null)
             {
-                if (UserSession.GetUsers.RoleID == 3)
+                if (UserSession.GetUsers.Role.RoleName == UserRoles.DIRECTOR)
                 {
                     if (id == null)
                     {
@@ -342,7 +339,7 @@ namespace SchoolDiarySystem.Controllers
         {
             if (UserSession.GetUsers != null)
             {
-                if (UserSession.GetUsers.RoleID == 3)
+                if (UserSession.GetUsers.Role.RoleName == UserRoles.DIRECTOR)
                 {
                     if (id != user.UserID)
                     {
@@ -400,7 +397,7 @@ namespace SchoolDiarySystem.Controllers
         {
             if (UserSession.GetUsers != null)
             {
-                if (UserSession.GetUsers.RoleID == 3)
+                if (UserSession.GetUsers.Role.RoleName == UserRoles.DIRECTOR)
                 {
                     if (id == null)
                     {
@@ -431,7 +428,7 @@ namespace SchoolDiarySystem.Controllers
         {
             if (UserSession.GetUsers != null)
             {
-                if (UserSession.GetUsers.RoleID == 3)
+                if (UserSession.GetUsers.Role.RoleName == UserRoles.DIRECTOR)
                 {
                     if (id != user.UserID)
                     {
@@ -479,7 +476,7 @@ namespace SchoolDiarySystem.Controllers
         {
             if (UserSession.GetUsers != null)
             {
-                if (UserSession.GetUsers.RoleID == 3)
+                if (UserSession.GetUsers.Role.RoleName == UserRoles.DIRECTOR)
                 {
                     if (id == null)
                     {
@@ -505,7 +502,7 @@ namespace SchoolDiarySystem.Controllers
         {
             if (UserSession.GetUsers != null)
             {
-                if (UserSession.GetUsers.RoleID == 3)
+                if (UserSession.GetUsers.Role.RoleName == UserRoles.DIRECTOR)
                 {
                     if (id != 3)
                     {

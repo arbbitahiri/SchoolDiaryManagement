@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
-using System.Web;
 
 namespace SchoolDiarySystem.Models.DataAnnotations
 {
@@ -20,19 +17,6 @@ namespace SchoolDiarySystem.Models.DataAnnotations
             }
 
             return BitConverter.ToString(hashBytes).Replace("-", string.Empty);
-        }
-
-        public static List<Subjects> GetSubjectForTeacher(int teacherID, List<Subjects> subjects)
-        {
-            List<Subjects> teacherSubjects = new List<Subjects>();
-            foreach (var teacher in subjects)
-            {
-                if (teacherID == teacher.TeacherID)
-                {
-                    teacherSubjects.Add(teacher);
-                }
-            }
-            return teacherSubjects;
         }
     }
 }

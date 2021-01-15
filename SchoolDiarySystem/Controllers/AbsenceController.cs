@@ -1,12 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web.Mvc;
+﻿using ClosedXML.Excel;
 using SchoolDiarySystem.DAL;
 using SchoolDiarySystem.Models;
-using ClosedXML.Excel;
-using System.IO;
+using System;
+using System.Collections.Generic;
 using System.Data;
+using System.IO;
+using System.Linq;
+using System.Web.Mvc;
 
 namespace SchoolDiarySystem.Controllers
 {
@@ -24,7 +24,7 @@ namespace SchoolDiarySystem.Controllers
         {
             if (UserSession.GetUsers != null)
             {
-                if (UserSession.GetUsers.RoleID == 2)
+                if (UserSession.GetUsers.Role.RoleName == UserRoles.TEACHER)
                 {
                     var absences = absencesDAL.GetAllForTeacher(teacher);
 
@@ -55,7 +55,7 @@ namespace SchoolDiarySystem.Controllers
         {
             if (UserSession.GetUsers != null)
             {
-                if (UserSession.GetUsers.RoleID == 2)
+                if (UserSession.GetUsers.Role.RoleName == UserRoles.TEACHER)
                 {
                     GetItemForSelectList();
                     var absence = new Absences();
@@ -77,7 +77,7 @@ namespace SchoolDiarySystem.Controllers
         {
             if (UserSession.GetUsers != null)
             {
-                if (UserSession.GetUsers.RoleID == 2)
+                if (UserSession.GetUsers.Role.RoleName == UserRoles.TEACHER)
                 {
                     GetItemForSelectList();
                     if (ModelState.IsValid)
@@ -127,7 +127,7 @@ namespace SchoolDiarySystem.Controllers
         {
             if (UserSession.GetUsers != null)
             {
-                if (UserSession.GetUsers.RoleID == 2)
+                if (UserSession.GetUsers.Role.RoleName == UserRoles.TEACHER)
                 {
                     if (id == null)
                     {
@@ -154,7 +154,7 @@ namespace SchoolDiarySystem.Controllers
         {
             if (UserSession.GetUsers != null)
             {
-                if (UserSession.GetUsers.RoleID == 2)
+                if (UserSession.GetUsers.Role.RoleName == UserRoles.TEACHER)
                 {
                     if (id != absence.AbsenceID)
                     {

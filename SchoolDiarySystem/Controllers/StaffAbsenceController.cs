@@ -1,14 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Threading.Tasks;
-using System.Web.Mvc;
+﻿using ClosedXML.Excel;
 using SchoolDiarySystem.DAL;
 using SchoolDiarySystem.Models;
-using ClosedXML.Excel;
-using System.IO;
+using System;
+using System.Collections.Generic;
 using System.Data;
+using System.IO;
+using System.Linq;
+using System.Web.Mvc;
 
 namespace SchoolDiarySystem.Controllers
 {
@@ -24,7 +22,7 @@ namespace SchoolDiarySystem.Controllers
         {
             if (UserSession.GetUsers != null)
             {
-                if (UserSession.GetUsers.RoleID == 3)
+                if (UserSession.GetUsers.Role.RoleName == UserRoles.DIRECTOR)
                 {
                     var absences = staffAbsenceDAL.GetAll();
                     var teachers = teachersDAL.GetAll();
@@ -38,14 +36,6 @@ namespace SchoolDiarySystem.Controllers
                                 us.User.FirstName = teacher.FirstName;
                                 us.User.LastName = teacher.LastName;
                             }
-                            //else if (us.User.Role.RoleName == "Parent")
-                            //{
-                            //    absences.Remove(us);
-                            //}
-                            //else if (us.User.Role.RoleName == "Director")
-                            //{
-                            //    absences.Remove(us);
-                            //}
                         }
                     }
 
@@ -79,7 +69,7 @@ namespace SchoolDiarySystem.Controllers
         {
             if (UserSession.GetUsers != null)
             {
-                if (UserSession.GetUsers.RoleID == 3)
+                if (UserSession.GetUsers.Role.RoleName == UserRoles.DIRECTOR)
                 {
                     GetItemForSelectList();
                     var staffAbsence = new StaffAbsence();
@@ -101,7 +91,7 @@ namespace SchoolDiarySystem.Controllers
         {
             if (UserSession.GetUsers != null)
             {
-                if (UserSession.GetUsers.RoleID == 3)
+                if (UserSession.GetUsers.Role.RoleName == UserRoles.DIRECTOR)
                 {
                     try
                     {
@@ -153,7 +143,7 @@ namespace SchoolDiarySystem.Controllers
         {
             if (UserSession.GetUsers != null)
             {
-                if (UserSession.GetUsers.RoleID == 3)
+                if (UserSession.GetUsers.Role.RoleName == UserRoles.DIRECTOR)
                 {
                     if (id == null)
                     {
@@ -185,7 +175,7 @@ namespace SchoolDiarySystem.Controllers
         {
             if (UserSession.GetUsers != null)
             {
-                if (UserSession.GetUsers.RoleID == 3)
+                if (UserSession.GetUsers.Role.RoleName == UserRoles.DIRECTOR)
                 {
                     if (id != staffAbsence.StaffAbsenceID)
                     {
@@ -230,7 +220,7 @@ namespace SchoolDiarySystem.Controllers
         {
             if (UserSession.GetUsers != null)
             {
-                if (UserSession.GetUsers.RoleID == 3)
+                if (UserSession.GetUsers.Role.RoleName == UserRoles.DIRECTOR)
                 {
                     staffAbsenceDAL.Delete(id);
                     return RedirectToAction(nameof(Index));

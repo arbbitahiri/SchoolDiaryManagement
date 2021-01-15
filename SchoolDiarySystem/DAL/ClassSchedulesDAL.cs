@@ -1,10 +1,10 @@
-﻿using SchoolDiarySystem.Interface;
+﻿using SchoolDiarySystem.DAL.DataBase;
+using SchoolDiarySystem.Interface;
 using SchoolDiarySystem.Models;
-using SchoolDiarySystem.DAL.DataBase;
 using System;
 using System.Collections.Generic;
-using System.Data.SqlClient;
 using System.Data;
+using System.Data.SqlClient;
 
 namespace SchoolDiarySystem.DAL
 {

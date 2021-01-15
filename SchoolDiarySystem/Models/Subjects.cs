@@ -25,7 +25,5 @@ namespace SchoolDiarySystem.Models
         public int TeacherID { get; set; }
 
         public virtual Teachers Teacher { get; set; }
-
-        public IEnumerable<SelectListItem> TeacherList { get; set; }
     }
 }

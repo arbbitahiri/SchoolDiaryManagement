@@ -1,11 +1,6 @@
 ﻿using SchoolDiarySystem.DAL;
 using SchoolDiarySystem.Models;
 using SchoolDiarySystem.Models.Dashboard;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Web;
 using System.Web.Mvc;
 
 namespace SchoolDiarySystem.Controllers
@@ -20,7 +15,7 @@ namespace SchoolDiarySystem.Controllers
         {
             if (UserSession.GetUsers != null)
             {
-                if (UserSession.GetUsers.RoleID == 1)
+                if (UserSession.GetUsers.Role.RoleName == UserRoles.ADMIN)
                 {
                     NumbersCount();
                     return View();

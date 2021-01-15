@@ -3,8 +3,6 @@ using SchoolDiarySystem.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
-using System.Web;
 using System.Web.Mvc;
 
 namespace SchoolDiarySystem.Controllers
@@ -24,7 +22,7 @@ namespace SchoolDiarySystem.Controllers
         {
             if (UserSession.GetUsers != null)
             {
-                if (UserSession.GetUsers.RoleID == 2)
+                if (UserSession.GetUsers.Role.RoleName == UserRoles.TEACHER)
                 {
                     var comments = commentsDAL.GetAllForTeacher(teacher);
 
@@ -56,7 +54,7 @@ namespace SchoolDiarySystem.Controllers
         {
             if (UserSession.GetUsers != null)
             {
-                if (UserSession.GetUsers.RoleID == 2)
+                if (UserSession.GetUsers.Role.RoleName == UserRoles.TEACHER)
                 {
                     var comment = new Comments();
                     GetItemForSelectList();
@@ -78,7 +76,7 @@ namespace SchoolDiarySystem.Controllers
         {
             if (UserSession.GetUsers != null)
             {
-                if (UserSession.GetUsers.RoleID == 2)
+                if (UserSession.GetUsers.Role.RoleName == UserRoles.TEACHER)
                 {
                     try
                     {
@@ -120,7 +118,7 @@ namespace SchoolDiarySystem.Controllers
         {
             if (UserSession.GetUsers != null)
             {
-                if (UserSession.GetUsers.RoleID == 2)
+                if (UserSession.GetUsers.Role.RoleName == UserRoles.TEACHER)
                 {
                     if (id == null)
                     {
@@ -152,7 +150,7 @@ namespace SchoolDiarySystem.Controllers
         {
             if (UserSession.GetUsers != null)
             {
-                if (UserSession.GetUsers.RoleID == 2)
+                if (UserSession.GetUsers.Role.RoleName == UserRoles.TEACHER)
                 {
                     if (id != comment.CommentID)
                     {
@@ -197,7 +195,7 @@ namespace SchoolDiarySystem.Controllers
         {
             if (UserSession.GetUsers != null)
             {
-                if (UserSession.GetUsers.RoleID == 3 || UserSession.GetUsers.RoleID == 2)
+                if (UserSession.GetUsers.Role.RoleName == UserRoles.DIRECTOR || UserSession.GetUsers.Role.RoleName == UserRoles.TEACHER)
                 {
                     if (id == null)
                     {

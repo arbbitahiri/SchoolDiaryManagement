@@ -1,8 +1,6 @@
 ﻿using SchoolDiarySystem.Models.DataAnnotations;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Web.Mvc;
 
 namespace SchoolDiarySystem.Models
 {
@@ -21,7 +19,6 @@ namespace SchoolDiarySystem.Models
         public string LastName { get; set; }
 
         [Display(Name = "Gender")]
-        //[Required(ErrorMessage = "Please select a gender!")]
         public string Gender { get; set; }
 
         [Display(Name = "Day of Birth")]
@@ -50,7 +47,5 @@ namespace SchoolDiarySystem.Models
                 return FirstName + " " + LastName;
             }
         }
-
-        public int MyStudentsCount { get; set; }
     }
 }

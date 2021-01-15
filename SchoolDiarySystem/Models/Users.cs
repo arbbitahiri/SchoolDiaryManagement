@@ -18,7 +18,7 @@ namespace SchoolDiarySystem.Models
         public string Password { get; set; }
 
         [DataType(DataType.Password)]
-        [System.ComponentModel.DataAnnotations.Compare("Password", ErrorMessage = "Password doesn't not match!")]
+        [Compare("Password", ErrorMessage = "Password doesn't not match!")]
         public string ConfirmPassword { get; set; }
 
         [Display(Name = "Role")]
@@ -34,7 +34,6 @@ namespace SchoolDiarySystem.Models
 
         [Display(Name = "Expire Date")]
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd MMMM yyyy}")]
-        //[Required(ErrorMessage = "Please select a date!")]
         public DateTime ExpiresDate { get; set; }
 
         [Display(Name = "Last Login Date")]

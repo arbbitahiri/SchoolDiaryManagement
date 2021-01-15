@@ -1,14 +1,11 @@
-﻿using SchoolDiarySystem.DAL;
+﻿using ClosedXML.Excel;
+using SchoolDiarySystem.DAL;
 using SchoolDiarySystem.Models;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Web;
-using System.Web.Mvc;
-using ClosedXML.Excel;
-using System.IO;
 using System.Data;
+using System.IO;
+using System.Linq;
+using System.Web.Mvc;
 
 namespace SchoolDiarySystem.Controllers
 {
@@ -21,7 +18,7 @@ namespace SchoolDiarySystem.Controllers
         {
             if (UserSession.GetUsers != null)
             {
-                if (UserSession.GetUsers.RoleID == 1)
+                if (UserSession.GetUsers.Role.RoleName == UserRoles.ADMIN)
                 {
                     var parents = parentsDAL.GetAll();
 
@@ -48,7 +45,7 @@ namespace SchoolDiarySystem.Controllers
         {
             if (UserSession.GetUsers != null)
             {
-                if (UserSession.GetUsers.RoleID == 1)
+                if (UserSession.GetUsers.Role.RoleName == UserRoles.ADMIN)
                 {
                     return View();
                 }
@@ -69,7 +66,7 @@ namespace SchoolDiarySystem.Controllers
         {
             if (UserSession.GetUsers != null)
             {
-                if (UserSession.GetUsers.RoleID == 1)
+                if (UserSession.GetUsers.Role.RoleName == UserRoles.ADMIN)
                 {
                     try
                     {
@@ -109,7 +106,7 @@ namespace SchoolDiarySystem.Controllers
         {
             if (UserSession.GetUsers != null)
             {
-                if (UserSession.GetUsers.RoleID == 1)
+                if (UserSession.GetUsers.Role.RoleName == UserRoles.ADMIN)
                 {
                     if (id == null)
                     {
@@ -139,7 +136,7 @@ namespace SchoolDiarySystem.Controllers
         {
             if (UserSession.GetUsers != null)
             {
-                if (UserSession.GetUsers.RoleID == 1)
+                if (UserSession.GetUsers.Role.RoleName == UserRoles.ADMIN)
                 {
                     if (id != parent.ParentID)
                     {
@@ -183,7 +180,7 @@ namespace SchoolDiarySystem.Controllers
         {
             if (UserSession.GetUsers != null)
             {
-                if (UserSession.GetUsers.RoleID == 1)
+                if (UserSession.GetUsers.Role.RoleName == UserRoles.ADMIN)
                 {
                     if (id == null)
                     {
@@ -209,7 +206,7 @@ namespace SchoolDiarySystem.Controllers
         {
             if (UserSession.GetUsers != null)
             {
-                if (UserSession.GetUsers.RoleID == 1)
+                if (UserSession.GetUsers.Role.RoleName == UserRoles.ADMIN)
                 {
                     parentsDAL.Delete(id);
                     return RedirectToAction(nameof(Index));

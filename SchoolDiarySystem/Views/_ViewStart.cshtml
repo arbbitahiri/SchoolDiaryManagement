@@ -2,21 +2,21 @@
 @{
     if (UserSession.GetUsers != null)
     {
-        var role = UserSession.GetUsers.RoleID;
+        var role = UserSession.GetUsers.Role.RoleName;
 
-        if (role == 1)
+        if (role == UserRoles.ADMIN)
         {
             Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
         }
-        else if (role == 2)
+        else if (role == UserRoles.TEACHER)
         {
             Layout = "~/Views/Shared/_LayoutTeacher.cshtml";
         }
-        else if (role == 3)
+        else if (role == UserRoles.DIRECTOR)
         {
             Layout = "~/Views/Shared/_LayoutDirector.cshtml";
         }
-        else if (role == 4)
+        else if (role == UserRoles.PARENT)
         {
             Layout = "~/Views/Shared/_LayoutParent.cshtml";
         }

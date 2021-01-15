@@ -3,8 +3,6 @@ using SchoolDiarySystem.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
-using System.Web;
 using System.Web.Mvc;
 
 namespace SchoolDiarySystem.Controllers
@@ -21,7 +19,7 @@ namespace SchoolDiarySystem.Controllers
         {
             if (UserSession.GetUsers != null)
             {
-                if (UserSession.GetUsers.RoleID == 2)
+                if (UserSession.GetUsers.Role.RoleName == UserRoles.TEACHER)
                 {
                     var topics = topicsDAL.GetAllForTeacher(teacher);
 
@@ -57,7 +55,7 @@ namespace SchoolDiarySystem.Controllers
         {
             if (UserSession.GetUsers != null)
             {
-                if (UserSession.GetUsers.RoleID == 2)
+                if (UserSession.GetUsers.Role.RoleName == UserRoles.TEACHER)
                 {
                     var topic = new Topics();
                     GetItemForSelectList(teacher);
@@ -79,7 +77,7 @@ namespace SchoolDiarySystem.Controllers
         {
             if (UserSession.GetUsers != null)
             {
-                if (UserSession.GetUsers.RoleID == 2)
+                if (UserSession.GetUsers.Role.RoleName == UserRoles.TEACHER)
                 {
                     try
                     {
@@ -132,7 +130,7 @@ namespace SchoolDiarySystem.Controllers
         {
             if (UserSession.GetUsers != null)
             {
-                if (UserSession.GetUsers.RoleID == 2)
+                if (UserSession.GetUsers.Role.RoleName == UserRoles.TEACHER)
                 {
                     if (id == null)
                     {
@@ -163,7 +161,7 @@ namespace SchoolDiarySystem.Controllers
         {
             if (UserSession.GetUsers != null)
             {
-                if (UserSession.GetUsers.RoleID == 2)
+                if (UserSession.GetUsers.Role.RoleName == UserRoles.TEACHER)
                 {
                     if (id != topic.TopicID)
                     {
@@ -210,7 +208,7 @@ namespace SchoolDiarySystem.Controllers
         {
             if (UserSession.GetUsers != null)
             {
-                if (UserSession.GetUsers.RoleID == 2)
+                if (UserSession.GetUsers.Role.RoleName == UserRoles.TEACHER)
                 {
                     topicsDAL.Delete(id);
                     return RedirectToAction(nameof(Index));

@@ -1,15 +1,12 @@
-﻿using SchoolDiarySystem.DAL;
+﻿using ClosedXML.Excel;
+using SchoolDiarySystem.DAL;
 using SchoolDiarySystem.Models;
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Web;
-using System.Web.Mvc;
-using ClosedXML.Excel;
-using System.IO;
 using System.Data;
+using System.IO;
+using System.Linq;
+using System.Web.Mvc;
 
 namespace SchoolDiarySystem.Controllers
 {
@@ -22,7 +19,7 @@ namespace SchoolDiarySystem.Controllers
         {
             if (UserSession.GetUsers != null)
             {
-                if (UserSession.GetUsers.RoleID == 1)
+                if (UserSession.GetUsers.Role.RoleName == UserRoles.ADMIN)
                 {
                     var teachers = teachersDAL.GetAll();
 
@@ -49,7 +46,7 @@ namespace SchoolDiarySystem.Controllers
         {
             if (UserSession.GetUsers != null)
             {
-                if (UserSession.GetUsers.RoleID == 1)
+                if (UserSession.GetUsers.Role.RoleName == UserRoles.ADMIN)
                 {
                     var teacher = new Teachers();
                     GetItemForSelectList();
@@ -71,7 +68,7 @@ namespace SchoolDiarySystem.Controllers
         {
             if (UserSession.GetUsers != null)
             {
-                if (UserSession.GetUsers.RoleID == 1)
+                if (UserSession.GetUsers.Role.RoleName == UserRoles.ADMIN)
                 {
                     try
                     {
@@ -112,7 +109,7 @@ namespace SchoolDiarySystem.Controllers
         {
             if (UserSession.GetUsers != null)
             {
-                if (UserSession.GetUsers.RoleID == 1)
+                if (UserSession.GetUsers.Role.RoleName == UserRoles.ADMIN)
                 {
                     if (id == null)
                     {
@@ -143,7 +140,7 @@ namespace SchoolDiarySystem.Controllers
         {
             if (UserSession.GetUsers != null)
             {
-                if (UserSession.GetUsers.RoleID == 1)
+                if (UserSession.GetUsers.Role.RoleName == UserRoles.ADMIN)
                 {
                     if (id != teacher.TeacherID)
                     {
@@ -187,7 +184,7 @@ namespace SchoolDiarySystem.Controllers
         {
             if (UserSession.GetUsers != null)
             {
-                if (UserSession.GetUsers.RoleID == 1)
+                if (UserSession.GetUsers.Role.RoleName == UserRoles.ADMIN)
                 {
                     if (id == null)
                     {
@@ -216,7 +213,7 @@ namespace SchoolDiarySystem.Controllers
         {
             if (UserSession.GetUsers != null)
             {
-                if (UserSession.GetUsers.RoleID == 1)
+                if (UserSession.GetUsers.Role.RoleName == UserRoles.ADMIN)
                 {
                     if (id == null)
                     {
@@ -242,7 +239,7 @@ namespace SchoolDiarySystem.Controllers
         {
             if (UserSession.GetUsers != null)
             {
-                if (UserSession.GetUsers.RoleID == 1)
+                if (UserSession.GetUsers.Role.RoleName == UserRoles.ADMIN)
                 {
                     var result = teachersDAL.Delete(id);
                     return RedirectToAction(nameof(Index));

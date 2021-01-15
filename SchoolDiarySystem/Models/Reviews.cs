@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Web.Mvc;
 
 namespace SchoolDiarySystem.Models
 {
@@ -14,7 +12,6 @@ namespace SchoolDiarySystem.Models
 
         [Display(Name = "Review")]
         [Required(ErrorMessage = "Please write the review!")]
-        //[StringLength(250, MinimumLength = 5, ErrorMessage = "Review is to short!")]
         public string Review { get; set; }
 
         [Display(Name = "Date")]

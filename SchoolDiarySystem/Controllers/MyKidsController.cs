@@ -1,11 +1,8 @@
-﻿using SchoolDiarySystem.Models;
-using SchoolDiarySystem.DAL;
+﻿using SchoolDiarySystem.DAL;
+using SchoolDiarySystem.Models;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
-using System.Threading.Tasks;
 
 namespace SchoolDiarySystem.Controllers
 {
@@ -25,7 +22,7 @@ namespace SchoolDiarySystem.Controllers
         {
             if (UserSession.GetUsers != null)
             {
-                if (UserSession.GetUsers.RoleID == 4)
+                if (UserSession.GetUsers.Role.RoleName == UserRoles.PARENT)
                 {
                     var kids = studentsDAL.GetAll();
                     kids = kids.Where(k => k.ParentID == UserSession.GetUsers.ParentID).ToList();
@@ -47,7 +44,7 @@ namespace SchoolDiarySystem.Controllers
         {
             if (UserSession.GetUsers != null)
             {
-                if (UserSession.GetUsers.RoleID == 4)
+                if (UserSession.GetUsers.Role.RoleName == UserRoles.PARENT)
                 {
                     var kids = topicsDAL.GetAllForParent(parent);
                     if (!string.IsNullOrEmpty(searchString3))
@@ -82,7 +79,7 @@ namespace SchoolDiarySystem.Controllers
         {
             if (UserSession.GetUsers != null)
             {
-                if (UserSession.GetUsers.RoleID == 4)
+                if (UserSession.GetUsers.Role.RoleName == UserRoles.PARENT)
                 {
                     var absences = absencesDAL.GetAllForParent(parent);
 
@@ -113,7 +110,7 @@ namespace SchoolDiarySystem.Controllers
         {
             if (UserSession.GetUsers != null)
             {
-                if (UserSession.GetUsers.RoleID == 4)
+                if (UserSession.GetUsers.Role.RoleName == UserRoles.PARENT)
                 {
                     var kids = commentsDAL.GetAllForParent(parent);
                     if (!string.IsNullOrEmpty(searchString3))
@@ -148,7 +145,7 @@ namespace SchoolDiarySystem.Controllers
         {
             if (UserSession.GetUsers != null)
             {
-                if (UserSession.GetUsers.RoleID == 4)
+                if (UserSession.GetUsers.Role.RoleName == UserRoles.PARENT)
                 {
                     var kids = classesDAL.GetAllForParent(parent);
                     if (!string.IsNullOrEmpty(searchString))
@@ -178,7 +175,7 @@ namespace SchoolDiarySystem.Controllers
         {
             if (UserSession.GetUsers != null)
             {
-                if (UserSession.GetUsers.RoleID == 4)
+                if (UserSession.GetUsers.Role.RoleName == UserRoles.PARENT)
                 {
                     if (id == null)
                     {

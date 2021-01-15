@@ -2,9 +2,7 @@
 using SchoolDiarySystem.Models;
 using SchoolDiarySystem.Models.DataAnnotations;
 using System;
-using System.Threading.Tasks;
 using System.Web.Mvc;
-using System.Web.Security;
 
 namespace SchoolDiarySystem.Controllers
 {
@@ -22,22 +20,21 @@ namespace SchoolDiarySystem.Controllers
             if (result != null)
             {
                 UserSession.GetUsers = result;
-
                 if (result.ExpiresDate > DateTime.Now)
                 {
-                    if (result.RoleID == 1)
+                    if (result.Role.RoleName == UserRoles.ADMIN)
                     {
                         return RedirectToAction("Index", "Admin");
                     }
-                    else if (result.RoleID == 2)
+                    else if (result.Role.RoleName == UserRoles.TEACHER)
                     {
                         return RedirectToAction("Index", "Professor");
                     }
-                    else if (result.RoleID == 3)
+                    else if (result.Role.RoleName == UserRoles.DIRECTOR)
                     {
                         return RedirectToAction("Index", "Director");
                     }
-                    else if (result.RoleID == 4)
+                    else if (result.Role.RoleName == UserRoles.PARENT)
                     {
                         return RedirectToAction("Index", "MyKids");
                     }

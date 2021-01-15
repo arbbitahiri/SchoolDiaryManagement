@@ -21,7 +21,6 @@ namespace SchoolDiarySystem.Models
         public string LastName { get; set; }
 
         [Display(Name = "Gender")]
-        //[Required(ErrorMessage = "Please select a gender!")]
         public string Gender { get; set; }
 
         [Display(Name = "City")]

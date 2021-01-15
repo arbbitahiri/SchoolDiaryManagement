@@ -1,7 +1,7 @@
 ﻿using System;
-using System.Data.SqlClient;
 using System.Configuration;
 using System.Data;
+using System.Data.SqlClient;
 
 namespace SchoolDiarySystem.DAL.DataBase
 {
@@ -25,8 +25,10 @@ namespace SchoolDiarySystem.DAL.DataBase
 
         public static SqlCommand GetCommand(SqlConnection connection, string cmdText, CommandType commandType)
         {
-            SqlCommand command = new SqlCommand(cmdText, connection);
-            command.CommandType = commandType;
+            SqlCommand command = new SqlCommand(cmdText, connection)
+            {
+                CommandType = commandType
+            };
             return command;
         }
 
@@ -40,7 +42,9 @@ namespace SchoolDiarySystem.DAL.DataBase
                 if (value is DateTime)
                 {
                     if (DateTime.Parse(value.ToString()) <= DateTime.Parse("1/01/1950 12:00:00"))
+                    {
                         value = null;
+                    }
                 }
             }
 

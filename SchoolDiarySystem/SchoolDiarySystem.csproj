@@ -186,7 +186,6 @@
     <Compile Include="Models\DataAnnotations\CheckPhoneNo.cs" />
     <Compile Include="Models\DataAnnotations\StudentsBirthDate.cs" />
     <Compile Include="Models\DataAnnotations\TeacherBirthDate.cs" />
-    <Compile Include="Models\DataAnnotations\ValidateClassNo.cs" />
     <Compile Include="Models\DataAnnotations\Validation.cs" />
     <Compile Include="Models\Parents.cs" />
     <Compile Include="Models\Reviews.cs" />
@@ -197,8 +196,9 @@
     <Compile Include="Models\Subjects.cs" />
     <Compile Include="Models\Teachers.cs" />
     <Compile Include="Models\Topics.cs" />
+    <Compile Include="Models\UserRoleAndSession\UserRoles.cs" />
     <Compile Include="Models\Users.cs" />
-    <Compile Include="Models\UserSession.cs" />
+    <Compile Include="Models\UserRoleAndSession\UserSession.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

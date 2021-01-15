@@ -1,10 +1,7 @@
 ﻿using SchoolDiarySystem.DAL;
 using SchoolDiarySystem.Models;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
-using System.Web;
 using System.Web.Mvc;
 
 namespace SchoolDiarySystem.Controllers
@@ -19,7 +16,7 @@ namespace SchoolDiarySystem.Controllers
         {
             if (UserSession.GetUsers != null)
             {
-                if (UserSession.GetUsers.RoleID == 3)
+                if (UserSession.GetUsers.Role.RoleName == UserRoles.DIRECTOR)
                 {
                     var reviews = reviewsDAL.GetAll();
 
@@ -50,7 +47,7 @@ namespace SchoolDiarySystem.Controllers
         {
             if (UserSession.GetUsers != null)
             {
-                if (UserSession.GetUsers.RoleID == 3)
+                if (UserSession.GetUsers.Role.RoleName == UserRoles.DIRECTOR)
                 {
                     if (commentID == null)
                     {
@@ -81,7 +78,7 @@ namespace SchoolDiarySystem.Controllers
         {
             if (UserSession.GetUsers != null)
             {
-                if (UserSession.GetUsers.RoleID == 3)
+                if (UserSession.GetUsers.Role.RoleName == UserRoles.DIRECTOR)
                 {
                     var error = ModelState.Values.SelectMany(e => e.Errors);
                     if (commentID != model.CommentID)
@@ -128,7 +125,7 @@ namespace SchoolDiarySystem.Controllers
         {
             if (UserSession.GetUsers != null)
             {
-                if (UserSession.GetUsers.RoleID == 3)
+                if (UserSession.GetUsers.Role.RoleName == UserRoles.DIRECTOR)
                 {
                     if (id == null)
                     {
@@ -158,7 +155,7 @@ namespace SchoolDiarySystem.Controllers
         {
             if (UserSession.GetUsers != null)
             {
-                if (UserSession.GetUsers.RoleID == 3)
+                if (UserSession.GetUsers.Role.RoleName == UserRoles.DIRECTOR)
                 {
                     if (id != review.ReviewID)
                     {
@@ -202,7 +199,7 @@ namespace SchoolDiarySystem.Controllers
         {
             if (UserSession.GetUsers != null)
             {
-                if (UserSession.GetUsers.RoleID == 3)
+                if (UserSession.GetUsers.Role.RoleName == UserRoles.DIRECTOR)
                 {
                     var comments = commentsDAL.GetAll();
 

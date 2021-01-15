@@ -34,6 +34,11 @@ namespace SchoolDiarySystem.DAL
                                     result.Teacher = new Teachers { FirstName = reader["First_Name_T"].ToString(), LastName = reader["Last_Name_T"].ToString() };
                                     result.Parent = new Parents { FirstName = reader["First_Name_P"].ToString(), LastName = reader["Last_Name_P"].ToString() };
                                 }
+
+                                if (reader["RoleName"] != DBNull.Value)
+                                {
+                                    result.Role = new Roles { RoleName = reader["RoleName"].ToString() };
+                                }
                             }
 
                             return result;
@@ -41,7 +46,7 @@ namespace SchoolDiarySystem.DAL
                     }
                 }
             }
-            catch (Exception)
+            catch (Exception e)
             {
                 throw;
             }
