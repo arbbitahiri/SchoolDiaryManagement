@@ -1,17 +1,18 @@
 ﻿@{
     ViewBag.Title = "IndexComment";
+    ViewBag.ViewToShow = "IndexComment";
+    ViewBag.ControllerToShow = "MyKids";
     Layout = "~/Views/Shared/_LayoutParent.cshtml";
 }
 @using SchoolDiarySystem.Models
 @model IEnumerable<Comments>
 
         <div class="breadcrumbs-area">
-            <h3>Comment Board for My Kids</h3>
+            <h3>@SchoolDiarySystem.Resources.MyKids.IndexComment.IndexCommentTexts.CommentBoard</h3>
             <ul>
                 <li>
-                    <a href="@Url.Action("Index", "MyKids")">Home</a>
+                    <a href="@Url.Action("Index", "MyKids")">@SchoolDiarySystem.Resources.MyKids.IndexComment.IndexCommentTexts.Home</a>
                 </li>
-                <li>Comment</li>
             </ul>
         </div>
         <div class="row">
@@ -20,7 +21,7 @@
                     <div class="card-body">
                         <div class="heading-layout1">
                             <div class="item-title">
-                                <h3>Comment Board</h3>
+                                <h3>@SchoolDiarySystem.Resources.MyKids.IndexComment.IndexCommentTexts.CommentBoard</h3>
                             </div>
                         </div>
                         @using (Html.BeginForm("IndexComment", "MyKids", FormMethod.Get))
@@ -28,16 +29,16 @@
                             <form class="mg-b-20">
                                 <div class="row gutters-8">
                                     <div class="col-lg-4 col-12 form-group">
-                                        <input type="date" autocomplete="off" placeholder="Search by date ..." name="searchString" class="form-control">
+                                        <input type="date" autocomplete="off" placeholder="@SchoolDiarySystem.Resources.MyKids.IndexComment.IndexCommentTexts.SearchByD" name="searchString" class="form-control">
                                     </div>
                                     <div class="col-lg-3 col-12 form-group">
-                                        <input type="text" autocomplete="off" placeholder="Search by subject ..." name="searchString2" class="form-control">
+                                        <input type="text" autocomplete="off" placeholder="@SchoolDiarySystem.Resources.MyKids.IndexComment.IndexCommentTexts.SearchBySub" name="searchString2" class="form-control">
                                     </div>
                                     <div class="col-lg-3 col-12 form-group">
-                                        <input type="text" autocomplete="off" placeholder="Search by student ..." name="searchString3" class="form-control">
+                                        <input type="text" autocomplete="off" placeholder="@SchoolDiarySystem.Resources.MyKids.IndexComment.IndexCommentTexts.SearchByStud" name="searchString3" class="form-control">
                                     </div>
                                     <div class="col-lg-2 col-12 form-group">
-                                        <button type="submit" class="fw-btn-fill btn-gradient-yellow">SEARCH</button>
+                                        <button type="submit" class="fw-btn-fill btn-gradient-yellow">@SchoolDiarySystem.Resources.MyKids.IndexComment.IndexCommentTexts.Search</button>
                                     </div>
                                 </div>
                             </form>
@@ -45,26 +46,26 @@
                         <div class="notice-board-wrap">
                             @foreach (var item in Model)
                             {
-                            <div class="notice-list">
-                                <div class="heading-layout1">
-                                    <div class="post-date bg-skyblue">@Html.DisplayFor(m => item.CommentDate)</div>
+                                <div class="notice-list">
+                                    <div class="heading-layout1">
+                                        <div class="post-date bg-skyblue">@Html.DisplayFor(m => item.CommentDate)</div>
+                                        @if (item.Review.ReviewID != 0)
+                                        {
+                                    <div class="post-date bg-pink">
+                                        @SchoolDiarySystem.Resources.MyKids.IndexComment.IndexCommentTexts.Reviewed @Html.DisplayFor(m => item.Review.ReviewDate)
+                                    </div>
+                                        }
+                                    </div>
+                                    <h6 class="notice-title">
+                                        @SchoolDiarySystem.Resources.MyKids.IndexComment.IndexCommentTexts.Comment @Html.DisplayFor(m => item.Content)
+                                    </h6>
                                     @if (item.Review.ReviewID != 0)
                                     {
-                                        <div class="post-date bg-pink">
-                                            Reviewed on @Html.DisplayFor(m => item.Review.ReviewDate)
-                                        </div>
+                                        <div class="entry-meta">@SchoolDiarySystem.Resources.MyKids.IndexComment.IndexCommentTexts.Review @Html.DisplayFor(m => item.Review.Review)</div>
                                     }
+                                    <br />
+                                    <div class="entry-meta">  @Html.DisplayFor(m => item.Student.FullName) / <span>@Html.DisplayFor(m => item.Subject.SubjectTitle)</span></div>
                                 </div>
-                                <h6 class="notice-title">
-                                    Comment: @Html.DisplayFor(m => item.Content)
-                                </h6>
-                                @if (item.Review.ReviewID != 0)
-                                {
-                                    <div class="entry-meta">Review: @Html.DisplayFor(m => item.Review.Review)</div>
-                                }
-                                <br />
-                                <div class="entry-meta">  @Html.DisplayFor(m => item.Student.FullName) / <span>@Html.DisplayFor(m => item.Subject.SubjectTitle)</span></div>
-                            </div>
                             }
                         </div>
                     </div>

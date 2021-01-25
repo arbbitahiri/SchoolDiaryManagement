@@ -1,225 +1,226 @@
 ﻿@{
     ViewBag.Title = "List";
+    ViewBag.ViewToShow = "Index";
+    ViewBag.ControllerToShow = "User";
     Layout = "~/Views/Shared/_LayoutDirector.cshtml";
 }
 @using SchoolDiarySystem.Models
 @model IEnumerable<Users>
 
-        <div class="breadcrumbs-area">
-            <h3>User</h3>
-            <ul>
-                <li>
-                    <a href="@Url.Action("Index", "Director")">Home</a>
-                </li>
-                <li>All Users</li>
-            </ul>
-        </div>
-        <div class="col-4-xxxl col-12" style="display:contents">
-            <div class="card height-auto">
-                <div class="card-body">
-                    <div class="heading-layout1">
-                        <div class="item-title">
-                            <h3>Create User</h3>
-                        </div>
-                    </div>
-                    <form class="new-added-form">
-                        <div class="col-12 form-group mg-t-8">
-                            <div class="heading-layout1">
-                                @Html.ActionLink("Admin", "CreateAdmin", "User", null, new { @class = "btn-fill-lg font-normal text-light gradient-pastel-green" })
-                                @Html.ActionLink("Teacher", "CreateTeacher", "User", null, new { @class = "btn-fill-lg font-normal text-light gradient-pastel-green" })
-                                @Html.ActionLink("Parent", "CreateParent", "User", null, new { @class = "btn-fill-lg font-normal text-light gradient-pastel-green" })
-                            </div>
-                        </div>
-                    </form>
+<div class="breadcrumbs-area">
+    <h3>@SchoolDiarySystem.Resources.User.Index.IndexTexts.UserList</h3>
+    <ul>
+        <li>
+            <a href="@Url.Action("Index", "Director")">@SchoolDiarySystem.Resources.Universal.UniversalTexts.Home</a>
+        </li>
+        <li>@SchoolDiarySystem.Resources.User.Index.IndexTexts.UserList</li>
+    </ul>
+</div>
+<div class="col-4-xxxl col-12" style="display:contents">
+    <div class="card height-auto">
+        <div class="card-body">
+            <div class="heading-layout1">
+                <div class="item-title">
+                    <h3>@SchoolDiarySystem.Resources.User.Index.IndexTexts.CreateUser</h3>
                 </div>
             </div>
-        </div>
-        <div class="card height-auto">
-            <div class="card-body">
-                <div class="heading-layout1">
-                    <div class="item-title">
-                        <h3>All Parents Data</h3>
+            <form class="new-added-form">
+                <div class="col-12 form-group mg-t-8">
+                    <div class="heading-layout1">
+                        @Html.ActionLink("Admin", "CreateAdmin", "User", null, new { @class = "btn-fill-lg font-normal text-light gradient-pastel-green" })
+                        @Html.ActionLink("Teacher", "CreateTeacher", "User", null, new { @class = "btn-fill-lg font-normal text-light gradient-pastel-green" })
+                        @Html.ActionLink("Parent", "CreateParent", "User", null, new { @class = "btn-fill-lg font-normal text-light gradient-pastel-green" })
                     </div>
                 </div>
-                @using (Html.BeginForm("Index", "User", FormMethod.Get))
-                {
-                    <form class="mg-b-20">
-                        <div class="row gutters-8">
-                            <div class="col-4-xxxl col-xl-10 col-lg-3 col-12 form-group">
-                                <input type="text" placeholder="Search by first or last name, or username..." name="searchString" class="form-control" autocomplete="off">
-                            </div>
-                            <div class="col-1-xxxl col-xl-2 col-lg-3 col-12 form-group">
-                                <button type="submit" class="fw-btn-fill btn-gradient-yellow">SEARCH</button>
-                            </div>
-                        </div>
-                    </form>
-                }
-                <div class="table-responsive">
-                    <table class="table display data-table text-nowrap">
-                        <thead>
-                            <tr>
-                                <th></th>
-                                <th>First Name</th>
-                                <th>Last Name</th>
-                                <th>Username</th>
-                                <th>Role</th>
-                                <th>Expire Date</th>
-                                <th>Last Login Date</th>
-                                <th>Last Login Time</th>
-                                <th></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach (var item in Model)
+            </form>
+        </div>
+    </div>
+</div>
+<div class="card height-auto">
+    <div class="card-body">
+        <div class="heading-layout1">
+            <div class="item-title">
+                <h3>@SchoolDiarySystem.Resources.User.Index.IndexTexts.UserList</h3>
+            </div>
+        </div>
+        @using (Html.BeginForm("Index", "User", FormMethod.Get))
+        {
+            <form class="mg-b-20">
+                <div class="row gutters-8">
+                    <div class="col-4-xxxl col-xl-10 col-lg-3 col-12 form-group">
+                        <input type="text" placeholder="@SchoolDiarySystem.Resources.User.Index.IndexTexts.SearchBy" name="searchString" class="form-control" autocomplete="off">
+                    </div>
+                    <div class="col-1-xxxl col-xl-2 col-lg-3 col-12 form-group">
+                        <button type="submit" class="fw-btn-fill btn-gradient-yellow">@SchoolDiarySystem.Resources.Universal.UniversalTexts.Search</button>
+                    </div>
+                </div>
+            </form>
+        }
+        <div class="table-responsive">
+            <table class="table display data-table text-nowrap">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>@SchoolDiarySystem.Resources.User.Index.IndexTexts.FirstN</th>
+                        <th>@SchoolDiarySystem.Resources.User.Index.IndexTexts.LastN</th>
+                        <th>@SchoolDiarySystem.Resources.User.Index.IndexTexts.Username</th>
+                        <th>@SchoolDiarySystem.Resources.User.Index.IndexTexts.Role</th>
+                        <th>@SchoolDiarySystem.Resources.User.Index.IndexTexts.ExpDate</th>
+                        <th>@SchoolDiarySystem.Resources.User.Index.IndexTexts.LLDate</th>
+                        <th>@SchoolDiarySystem.Resources.User.Index.IndexTexts.LLTime</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <th></th>
+                            @if (item.RoleID == 2)
                             {
-                                <tr>
-                                    <th></th>
-                                    @if (item.RoleID == 2)
-                                    {
-                                        <td>
-                                            @Html.DisplayFor(m => item.Teacher.FirstName)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(m => item.Teacher.LastName)
-                                        </td>
-                                    }
-                                    else if (item.RoleID == 4)
-                                    {
-                                        <td>
-                                            @Html.DisplayFor(m => item.Parent.FirstName)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(m => item.Parent.LastName)
-                                        </td>
-                                    }
-                                    else
-                                    {
-                                        <td>
-                                            @Html.DisplayFor(m => item.FirstName)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(m => item.LastName)
-                                        </td>
-                                    }
-                                    <td>
-                                        @Html.DisplayFor(m => item.Username)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(m => item.Role.RoleName)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(m => item.ExpiresDate)
-                                    </td>
-                                    @if (item.LastLoginDate < item.InsertDate)
-                                    {
-                                        <td class="text-center">
-                                            Newly created!
-                                        </td>
-                                        <td class="text-center">
-                                            Newly created!
-                                        </td>
-                                    }
-                                    else
-                                    {
-                                        <td>
-                                            @Html.DisplayFor(m => item.LastLoginDate)
-                                        </td>
-                                        <td class="text-center">
-                                            @Html.DisplayFor(m => item.LastLoginTime)
-                                        </td>
-                                    }
-
-                                    <td>
-                                        <div class="dropdown">
-                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                                                <span class="flaticon-more-button-of-three-dots"></span>
-                                            </a>
-                                            <div class="dropdown-menu dropdown-menu-right">
-                                                <a class="dropdown-item" href="@Url.Action("Delete", "User", new { id = item.UserID })"><i class="fas fa-times text-orange-red"></i>Delete</a>
-                                                <a class="dropdown-item" href="@Url.Action("Update", "User", new { id = item.UserID })"><i class="fas fa-cogs text-dark-pastel-green"></i>Update</a>
-                                                <a class="dropdown-item" href="@Url.Action("ChangePassword", "User", new { id = item.UserID })"><i class="fas fa-redo-alt text-orange-peel"></i>Change Password</a>
-                                            </div>
-                                            <div class="modal-box">
-                                                <!-- Modal -->
-                                                <div class="modal fade" id="standard-modal" tabindex="-1" role="dialog" aria-hidden="true" style="display: none;">
-                                                    <div class="modal-dialog" role="document">
-                                                        <div class="modal-content">
-                                                            <div class="modal-header">
-                                                                <h5 class="modal-title">Sure?</h5>
-                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                                    <span aria-hidden="true">×</span>
-                                                                </button>
-                                                            </div>
-                                                            <div class="modal-body">
-                                                                Are you sure you want to delete user: @Html.DisplayFor(m => item.Username)?
-                                                            </div>
-                                                            <div class="modal-footer">
-                                                                <button type="button" class="footer-btn bg-dark-low" data-dismiss="modal">No</button>
-                                                                @using (Html.BeginForm("Delete", "User", new { id = item.UserID }, FormMethod.Post))
-                                                                {
-                                                                    <input type="submit" value="Yes" class="footer-btn bg-linkedin" />
-                                                                }
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </td>
-                                </tr>
-                            }
-                        </tbody>
-                        <tfoot>
-                            <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
                                 <td>
-                                    <div class="dropdown">
-                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                                            <span class="flaticon-more-button-of-three-dots"></span>
-                                        </a>
-                                        <div class="dropdown-menu dropdown-menu-right">
-                                            <a class="dropdown-item" data-toggle="modal" data-target="#standard-modal"><i class="fas fa-download"></i>Download Excel</a>
-                                            @*<a class="dropdown-item" onclick="PrintTable();"><i class="fas fa-print"></i>Print</a>*@
-                                        </div>
-                                        <div class="modal-box">
-                                            <!-- Modal -->
-                                            <div class="modal fade" id="standard-modal" tabindex="-1" role="dialog" aria-hidden="true" style="display: none;">
-                                                <div class="modal-dialog" role="document">
-                                                    <div class="modal-content">
-                                                        <div class="modal-header">
-                                                            <h5 class="modal-title">Download Excel</h5>
-                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                                <span aria-hidden="true">×</span>
-                                                            </button>
-                                                        </div>
-                                                        <div class="modal-body">
-                                                            Are you sure you want to download?
-                                                        </div>
-                                                        <div class="modal-footer">
-                                                            <button type="button" class="footer-btn bg-dark-low" data-dismiss="modal">No</button>
-                                                            @using (Html.BeginForm("Export", "User", FormMethod.Post))
-                                                            {
-                                                                <input type="submit" value="Download Excel" class="footer-btn bg-linkedin" aria-label="Close" />
-                                                            }
-                                                        </div>
+                                    @Html.DisplayFor(m => item.Teacher.FirstName)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(m => item.Teacher.LastName)
+                                </td>
+                            }
+                            else if (item.RoleID == 4)
+                            {
+                                <td>
+                                    @Html.DisplayFor(m => item.Parent.FirstName)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(m => item.Parent.LastName)
+                                </td>
+                            }
+                            else
+                            {
+                                <td>
+                                    @Html.DisplayFor(m => item.FirstName)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(m => item.LastName)
+                                </td>
+                            }
+                            <td>
+                                @Html.DisplayFor(m => item.Username)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(m => item.Role.RoleName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(m => item.ExpiresDate)
+                            </td>
+                            @if (item.LastLoginDate < item.InsertDate)
+                            {
+                                <td class="text-center">
+                                    @SchoolDiarySystem.Resources.User.Index.IndexTexts.NewCreated
+                                </td>
+                                <td class="text-center">
+                                    @SchoolDiarySystem.Resources.User.Index.IndexTexts.NewCreated
+                                </td>
+                            }
+                            else
+                            {
+                                <td>
+                                    @Html.DisplayFor(m => item.LastLoginDate)
+                                </td>
+                                <td class="text-center">
+                                    @Html.DisplayFor(m => item.LastLoginTime)
+                                </td>
+                            }
+
+                            <td>
+                                <div class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                        <span class="flaticon-more-button-of-three-dots"></span>
+                                    </a>
+                                    <div class="dropdown-menu dropdown-menu-right">
+                                        <a class="dropdown-item" href="@Url.Action("Delete", "User", new { id = item.UserID })"><i class="fas fa-times text-orange-red"></i>@SchoolDiarySystem.Resources.Universal.UniversalTexts.DeleteLower</a>
+                                        <a class="dropdown-item" href="@Url.Action("Update", "User", new { id = item.UserID })"><i class="fas fa-cogs text-dark-pastel-green"></i>@SchoolDiarySystem.Resources.Universal.UniversalTexts.UpdateLower</a>
+                                        <a class="dropdown-item" href="@Url.Action("ChangePassword", "User", new { id = item.UserID })"><i class="fas fa-redo-alt text-orange-peel"></i>@SchoolDiarySystem.Resources.User.Index.IndexTexts.ChangePass</a>
+                                    </div>
+                                    <div class="modal-box">
+                                        <!-- Modal -->
+                                        <div class="modal fade" id="standard-modal" tabindex="-1" role="dialog" aria-hidden="true" style="display: none;">
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title">Sure?</h5>
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">×</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        Are you sure you want to delete user: @Html.DisplayFor(m => item.Username)?
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="footer-btn bg-dark-low" data-dismiss="modal">No</button>
+                                                        @using (Html.BeginForm("Delete", "User", new { id = item.UserID }, FormMethod.Post))
+                                                        {
+                                                            <input type="submit" value="Yes" class="footer-btn bg-linkedin" />
+                                                        }
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                </td>
-                            </tr>
-                        </tfoot>
-                    </table>
-                </div>
-            </div>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td>
+                            <div class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                    <span class="flaticon-more-button-of-three-dots"></span>
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-right">
+                                    <a class="dropdown-item" data-toggle="modal" data-target="#standard-modal"><i class="fas fa-download"></i>@SchoolDiarySystem.Resources.Universal.UniversalTexts.DownloadExcel</a>
+                                </div>
+                                <div class="modal-box">
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="standard-modal" tabindex="-1" role="dialog" aria-hidden="true" style="display: none;">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title">@SchoolDiarySystem.Resources.Universal.UniversalTexts.DownloadExcel</h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">×</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    @SchoolDiarySystem.Resources.Universal.UniversalTexts.SureDownload
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="footer-btn bg-dark-low" data-dismiss="modal">@SchoolDiarySystem.Resources.Universal.UniversalTexts.No</button>
+                                                    @using (Html.BeginForm("Export", "Student", FormMethod.Post))
+                                                    {
+                                                        <input type="submit" value="@SchoolDiarySystem.Resources.Universal.UniversalTexts.Download" class="footer-btn bg-linkedin" aria-label="Close" />
+                                                    }
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </tfoot>
+            </table>
         </div>
+    </div>
+</div>
 
 @section Scripts {}

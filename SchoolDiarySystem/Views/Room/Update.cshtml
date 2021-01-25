@@ -1,49 +1,51 @@
 ﻿@{
     ViewBag.Title = "Update Room";
+    ViewBag.ViewToShow = "Update";
+    ViewBag.ControllerToShow = "Room";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 @using SchoolDiarySystem.Models
 @model Rooms
 
-        <div class="breadcrumbs-area">
-            <h3>Room</h3>
-            <ul>
-                <li>
-                    <a href="@Url.Action("Index", "Admin")">Home</a>
-                </li>
-                <li>Update Room</li>
-            </ul>
-        </div>
-        <div class="card height-auto">
-            <div class="card-body">
-                <div class="heading-layout1">
-                    <div class="item-title">
-                        <h3>Update Room</h3>
-                    </div>
-                </div>
-                @using (Html.BeginForm("Update", "Room", FormMethod.Post))
-                {
-                    @Html.ValidationSummary(true, "", new { @class = "alert alert-danger" })
-                    <form class="new-added-form">
-                        <div class="row">
-                            @Html.HiddenFor(m => m.RoomID)
-                            <div class="col-xl-6 col-lg-6 col-12 form-group">
-                                <label>Room Number *</label>
-                                @Html.TextBoxFor(m => m.RoomNo, new { @class = "form-control", placeholder = "Write room number ...", type = "number", id = "roomNo", autocomplete = "off" })
-                                @Html.ValidationMessageFor(m => m.RoomNo, "", new { @class = "text-danger" })
-                            </div>
-                            <div class="col-xl-6 col-lg-6 col-12 form-group">
-                                <label>Room Type *</label>
-                                @Html.TextBoxFor(m => m.RoomType, new { @class = "form-control", placeholder = "ex. Laboratory, Class, ...", id = "roomtype", autocomplete = "off" })
-                                @Html.ValidationMessageFor(m => m.RoomType, "", new { @class = "text-danger" })
-                            </div>
-                            <div class="col-12 form-group mg-t-8">
-                                <input type="submit" value="Update" class="btn-fill-lmd radius-4 text-light bg-violet-blue" />
-                            </div>
-                        </div>
-                    </form>
-                }
+<div class="breadcrumbs-area">
+    <h3>@SchoolDiarySystem.Resources.Room.Update.UpdateTexts.URForm</h3>
+    <ul>
+        <li>
+            <a href="@Url.Action("Index", "Admin")">@SchoolDiarySystem.Resources.Room.Update.UpdateTexts.Home</a>
+        </li>
+        <li>@SchoolDiarySystem.Resources.Room.Update.UpdateTexts.UpdateRoom</li>
+    </ul>
+</div>
+<div class="card height-auto">
+    <div class="card-body">
+        <div class="heading-layout1">
+            <div class="item-title">
+                <h3>@SchoolDiarySystem.Resources.Room.Update.UpdateTexts.UpdateRoom</h3>
             </div>
         </div>
+        @using (Html.BeginForm("Update", "Room", FormMethod.Post))
+        {
+            @Html.ValidationSummary(true, "", new { @class = "alert alert-danger" })
+            <form class="new-added-form">
+                <div class="row">
+                    @Html.HiddenFor(m => m.RoomID)
+                    <div class="col-xl-6 col-lg-6 col-12 form-group">
+                        <label>@SchoolDiarySystem.Resources.Room.Update.UpdateTexts.RoomNo</label>
+                        @Html.TextBoxFor(m => m.RoomNo, new { @class = "form-control", placeholder = "Write room number ...", type = "number", id = "roomNo", autocomplete = "off" })
+                        @Html.ValidationMessageFor(m => m.RoomNo, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="col-xl-6 col-lg-6 col-12 form-group">
+                        <label>@SchoolDiarySystem.Resources.Room.Update.UpdateTexts.Room_Type</label>
+                        @Html.TextBoxFor(m => m.RoomType, new { @class = "form-control", placeholder = "ex. Laboratory, Class, ...", id = "roomtype", autocomplete = "off" })
+                        @Html.ValidationMessageFor(m => m.RoomType, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="col-12 form-group mg-t-8">
+                        <input type="submit" value="@SchoolDiarySystem.Resources.Room.Update.UpdateTexts.Update" class="btn-fill-lmd radius-4 text-light bg-violet-blue" />
+                    </div>
+                </div>
+            </form>
+        }
+    </div>
+</div>
 
 @section Scripts {}

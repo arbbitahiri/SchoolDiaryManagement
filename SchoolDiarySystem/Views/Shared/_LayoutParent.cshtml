@@ -85,7 +85,7 @@
                            aria-expanded="false">
                             <div class="admin-title">
                                 @Html.Label(UserSession.GetUsers.Parent.FullName, new { @class = "item-title" })
-                                <span>Parent</span>
+                                <span>@SchoolDiarySystem.Resources.Layout.Parent.ParentTexts.Parent</span>
                             </div>
                             <div class="admin-img">
                                 <img src="~/Content/img/figure/admin.jpg" alt="Admin">
@@ -97,18 +97,17 @@
                             </div>
                             <div class="item-content">
                                 <ul class="settings-list">
-                                    <li><a href="#"><i class="flaticon-user"></i>My Profile</a></li>
-                                    <li><a href="@Url.Action("Logout", "Account")"><i class="flaticon-turn-off"></i>Log Out</a></li>
+                                    <li><a href="@Url.Action("Logout", "Account")"><i class="flaticon-turn-off"></i>@SchoolDiarySystem.Resources.Layout.Parent.ParentTexts.LogOut</a></li>
                                 </ul>
                             </div>
                         </div>
                     </li>
                     <li class="navbar-item dropdown header-language">
                         <a class="navbar-nav-link dropdown-toggle" href="#" role="button"
-                           data-toggle="dropdown" aria-expanded="false"><i class="fas fa-globe-americas"></i>EN</a>
+                           data-toggle="dropdown" aria-expanded="false"><i class="fas fa-globe-americas"></i>@SchoolDiarySystem.Resources.Layout.Parent.ParentTexts.Language</a>
                         <div class="dropdown-menu dropdown-menu-right">
-                            <a class="dropdown-item" href="#">English</a>
-                            <a class="dropdown-item" href="#">Albanian</a>
+                            <a class="dropdown-item" href="@Url.Action("Language", "Account", new { lngName = "en", view = ViewBag.ViewToShow, cont = ViewBag.ControllerToShow, layout = "MyKids" }, null)">@SchoolDiarySystem.Resources.Layout.Parent.ParentTexts.English</a>
+                            <a class="dropdown-item" href="@Url.Action("Language", "Account", new { lngName = "sq", view = ViewBag.ViewToShow, cont = ViewBag.ControllerToShow, layout = "MyKids" }, null)">@SchoolDiarySystem.Resources.Layout.Parent.ParentTexts.Albanian</a>
                         </div>
                     </li>
                 </ul>
@@ -127,22 +126,19 @@
                 <div class="sidebar-menu-content">
                     <ul class="nav nav-sidebar-menu sidebar-toggle-view">
                         <li class="nav-item">
-                            <a href="@Url.Action("Index", "MyKids")" class="nav-link"><i class="flaticon-dashboard"></i><span>Dashboard</span></a>
+                            <a href="@Url.Action("Index", "MyKids")" class="nav-link"><i class="flaticon-dashboard"></i><span>@SchoolDiarySystem.Resources.Layout.Parent.ParentTexts.Dashboard</span></a>
                         </li>
                         <li class="nav-item">
-                            <a href="@Url.Action("IndexTopic", "MyKids")" class="nav-link"><i class="flaticon-chat"></i><span>Topics</span></a>
+                            <a href="@Url.Action("IndexTopic", "MyKids")" class="nav-link"><i class="flaticon-chat"></i><span>@SchoolDiarySystem.Resources.Layout.Parent.ParentTexts.Topic</span></a>
                         </li>
                         <li class="nav-item">
-                            <a href="@Url.Action("IndexAbsence", "MyKids")" class="nav-link"><i class="flaticon-shopping-list"></i><span>Absences</span></a>
+                            <a href="@Url.Action("IndexAbsence", "MyKids")" class="nav-link"><i class="flaticon-shopping-list"></i><span>@SchoolDiarySystem.Resources.Layout.Parent.ParentTexts.Absence</span></a>
                         </li>
                         <li class="nav-item">
-                            <a href="@Url.Action("IndexComment", "MyKids")" class="nav-link"><i class="flaticon-script"></i><span>Comments</span></a>
+                            <a href="@Url.Action("IndexComment", "MyKids")" class="nav-link"><i class="flaticon-script"></i><span>@SchoolDiarySystem.Resources.Layout.Parent.ParentTexts.Comment</span></a>
                         </li>
                         <li class="nav-item">
-                            <a href="@Url.Action("IndexClass", "MyKids")" class="nav-link"><i class="flaticon-maths-class-materials-cross-of-a-pencil-and-a-ruler"></i><span>Class</span></a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="@Url.Action("IndexSchedule", "MyKids")" class="nav-link"><i class="flaticon-calendar"></i><span>Schedule</span></a>
+                            <a href="@Url.Action("IndexClass", "MyKids")" class="nav-link"><i class="flaticon-maths-class-materials-cross-of-a-pencil-and-a-ruler"></i><span>@SchoolDiarySystem.Resources.Layout.Parent.ParentTexts.Class</span></a>
                         </li>
                     </ul>
                 </div>

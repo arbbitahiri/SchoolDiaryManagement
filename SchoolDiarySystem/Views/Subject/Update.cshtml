@@ -1,60 +1,62 @@
 ﻿@{
     ViewBag.Title = "Update Subject";
+    ViewBag.ViewToShow = "Update";
+    ViewBag.ControllerToShow = "Subject";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 @using SchoolDiarySystem.Models
 @model Subjects
 
-        <div class="breadcrumbs-area">
-            <h3>Subject</h3>
-            <ul>
-                <li>
-                    <a href="@Url.Action("Index", "Admin")">Home</a>
-                </li>
-                <li>Update Subject</li>
-            </ul>
-        </div>
-        <div class="card height-auto">
-            <div class="card-body">
-                <div class="heading-layout1">
-                    <div class="item-title">
-                        <h3>Update Subject</h3>
-                    </div>
-                </div>
-                @using (Html.BeginForm("Update", "Subject", FormMethod.Post))
-                {
-                    @Html.ValidationSummary(true, "", new { @class = "alert alert-danger" })
-                    <form class="new-added-form">
-                        <div class="row">
-                            @Html.HiddenFor(m => m.SubjectID)
-                            @Html.HiddenFor(m => m.SubjectTitle)
-                            <div class="col-xl-3 col-lg-6 col-12 form-group">
-                                <label>Subject Title *</label>
-                                @Html.TextBoxFor(m => m.SubjectTitle, new { @class = "form-control", placeholder = "Subject", disabled="true", id = "subjecttitle", autocomplete = "off" })
-                                @Html.ValidationMessageFor(m => m.SubjectTitle, "", new { @class = "text-danger" })
-                            </div>
-                            <div class="col-xl-3 col-lg-6 col-12 form-group">
-                                <label>Book *</label>
-                                @Html.TextBoxFor(m => m.Book, new { @class = "form-control", placeholder = "Subject's Book", id = "book", autocomplete = "off" })
-                                @Html.ValidationMessageFor(m => m.Book, "", new { @class = "text-danger" })
-                            </div>
-                            <div class="col-xl-3 col-lg-6 col-12 form-group">
-                                <label>Book Author *</label>
-                                @Html.TextBoxFor(m => m.BookAuthor, new { @class = "form-control", placeholder = "Book Author", id = "bookauthor", autocomplete = "off" })
-                                @Html.ValidationMessageFor(m => m.BookAuthor, "", new { @class = "text-danger" })
-                            </div>
-                            <div class="col-xl-3 col-lg-6 col-12 form-group">
-                                <label>Teacher *</label>
-                                @Html.DropDownListFor(m => m.TeacherID, new SelectList(ViewBag.Teacher, "TeacherID", "FullName"), htmlAttributes: new { @class = "select2" })
-                                @Html.ValidationMessageFor(m => m.TeacherID, "", new { @class = "text-danger" })
-                            </div>
-                            <div class="col-12 form-group mg-t-8">
-                                <input type="submit" value="Update" class="btn-fill-lmd radius-4 text-light bg-violet-blue" />
-                            </div>
-                        </div>
-                    </form>
-                }
+<div class="breadcrumbs-area">
+    <h3>@SchoolDiarySystem.Resources.Subject.Update.UpdateTexts.USForm</h3>
+    <ul>
+        <li>
+            <a href="@Url.Action("Index", "Admin")">@SchoolDiarySystem.Resources.Universal.UniversalTexts.Home</a>
+        </li>
+        <li>@SchoolDiarySystem.Resources.Subject.Update.UpdateTexts.UpdateSub</li>
+    </ul>
+</div>
+<div class="card height-auto">
+    <div class="card-body">
+        <div class="heading-layout1">
+            <div class="item-title">
+                <h3>@SchoolDiarySystem.Resources.Subject.Update.UpdateTexts.UpdateSub</h3>
             </div>
         </div>
+        @using (Html.BeginForm("Update", "Subject", FormMethod.Post))
+        {
+            @Html.ValidationSummary(true, "", new { @class = "alert alert-danger" })
+            <form class="new-added-form">
+                <div class="row">
+                    @Html.HiddenFor(m => m.SubjectID)
+                    @Html.HiddenFor(m => m.SubjectTitle)
+                    <div class="col-xl-3 col-lg-6 col-12 form-group">
+                        <label>@SchoolDiarySystem.Resources.Subject.Update.UpdateTexts.SubTitle</label>
+                        @Html.TextBoxFor(m => m.SubjectTitle, new { @class = "form-control", placeholder = "Subject", disabled = "true", id = "subjecttitle", autocomplete = "off" })
+                        @Html.ValidationMessageFor(m => m.SubjectTitle, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="col-xl-3 col-lg-6 col-12 form-group">
+                        <label>@SchoolDiarySystem.Resources.Subject.Update.UpdateTexts.Book</label>
+                        @Html.TextBoxFor(m => m.Book, new { @class = "form-control", placeholder = "Subject's Book", id = "book", autocomplete = "off" })
+                        @Html.ValidationMessageFor(m => m.Book, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="col-xl-3 col-lg-6 col-12 form-group">
+                        <label>@SchoolDiarySystem.Resources.Subject.Update.UpdateTexts.BookAuth</label>
+                        @Html.TextBoxFor(m => m.BookAuthor, new { @class = "form-control", placeholder = "Book Author", id = "bookauthor", autocomplete = "off" })
+                        @Html.ValidationMessageFor(m => m.BookAuthor, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="col-xl-3 col-lg-6 col-12 form-group">
+                        <label>@SchoolDiarySystem.Resources.Subject.Update.UpdateTexts.SelTeach</label>
+                        @Html.DropDownListFor(m => m.TeacherID, new SelectList(ViewBag.Teacher, "TeacherID", "FullName"), htmlAttributes: new { @class = "select2" })
+                        @Html.ValidationMessageFor(m => m.TeacherID, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="col-12 form-group mg-t-8">
+                        <input type="submit" value="@SchoolDiarySystem.Resources.Universal.UniversalTexts.UpdateUpper" class="btn-fill-lmd radius-4 text-light bg-violet-blue" />
+                    </div>
+                </div>
+            </form>
+        }
+    </div>
+</div>
 
 @section Scripts {}

@@ -1,24 +1,26 @@
 ﻿@{
     ViewBag.Title = "Review";
+    ViewBag.ViewToShow = "ReviewComment";
+    ViewBag.ControllerToShow = "Review";
     Layout = "~/Views/Shared/_LayoutDirector.cshtml";
 }
 @using SchoolDiarySystem.Models
 @model Reviews
 
 <div class="breadcrumbs-area">
-    <h3>Review</h3>
+    <h3>@SchoolDiarySystem.Resources.Review.ReviewComment.ReviewCommentTexts.RCForm</h3>
     <ul>
         <li>
             <a href="@Url.Action("Index", "Director")">Home</a>
         </li>
-        <li>Review Comment</li>
+        <li>@SchoolDiarySystem.Resources.Review.ReviewComment.ReviewCommentTexts.ReviewCom</li>
     </ul>
 </div>
 <div class="card height-auto">
     <div class="card-body">
         <div class="heading-layout1">
             <div class="item-title">
-                <h3>Review Comment</h3>
+                <h3>@SchoolDiarySystem.Resources.Review.ReviewComment.ReviewCommentTexts.ReviewCom</h3>
             </div>
         </div>
         @using (Html.BeginForm("ReviewComment", "Review", FormMethod.Post, new { id="savereview" }))
@@ -30,17 +32,17 @@
                     @Html.HiddenFor(m => m.ReviewID)
                     @Html.HiddenFor(m => m.CommentID)
                     <div class="col-xl-6 col-lg-6 col-12 form-group">
-                        <label>Review *</label>
+                        <label>@SchoolDiarySystem.Resources.Review.ReviewComment.ReviewCommentTexts.Rev</label>
                         @Html.TextAreaFor(m => m.Review, new { @class = "textarea form-control", placeholder = "Write your review here...", autocomplete = "off", style = "margin-top: 0px; margin-bottom: 0px; height: 150px;" })
                         @Html.ValidationMessageFor(m => m.Review, "", new { @class = "text-danger" })
                     </div>
                     <div class="col-xl-4 col-lg-6 col-12 form-group">
-                        <label>Select Date *</label>
+                        <label>@SchoolDiarySystem.Resources.Review.ReviewComment.ReviewCommentTexts.SelDate</label>
                         @Html.TextBoxFor(m => m.ReviewDate, new { @class = "form-control air-datepicker", placeholder = "dd/MMMM/yyyy", autocomplete = "off" })
                         @Html.ValidationMessageFor(m => m.ReviewDate, "", new { @class = "text-danger" })
                     </div>
                     <div class="col-12 form-group mg-t-8">
-                        <input type="submit" id="submitreview" value="Review" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark" />
+                        <input type="submit" id="submitreview" value="@SchoolDiarySystem.Resources.Review.ReviewComment.ReviewCommentTexts.Review" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark" />
                     </div>
                 </div>
             </form>

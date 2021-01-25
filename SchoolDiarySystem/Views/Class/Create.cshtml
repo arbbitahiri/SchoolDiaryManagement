@@ -1,24 +1,26 @@
 ﻿@{
     ViewBag.Title = "Create Class";
+    ViewBag.ViewToShow = "Create";
+    ViewBag.ControllerToShow = "Class";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 @using SchoolDiarySystem.Models
 @model Class
 
         <div class="breadcrumbs-area">
-            <h3>Class Create Form</h3>
+            <h3>@SchoolDiarySystem.Resources.Class.Create.CreateTexts.CCForm</h3>
             <ul>
                 <li>
-                    <a href="@Url.Action("Index", "Admin")">Home</a>
+                    <a href="@Url.Action("Index", "Admin")">@SchoolDiarySystem.Resources.Class.Create.CreateTexts.Home</a>
                 </li>
-                <li>Create Class</li>
+                <li>@SchoolDiarySystem.Resources.Class.Create.CreateTexts.CClass</li>
             </ul>
         </div>
         <div class="card height-auto">
             <div class="card-body">
                 <div class="heading-layout1">
                     <div class="item-title">
-                        <h3>Create Class</h3>
+                        <h3>@SchoolDiarySystem.Resources.Class.Create.CreateTexts.CClass</h3>
                     </div>
                 </div>
                 @using (Html.BeginForm("Create", "Class", FormMethod.Post))
@@ -27,22 +29,22 @@
                     <form class="new-added-form">
                         <div class="row">
                             <div class="col-xl-4 col-lg-6 col-12 form-group">
-                                <label>Teacher *</label>
+                                <label>@SchoolDiarySystem.Resources.Class.Create.CreateTexts.SelTeach</label>
                                 @Html.DropDownListFor(m => m.TeacherID, new SelectList(ViewBag.Teacher, "TeacherID", "FullName"), htmlAttributes: new { @class = "select2" })
                                 @Html.ValidationMessageFor(m => m.TeacherID, "", new { @class = "text-danger" })
                             </div>
                             <div class="col-xl-4 col-lg-6 col-12 form-group">
-                                <label>Class Number *</label>
+                                <label>@SchoolDiarySystem.Resources.Class.Create.CreateTexts.ClassNo</label>
                                 @Html.TextBoxFor(m => m.ClassNo, new { @class = "form-control", @placeholder = "Write class number...", @type = "number", @maxlength = 1, autocomplete = "off" })
                                 @Html.ValidationMessageFor(m => m.ClassNo, "", new { @class = "text-danger" })
                             </div>
                             <div class="col-xl-4 col-lg-6 col-12 form-group">
-                                <label>Room Type *</label>
+                                <label>@SchoolDiarySystem.Resources.Class.Create.CreateTexts.SelRoom</label>
                                 @Html.DropDownListFor(m => m.RoomID, new SelectList(ViewBag.Room, "RoomID", "RoomType"), htmlAttributes: new { @class = "select2" })
                                 @Html.ValidationMessageFor(m => m.RoomID, "", new { @class = "text-danger" })
                             </div>
                             <div class="col-12 form-group mg-t-8">
-                                <input type="submit" value="Create" class="btn-fill-md radius-4 text-light bg-light-sea-green" />
+                                <input type="submit" value="@SchoolDiarySystem.Resources.Class.Create.CreateTexts.Create" class="btn-fill-md radius-4 text-light bg-light-sea-green" />
                             </div>
                         </div>
                     </form>

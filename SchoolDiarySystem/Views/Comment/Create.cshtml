@@ -1,24 +1,26 @@
 ﻿@{
     ViewBag.Title = "Create Comment";
+    ViewBag.ViewToShow = "Create";
+    ViewBag.ControllerToShow = "Comment";
     Layout = "~/Views/Shared/_LayoutTeacher.cshtml";
 }
 @using SchoolDiarySystem.Models
 @model Comments
 
 <div class="breadcrumbs-area">
-    <h3>Comment</h3>
+    <h3>@SchoolDiarySystem.Resources.Comment.Create.CreateTexts.CCForm</h3>
     <ul>
         <li>
-            <a href="@Url.Action("Index", "Professor")">Home</a>
+            <a href="@Url.Action("Index", "Professor")">@SchoolDiarySystem.Resources.Comment.Create.CreateTexts.Home</a>
         </li>
-        <li>Add New Comment</li>
+        <li>@SchoolDiarySystem.Resources.Comment.Create.CreateTexts.NewCom</li>
     </ul>
 </div>
 <div class="card height-auto">
     <div class="card-body">
         <div class="heading-layout1">
             <div class="item-title">
-                <h3>Add New Comment</h3>
+                <h3>@SchoolDiarySystem.Resources.Comment.Create.CreateTexts.NewCom</h3>
             </div>
         </div>
         @using (Html.BeginForm("Create", "Comment", FormMethod.Post))
@@ -27,32 +29,32 @@
             <form class="new-added-form">
                 <div class="row">
                     <div class="col-xl-3 col-lg-6 col-12 form-group">
-                        <label>Select Student *</label>
+                        <label>@SchoolDiarySystem.Resources.Comment.Create.CreateTexts.SelStud</label>
                         @Html.DropDownListFor(m => m.StudentID, new SelectList(ViewBag.Student, "StudentID", "FullName"), new { @class = "select2" })
                         @Html.ValidationMessageFor(m => m.StudentID, "", new { @class = "text-danger" })
                     </div>
                     <div class="col-xl-3 col-lg-6 col-12 form-group">
-                        <label>Select Subject *</label>
+                        <label>@SchoolDiarySystem.Resources.Comment.Create.CreateTexts.SelSub</label>
                         @Html.DropDownListFor(m => m.SubjectID, new SelectList(ViewBag.Subject, "SubjectID", "SubjectTitle"), new { @class = "select2" })
                         @Html.ValidationMessageFor(m => m.SubjectID, "", new { @class = "text-danger" })
                     </div>
                     <div class="col-xl-3 col-lg-6 col-12 form-group">
-                        <label>Select Date *</label>
+                        <label>@SchoolDiarySystem.Resources.Comment.Create.CreateTexts.SelDate</label>
                         @Html.TextBoxFor(m => m.CommentDate, new { @class = "form-control", type="date", placeholder = "dd/MMMM/yyyy", autocomplete = "off" })
                         @Html.ValidationMessageFor(m => m.CommentDate, "", new { @class = "text-danger" })
                     </div>
                     <div class="col-xl-3 col-lg-6 col-12 form-group">
-                        <label>Select Time *</label>
+                        <label>@SchoolDiarySystem.Resources.Comment.Create.CreateTexts.SelTime</label>
                         @Html.DropDownListFor(m => m.Time, new SelectList(ViewBag.Times), new { @class = "select2" })
                         @Html.ValidationMessageFor(m => m.Time, "", new { @class = "text-danger" })
                     </div>
                     <div class="col-xl-6 col-lg-6 col-12 form-group">
-                        <label>Comment *</label>
+                        <label>@SchoolDiarySystem.Resources.Comment.Create.CreateTexts.Comment</label>
                         @Html.TextAreaFor(m => m.Content, new { @class = "textarea form-control", placeholder = "Type your comment here...", id = "content", autocomplete = "off", style = "margin-top: 0px; margin-bottom: 0px; height: 150px;" })
                         @Html.ValidationMessageFor(m => m.Content, "", new { @class = "text-danger" })
                     </div>
                     <div class="col-12 form-group mg-t-8">
-                        <input type="submit" value="Create" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark" />
+                        <input type="submit" value="@SchoolDiarySystem.Resources.Comment.Create.CreateTexts.Create" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark" />
                     </div>
                 </div>
             </form>

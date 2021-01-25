@@ -1,24 +1,25 @@
 ﻿@{
     ViewBag.Title = "Absence's List";
+    ViewBag.ViewToShow = "IndexAbsence";
+    ViewBag.ControllerToShow = "MyKids";
     Layout = "~/Views/Shared/_LayoutParent.cshtml";
 }
 @using SchoolDiarySystem.Models
 @model IEnumerable<Absences>
 
 <div class="breadcrumbs-area">
-    <h3>Absence</h3>
+    <h3>@SchoolDiarySystem.Resources.MyKids.IndexAbsence.IndexAbsenceTexts.AbsenceList</h3>
     <ul>
         <li>
-            <a href="@Url.Action("Index", "MyKids")">Home</a>
+            <a href="@Url.Action("Index", "MyKids")">@SchoolDiarySystem.Resources.MyKids.IndexAbsence.IndexAbsenceTexts.Home</a>
         </li>
-        <li>All Absences</li>
     </ul>
 </div>
 <div class="card height-auto">
     <div class="card-body">
         <div class="heading-layout1">
             <div class="item-title">
-                <h3>All Absences Data</h3>
+                <h3>@SchoolDiarySystem.Resources.MyKids.IndexAbsence.IndexAbsenceTexts.AbsenceList</h3>
             </div>
         </div>
         @using (Html.BeginForm("IndexAbsence", "MyKids", FormMethod.Get))
@@ -26,13 +27,13 @@
             <form class="mg-b-20">
                 <div class="row gutters-8">
                     <div class="col-4-xxxl col-xl-5 col-lg-3 col-12 form-group">
-                        <input type="text" autocomplete="off" name="searchString" placeholder="Search by date ..." class="form-control air-datepicker">
+                        <input type="text" autocomplete="off" name="searchString" placeholder="@SchoolDiarySystem.Resources.MyKids.IndexAbsence.IndexAbsenceTexts.SearchByD" class="form-control air-datepicker">
                     </div>
                     <div class="col-4-xxxl col-xl-5 col-lg-3 col-12 form-group">
-                        <input type="text" autocomplete="off" name="searchString2" placeholder="Search by student's name ..." class="form-control">
+                        <input type="text" autocomplete="off" name="searchString2" placeholder="@SchoolDiarySystem.Resources.MyKids.IndexAbsence.IndexAbsenceTexts.SearchByStud" class="form-control">
                     </div>
                     <div class="col-1-xxxl col-xl-2 col-lg-3 col-12 form-group">
-                        <button type="submit" class="fw-btn-fill btn-gradient-yellow">SEARCH</button>
+                        <button type="submit" class="fw-btn-fill btn-gradient-yellow">@SchoolDiarySystem.Resources.MyKids.IndexAbsence.IndexAbsenceTexts.Search</button>
                     </div>
                 </div>
             </form>
@@ -42,11 +43,11 @@
                 <thead>
                     <tr>
                         <th></th>
-                        <th>Date</th>
-                        <th>Reasoning</th>
-                        <th>Student</th>
-                        <th>Class</th>
-                        <th>Subject</th>
+                        <th>@SchoolDiarySystem.Resources.MyKids.IndexAbsence.IndexAbsenceTexts.Date</th>
+                        <th>@SchoolDiarySystem.Resources.MyKids.IndexAbsence.IndexAbsenceTexts.Reas</th>
+                        <th>@SchoolDiarySystem.Resources.MyKids.IndexAbsence.IndexAbsenceTexts.Stud</th>
+                        <th>@SchoolDiarySystem.Resources.MyKids.IndexAbsence.IndexAbsenceTexts.Class</th>
+                        <th>@SchoolDiarySystem.Resources.MyKids.IndexAbsence.IndexAbsenceTexts.Subject</th>
                     </tr>
                 </thead>
                 <tbody>

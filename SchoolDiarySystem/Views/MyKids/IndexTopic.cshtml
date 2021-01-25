@@ -1,17 +1,18 @@
 ﻿@{
     ViewBag.Title = "IndexTopic";
+    ViewBag.ViewToShow = "IndexTopic";
+    ViewBag.ControllerToShow = "MyKids";
     Layout = "~/Views/Shared/_LayoutParent.cshtml";
 }
 @using SchoolDiarySystem.Models
 @model IEnumerable<Topics>
 
         <div class="breadcrumbs-area">
-            <h3>Topic Board</h3>
+            <h3>@SchoolDiarySystem.Resources.MyKids.IndexTopic.IndexTopicTexts.TopicBoard</h3>
             <ul>
                 <li>
-                    <a href="@Url.Action("Index", "MyKids")">Home</a>
+                    <a href="@Url.Action("Index", "MyKids")">@SchoolDiarySystem.Resources.MyKids.IndexTopic.IndexTopicTexts.Home</a>
                 </li>
-                <li>Topic</li>
             </ul>
         </div>
         <div class="row">
@@ -20,7 +21,7 @@
                     <div class="card-body">
                         <div class="heading-layout1">
                             <div class="item-title">
-                                <h3>Notice Board</h3>
+                                <h3>@SchoolDiarySystem.Resources.MyKids.IndexTopic.IndexTopicTexts.TopicBoard</h3>
                             </div>
                         </div>
                         @using (Html.BeginForm("IndexTopic", "MyKids", FormMethod.Get))
@@ -28,16 +29,16 @@
                             <form class="mg-b-20">
                                 <div class="row gutters-8">
                                     <div class="col-lg-4 col-12 form-group">
-                                        <input type="date" autocomplete="off" placeholder="Search by date ..." name="searchString" class="form-control">
+                                        <input type="text" autocomplete="off" placeholder="@SchoolDiarySystem.Resources.MyKids.IndexTopic.IndexTopicTexts.SearchByD" name="searchString" class="form-control">
                                     </div>
                                     <div class="col-lg-3 col-12 form-group">
-                                        <input type="text" autocomplete="off" placeholder="Search by subject ..." name="searchString2" class="form-control">
+                                        <input type="text" autocomplete="off" placeholder="@SchoolDiarySystem.Resources.MyKids.IndexTopic.IndexTopicTexts.SearchBySub" name="searchString2" class="form-control">
                                     </div>
                                     <div class="col-lg-3 col-12 form-group">
-                                        <input type="text" autocomplete="off" placeholder="Search by student ..." name="searchString3" class="form-control">
+                                        <input type="text" autocomplete="off" placeholder="@SchoolDiarySystem.Resources.MyKids.IndexTopic.IndexTopicTexts.SearchByStd" name="searchString3" class="form-control">
                                     </div>
                                     <div class="col-lg-2 col-12 form-group">
-                                        <button type="submit" class="fw-btn-fill btn-gradient-yellow">SEARCH</button>
+                                        <button type="submit" class="fw-btn-fill btn-gradient-yellow">@SchoolDiarySystem.Resources.MyKids.IndexTopic.IndexTopicTexts.Search</button>
                                     </div>
                                 </div>
                             </form>
@@ -50,7 +51,9 @@
                                     <h6 class="notice-title">
                                             @Html.DisplayFor(m => item.Content)
                                     </h6>
-                                    <div class="entry-meta">@Html.DisplayFor(m => item.Subject.SubjectTitle) | Class Time: @Html.DisplayFor(m => item.Time) / <span>Class: @Html.DisplayFor(m => item.Class.ClassNo)</span></div>
+                                    <div class="entry-meta">@Html.DisplayFor(m => item.Subject.SubjectTitle) |
+                                    @SchoolDiarySystem.Resources.MyKids.IndexTopic.IndexTopicTexts.ClassTime @Html.DisplayFor(m => item.Time) /
+                                    <span>@SchoolDiarySystem.Resources.MyKids.IndexTopic.IndexTopicTexts.Class @Html.DisplayFor(m => item.Class.ClassNo)</span></div>
                                 </div>
                             }
                         </div>

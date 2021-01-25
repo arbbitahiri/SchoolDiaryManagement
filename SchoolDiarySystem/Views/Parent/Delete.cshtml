@@ -1,40 +1,40 @@
 ﻿@{
     ViewBag.Title = "Delete";
+    ViewBag.ViewToShow = "Delete";
+    ViewBag.ControllerToShow = "Parent";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 @using SchoolDiarySystem.Models
 @model Parents
 
 <div class="breadcrumbs-area">
-    <h3>Parent</h3>
+    <h3>@SchoolDiarySystem.Resources.Parent.Delete.DeleteTexts.DPForm</h3>
     <ul>
         <li>
-            <a href="@Url.Action("Index", "Admin")">Home</a>
+            <a href="@Url.Action("Index", "Admin")">@SchoolDiarySystem.Resources.Parent.Delete.DeleteTexts.Home</a>
         </li>
-        <li>Parent Details</li>
+        <li>@SchoolDiarySystem.Resources.Parent.Delete.DeleteTexts.ParentDet</li>
     </ul>
 </div>
 <div class="card height-auto">
     <div class="card-body">
         <div class="heading-layout1">
             <div class="item-title">
-                <h3>Are you sure you want to delete this parent?</h3>
+                <h3>@SchoolDiarySystem.Resources.Parent.Delete.DeleteTexts.Sure</h3>
             </div>
         </div>
+        <br />
         <div class="single-info-details">
             <div class="item-content">
-                <div class="header-inline item-header">
-                    <h3 class="text-dark-medium font-medium">@Html.Label("FullName", Model.FullName, new { @class = "text-dark-medium font-medium" })</h3>
-                </div>
                 <div class="info-table table-responsive">
                     <table class="table text-nowrap">
                         <tbody>
                             <tr>
-                                <td>Name:</td>
+                                <td>@SchoolDiarySystem.Resources.Parent.Delete.DeleteTexts.Name</td>
                                 <td>@Html.Label(Model.FullName, new { @class = "font-medium text-dark-medium" })</td>
                             </tr>
                             <tr>
-                                <td>City:</td>
+                                <td>@SchoolDiarySystem.Resources.Parent.Delete.DeleteTexts.City</td>
                                 <td>@Html.Label(Model.City, new { @class = "font-medium text-dark-medium" })</td>
                             </tr>
                             <tr>
@@ -44,7 +44,7 @@
                 @using (Html.BeginForm("Delete", "Parent", FormMethod.Post))
                 {
                     <div class="col-12 form-group mg-t-8">
-                        <input type="submit" value="Delete" class="btn-fill-md radius-4 text-light bg-orange-red" />
+                        <input type="submit" value="@SchoolDiarySystem.Resources.Parent.Delete.DeleteTexts.Delete" class="btn-fill-md radius-4 text-light bg-orange-red" />
                     </div>
                 }
             </div>

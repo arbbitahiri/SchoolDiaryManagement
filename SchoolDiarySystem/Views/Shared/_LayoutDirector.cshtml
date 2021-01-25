@@ -85,7 +85,7 @@
                            aria-expanded="false">
                             <div class="admin-title">
                                 @Html.Label(UserSession.GetUsers.FullName, new { @class = "item-title" })
-                                <span>Director</span>
+                                <span>@SchoolDiarySystem.Resources.Layout.Director.DirectorTexts.Director</span>
                             </div>
                             <div class="admin-img">
                                 <img src="~/Content/img/figure/admin.jpg" alt="Admin">
@@ -97,18 +97,17 @@
                             </div>
                             <div class="item-content">
                                 <ul class="settings-list">
-                                    <li><a href="#"><i class="flaticon-user"></i>My Profile</a></li>
-                                    <li><a href="@Url.Action("Logout", "Account")"><i class="flaticon-turn-off"></i>Log Out</a></li>
+                                    <li><a href="@Url.Action("Logout", "Account")"><i class="flaticon-turn-off"></i>@SchoolDiarySystem.Resources.Layout.Director.DirectorTexts.LogOut</a></li>
                                 </ul>
                             </div>
                         </div>
                     </li>
                     <li class="navbar-item dropdown header-language">
                         <a class="navbar-nav-link dropdown-toggle" href="#" role="button"
-                           data-toggle="dropdown" aria-expanded="false"><i class="fas fa-globe-americas"></i>EN</a>
+                           data-toggle="dropdown" aria-expanded="false"><i class="fas fa-globe-americas"></i>@SchoolDiarySystem.Resources.Layout.Director.DirectorTexts.Language</a>
                         <div class="dropdown-menu dropdown-menu-right">
-                            <a class="dropdown-item" href="#">English</a>
-                            <a class="dropdown-item" href="#">Albanian</a>
+                            <a class="dropdown-item" href="@Url.Action("Language", "Account", new { lngName = "en", view = ViewBag.ViewToShow, cont = ViewBag.ControllerToShow, layout = "Director" }, null)">@SchoolDiarySystem.Resources.Layout.Director.DirectorTexts.English</a>
+                            <a class="dropdown-item" href="@Url.Action("Language", "Account", new { lngName = "sq", view = ViewBag.ViewToShow, cont = ViewBag.ControllerToShow, layout = "Director" }, null)">@SchoolDiarySystem.Resources.Layout.Director.DirectorTexts.Albanian</a>
                         </div>
                     </li>
                 </ul>
@@ -127,19 +126,19 @@
                 <div class="sidebar-menu-content">
                     <ul class="nav nav-sidebar-menu sidebar-toggle-view">
                         <li class="nav-item">
-                            <a href="@Url.Action("Index", "Director")" class="nav-link"><i class="flaticon-dashboard"></i><span>Dashboard</span></a>
+                            <a href="@Url.Action("Index", "Director")" class="nav-link"><i class="flaticon-dashboard"></i><span>@SchoolDiarySystem.Resources.Layout.Director.DirectorTexts.Dashboard</span></a>
                         </li>
                         <li class="nav-item">
-                            <a href="@Url.Action("Index", "User")" class="nav-link"><i class="flaticon-user"></i><span>Users</span></a>
+                            <a href="@Url.Action("Index", "User")" class="nav-link"><i class="flaticon-user"></i><span>@SchoolDiarySystem.Resources.Layout.Director.DirectorTexts.User</span></a>
                         </li>
                         <li class="nav-item">
-                            <a href="@Url.Action("Index", "StaffAbsence")" class="nav-link"><i class="flaticon-calendar"></i><span>Absences</span></a>
+                            <a href="@Url.Action("Index", "StaffAbsence")" class="nav-link"><i class="flaticon-calendar"></i><span>@SchoolDiarySystem.Resources.Layout.Director.DirectorTexts.Absence</span></a>
                         </li>
                         <li class="nav-item">
-                            <a href="@Url.Action("CommentList", "Review")" class="nav-link"><i class="flaticon-script"></i><span>Comments</span></a>
+                            <a href="@Url.Action("CommentList", "Review")" class="nav-link"><i class="flaticon-script"></i><span>@SchoolDiarySystem.Resources.Layout.Director.DirectorTexts.Comment</span></a>
                         </li>
                         <li class="nav-item">
-                            <a href="@Url.Action("Index", "Review")" class="nav-link"><i class="flaticon-checklist"></i><span>Comments Reviewed</span></a>
+                            <a href="@Url.Action("Index", "Review")" class="nav-link"><i class="flaticon-checklist"></i><span>@SchoolDiarySystem.Resources.Layout.Director.DirectorTexts.ComRev</span></a>
                         </li>
                     </ul>
                 </div>

@@ -1,19 +1,18 @@
 ﻿@{
     ViewBag.Title = "Parent's Dashboard";
+    ViewBag.ViewToShow = "Index";
+    ViewBag.ControllerToShow = "MyKids";
     Layout = "~/Views/Shared/_LayoutParent.cshtml";
 }
 @using SchoolDiarySystem.Models
 @model IEnumerable<Students>
 
-@*<div class="dashboard-page-one">*@
-    @*<div class="dashboard-content-one">*@
         <div class="breadcrumbs-area">
-            <h3>Parent Dashboard</h3>
+            <h3>@SchoolDiarySystem.Resources.MyKids.Index.IndexTexts.ParentDash</h3>
             <ul>
                 <li>
-                    <a href="@Url.Action("Index", "MyKids")">Home</a>
+                    <a href="@Url.Action("Index", "MyKids")">@SchoolDiarySystem.Resources.MyKids.Index.IndexTexts.Home</a>
                 </li>
-                <li>Parents</li>
             </ul>
         </div>
         <div class="row">
@@ -22,7 +21,7 @@
                     <div class="card-body">
                         <div class="heading-layout1">
                             <div class="item-title">
-                                <h3>My Kids</h3>
+                                <h3>@SchoolDiarySystem.Resources.MyKids.Index.IndexTexts.MyKids</h3>
                             </div>
                         </div>
                         <div class="kids-details-wrap">
@@ -45,19 +44,19 @@
                                             <table class="table text-nowrap">
                                                 <tbody>
                                                     <tr>
-                                                        <td>Name:</td>
+                                                        <td>@SchoolDiarySystem.Resources.MyKids.Index.IndexTexts.Name</td>
                                                         <td>@Html.DisplayFor(m => item.FullName)</td>
                                                     </tr>
                                                     <tr>
-                                                        <td>Gender:</td>
+                                                        <td>@SchoolDiarySystem.Resources.MyKids.Index.IndexTexts.Gender</td>
                                                         <td>@Html.DisplayFor(m => item.Gender)</td>
                                                     </tr>
                                                     <tr>
-                                                        <td>Class:</td>
+                                                        <td>@SchoolDiarySystem.Resources.MyKids.Index.IndexTexts.Class</td>
                                                         <td>@Html.DisplayFor(m => item.Class.ClassNo)</td>
                                                     </tr>
                                                     <tr>
-                                                        <td>Birthday:</td>
+                                                        <td>@SchoolDiarySystem.Resources.MyKids.Index.IndexTexts.DoB</td>
                                                         <td>@Html.DisplayFor(m => item.DayofBirth)</td>
                                                     </tr>
                                                 </tbody>
@@ -72,7 +71,5 @@
                 </div>
             </div>
         </div>
-    @*</div>*@
-@*</div>*@
 
 @section Scripts {}

@@ -1,69 +1,71 @@
 ﻿@{
     ViewBag.Title = "Create Student";
+    ViewBag.ViewToShow = "Create";
+    ViewBag.ControllerToShow = "Student";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 @using SchoolDiarySystem.Models
 @model Students
 
-        <div class="breadcrumbs-area">
-            <h3>Student</h3>
-            <ul>
-                <li>
-                    <a href="@Url.Action("Index", "Admin")">Home</a>
-                </li>
-                <li>Add New Student</li>
-            </ul>
-        </div>
-        <div class="card height-auto">
-            <div class="card-body">
-                <div class="heading-layout1">
-                    <div class="item-title">
-                        <h3>Add New Student</h3>
-                    </div>
-                </div>
-                @using (Html.BeginForm("Create", "Student", FormMethod.Post))
-                {
-                    @Html.ValidationSummary(true, "", new { @class = "alert alert-danger" })
-                    <form class="new-added-form">
-                        <div class="row">
-                            <div class="col-xl-3 col-lg-6 col-12 form-group">
-                                <label>First Name *</label>
-                                @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control", placeholder = "First Name", id = "firstname", @autocomplete = "off" })
-                                @Html.ValidationMessageFor(m => m.FirstName, "", new { @class = "text-danger" })
-                            </div>
-                            <div class="col-xl-3 col-lg-6 col-12 form-group">
-                                <label>Last Name *</label>
-                                @Html.TextBoxFor(m => m.LastName, new { @class = "form-control", placeholder = "Last Name", id = "lastname", autocomplete = "off" })
-                                @Html.ValidationMessageFor(m => m.LastName, "", new { @class = "text-danger" })
-                            </div>
-                            <div class="col-xl-3 col-lg-6 col-12 form-group">
-                                <label>Gender *</label>
-                                @Html.DropDownListFor(m => m.Gender, new SelectList(ViewBag.Gender), new { @class = "select2" })
-                                @Html.ValidationMessageFor(m => m.Gender, "", new { @class = "text-danger" })
-                            </div>
-                            <div class="col-xl-3 col-lg-6 col-12 form-group">
-                                <label>Date Of Birth *</label>
-                                @Html.TextBoxFor(m => m.DayofBirth, new { @class = "form-control air-datepicker", placeholder = "dd/MMMM/yyyy", id = "dob", autocomplete = "off" })
-                                @Html.ValidationMessageFor(m => m.DayofBirth, "", new { @class = "text-danger" })
-                                <i class="far fa-calendar-alt"></i>
-                            </div>
-                            <div class="col-xl-3 col-lg-6 col-12 form-group">
-                                <label>Class *</label>
-                                @Html.DropDownListFor(m => m.ClassID, new SelectList(ViewBag.Class, "ClassID", "ClassNo"), new { @class = "select2" })
-                                @Html.ValidationMessageFor(m => m.ClassID, "", new { @class = "text-danger" })
-                            </div>
-                            <div class="col-xl-3 col-lg-6 col-12 form-group">
-                                <label>Parent *</label>
-                                @Html.DropDownListFor(m => m.ParentID, new SelectList(ViewBag.Parent, "ParentID", "FullName"), new { @class = "select2" })
-                                @Html.ValidationMessageFor(m => m.ParentID, "", new { @class = "text-danger" })
-                            </div>
-                            <div class="col-12 form-group mg-t-8">
-                                <input type="submit" value="Create" class="btn-fill-md radius-4 text-light bg-light-sea-green" />
-                            </div>
-                        </div>
-                    </form>
-                }
+<div class="breadcrumbs-area">
+    <h3>@SchoolDiarySystem.Resources.Student.Create.CreateTexts.CSForm</h3>
+    <ul>
+        <li>
+            <a href="@Url.Action("Index", "Admin")">@SchoolDiarySystem.Resources.Universal.UniversalTexts.Home</a>
+        </li>
+        <li>@SchoolDiarySystem.Resources.Student.Create.CreateTexts.NewStud</li>
+    </ul>
+</div>
+<div class="card height-auto">
+    <div class="card-body">
+        <div class="heading-layout1">
+            <div class="item-title">
+                <h3>@SchoolDiarySystem.Resources.Student.Create.CreateTexts.NewStud</h3>
             </div>
         </div>
+        @using (Html.BeginForm("Create", "Student", FormMethod.Post))
+        {
+            @Html.ValidationSummary(true, "", new { @class = "alert alert-danger" })
+            <form class="new-added-form">
+                <div class="row">
+                    <div class="col-xl-3 col-lg-6 col-12 form-group">
+                        <label>@SchoolDiarySystem.Resources.Student.Create.CreateTexts.FirstN</label>
+                        @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control", placeholder = "First Name", id = "firstname", @autocomplete = "off" })
+                        @Html.ValidationMessageFor(m => m.FirstName, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="col-xl-3 col-lg-6 col-12 form-group">
+                        <label>@SchoolDiarySystem.Resources.Student.Create.CreateTexts.LastN</label>
+                        @Html.TextBoxFor(m => m.LastName, new { @class = "form-control", placeholder = "Last Name", id = "lastname", autocomplete = "off" })
+                        @Html.ValidationMessageFor(m => m.LastName, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="col-xl-3 col-lg-6 col-12 form-group">
+                        <label>@SchoolDiarySystem.Resources.Student.Create.CreateTexts.Gender</label>
+                        @Html.DropDownListFor(m => m.Gender, new SelectList(ViewBag.Gender), new { @class = "select2" })
+                        @Html.ValidationMessageFor(m => m.Gender, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="col-xl-3 col-lg-6 col-12 form-group">
+                        <label>@SchoolDiarySystem.Resources.Student.Create.CreateTexts.DoB</label>
+                        @Html.TextBoxFor(m => m.DayofBirth, new { @class = "form-control air-datepicker", placeholder = "dd/MMMM/yyyy", id = "dob", autocomplete = "off" })
+                        @Html.ValidationMessageFor(m => m.DayofBirth, "", new { @class = "text-danger" })
+                        <i class="far fa-calendar-alt"></i>
+                    </div>
+                    <div class="col-xl-3 col-lg-6 col-12 form-group">
+                        <label>@SchoolDiarySystem.Resources.Student.Create.CreateTexts.SelClass</label>
+                        @Html.DropDownListFor(m => m.ClassID, new SelectList(ViewBag.Class, "ClassID", "ClassNo"), new { @class = "select2" })
+                        @Html.ValidationMessageFor(m => m.ClassID, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="col-xl-3 col-lg-6 col-12 form-group">
+                        <label>@SchoolDiarySystem.Resources.Student.Create.CreateTexts.SelParent</label>
+                        @Html.DropDownListFor(m => m.ParentID, new SelectList(ViewBag.Parent, "ParentID", "FullName"), new { @class = "select2" })
+                        @Html.ValidationMessageFor(m => m.ParentID, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="col-12 form-group mg-t-8">
+                        <input type="submit" value="@SchoolDiarySystem.Resources.Universal.UniversalTexts.CreateUpper" class="btn-fill-md radius-4 text-light bg-light-sea-green" />
+                    </div>
+                </div>
+            </form>
+        }
+    </div>
+</div>
 
 @section Scripts {}

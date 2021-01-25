@@ -1,24 +1,25 @@
 ﻿@{
     ViewBag.Title = "IndexClass";
+    ViewBag.ViewToShow = "IndexClass";
+    ViewBag.ControllerToShow = "MyKids";
     Layout = "~/Views/Shared/_LayoutParent.cshtml";
 }
 @using SchoolDiarySystem.Models
 @model IEnumerable<Class>
 
         <div class="breadcrumbs-area">
-            <h3>Class</h3>
+            <h3>@SchoolDiarySystem.Resources.MyKids.IndexClass.IndexClassTexts.ClassList</h3>
             <ul>
                 <li>
-                    <a href="@Url.Action("Index", "MyKids")">Home</a>
+                    <a href="@Url.Action("Index", "MyKids")">@SchoolDiarySystem.Resources.MyKids.IndexClass.IndexClassTexts.Home</a>
                 </li>
-                <li>My Kids Classes</li>
             </ul>
         </div>
         <div class="card height-auto">
             <div class="card-body">
                 <div class="heading-layout1">
                     <div class="item-title">
-                        <h3>All Classes Data</h3>
+                        <h3>@SchoolDiarySystem.Resources.MyKids.IndexClass.IndexClassTexts.ClassList</h3>
                     </div>
                 </div>
                 @using (Html.BeginForm("IndexClass", "MyKids", FormMethod.Get))
@@ -26,13 +27,13 @@
                     <form class="mg-b-20">
                         <div class="row gutters-8">
                             <div class="col-4-xxxl col-xl-5 col-lg-3 col-12 form-group">
-                                <input type="number" autocomplete="off" name="searchString" placeholder="Search by class number ..." class="form-control">
+                                <input type="number" autocomplete="off" name="searchString" placeholder="@SchoolDiarySystem.Resources.MyKids.IndexClass.IndexClassTexts.SearchByClass" class="form-control">
                             </div>
                             <div class="col-4-xxxl col-xl-5 col-lg-3 col-12 form-group">
-                                <input type="text" autocomplete="off" name="searchString2" placeholder="Search by student ..." class="form-control">
+                                <input type="text" autocomplete="off" name="searchString2" placeholder="@SchoolDiarySystem.Resources.MyKids.IndexClass.IndexClassTexts.SearchByStud" class="form-control">
                             </div>
                             <div class="col-1-xxxl col-xl-2 col-lg-3 col-12 form-group">
-                                <button type="submit" class="fw-btn-fill btn-gradient-yellow">SEARCH</button>
+                                <button type="submit" class="fw-btn-fill btn-gradient-yellow">@SchoolDiarySystem.Resources.MyKids.IndexClass.IndexClassTexts.Search</button>
                             </div>
                         </div>
                     </form>
@@ -42,10 +43,10 @@
                         <thead>
                             <tr>
                                 <th></th>
-                                <th>My Kid</th>
-                                <th>Teacher</th>
-                                <th>Class Number</th>
-                                <th>Room Type</th>
+                                <th>@SchoolDiarySystem.Resources.MyKids.IndexClass.IndexClassTexts.MyKid</th>
+                                <th>@SchoolDiarySystem.Resources.MyKids.IndexClass.IndexClassTexts.Teacher</th>
+                                <th>@SchoolDiarySystem.Resources.MyKids.IndexClass.IndexClassTexts.Class</th>
+                                <th>@SchoolDiarySystem.Resources.MyKids.IndexClass.IndexClassTexts.Room</th>
                                 <th></th>
                             </tr>
                         </thead>
@@ -65,16 +66,6 @@
                                     </td>
                                     <td>
                                         @Html.DisplayFor(m => item.Room.RoomType)
-                                    </td>
-                                    <td>
-                                        <div class="dropdown">
-                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                                                <span class="flaticon-more-button-of-three-dots"></span>
-                                            </a>
-                                            <div class="dropdown-menu dropdown-menu-right">
-                                                <a class="dropdown-item" href="@Url.Action("TeacherDetails", "MyKids", new { id = item.TeacherID})"><i class="fas fa-cogs text-dark-pastel-green"></i>View Teache Details</a>
-                                            </div>
-                                        </div>
                                     </td>
                                 </tr>
                             }

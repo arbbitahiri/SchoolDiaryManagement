@@ -1,93 +1,78 @@
 ﻿@{
     ViewBag.Title = "Director's Dashboard";
+    ViewBag.ViewToShow = "Index";
+    ViewBag.ControllerToShow = "Director";
     Layout = "~/Views/Shared/_LayoutDirector.cshtml";
 }
 @using SchoolDiarySystem.Models
 @model Users
 
-@*<div class="dashboard-page-one">*@
-    @*<div class="dashboard-content-one">*@
-        <div class="breadcrumbs-area">
+<div class="card height-auto">
+    <div class="card-body">
+        <div class="heading-layout1">
+            <div class="item-title">
+                <h3>@SchoolDiarySystem.Resources.Director.IndexTexts.MyDet</h3>
+            </div>
         </div>
-        <div class="card height-auto">
-            <div class="card-body">
-                <div class="heading-layout1">
-                    <div class="item-title">
-                        <h3>My Details</h3>
-                    </div>
-                </div>
-                <div class="single-info-details">
-                    <div class="item-img">
-                        <img src="~/Content/img/figure/student1.jpg" alt="user">
-                    </div>
-                    <div class="item-content">
-                        <div class="header-inline item-header">
-                            <div class="item-title">
-                                <h3></h3>
-                            </div>
-                            <div class="header-elements">
-                                <ul>
-                                    <li><a href="#"><i class="fas fa-print"></i></a></li>
-                                    <li><a href="#"><i class="fas fa-download"></i></a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="info-table table-responsive">
-                            <table class="table text-nowrap">
-                                <tbody>
-                                    @if (Model.RoleID == 3)
-                                    {
-                                        <tr>
-                                            <td>Name:</td>
-                                            <td>@Html.Label(Model.FullName, new { @class = "font-medium text-dark-medium" })</td>
-                                        </tr>
-                                    }
-                                    <tr>
-                                        <td>Username:</td>
-                                        <td>@Html.Label(Model.Username, new { @class = "font-medium text-dark-medium" })</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Expire Date:</td>
-                                        <td>@Html.Label(Model.ExpiresDate.ToString("dd MMMM yyyy"), new { @class = "font-medium text-dark-medium" })</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Last Login Date:</td>
-                                        <td>@Html.Label(Model.LastLoginDate.ToString("dd MMMM yyyy"), new { @class = "font-medium text-dark-medium" })</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Last Login Time:</td>
-                                        <td>@Html.Label(Model.LastLoginTime.ToString("hh:mm tt"), new { @class = "font-medium text-dark-medium" })</td>
-                                    </tr>
-                                    @if (Model.IsPasswordChanged != true)
-                                    {
-                                        <tr>
-                                            <td class="font-medium text-dark-medium">Never changed password!</td>
-                                        </tr>
-                                    }
-                                    else
-                                    {
-                                        <tr>
-                                            <td>Password changed:</td>
-                                            <td>@Html.Label(Model.LastPasswordChangeDate.ToString(), new { @class = "font-medium text-dark-medium" })</td>
-                                        </tr>
-                                    }
-                                    <tr>
-                                        <td>
-                                            <a href="@Url.Action("Update", "User", new { id = Model.UserID })">
-                                                <div class="col-12 form-group mg-t-8">
-                                                    <input type="submit" value="Update" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark" />
-                                                </div>
-                                            </a>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
+        <div class="single-info-details">
+            <div class="item-img">
+                <img src="~/Content/img/figure/student1.jpg" alt="user">
+            </div>
+            <div class="item-content">
+                <div class="info-table table-responsive">
+                    <table class="table text-nowrap">
+                        <tbody>
+                            @if (Model.RoleID == 3)
+                            {
+                                <tr>
+                                    <td>@SchoolDiarySystem.Resources.Director.IndexTexts.Name</td>
+                                    <td>@Html.Label(Model.FullName, new { @class = "font-medium text-dark-medium" })</td>
+                                </tr>
+                            }
+                            <tr>
+                                <td>@SchoolDiarySystem.Resources.Director.IndexTexts.Username</td>
+                                <td>@Html.Label(Model.Username, new { @class = "font-medium text-dark-medium" })</td>
+                            </tr>
+                            <tr>
+                                <td>@SchoolDiarySystem.Resources.Director.IndexTexts.ExpDate</td>
+                                <td>@Html.Label(Model.ExpiresDate.ToString("dd MMMM yyyy"), new { @class = "font-medium text-dark-medium" })</td>
+                            </tr>
+                            <tr>
+                                <td>@SchoolDiarySystem.Resources.Director.IndexTexts.LLDate</td>
+                                <td>@Html.Label(Model.LastLoginDate.ToString("dd MMMM yyyy"), new { @class = "font-medium text-dark-medium" })</td>
+                            </tr>
+                            <tr>
+                                <td>@SchoolDiarySystem.Resources.Director.IndexTexts.LLTime</td>
+                                <td>@Html.Label(Model.LastLoginTime.ToString("hh:mm tt"), new { @class = "font-medium text-dark-medium" })</td>
+                            </tr>
+                            @if (Model.IsPasswordChanged != true)
+                            {
+                                <tr>
+                                    <td class="font-medium text-dark-medium">@SchoolDiarySystem.Resources.Director.IndexTexts.NeverCh</td>
+                                </tr>
+                            }
+                            else
+                            {
+                                <tr>
+                                    <td>@SchoolDiarySystem.Resources.Director.IndexTexts.ChangedPas</td>
+                                    <td>@Html.Label(Model.LastPasswordChangeDate.ToString(), new { @class = "font-medium text-dark-medium" })</td>
+                                </tr>
+                            }
+                            <tr>
+                                <td>
+                                    <a href="@Url.Action("Update", "User", new { id = Model.UserID })">
+                                        <div class="col-12 form-group mg-t-8">
+                                            <input type="submit" value="@SchoolDiarySystem.Resources.Director.IndexTexts.Update" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark" />
+                                        </div>
+                                    </a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
-    @*</div>*@
-@*</div>*@
+    </div>
+</div>
 
 @section Scripts {}

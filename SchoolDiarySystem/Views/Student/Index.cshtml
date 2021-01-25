@@ -1,5 +1,7 @@
 ﻿@{
     ViewBag.Title = "Student's List";
+    ViewBag.ViewToShow = "Index";
+    ViewBag.ControllerToShow = "Student";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 @using SchoolDiarySystem.Models
@@ -9,7 +11,7 @@
         <h3>Student</h3>
         <ul>
             <li>
-                <a href="@Url.Action("Index", "Admin")">Home</a>
+                <a href="@Url.Action("Index", "Admin")">@SchoolDiarySystem.Resources.Universal.UniversalTexts.Home</a>
             </li>
             <li>All Students</li>
         </ul>
@@ -26,7 +28,7 @@
                     <div class="row">
                         <div class="col-12 form-group mg-t-8">
                             <p>
-                                @Html.ActionLink("Create", "Create", "Student", null, new { @class = "btn-fill-lg font-normal text-light gradient-pastel-green" })
+                                @Html.ActionLink(SchoolDiarySystem.Resources.Universal.UniversalTexts.CreateLower, "Create", "Student", null, new { @class = "btn-fill-lg font-normal text-light gradient-pastel-green" })
                             </p>
                         </div>
                     </div>
@@ -49,7 +51,7 @@
                             <input type="text" autocomplete="off" placeholder="Search by first or last name ..." name="searchString" class="form-control">
                         </div>
                         <div class="col-1-xxxl col-xl-2 col-lg-3 col-12 form-group">
-                            <button type="submit" class="fw-btn-fill btn-gradient-yellow">SEARCH</button>
+                            <button type="submit" class="fw-btn-fill btn-gradient-yellow">@SchoolDiarySystem.Resources.Universal.UniversalTexts.Search</button>
                         </div>
                     </div>
                 </form>
@@ -59,12 +61,12 @@
                     <thead>
                         <tr>
                             <th></th>
-                            <th>First Name</th>
-                            <th>Last Name</th>
-                            <th>Gender</th>
-                            <th>Class</th>
-                            <th>Parent</th>
-                            <th>Day of Birth</th>
+                            <th>@SchoolDiarySystem.Resources.Student.Index.IndexTexts.FirstN</th>
+                            <th>@SchoolDiarySystem.Resources.Student.Index.IndexTexts.LastN</th>
+                            <th>@SchoolDiarySystem.Resources.Student.Index.IndexTexts.Gender</th>
+                            <th>@SchoolDiarySystem.Resources.Student.Index.IndexTexts.Class</th>
+                            <th>@SchoolDiarySystem.Resources.Student.Index.IndexTexts.Parent</th>
+                            <th>@SchoolDiarySystem.Resources.Student.Index.IndexTexts.DoB</th>
                             <th></th>
                         </tr>
                     </thead>
@@ -98,46 +100,10 @@
                                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
                                             <span class="flaticon-more-button-of-three-dots"></span>
                                         </a>
-                                        @*<script>
-                                var studid = 0;
-                                function setid(id) {
-                                    studid = id;
-                                    console.log(id);
-                                }
-                                function getid() {
-                                    return studid;
-                                }
-                            </script>*@
                                         <div class="dropdown-menu dropdown-menu-right">
-                                            @*<a class="dropdown-item" onclick="setid(@item.StudentID)" data-toggle="modal" data-target="#standard-modal"><i class="fas fa-times text-orange-red"></i>Delete</a>*@
-                                            <a class="dropdown-item" href="@Url.Action("Delete", "Student", new { id = item.StudentID })"><i class="fas fa-times text-orange-red"></i>Delete</a>
-                                            <a class="dropdown-item" href="@Url.Action("Update", "Student", new { id = item.StudentID })"><i class="fas fa-cogs text-dark-pastel-green"></i>Update</a>
+                                            <a class="dropdown-item" href="@Url.Action("Delete", "Student", new { id = item.StudentID })"><i class="fas fa-times text-orange-red"></i>@SchoolDiarySystem.Resources.Universal.UniversalTexts.DeleteLower</a>
+                                            <a class="dropdown-item" href="@Url.Action("Update", "Student", new { id = item.StudentID })"><i class="fas fa-cogs text-dark-pastel-green"></i>@SchoolDiarySystem.Resources.Universal.UniversalTexts.UpdateLower</a>
                                         </div>
-                                        <!--<div class="modal-box">
-                            <div class="modal fade" id="standard-modal" tabindex="-1" role="dialog" aria-hidden="true" style="display: none;">
-                                <div class="modal-dialog" role="document">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title">Sure?</h5>
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                <span aria-hidden="true">×</span>
-                                            </button>
-                                        </div>
-                                        <div class="modal-body">
-                                            Are you sure you want to delete?
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="footer-btn bg-dark-low" data-dismiss="modal">No</button>
-                                            <a class="dropdown-item" href="@Html.BeginForm("Delete", "Student", new { id = item.StudentID }, FormMethod.Post)"><i class="fas fa-times text-orange-red"></i>Delete</a>-->
-                                        @*@using (Html.BeginForm("Delete", "Student", new { id = item.StudentID }, FormMethod.Post))
-                            {*@
-                                        @*<input type="submit" onclick="location.href='<%: Url.Action("Delete", "Student") %>'"  value="Yes" class="footer-btn bg-linkedin" />*@
-                                        @*}*@
-                                        <!--</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>-->
                                     </div>
                                 </td>
                             </tr>
@@ -158,8 +124,7 @@
                                         <span class="flaticon-more-button-of-three-dots"></span>
                                     </a>
                                     <div class="dropdown-menu dropdown-menu-right">
-                                        <a class="dropdown-item" data-toggle="modal" data-target="#standard-modal"><i class="fas fa-download"></i>Download Excel</a>
-                                        @*<a class="dropdown-item" onclick="PrintTable();"><i class="fas fa-print"></i>Print</a>*@
+                                        <a class="dropdown-item" data-toggle="modal" data-target="#standard-modal"><i class="fas fa-download"></i>@SchoolDiarySystem.Resources.Universal.UniversalTexts.DownloadExcel</a>
                                     </div>
                                     <div class="modal-box">
                                         <!-- Modal -->
@@ -167,19 +132,19 @@
                                             <div class="modal-dialog" role="document">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
-                                                        <h5 class="modal-title">Download Excel</h5>
+                                                        <h5 class="modal-title">@SchoolDiarySystem.Resources.Universal.UniversalTexts.DownloadExcel</h5>
                                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                             <span aria-hidden="true">×</span>
                                                         </button>
                                                     </div>
                                                     <div class="modal-body">
-                                                        Are you sure you want to download?
+                                                        @SchoolDiarySystem.Resources.Universal.UniversalTexts.SureDownload
                                                     </div>
                                                     <div class="modal-footer">
-                                                        <button type="button" class="footer-btn bg-dark-low" data-dismiss="modal">No</button>
+                                                        <button type="button" class="footer-btn bg-dark-low" data-dismiss="modal">@SchoolDiarySystem.Resources.Universal.UniversalTexts.No</button>
                                                         @using (Html.BeginForm("Export", "Student", FormMethod.Post))
                                                         {
-                                                            <input type="submit" value="Download Excel" class="footer-btn bg-linkedin" aria-label="Close" />
+                                                            <input type="submit" value="@SchoolDiarySystem.Resources.Universal.UniversalTexts.Download" class="footer-btn bg-linkedin" aria-label="Close" />
                                                         }
                                                     </div>
                                                 </div>

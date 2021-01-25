@@ -1,24 +1,26 @@
 ﻿@{
     ViewBag.Title = "Update Parent";
+    ViewBag.ViewToShow = "Update";
+    ViewBag.ControllerToShow = "Parent";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 @using SchoolDiarySystem.Models
 @model Parents
 
         <div class="breadcrumbs-area">
-            <h3>Parent</h3>
+            <h3>@SchoolDiarySystem.Resources.Parent.Update.UpdateTexts.UPForm</h3>
             <ul>
                 <li>
-                    <a href="@Url.Action("Index", "Admin")">Home</a>
+                    <a href="@Url.Action("Index", "Admin")">@SchoolDiarySystem.Resources.Parent.Update.UpdateTexts.Home</a>
                 </li>
-                <li>Update Parent</li>
+                <li>@SchoolDiarySystem.Resources.Parent.Update.UpdateTexts.UpdateParent</li>
             </ul>
         </div>
         <div class="card height-auto">
             <div class="card-body">
                 <div class="heading-layout1">
                     <div class="item-title">
-                        <h3>Update Parent</h3>
+                        <h3>@SchoolDiarySystem.Resources.Parent.Update.UpdateTexts.UpdateParent</h3>
                     </div>
                 </div>
                 @using (Html.BeginForm("Update", "Parent", FormMethod.Post))
@@ -28,22 +30,22 @@
                         <div class="row">
                             @Html.HiddenFor(m => m.ParentID)
                             <div class="col-xl-3 col-lg-6 col-12 form-group">
-                                <label>First Name *</label>
+                                <label>@SchoolDiarySystem.Resources.Parent.Update.UpdateTexts.FirstN</label>
                                 @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control", placeholder = "First Name", id = "firstname", autocomplete = "off" })
                                 @Html.ValidationMessageFor(m => m.FirstName, "", new { @class = "text-danger" })
                             </div>
                             <div class="col-xl-3 col-lg-6 col-12 form-group">
-                                <label>Last Name *</label>
+                                <label>@SchoolDiarySystem.Resources.Parent.Update.UpdateTexts.LastN</label>
                                 @Html.TextBoxFor(m => m.LastName, new { @class = "form-control", placeholder = "Last Name", id = "lastname", autocomplete = "off" })
                                 @Html.ValidationMessageFor(m => m.LastName, "", new { @class = "text-danger" })
                             </div>
                             <div class="col-xl-3 col-lg-6 col-12 form-group">
-                                <label>City *</label>
+                                <label>@SchoolDiarySystem.Resources.Parent.Update.UpdateTexts.City</label>
                                 @Html.TextBoxFor(m => m.City, new { @class = "form-control", placeholder = "Write parent's city...", id = "city", autocomplete = "off" })
                                 @Html.ValidationMessageFor(m => m.City, "", new { @class = "text-danger" })
                             </div>
                             <div class="col-12 form-group mg-t-8">
-                                <input type="submit" value="Update" class="btn-fill-lmd radius-4 text-light bg-violet-blue" />
+                                <input type="submit" value="@SchoolDiarySystem.Resources.Parent.Update.UpdateTexts.Update" class="btn-fill-lmd radius-4 text-light bg-violet-blue" />
                             </div>
                         </div>
                     </form>

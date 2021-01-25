@@ -1,24 +1,26 @@
 ﻿@{
     ViewBag.Title = "Delete";
+    ViewBag.ViewToShow = "Delete";
+    ViewBag.ControllerToShow = "Subject";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 @using SchoolDiarySystem.Models
 @model Subjects
 
 <div class="breadcrumbs-area">
-    <h3>Subject</h3>
+    <h3>@SchoolDiarySystem.Resources.Subject.Delete.DeleteTexts.DSForm</h3>
     <ul>
         <li>
-            <a href="@Url.Action("Index", "Admin")">Home</a>
+            <a href="@Url.Action("Index", "Admin")">@SchoolDiarySystem.Resources.Universal.UniversalTexts.Home</a>
         </li>
-        <li>Subject Details</li>
+        <li>@SchoolDiarySystem.Resources.Subject.Delete.DeleteTexts.SubDet</li>
     </ul>
 </div>
 <div class="card height-auto">
     <div class="card-body">
         <div class="heading-layout1">
             <div class="item-title">
-                <h3>Are you sure you want to delete this subject?</h3>
+                <h3>@SchoolDiarySystem.Resources.Subject.Delete.DeleteTexts.Sure</h3>
             </div>
         </div>
         <div class="single-info-details">
@@ -30,19 +32,19 @@
                     <table class="table text-nowrap">
                         <tbody>
                             <tr>
-                                <td>Name:</td>
+                                <td>@SchoolDiarySystem.Resources.Subject.Delete.DeleteTexts.SubTitle</td>
                                 <td>@Html.Label(Model.SubjectTitle, new { @class = "font-medium text-dark-medium" })</td>
                             </tr>
                             <tr>
-                                <td>Gender:</td>
+                                <td>@SchoolDiarySystem.Resources.Subject.Delete.DeleteTexts.Book</td>
                                 <td>@Html.Label(Model.Book, new { @class = "font-medium text-dark-medium" })</td>
                             </tr>
                             <tr>
-                                <td>Birthday:</td>
+                                <td>@SchoolDiarySystem.Resources.Subject.Delete.DeleteTexts.BookAuth</td>
                                 <td>@Html.Label(Model.BookAuthor.ToString(), new { @class = "font-medium text-dark-medium" })</td>
                             </tr>
                             <tr>
-                                <td>E-mail:</td>
+                                <td>@SchoolDiarySystem.Resources.Subject.Delete.DeleteTexts.Teacher</td>
                                 <td>@Html.Label(Model.Teacher.FullName, new { @class = "font-medium text-dark-medium" })</td>
                             </tr>
                         </tbody>
@@ -51,7 +53,7 @@
                 @using (Html.BeginForm("Delete", "Subject", FormMethod.Post))
                 {
                     <div class="col-12 form-group mg-t-8">
-                        <input type="submit" value="Delete" class="btn-fill-md radius-4 text-light bg-orange-red" />
+                        <input type="submit" value="@SchoolDiarySystem.Resources.Universal.UniversalTexts.DeleteUpper" class="btn-fill-md radius-4 text-light bg-orange-red" />
                     </div>
                 }
             </div>

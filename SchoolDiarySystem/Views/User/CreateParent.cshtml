@@ -1,64 +1,66 @@
 ﻿@{
     ViewBag.Title = "Create User";
+    ViewBag.ViewToShow = "CreateParent";
+    ViewBag.ControllerToShow = "User";
     Layout = "~/Views/Shared/_LayoutDirector.cshtml";
 }
 @using SchoolDiarySystem.Models
 @model Users
 
-        <div class="breadcrumbs-area">
-            <h3>Create Parent</h3>
-            <ul>
-                <li>
-                    <a href="@Url.Action("Index", "Director")">Home</a>
-                </li>
-                <li>Create Parent</li>
-            </ul>
-        </div>
-        <div class="card height-auto">
-            <div class="card-body">
-                <div class="heading-layout1">
-                    <div class="item-title">
-                        <h3>Create User for Parent</h3>
-                    </div>
-                </div>
-                @using (Html.BeginForm("CreateParent", "User", FormMethod.Post))
-                {
-                    @Html.ValidationSummary(true, "", new { @class = "alert alert-danger" })
-                    <form class="new-added-form">
-                        <div class="row">
-                            <div class="col-xl-6 col-lg-6 col-12 form-group">
-                                <label>Parent *</label>
-                                @Html.DropDownListFor(m => m.ParentID, new SelectList(ViewBag.Parent, "ParentID", "FullName"), new { @class = "select2" })
-                                @Html.ValidationMessageFor(m => m.ParentID, "", new { @class = "text-danger" })
-                            </div>
-                            <div class="col-xl-6 col-lg-4 col-12 form-group">
-                                <label>Expire Date *</label>
-                                @Html.TextBoxFor(m => m.ExpiresDate, new { @class = "form-control air-datepicker", placeholder = "dd/MMMM/yyyy", id = "expire", autocomplete = "off" })
-                                @Html.ValidationMessageFor(m => m.ExpiresDate, "", new { @class = "text-danger" })
-                                <i class="far fa-calendar-alt"></i>
-                            </div>
-                            <div class="col-xl-4 col-lg-4 col-12 form-group">
-                                <label>Username *</label>
-                                @Html.TextBoxFor(m => m.Username, new { @class = "form-control", placeholder = "Username", id = "username", autocomplete = "off" })
-                                @Html.ValidationMessageFor(m => m.Username, "", new { @class = "text-danger" })
-                            </div>
-                            <div class="col-xl-4 col-lg-4 col-12 form-group">
-                                <label>Password *</label>
-                                @Html.PasswordFor(m => m.Password, new { @class = "form-control", placeholder = "Type Password", id = "password" })
-                                @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
-                            </div>
-                            <div class="col-xl-4 col-lg-4 col-12 form-group">
-                                <label>Confirm Password </label>
-                                @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control", placeholder = "Confirm Password", id = "confirmPass" })
-                                @Html.ValidationMessageFor(m => m.ConfirmPassword, "", new { @class = "text-danger" })
-                            </div>
-                            <div class="col-12 form-group mg-t-8">
-                                <input type="submit" value="Create" class="btn-fill-md radius-4 text-light bg-light-sea-green" />
-                            </div>
-                        </div>
-                    </form>
-                }
+<div class="breadcrumbs-area">
+    <h3>@SchoolDiarySystem.Resources.User.CreateParent.CreateParentTexts.CUPForm</h3>
+    <ul>
+        <li>
+            <a href="@Url.Action("Index", "Director")">@SchoolDiarySystem.Resources.Universal.UniversalTexts.Home</a>
+        </li>
+        <li>@SchoolDiarySystem.Resources.User.CreateParent.CreateParentTexts.CreateUser</li>
+    </ul>
+</div>
+<div class="card height-auto">
+    <div class="card-body">
+        <div class="heading-layout1">
+            <div class="item-title">
+                <h3>@SchoolDiarySystem.Resources.User.CreateParent.CreateParentTexts.CreateUser</h3>
             </div>
         </div>
+        @using (Html.BeginForm("CreateParent", "User", FormMethod.Post))
+        {
+            @Html.ValidationSummary(true, "", new { @class = "alert alert-danger" })
+            <form class="new-added-form">
+                <div class="row">
+                    <div class="col-xl-6 col-lg-6 col-12 form-group">
+                        <label>@SchoolDiarySystem.Resources.User.CreateParent.CreateParentTexts.SelParent</label>
+                        @Html.DropDownListFor(m => m.ParentID, new SelectList(ViewBag.Parent, "ParentID", "FullName"), new { @class = "select2" })
+                        @Html.ValidationMessageFor(m => m.ParentID, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="col-xl-6 col-lg-4 col-12 form-group">
+                        <label>@SchoolDiarySystem.Resources.User.CreateParent.CreateParentTexts.ExpDate</label>
+                        @Html.TextBoxFor(m => m.ExpiresDate, new { @class = "form-control air-datepicker", placeholder = "dd/MMMM/yyyy", id = "expire", autocomplete = "off" })
+                        @Html.ValidationMessageFor(m => m.ExpiresDate, "", new { @class = "text-danger" })
+                        <i class="far fa-calendar-alt"></i>
+                    </div>
+                    <div class="col-xl-4 col-lg-4 col-12 form-group">
+                        <label>@SchoolDiarySystem.Resources.User.CreateParent.CreateParentTexts.Username</label>
+                        @Html.TextBoxFor(m => m.Username, new { @class = "form-control", placeholder = "Username", id = "username", autocomplete = "off" })
+                        @Html.ValidationMessageFor(m => m.Username, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="col-xl-4 col-lg-4 col-12 form-group">
+                        <label>@SchoolDiarySystem.Resources.User.CreateParent.CreateParentTexts.Pass</label>
+                        @Html.PasswordFor(m => m.Password, new { @class = "form-control", placeholder = "Type Password", id = "password" })
+                        @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="col-xl-4 col-lg-4 col-12 form-group">
+                        <label>@SchoolDiarySystem.Resources.User.CreateParent.CreateParentTexts.ConfPass</label>
+                        @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control", placeholder = "Confirm Password", id = "confirmPass" })
+                        @Html.ValidationMessageFor(m => m.ConfirmPassword, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="col-12 form-group mg-t-8">
+                        <input type="submit" value="@SchoolDiarySystem.Resources.Universal.UniversalTexts.CreateUpper" class="btn-fill-md radius-4 text-light bg-light-sea-green" />
+                    </div>
+                </div>
+            </form>
+        }
+    </div>
+</div>
 
 @section Scripts {}

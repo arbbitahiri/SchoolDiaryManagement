@@ -1,24 +1,26 @@
 ﻿@{
     ViewBag.Title = "Delete";
+    ViewBag.ViewToShow = "Delete";
+    ViewBag.ControllerToShow = "Class";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 @using SchoolDiarySystem.Models
 @model Class
 
 <div class="breadcrumbs-area">
-    <h3>Class</h3>
+    <h3>@SchoolDiarySystem.Resources.Class.Delete.DeleteTexts.DCForm</h3>
     <ul>
         <li>
-            <a href="@Url.Action("Index", "Admin")">Home</a>
+            <a href="@Url.Action("Index", "Admin")">@SchoolDiarySystem.Resources.Class.Delete.DeleteTexts.Home</a>
         </li>
-        <li>Class Details</li>
+        <li>@SchoolDiarySystem.Resources.Class.Delete.DeleteTexts.ClassDet</li>
     </ul>
 </div>
 <div class="card height-auto">
     <div class="card-body">
         <div class="heading-layout1">
             <div class="item-title">
-                <h3>Are you sure you want to delete this class?</h3>
+                <h3>@SchoolDiarySystem.Resources.Class.Delete.DeleteTexts.Sure</h3>
             </div>
         </div>
         <div class="single-info-details">
@@ -27,15 +29,15 @@
                     <table class="table text-nowrap">
                         <tbody>
                             <tr>
-                                <td>Class :</td>
+                                <td>@SchoolDiarySystem.Resources.Class.Delete.DeleteTexts.Class</td>
                                 <td>@Html.Label(Model.ClassNo.ToString(), new { @class = "font-medium text-dark-medium" })</td>
                             </tr>
                             <tr>
-                                <td>Teacher:</td>
+                                <td>@SchoolDiarySystem.Resources.Class.Delete.DeleteTexts.Teacher</td>
                                 <td>@Html.Label(Model.Teacher.FullName, new { @class = "font-medium text-dark-medium" })</td>
                             </tr>
                             <tr>
-                                <td>Room:</td>
+                                <td>@SchoolDiarySystem.Resources.Class.Delete.DeleteTexts.Room</td>
                                 <td>@Html.Label(Model.Room.RoomType, new { @class = "font-medium text-dark-medium" })</td>
                             </tr>
                         </tbody>
@@ -44,7 +46,7 @@
                 @using (Html.BeginForm("Delete", "Class", FormMethod.Post))
                 {
                     <div class="col-12 form-group mg-t-8">
-                        <input type="submit" value="Delete" class="btn-fill-md radius-4 text-light bg-orange-red" />
+                        <input type="submit" value="@SchoolDiarySystem.Resources.Class.Delete.DeleteTexts.Delete" class="btn-fill-md radius-4 text-light bg-orange-red" />
                     </div>
                 }
             </div>

@@ -1,15 +1,17 @@
 ﻿@{
     ViewBag.Title = "Teacher's Dashboard";
+    ViewBag.ViewToShow = "Index";
+    ViewBag.ControllerToShow = "Professor";
     Layout = "~/Views/Shared/_LayoutTeacher.cshtml";
 }
 @using SchoolDiarySystem.Models
 @model IEnumerable<Students>
 
         <div class="breadcrumbs-area">
-            <h3>Teacher Dashboard</h3>
+            <h3>@SchoolDiarySystem.Resources.Professor.IndexTexts.TeacherDash</h3>
             <ul>
                 <li>
-                    <a href="@Url.Action("Index", "Professor")">Home</a>
+                    <a href="@Url.Action("Index", "Professor")">@SchoolDiarySystem.Resources.Professor.IndexTexts.Home</a>
                 </li>
             </ul>
         </div>
@@ -23,7 +25,7 @@
                             </div>
                             <div class="item-content">
                                 <div class="item-number"><span class="counter" data-num="@ViewBag.Students">@ViewBag.Students</span></div>
-                                <div class="item-title">Total Students</div>
+                                <div class="item-title">@SchoolDiarySystem.Resources.Professor.IndexTexts.Student</div>
                             </div>
                         </div>
                     </div>
@@ -37,7 +39,7 @@
                     <div class="card-body">
                         <div class="heading-layout1">
                             <div class="item-title">
-                                <h3>My Students</h3>
+                                <h3>@SchoolDiarySystem.Resources.Professor.IndexTexts.MyStud</h3>
                             </div>
                         </div>
                         <div class="table-box-wrap">
@@ -46,10 +48,10 @@
                                 <form class="search-form-box">
                                     <div class="row gutters-8">
                                         <div class="col-4-xxxl col-xl-10 col-lg-4 col-12 form-group">
-                                            <input type="text" placeholder="Search by student's first or last name ..." name="searchString" class="form-control">
+                                            <input type="text" placeholder="@SchoolDiarySystem.Resources.Professor.IndexTexts.SearchBy" name="searchString" class="form-control">
                                         </div>
                                         <div class="col-1-xxxl col-xl-2 col-lg-2 col-12 form-group">
-                                            <button type="submit" class="fw-btn-fill btn-gradient-yellow">SEARCH</button>
+                                            <button type="submit" class="fw-btn-fill btn-gradient-yellow">@SchoolDiarySystem.Resources.Professor.IndexTexts.Search</button>
                                         </div>
                                     </div>
                                 </form>
@@ -59,12 +61,12 @@
                                     <thead>
                                         <tr>
                                             <th></th>
-                                            <th>First Name</th>
-                                            <th>Last Name</th>
-                                            <th>Gender</th>
-                                            <th>Class</th>
-                                            <th>Parent</th>
-                                            <th>Date Of Birth</th>
+                                            <th>@SchoolDiarySystem.Resources.Professor.IndexTexts.FirstN</th>
+                                            <th>@SchoolDiarySystem.Resources.Professor.IndexTexts.LastN</th>
+                                            <th>@SchoolDiarySystem.Resources.Professor.IndexTexts.Gender</th>
+                                            <th>@SchoolDiarySystem.Resources.Professor.IndexTexts.Class</th>
+                                            <th>@SchoolDiarySystem.Resources.Professor.IndexTexts.Parent</th>
+                                            <th>@SchoolDiarySystem.Resources.Professor.IndexTexts.DoB</th>
                                         </tr>
                                     </thead>
                                     <tbody>

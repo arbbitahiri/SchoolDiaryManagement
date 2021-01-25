@@ -85,7 +85,7 @@
                            aria-expanded="false">
                             <div class="admin-title">
                                 @Html.Label(UserSession.GetUsers.FullName, new { @class = "item-title" })
-                                <span>Admin</span>
+                                <span>@SchoolDiarySystem.Resources.Layout.Admin.AdminTexts.Admin</span>
                             </div>
                             <div class="admin-img">
                                 <img src="~/Content/img/figure/admin.jpg" alt="Admin">
@@ -105,10 +105,10 @@
                     </li>
                     <li class="navbar-item dropdown header-language">
                         <a class="navbar-nav-link dropdown-toggle" href="#" role="button"
-                           data-toggle="dropdown" aria-expanded="false"><i class="fas fa-globe-americas"></i>EN</a>
+                           data-toggle="dropdown" aria-expanded="false"><i class="fas fa-globe-americas"></i>@SchoolDiarySystem.Resources.Layout.Admin.AdminTexts.Language</a>
                         <div class="dropdown-menu dropdown-menu-right">
-                            <a class="dropdown-item" href="#">English</a>
-                            <a class="dropdown-item" href="#">Albanian</a>
+                            <a class="dropdown-item" href="@Url.Action("Language", "Account", new { lngName = "en", view = ViewBag.ViewToShow, cont = ViewBag.ControllerToShow, layout = "Admin" }, null)">@SchoolDiarySystem.Resources.Layout.Admin.AdminTexts.English</a>
+                            <a class="dropdown-item" href="@Url.Action("Language", "Account", new { lngName = "sq", view = ViewBag.ViewToShow, cont = ViewBag.ControllerToShow, layout = "Admin" }, null)">@SchoolDiarySystem.Resources.Layout.Admin.AdminTexts.Albanian</a>
                         </div>
                     </li>
                 </ul>
@@ -127,28 +127,28 @@
                 <div class="sidebar-menu-content">
                     <ul class="nav nav-sidebar-menu sidebar-toggle-view">
                         <li class="nav-item">
-                            <a href="@Url.Action("Index", "Admin")" class="nav-link"><i class="flaticon-dashboard"></i><span>Dashboard</span></a>
+                            <a href="@Url.Action("Index", "Admin")" class="nav-link"><i class="flaticon-dashboard"></i><span>@SchoolDiarySystem.Resources.Layout.Admin.AdminTexts.Dashboard</span></a>
                         </li>
                         <li class="nav-item">
-                            <a href="@Url.Action("Index", "Student")" class="nav-link"><i class="flaticon-classmates"></i><span>Student</span></a>
+                            <a href="@Url.Action("Index", "Student")" class="nav-link"><i class="flaticon-classmates"></i><span>@SchoolDiarySystem.Resources.Layout.Admin.AdminTexts.Student</span></a>
                         </li>
                         <li class="nav-item">
-                            <a href="@Url.Action("Index", "Teacher")" class="nav-link"><i class="flaticon-multiple-users-silhouette"></i><span>Teacher</span></a>
+                            <a href="@Url.Action("Index", "Teacher")" class="nav-link"><i class="flaticon-multiple-users-silhouette"></i><span>@SchoolDiarySystem.Resources.Layout.Admin.AdminTexts.Teacher</span></a>
                         </li>
                         <li class="nav-item">
-                            <a href="@Url.Action("Index", "Parent")" class="nav-link"><i class="flaticon-couple"></i><span>Parent</span></a>
+                            <a href="@Url.Action("Index", "Parent")" class="nav-link"><i class="flaticon-couple"></i><span>@SchoolDiarySystem.Resources.Layout.Admin.AdminTexts.Parent</span></a>
                         </li>
                         <li class="nav-item">
-                            <a href="@Url.Action("Index", "Class")" class="nav-link"><i class="flaticon-maths-class-materials-cross-of-a-pencil-and-a-ruler"></i><span>Class</span></a>
+                            <a href="@Url.Action("Index", "Class")" class="nav-link"><i class="flaticon-maths-class-materials-cross-of-a-pencil-and-a-ruler"></i><span>@SchoolDiarySystem.Resources.Layout.Admin.AdminTexts.Class</span></a>
                         </li>
                         <li class="nav-item">
-                            <a href="@Url.Action("Index", "Subject")" class="nav-link"><i class="flaticon-open-book"></i><span>Subject</span></a>
+                            <a href="@Url.Action("Index", "Subject")" class="nav-link"><i class="flaticon-open-book"></i><span>@SchoolDiarySystem.Resources.Layout.Admin.AdminTexts.Subject</span></a>
                         </li>
                         <li class="nav-item">
-                            <a href="@Url.Action("Index", "Schedule")" class="nav-link"><i class="flaticon-calendar"></i><span>Schedule</span></a>
+                            <a href="@Url.Action("Index", "Schedule")" class="nav-link"><i class="flaticon-calendar"></i><span>@SchoolDiarySystem.Resources.Layout.Admin.AdminTexts.Schedule</span></a>
                         </li>
                         <li class="nav-item">
-                            <a href="@Url.Action("Index", "Room")" class="nav-link"><i class="flaticon-bed"></i><span>Room</span></a>
+                            <a href="@Url.Action("Index", "Room")" class="nav-link"><i class="flaticon-bed"></i><span>@SchoolDiarySystem.Resources.Layout.Admin.AdminTexts.Room</span></a>
                         </li>
                     </ul>
                 </div>

@@ -1,116 +1,119 @@
 ﻿@{
     ViewBag.Title = "Topic Board";
+    ViewBag.ViewToShow = "Index";
+    ViewBag.ControllerToShow = "Topic";
     Layout = "~/Views/Shared/_LayoutTeacher.cshtml";
 }
 @using SchoolDiarySystem.Models
 @model IEnumerable<Topics>
 
-        <div class="breadcrumbs-area">
-            <h3>Topic Board</h3>
-            <ul>
-                <li>
-                    <a href="@Url.Action("Index", "Professor")">Home</a>
-                </li>
-                <li>Topic</li>
-            </ul>
-        </div>
-        <div class="col-4-xxxl col-12" style="padding:0; flex: 0 0 auto;">
-            <div class="card height-auto">
-                <div class="card-body">
-                    <div class="heading-layout1">
-                        <div class="item-title">
-                            <h3>Create A Topic</h3>
-                        </div>
+<div class="breadcrumbs-area">
+    <h3>@SchoolDiarySystem.Resources.Topic.Index.IndexTexts.TopicBoard</h3>
+    <ul>
+        <li>
+            <a href="@Url.Action("Index", "Professor")">@SchoolDiarySystem.Resources.Universal.UniversalTexts.Home</a>
+        </li>
+        <li>@SchoolDiarySystem.Resources.Topic.Index.IndexTexts.TopicBoard</li>
+    </ul>
+</div>
+<div class="col-4-xxxl col-12" style="padding:0; flex: 0 0 auto;">
+    <div class="card height-auto">
+        <div class="card-body">
+            <div class="heading-layout1">
+                <div class="item-title">
+                    <h3>@SchoolDiarySystem.Resources.Topic.Index.IndexTexts.CreateTopic</h3>
+                </div>
+            </div>
+            <form class="new-added-form">
+                <div class="row">
+                    <div class="col-12 form-group mg-t-8">
+                        <p>
+                            @Html.ActionLink("Create", "Create", "Topic", null, new { @class = "btn-fill-lg font-normal text-light gradient-pastel-green" })
+                        </p>
                     </div>
-                    <form class="new-added-form">
-                        <div class="row">
-                            <div class="col-12 form-group mg-t-8">
-                                <p>
-                                    @Html.ActionLink("Create", "Create", "Topic", null, new { @class = "btn-fill-lg font-normal text-light gradient-pastel-green" })
-                                </p>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-8-xxxl col-12">
+        <div class="card height-auto">
+            <div class="card-body">
+                <div class="heading-layout1">
+                    <div class="item-title">
+                        <h3>@SchoolDiarySystem.Resources.Topic.Index.IndexTexts.TopicBoard</h3>
+                    </div>
+                </div>
+                @using (Html.BeginForm("Index", "Topic", FormMethod.Get))
+                {
+                    <form class="mg-b-20">
+                        <div class="row gutters-8">
+                            <div class="col-lg-5 col-12 form-group">
+                                <input type="text" autocomplete="off" placeholder="@SchoolDiarySystem.Resources.Topic.Index.IndexTexts.SearchByD" name="searchString" class="form-control air-datepicker">
+                            </div>
+                            <div class="col-lg-5 col-12 form-group">
+                                <input type="text" autocomplete="off" placeholder="@SchoolDiarySystem.Resources.Topic.Index.IndexTexts.SearchBySub" name="searchString2" class="form-control">
+                            </div>
+                            <div class="col-lg-2 col-12 form-group">
+                                <button type="submit" class="fw-btn-fill btn-gradient-yellow">@SchoolDiarySystem.Resources.Universal.UniversalTexts.Search</button>
                             </div>
                         </div>
                     </form>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-8-xxxl col-12">
-                <div class="card height-auto">
-                    <div class="card-body">
-                        <div class="heading-layout1">
-                            <div class="item-title">
-                                <h3>Notice Board</h3>
-                            </div>
-                        </div>
-                        @using (Html.BeginForm("Index", "Topic", FormMethod.Get))
-                        {
-                            <form class="mg-b-20">
-                                <div class="row gutters-8">
-                                    <div class="col-lg-5 col-12 form-group">
-                                        <input type="text" autocomplete="off" placeholder="Search by date..." name="searchString" class="form-control air-datepicker">
+                }
+                <div class="notice-board-wrap">
+                    @foreach (var item in Model)
+                    {
+                        <div class="notice-list">
+                            <div class="heading-layout1">
+                                <div class="post-date bg-skyblue">@Html.DisplayFor(m => item.TopicDate)</div>
+                                <div class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                        <span class="flaticon-more-button-of-three-dots"></span>
+                                    </a>
+                                    <div class="dropdown-menu dropdown-menu-right">
+                                        <a class="dropdown-item" href="@Url.Action("Update", "Topic", new { id = item.TopicID })"><i class="fas fa-cogs text-dark-pastel-green"></i>@SchoolDiarySystem.Resources.Universal.UniversalTexts.UpdateLower</a>
                                     </div>
-                                    <div class="col-lg-5 col-12 form-group">
-                                        <input type="text" autocomplete="off" placeholder="Search by subject..." name="searchString2" class="form-control">
-                                    </div>
-                                    <div class="col-lg-2 col-12 form-group">
-                                        <button type="submit" class="fw-btn-fill btn-gradient-yellow">SEARCH</button>
-                                    </div>
-                                </div>
-                            </form>
-                        }
-                        <div class="notice-board-wrap">
-                            @foreach (var item in Model)
-                            {
-                                <div class="notice-list">
-                                    <div class="heading-layout1">
-                                        <div class="post-date bg-skyblue">@Html.DisplayFor(m => item.TopicDate)</div>
-                                        <div class="dropdown">
-                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                                                <span class="flaticon-more-button-of-three-dots"></span>
-                                            </a>
-                                            <div class="dropdown-menu dropdown-menu-right">
-                                                @*<a class="dropdown-item" data-toggle="modal" data-target="#standard-modal"><i class="fas fa-times text-orange-red"></i>Delete</a>*@
-                                                <a class="dropdown-item" href="@Url.Action("Update", "Topic", new { id = item.TopicID })"><i class="fas fa-cogs text-dark-pastel-green"></i>Update</a>
-                                            </div>
-                                            <div class="modal-box">
-                                                <!-- Modal -->
-                                                <div class="modal fade" id="standard-modal" tabindex="-1" role="dialog" aria-hidden="true" style="display: none;">
-                                                    <div class="modal-dialog" role="document">
-                                                        <div class="modal-content">
-                                                            <div class="modal-header">
-                                                                <h5 class="modal-title">Sure?</h5>
-                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                                    <span aria-hidden="true">×</span>
-                                                                </button>
-                                                            </div>
-                                                            <div class="modal-body">
-                                                                Are you sure you want to delete this topic?
-                                                            </div>
-                                                            <div class="modal-footer">
-                                                                <button type="button" class="footer-btn bg-dark-low" data-dismiss="modal">No</button>
-                                                                @using (Html.BeginForm("Delete", "Topic", new { id = item.TopicID }, FormMethod.Post))
-                                                                {
-                                                                    <input type="submit" value="Yes" class="footer-btn bg-linkedin" />
-                                                                }
-                                                            </div>
-                                                        </div>
+                                    <div class="modal-box">
+                                        <!-- Modal -->
+                                        <div class="modal fade" id="standard-modal" tabindex="-1" role="dialog" aria-hidden="true" style="display: none;">
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title">Sure?</h5>
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">×</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        Are you sure you want to delete this topic?
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="footer-btn bg-dark-low" data-dismiss="modal">No</button>
+                                                        @using (Html.BeginForm("Delete", "Topic", new { id = item.TopicID }, FormMethod.Post))
+                                                        {
+                                                            <input type="submit" value="Yes" class="footer-btn bg-linkedin" />
+                                                        }
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <h6 class="notice-title">
-                                            @Html.DisplayFor(m => item.Content)
-                                    </h6>
-                                    <div class="entry-meta">@Html.DisplayFor(m => item.Subject.SubjectTitle) | Class Time: @Html.DisplayFor(m => item.Time) / <span>Class: @Html.DisplayFor(m => item.Class.ClassNo)</span></div>
                                 </div>
-                            }
+                            </div>
+                            <h6 class="notice-title">
+                                @Html.DisplayFor(m => item.Content)
+                            </h6>
+                            <div class="entry-meta">@Html.DisplayFor(m => item.Subject.SubjectTitle) |
+                            @SchoolDiarySystem.Resources.Topic.Index.IndexTexts.ClassTime @Html.DisplayFor(m => item.Time) /
+                            <span>@SchoolDiarySystem.Resources.Topic.Index.IndexTexts.Class @Html.DisplayFor(m => item.Class.ClassNo)</span></div>
                         </div>
-                    </div>
+                    }
                 </div>
             </div>
         </div>
+    </div>
+</div>
 
 
 @section Scripts {}

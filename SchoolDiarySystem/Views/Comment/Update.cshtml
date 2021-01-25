@@ -1,24 +1,26 @@
 ﻿@{
     ViewBag.Title = "Update Comment";
+    ViewBag.ViewToShow = "Update";
+    ViewBag.ControllerToShow = "Comment";
     Layout = "~/Views/Shared/_LayoutTeacher.cshtml";
 }
 @using SchoolDiarySystem.Models
 @model Comments
 
         <div class="breadcrumbs-area">
-            <h3>Comment</h3>
+            <h3>@SchoolDiarySystem.Resources.Comment.Update.UpdateTexts.UCForm</h3>
             <ul>
                 <li>
-                    <a href="@Url.Action("Index", "Professor")">Home</a>
+                    <a href="@Url.Action("Index", "Professor")">@SchoolDiarySystem.Resources.Comment.Update.UpdateTexts.Home</a>
                 </li>
-                <li>Update Comment</li>
+                <li>@SchoolDiarySystem.Resources.Comment.Update.UpdateTexts.UpdateCom</li>
             </ul>
         </div>
         <div class="card height-auto">
             <div class="card-body">
                 <div class="heading-layout1">
                     <div class="item-title">
-                        <h3>Update Comment</h3>
+                        <h3>@SchoolDiarySystem.Resources.Comment.Update.UpdateTexts.UpdateCom</h3>
                     </div>
                 </div>
                 @using (Html.BeginForm("Update", "Comment", FormMethod.Post))
@@ -28,22 +30,22 @@
                         <div class="row">
                             @Html.HiddenFor(m => m.CommentID)
                             <div class="col-xl-4 col-lg-6 col-12 form-group">
-                                <label>Select Date *</label>
+                                <label>@SchoolDiarySystem.Resources.Comment.Update.UpdateTexts.SelDate</label>
                                 @Html.TextBoxFor(m => m.CommentDate, new { @class = "form-control", @type="date", placeholder = "dd/MMMM/yyyy", id = "commentDate", autocomplete = "off" })
                                 @Html.ValidationMessageFor(m => m.CommentDate, "", new { @class = "text-danger" })
                             </div>
                             <div class="col-xl-4 col-lg-6 col-12 form-group">
-                                <label>Select Time *</label>
+                                <label>@SchoolDiarySystem.Resources.Comment.Update.UpdateTexts.SelTime</label>
                                 @Html.DropDownListFor(m => m.Time, new SelectList(ViewBag.Times), new { @class = "select2" })
                                 @Html.ValidationMessageFor(m => m.Time, "", new { @class = "text-danger" })
                             </div>
                             <div class="col-xl-6 col-lg-6 col-12 form-group">
-                                <label>Comment *</label>
+                                <label>@SchoolDiarySystem.Resources.Comment.Update.UpdateTexts.Comment</label>
                                 @Html.TextAreaFor(m => m.Content, new { @class = "textarea form-control", placeholder = "Type your comment here...", id = "content", autocomplete = "off", style = "margin-top: 0px; margin-bottom: 0px; height: 150px;" })
                                 @Html.ValidationMessageFor(m => m.Content, "", new { @class = "text-danger" })
                             </div>
                             <div class="col-12 form-group mg-t-8">
-                                <input type="submit" value="Update" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark" />
+                                <input type="submit" value="@SchoolDiarySystem.Resources.Comment.Update.UpdateTexts.Update" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark" />
                             </div>
                         </div>
                     </form>

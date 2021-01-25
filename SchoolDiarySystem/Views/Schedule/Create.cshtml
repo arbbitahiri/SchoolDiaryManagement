@@ -1,24 +1,26 @@
 ﻿@{
     ViewBag.Title = "Create Schedule";
+    ViewBag.ViewToShow = "Create";
+    ViewBag.ControllerToShow = "Schedule";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 @using SchoolDiarySystem.Models
 @model ClassSchedules
 
 <div class="breadcrumbs-area">
-    <h3>Schedule Create Form</h3>
+    <h3>@SchoolDiarySystem.Resources.Schedule.Create.CreateTexts.CCSForm</h3>
     <ul>
         <li>
-            <a href="@Url.Action("Index", "Admin")">Home</a>
+            <a href="@Url.Action("Index", "Admin")">@SchoolDiarySystem.Resources.Schedule.Create.CreateTexts.Home</a>
         </li>
-        <li>Create Schedule</li>
+        <li>@SchoolDiarySystem.Resources.Schedule.Create.CreateTexts.CreateSched</li>
     </ul>
 </div>
 <div class="card height-auto">
     <div class="card-body">
         <div class="heading-layout1">
             <div class="item-title">
-                <h3>Create Schedule</h3>
+                <h3>@SchoolDiarySystem.Resources.Schedule.Create.CreateTexts.CreateSched</h3>
             </div>
         </div>
         @using (Html.BeginForm("Create", "Schedule", FormMethod.Post))
@@ -27,27 +29,27 @@
             <form class="new-added-form">
                 <div class="row">
                     <div class="col-xl-4 col-lg-6 col-12 form-group">
-                        <label>Class Number *</label>
+                        <label>@SchoolDiarySystem.Resources.Schedule.Create.CreateTexts.SelClass</label>
                         @Html.DropDownListFor(m => m.ClassID, new SelectList(ViewBag.Class, "ClassID", "ClassNo"), htmlAttributes: new { @class = "select2" })
                         @Html.ValidationMessageFor(m => m.ClassID, "", new { @class = "text-danger" })
                     </div>
                     <div class="col-xl-4 col-lg-6 col-12 form-group">
-                        <label>Subject *</label>
+                        <label>@SchoolDiarySystem.Resources.Schedule.Create.CreateTexts.SelSub</label>
                         @Html.DropDownListFor(m => m.SubjectID, new SelectList(ViewBag.Subject, "SubjectID", "SubjectTitle"), htmlAttributes: new { @class = "select2" })
                         @Html.ValidationMessageFor(m => m.SubjectID, "", new { @class = "text-danger" })
                     </div>
                     <div class="col-xl-4 col-lg-6 col-12 form-group">
-                        <label>Time *</label>
+                        <label>@SchoolDiarySystem.Resources.Schedule.Create.CreateTexts.SelTime</label>
                         @Html.DropDownListFor(m => m.Time, new SelectList(ViewBag.Times), htmlAttributes: new { @class = "select2" })
                         @Html.ValidationMessageFor(m => m.Time, "", new { @class = "text-danger" })
                     </div>
                     <div class="col-xl-4 col-lg-6 col-12 form-group">
-                        <label>Day *</label>
+                        <label>@SchoolDiarySystem.Resources.Schedule.Create.CreateTexts.SelDay</label>
                         @Html.DropDownListFor(m => m.Day, new SelectList(ViewBag.Days), htmlAttributes: new { @class = "select2" })
                         @Html.ValidationMessageFor(m => m.Day, "", new { @class = "text-danger" })
                     </div>
                     <div class="col-12 form-group mg-t-8">
-                        <input type="submit" value="Create" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark" />
+                        <input type="submit" value="@SchoolDiarySystem.Resources.Schedule.Create.CreateTexts.Create" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark" />
                     </div>
                 </div>
             </form>

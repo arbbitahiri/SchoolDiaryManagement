@@ -1,24 +1,26 @@
 ﻿@{
     ViewBag.Title = "Create Absence";
+    ViewBag.ViewToShow = "Create";
+    ViewBag.ControllerToShow = "Absence";
     Layout = "~/Views/Shared/_LayoutTeacher.cshtml";
 }
 @using SchoolDiarySystem.Models
 @model Absences
 
 <div class="breadcrumbs-area">
-    <h3>Absence</h3>
+    <h3>@SchoolDiarySystem.Resources.Absence.Create.CreateTexts.CAForm</h3>
     <ul>
         <li>
-            <a href="@Url.Action("Index", "Professor")">Home</a>
+            <a href="@Url.Action("Index", "Professor")">@SchoolDiarySystem.Resources.Absence.Create.CreateTexts.Home</a>
         </li>
-        <li>Add New Absence</li>
+        <li>@SchoolDiarySystem.Resources.Absence.Create.CreateTexts.NewA</li>
     </ul>
 </div>
 <div class="card height-auto">
     <div class="card-body">
         <div class="heading-layout1">
             <div class="item-title">
-                <h3>Add New Absence</h3>
+                <h3>@SchoolDiarySystem.Resources.Absence.Create.CreateTexts.NewA</h3>
             </div>
         </div>
         @using (Html.BeginForm("Create", "Absence", FormMethod.Post))
@@ -26,33 +28,28 @@
             @Html.ValidationSummary(true, "", new { @class = "alert alert-danger" })
             <form class="new-added-form">
                 <div class="row">
-                    @*<div class="col-xl-3 col-lg-6 col-12 form-group">
-                        <label>Select Class *</label>
-                        @Html.DropDownListFor(m => m.ClassID, new SelectList(ViewBag.Class, "ClassID", "ClassNo"), new { @class = "select2" })
-                        @Html.ValidationMessageFor(m => m.ClassID, "", new { @class = "text-danger" })
-                    </div>*@
                     <div class="col-xl-3 col-lg-6 col-12 form-group">
-                        <label>Select Subject *</label>
+                        <label>@SchoolDiarySystem.Resources.Absence.Create.CreateTexts.SelSub</label>
                         @Html.DropDownListFor(m => m.SubjectID, new SelectList(ViewBag.Subject, "SubjectID", "SubjectTitle"), new { @class = "select2" })
                         @Html.ValidationMessageFor(m => m.SubjectID, "", new { @class = "text-danger" })
                     </div>
                     <div class="col-xl-3 col-lg-6 col-12 form-group">
-                        <label>Select Date *</label>
+                        <label>@SchoolDiarySystem.Resources.Absence.Create.CreateTexts.SelDate</label>
                         @Html.TextBoxFor(m => m.AbsenceDate, new { @class = "form-control", type = "date", placeholder = "dd/MMMM/yyyy", autocomplete = "off" })
                         @Html.ValidationMessageFor(m => m.AbsenceDate, "", new { @class = "text-danger" })
                     </div>
                     <div class="col-xl-3 col-lg-6 col-12 form-group">
-                        <label>Select Reason *</label>
+                        <label>@SchoolDiarySystem.Resources.Absence.Create.CreateTexts.SelReas</label>
                         @Html.DropDownListFor(m => m.AbsenceReasoning, new SelectList(ViewBag.AbsenceReasoning), new { @class = "select2" })
                         @Html.ValidationMessageFor(m => m.AbsenceReasoning, "", new { @class = "text-danger" })
                     </div>
                     <div class="col-xl-3 col-lg-6 col-12 form-group">
-                        <label>Select Student *</label>
+                        <label>@SchoolDiarySystem.Resources.Absence.Create.CreateTexts.SelStud</label>
                         @Html.DropDownListFor(m => m.StudentID, new SelectList(ViewBag.Student, "StudentID", "FullName"), new { @class = "select2" })
                         @Html.ValidationMessageFor(m => m.StudentID, "", new { @class = "text-danger" })
                     </div>
                     <div class="col-12 form-group mg-t-8">
-                        <input type="submit" value="Create" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark" />
+                        <input type="submit" value="@SchoolDiarySystem.Resources.Absence.Create.CreateTexts.Create" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark" />
                     </div>
                 </div>
             </form>

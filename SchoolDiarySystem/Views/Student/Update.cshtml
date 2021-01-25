@@ -1,66 +1,68 @@
 ﻿@{
     ViewBag.Title = "Update Student";
+    ViewBag.ViewToShow = "Update";
+    ViewBag.ControllerToShow = "Student";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 @using SchoolDiarySystem.Models
 @model Students
 
-        <div class="breadcrumbs-area">
-            <h3>Student</h3>
-            <ul>
-                <li>
-                    <a href="@Url.Action("Index", "Admin")">Home</a>
-                </li>
-                <li>Update Student</li>
-            </ul>
-        </div>
-        <div class="card height-auto">
-            <div class="card-body">
-                <div class="heading-layout1">
-                    <div class="item-title">
-                        <h3>Update Student</h3>
-                    </div>
-                </div>
-                @using (Html.BeginForm("Update", "Student", FormMethod.Post))
-                {
-                    @Html.ValidationSummary(true, "", new { @class = "alert alert-danger" })
-                    <form class="new-added-form">
-                        <div class="row">
-                            @Html.HiddenFor(m => m.StudentID)
-                            @Html.HiddenFor(m => m.DayofBirth)
-                            <div class="col-xl-3 col-lg-6 col-12 form-group">
-                                <label>First Name *</label>
-                                @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control", placeholder = "First Name", id = "firstname", autocomplete = "off" })
-                                @Html.ValidationMessageFor(m => m.FirstName, "", new { @class = "text-danger" })
-                            </div>
-                            <div class="col-xl-3 col-lg-6 col-12 form-group">
-                                <label>Last Name *</label>
-                                @Html.TextBoxFor(m => m.LastName, new { @class = "form-control", placeholder = "Last Name", id = "lastname", autocomplete = "off" })
-                                @Html.ValidationMessageFor(m => m.LastName, "", new { @class = "text-danger" })
-                            </div>
-                            <div class="col-xl-3 col-lg-6 col-12 form-group">
-                                <label>Date Of Birth *</label>
-                                @Html.TextBoxFor(m => m.DayofBirth, new { @class = "form-control air-datepicker", type = "text", disabled = "true", placeholder = "dd/MMMM/yyyy", id = "dob", autocomplete = "off" })
-                                @Html.ValidationMessageFor(m => m.DayofBirth, "", new { @class = "text-danger" })
-                                <i class="far fa-calendar-alt"></i>
-                            </div>
-                            <div class="col-xl-3 col-lg-6 col-12 form-group">
-                                <label>Class *</label>
-                                @Html.DropDownListFor(m => m.ClassID, new SelectList(ViewBag.Class, "ClassID", "ClassNo"), new { @class = "select2" })
-                                @Html.ValidationMessageFor(m => m.ClassID, "", new { @class = "text-danger" })
-                            </div>
-                            <div class="col-xl-3 col-lg-6 col-12 form-group">
-                                <label>Parent *</label>
-                                @Html.DropDownListFor(m => m.ParentID, new SelectList(ViewBag.Parent, "ParentID", "FullName"), new { @class = "select2" })
-                                @Html.ValidationMessageFor(m => m.ParentID, "", new { @class = "text-danger" })
-                            </div>
-                            <div class="col-12 form-group mg-t-8">
-                                <input type="submit" value="Update" class="btn-fill-lmd radius-4 text-light bg-violet-blue" />
-                            </div>
-                        </div>
-                    </form>
-                }
+<div class="breadcrumbs-area">
+    <h3>@SchoolDiarySystem.Resources.Student.Update.UpdateTexts.USForm</h3>
+    <ul>
+        <li>
+            <a href="@Url.Action("Index", "Admin")">@SchoolDiarySystem.Resources.Universal.UniversalTexts.Home</a>
+        </li>
+        <li>@SchoolDiarySystem.Resources.Student.Update.UpdateTexts.UpdateStud</li>
+    </ul>
+</div>
+<div class="card height-auto">
+    <div class="card-body">
+        <div class="heading-layout1">
+            <div class="item-title">
+                <h3>@SchoolDiarySystem.Resources.Student.Update.UpdateTexts.UpdateStud</h3>
             </div>
         </div>
+        @using (Html.BeginForm("Update", "Student", FormMethod.Post))
+        {
+            @Html.ValidationSummary(true, "", new { @class = "alert alert-danger" })
+            <form class="new-added-form">
+                <div class="row">
+                    @Html.HiddenFor(m => m.StudentID)
+                    @Html.HiddenFor(m => m.DayofBirth)
+                    <div class="col-xl-3 col-lg-6 col-12 form-group">
+                        <label>@SchoolDiarySystem.Resources.Student.Update.UpdateTexts.FirstN</label>
+                        @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control", placeholder = "First Name", id = "firstname", autocomplete = "off" })
+                        @Html.ValidationMessageFor(m => m.FirstName, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="col-xl-3 col-lg-6 col-12 form-group">
+                        <label>@SchoolDiarySystem.Resources.Student.Update.UpdateTexts.LastN</label>
+                        @Html.TextBoxFor(m => m.LastName, new { @class = "form-control", placeholder = "Last Name", id = "lastname", autocomplete = "off" })
+                        @Html.ValidationMessageFor(m => m.LastName, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="col-xl-3 col-lg-6 col-12 form-group">
+                        <label>@SchoolDiarySystem.Resources.Student.Update.UpdateTexts.DoB</label>
+                        @Html.TextBoxFor(m => m.DayofBirth, new { @class = "form-control air-datepicker", type = "text", disabled = "true", placeholder = "dd/MMMM/yyyy", id = "dob", autocomplete = "off" })
+                        @Html.ValidationMessageFor(m => m.DayofBirth, "", new { @class = "text-danger" })
+                        <i class="far fa-calendar-alt"></i>
+                    </div>
+                    <div class="col-xl-3 col-lg-6 col-12 form-group">
+                        <label>@SchoolDiarySystem.Resources.Student.Update.UpdateTexts.SelClass</label>
+                        @Html.DropDownListFor(m => m.ClassID, new SelectList(ViewBag.Class, "ClassID", "ClassNo"), new { @class = "select2" })
+                        @Html.ValidationMessageFor(m => m.ClassID, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="col-xl-3 col-lg-6 col-12 form-group">
+                        <label>@SchoolDiarySystem.Resources.Student.Update.UpdateTexts.SelParent</label>
+                        @Html.DropDownListFor(m => m.ParentID, new SelectList(ViewBag.Parent, "ParentID", "FullName"), new { @class = "select2" })
+                        @Html.ValidationMessageFor(m => m.ParentID, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="col-12 form-group mg-t-8">
+                        <input type="submit" value="@SchoolDiarySystem.Resources.Universal.UniversalTexts.UpdateUpper" class="btn-fill-lmd radius-4 text-light bg-violet-blue" />
+                    </div>
+                </div>
+            </form>
+        }
+    </div>
+</div>
 
 @section Scripts {}

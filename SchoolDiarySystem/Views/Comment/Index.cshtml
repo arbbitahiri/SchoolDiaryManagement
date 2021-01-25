@@ -1,103 +1,108 @@
-﻿@using SchoolDiarySystem.Models
+﻿@{
+    ViewBag.Title = "Comment's List";
+    ViewBag.ViewToShow = "Index";
+    ViewBag.ControllerToShow = "Comment";
+}
+@using SchoolDiarySystem.Models
 @model IEnumerable<Comments>
 
-        <div class="breadcrumbs-area">
-            <h3>Comment Board</h3>
-            <ul>
-                <li>
-                    <a href="@Url.Action("Index", "Professor")">Home</a>
-                </li>
-                <li>Comment</li>
-            </ul>
-        </div>
-        <div class="col-4-xxxl col-12" style="padding:0; flex: 0 0 auto;">
-            <div class="card height-auto">
-                <div class="card-body">
-                    <div class="heading-layout1">
-                        <div class="item-title">
-                            <h3>Create A Comment</h3>
-                        </div>
+<div class="breadcrumbs-area">
+    <h3>@SchoolDiarySystem.Resources.Comment.Index.IndexTexts.ComBoard</h3>
+    <ul>
+        <li>
+            <a href="@Url.Action("Index", "Professor")">@SchoolDiarySystem.Resources.Comment.Index.IndexTexts.Home</a>
+        </li>
+        <li>@SchoolDiarySystem.Resources.Comment.Index.IndexTexts.ComBoard</li>
+    </ul>
+</div>
+<div class="col-4-xxxl col-12" style="padding:0; flex: 0 0 auto;">
+    <div class="card height-auto">
+        <div class="card-body">
+            <div class="heading-layout1">
+                <div class="item-title">
+                    <h3>@SchoolDiarySystem.Resources.Comment.Index.IndexTexts.CreateCom</h3>
+                </div>
+            </div>
+            <form class="new-added-form">
+                <div class="row">
+                    <div class="col-12 form-group mg-t-8">
+                        <p>
+                            @Html.ActionLink(SchoolDiarySystem.Resources.Comment.Index.IndexTexts.Create, "Create", "Comment", null, new { @class = "btn-fill-lg font-normal text-light gradient-pastel-green" })
+                        </p>
                     </div>
-                    <form class="new-added-form">
-                        <div class="row">
-                            <div class="col-12 form-group mg-t-8">
-                                <p>
-                                    @Html.ActionLink("Create", "Create", "Comment", null, new { @class = "btn-fill-lg font-normal text-light gradient-pastel-green" })
-                                </p>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-8-xxxl col-12">
+        <div class="card height-auto">
+            <div class="card-body">
+                <div class="heading-layout1">
+                    <div class="item-title">
+                        <h3>@SchoolDiarySystem.Resources.Comment.Index.IndexTexts.ComBoard</h3>
+                    </div>
+                </div>
+                @using (Html.BeginForm("Index", "Comment", FormMethod.Get))
+                {
+                    <form class="mg-b-20">
+                        <div class="row gutters-8">
+                            <div class="col-lg-5 col-12 form-group">
+                                <input type="text" autocomplete="off" placeholder="@SchoolDiarySystem.Resources.Comment.Index.IndexTexts.SearchByD" name="searchString" class="form-control air-datepicker">
+                            </div>
+                            <div class="col-lg-5 col-12 form-group">
+                                <input type="text" autocomplete="off" placeholder="@SchoolDiarySystem.Resources.Comment.Index.IndexTexts.SearchByS" name="searchString2" class="form-control">
+                            </div>
+                            <div class="col-lg-2 col-12 form-group">
+                                <button type="submit" class="fw-btn-fill btn-gradient-yellow">@SchoolDiarySystem.Resources.Comment.Index.IndexTexts.Search</button>
                             </div>
                         </div>
                     </form>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-8-xxxl col-12">
-                <div class="card height-auto">
-                    <div class="card-body">
-                        <div class="heading-layout1">
-                            <div class="item-title">
-                                <h3>Comment Board</h3>
+                }
+                <div class="notice-board-wrap">
+                    @foreach (var item in Model)
+                    {
+                        <div class="notice-list">
+                            <div class="heading-layout1">
+                                <div class="post-date bg-skyblue">@Html.DisplayFor(m => item.CommentDate)</div>
+                                @if (item.Review.ReviewID != 0)
+                                {
+                                    <div class="post-date bg-pink">
+                                        @SchoolDiarySystem.Resources.Comment.Index.IndexTexts.Reviewed @Html.DisplayFor(m => item.Review.ReviewDate)
+                                    </div>
+                                }
+
+                                @if (item.Review.ReviewID == 0)
+                                {
+                                    <div class="dropdown">
+                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                            <span class="flaticon-more-button-of-three-dots"></span>
+                                        </a>
+                                        <div class="dropdown-menu dropdown-menu-right">
+                                            <a class="dropdown-item" href="@Url.Action("Update", "Comment", new { id = item.CommentID })"><i class="fas fa-cogs text-dark-pastel-green"></i>@SchoolDiarySystem.Resources.Comment.Index.IndexTexts.Update</a>
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+                            <h6 class="notice-title">
+                                @Html.DisplayFor(m => item.Content)
+                            </h6>
+                            @if (item.Review.ReviewID != 0)
+                            {
+                                <div class="entry-meta"> @Html.DisplayFor(m => item.Review.Review)</div>
+                            }
+                            <br />
+                            <div class="entry-meta">
+                                @Html.DisplayFor(m => item.Student.FullName) /
+                                <span>@Html.DisplayFor(m => item.Subject.SubjectTitle) @SchoolDiarySystem.Resources.Comment.Index.IndexTexts.Time @Html.DisplayFor(m => item.Time)</span>
                             </div>
                         </div>
-                        @using (Html.BeginForm("Index", "Comment", FormMethod.Get))
-                        {
-                            <form class="mg-b-20">
-                                <div class="row gutters-8">
-                                    <div class="col-lg-5 col-12 form-group">
-                                        <input type="text" autocomplete="off" placeholder="Search by date ..." name="searchString" class="form-control air-datepicker">
-                                    </div>
-                                    <div class="col-lg-5 col-12 form-group">
-                                        <input type="text" autocomplete="off" placeholder="Search by student ..." name="searchString2" class="form-control">
-                                    </div>
-                                    <div class="col-lg-2 col-12 form-group">
-                                        <button type="submit" class="fw-btn-fill btn-gradient-yellow">SEARCH</button>
-                                    </div>
-                                </div>
-                            </form>
-                        }
-                        <div class="notice-board-wrap">
-                            @foreach (var item in Model)
-                            {
-                                <div class="notice-list">
-                                    <div class="heading-layout1">
-                                        <div class="post-date bg-skyblue">@Html.DisplayFor(m => item.CommentDate)</div>
-                                        @if (item.Review.ReviewID != 0)
-                                        {
-                                            <div class="post-date bg-pink">
-                                                Reviewed on @Html.DisplayFor(m => item.Review.ReviewDate)
-                                            </div>
-                                        }
-
-                                        @if (item.Review.ReviewID == 0)
-                                        {
-                                            <div class="dropdown">
-                                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                                                    <span class="flaticon-more-button-of-three-dots"></span>
-                                                </a>
-                                                <div class="dropdown-menu dropdown-menu-right">
-                                                    <a class="dropdown-item" href="@Url.Action("Update", "Comment", new { id = item.CommentID })"><i class="fas fa-cogs text-dark-pastel-green"></i>Update</a>
-                                                </div>
-                                            </div>
-                                        }
-                                    </div>
-                                    <h6 class="notice-title">
-                                        @Html.DisplayFor(m => item.Content)
-                                    </h6>
-                                    @if (item.Review.ReviewID != 0)
-                                    {
-                                        <div class="entry-meta"> @Html.DisplayFor(m => item.Review.Review)</div>
-                                    }
-                                    <br />
-                                    <div class="entry-meta">
-                                        @Html.DisplayFor(m => item.Student.FullName) /
-                                        <span>@Html.DisplayFor(m => item.Subject.SubjectTitle) Time: @Html.DisplayFor(m => item.Time)</span>
-                                    </div>
-                                </div>
-                            }
-                        </div>
-                    </div>
+                    }
                 </div>
             </div>
         </div>
+    </div>
+</div>
 
 @section Scripts {}

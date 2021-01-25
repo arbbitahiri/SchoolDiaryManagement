@@ -1,24 +1,26 @@
 ﻿@{
     ViewBag.Title = "Update Absence";
+    ViewBag.ViewToShow = "Update";
+    ViewBag.ControllerToShow = "Absence";
     Layout = "~/Views/Shared/_LayoutTeacher.cshtml";
 }
 @using SchoolDiarySystem.Models
 @model Absences
 
 <div class="breadcrumbs-area">
-    <h3>Absence</h3>
+    <h3>@SchoolDiarySystem.Resources.Absence.Update.UpdateTexts.UAForm</h3>
     <ul>
         <li>
-            <a href="@Url.Action("Index", "Professor")">Home</a>
+            <a href="@Url.Action("Index", "Professor")">@SchoolDiarySystem.Resources.Absence.Update.UpdateTexts.Home</a>
         </li>
-        <li>Update Absence</li>
+        <li>@SchoolDiarySystem.Resources.Absence.Update.UpdateTexts.UpAb</li>
     </ul>
 </div>
 <div class="card height-auto">
     <div class="card-body">
         <div class="heading-layout1">
             <div class="item-title">
-                <h3>Update Absence</h3>
+                <h3>@SchoolDiarySystem.Resources.Absence.Update.UpdateTexts.UpAb</h3>
             </div>
         </div>
         @using (Html.BeginForm("Update", "Absence", FormMethod.Post))
@@ -27,28 +29,23 @@
             <form class="new-added-form">
                 <div class="row">
                     @Html.HiddenFor(m => m.AbsenceID)
-                    @*<div class="col-xl-3 col-lg-6 col-12 form-group">
-                        <label>Select Class *</label>
-                        @Html.DropDownListFor(m => m.ClassID, new SelectList(ViewBag.Class, "ClassID", "ClassNo"), new { @class = "select2" })
-                        @Html.ValidationMessageFor(m => m.ClassID, "", new { @class = "text-danger" })
-                    </div>*@
                     <div class="col-xl-3 col-lg-6 col-12 form-group">
-                        <label>Select Date *</label>
+                        <label>@SchoolDiarySystem.Resources.Absence.Update.UpdateTexts.SelDate</label>
                         @Html.TextBoxFor(m => m.AbsenceDate, new { @class = "form-control", type = "date", placeholder = "dd/MMMM/yyyy", autocomplete = "off" })
                         @Html.ValidationMessageFor(m => m.AbsenceDate, "", new { @class = "text-danger" })
                     </div>
                     <div class="col-xl-3 col-lg-6 col-12 form-group">
-                        <label>Select Reason *</label>
+                        <label>@SchoolDiarySystem.Resources.Absence.Update.UpdateTexts.SelReas</label>
                         @Html.DropDownListFor(m => m.AbsenceReasoning, new SelectList(ViewBag.AbsenceReasoning), new { @class = "select2" })
                         @Html.ValidationMessageFor(m => m.AbsenceReasoning, "", new { @class = "text-danger" })
                     </div>
                     <div class="col-xl-3 col-lg-6 col-12 form-group">
-                        <label>Select Student *</label>
+                        <label>@SchoolDiarySystem.Resources.Absence.Update.UpdateTexts.SelStud</label>
                         @Html.DropDownListFor(m => m.StudentID, new SelectList(ViewBag.Student, "StudentID", "FullName"), new { @class = "select2" })
                         @Html.ValidationMessageFor(m => m.StudentID, "", new { @class = "text-danger" })
                     </div>
                     <div class="col-12 form-group mg-t-8">
-                        <input type="submit" value="Update" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark" />
+                        <input type="submit" value="@SchoolDiarySystem.Resources.Absence.Update.UpdateTexts.Update" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark" />
                     </div>
                 </div>
             </form>

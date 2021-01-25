@@ -1,49 +1,51 @@
 ﻿@{
     ViewBag.Title = "Update Review";
+    ViewBag.ViewToShow = "Update";
+    ViewBag.ControllerToShow = "Review";
     Layout = "~/Views/Shared/_LayoutDirector.cshtml";
 }
 @using SchoolDiarySystem.Models
 @model Reviews
 
-        <div class="breadcrumbs-area">
-            <h3>Review</h3>
-            <ul>
-                <li>
-                    <a href="@Url.Action("Index", "Director")">Home</a>
-                </li>
-                <li>Update Review</li>
-            </ul>
-        </div>
-        <div class="card height-auto">
-            <div class="card-body">
-                <div class="heading-layout1">
-                    <div class="item-title">
-                        <h3>Update Review</h3>
-                    </div>
-                </div>
-                @using (Html.BeginForm("Update", "Review", FormMethod.Post))
-                {
-                    @Html.ValidationSummary(true, "", new { @class = "alert alert-danger" })
-                    <form class="new-added-form">
-                        <div class="row">
-                            @Html.HiddenFor(m => m.ReviewID)
-                            <div class="col-xl-6 col-lg-6 col-12 form-group">
-                                <label>Review *</label>
-                                @Html.TextAreaFor(m => m.Review, new { @class = "textarea form-control", placeholder = "Write your review here...", id = "review", autocomplete = "off", style = "margin-top: 0px; margin-bottom: 0px; height: 150px;" })
-                                @Html.ValidationMessageFor(m => m.Review, "", new { @class = "text-danger" })
-                            </div>
-                            <div class="col-xl-3 col-lg-6 col-12 form-group">
-                                <label>Select Date *</label>
-                                @Html.TextBoxFor(m => m.ReviewDate, new { @class = "form-control", type = "date", placeholder = "dd/MMMM/yyyy", id = "reveiwDate", autocomplete = "off" })
-                                @Html.ValidationMessageFor(m => m.ReviewDate, "", new { @class = "text-danger" })
-                            </div>
-                            <div class="col-12 form-group mg-t-8">
-                                <input type="submit" value="Update" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark" />
-                            </div>
-                        </div>
-                    </form>
-                }
+<div class="breadcrumbs-area">
+    <h3>@SchoolDiarySystem.Resources.Review.Update.UpdateTexts.URForm</h3>
+    <ul>
+        <li>
+            <a href="@Url.Action("Index", "Director")">@SchoolDiarySystem.Resources.Review.Update.UpdateTexts.Home</a>
+        </li>
+        <li>@SchoolDiarySystem.Resources.Review.Update.UpdateTexts.UpdateRev</li>
+    </ul>
+</div>
+<div class="card height-auto">
+    <div class="card-body">
+        <div class="heading-layout1">
+            <div class="item-title">
+                <h3>@SchoolDiarySystem.Resources.Review.Update.UpdateTexts.UpdateRev</h3>
             </div>
         </div>
+        @using (Html.BeginForm("Update", "Review", FormMethod.Post))
+        {
+            @Html.ValidationSummary(true, "", new { @class = "alert alert-danger" })
+            <form class="new-added-form">
+                <div class="row">
+                    @Html.HiddenFor(m => m.ReviewID)
+                    <div class="col-xl-6 col-lg-6 col-12 form-group">
+                        <label>@SchoolDiarySystem.Resources.Review.Update.UpdateTexts.Review</label>
+                        @Html.TextAreaFor(m => m.Review, new { @class = "textarea form-control", placeholder = "Write your review here...", id = "review", autocomplete = "off", style = "margin-top: 0px; margin-bottom: 0px; height: 150px;" })
+                        @Html.ValidationMessageFor(m => m.Review, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="col-xl-3 col-lg-6 col-12 form-group">
+                        <label>@SchoolDiarySystem.Resources.Review.Update.UpdateTexts.SelDate</label>
+                        @Html.TextBoxFor(m => m.ReviewDate, new { @class = "form-control", type = "date", placeholder = "dd/MMMM/yyyy", id = "reveiwDate", autocomplete = "off" })
+                        @Html.ValidationMessageFor(m => m.ReviewDate, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="col-12 form-group mg-t-8">
+                        <input type="submit" value="@SchoolDiarySystem.Resources.Review.Update.UpdateTexts.Update" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark" />
+                    </div>
+                </div>
+            </form>
+        }
+    </div>
+</div>
 
 @section Scripts {}

@@ -1,7 +1,9 @@
 ﻿using SchoolDiarySystem.DAL;
 using SchoolDiarySystem.Models;
 using SchoolDiarySystem.Models.DataAnnotations;
+using SchoolDiarySystem.Models.Validations;
 using System;
+using System.Web;
 using System.Web.Mvc;
 
 namespace SchoolDiarySystem.Controllers
@@ -9,6 +11,21 @@ namespace SchoolDiarySystem.Controllers
     public class AccountController : Controller
     {
         private readonly UsersDAL usersDAL = new UsersDAL();
+
+        public ActionResult Language(string lngName, string view, string cont, string layout)
+        {
+            HttpCookie cookie = ChangeLanguage.Language(lngName);
+            Response.Cookies.Add(cookie);
+
+            if (string.IsNullOrEmpty(view) && string.IsNullOrEmpty(cont))
+            {
+                return RedirectToAction("Index", layout);
+            }
+            else
+            {
+                return RedirectToAction(view, cont);
+            }
+        }
 
         public ActionResult Login() => View();
 

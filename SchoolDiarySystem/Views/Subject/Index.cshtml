@@ -1,17 +1,19 @@
 ﻿@{
     ViewBag.Title = "Subject's List";
+    ViewBag.ViewToShow = "Index";
+    ViewBag.ControllerToShow = "Subject";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 @using SchoolDiarySystem.Models
 @model IEnumerable<Subjects>
 
     <div class="breadcrumbs-area">
-        <h3>Subject</h3>
+        <h3>@SchoolDiarySystem.Resources.Subject.Index.IndexTexts.SubjectList</h3>
         <ul>
             <li>
-                <a href="@Url.Action("Index", "Admin")">Home</a>
+                <a href="@Url.Action("Index", "Admin")">@SchoolDiarySystem.Resources.Universal.UniversalTexts.Home</a>
             </li>
-            <li>All Subject</li>
+            <li>@SchoolDiarySystem.Resources.Subject.Index.IndexTexts.SubjectList</li>
         </ul>
     </div>
     <div class="col-4-xxxl col-12" style="display:contents">
@@ -19,14 +21,14 @@
             <div class="card-body">
                 <div class="heading-layout1">
                     <div class="item-title">
-                        <h3>Create A Subject</h3>
+                        <h3>@SchoolDiarySystem.Resources.Subject.Index.IndexTexts.CreateSub</h3>
                     </div>
                 </div>
                 <form class="new-added-form">
                     <div class="row">
                         <div class="col-12 form-group mg-t-8">
                             <p>
-                                @Html.ActionLink("Create", "Create", "Subject", null, new { @class = "btn-fill-lg font-normal text-light gradient-pastel-green" })
+                                @Html.ActionLink(SchoolDiarySystem.Resources.Universal.UniversalTexts.CreateLower, "Create", "Subject", null, new { @class = "btn-fill-lg font-normal text-light gradient-pastel-green" })
                             </p>
                         </div>
                     </div>
@@ -38,7 +40,7 @@
         <div class="card-body">
             <div class="heading-layout1">
                 <div class="item-title">
-                    <h3>All Subject Data</h3>
+                    <h3>@SchoolDiarySystem.Resources.Subject.Index.IndexTexts.SubjectList</h3>
                 </div>
             </div>
             @using (Html.BeginForm("Index", "Subject", FormMethod.Get))
@@ -46,10 +48,10 @@
                 <form class="mg-b-20">
                     <div class="row gutters-8">
                         <div class="col-4-xxxl col-xl-10 col-lg-3 col-12 form-group">
-                            <input type="text" autocomplete="off" placeholder="Search by subject..." name="searchString" class="form-control">
+                            <input type="text" autocomplete="off" placeholder="@SchoolDiarySystem.Resources.Subject.Index.IndexTexts.SearchBy" name="searchString" class="form-control">
                         </div>
                         <div class="col-1-xxxl col-xl-2 col-lg-3 col-12 form-group">
-                            <button type="submit" class="fw-btn-fill btn-gradient-yellow">SEARCH</button>
+                            <button type="submit" class="fw-btn-fill btn-gradient-yellow">@SchoolDiarySystem.Resources.Universal.UniversalTexts.Search</button>
                         </div>
                     </div>
                 </form>
@@ -59,10 +61,10 @@
                     <thead>
                         <tr>
                             <th></th>
-                            <th>Subject Title</th>
-                            <th>Book</th>
-                            <th>Book Author</th>
-                            <th>Teacher</th>
+                            <th>@SchoolDiarySystem.Resources.Subject.Index.IndexTexts.Subject</th>
+                            <th>@SchoolDiarySystem.Resources.Subject.Index.IndexTexts.Book</th>
+                            <th>@SchoolDiarySystem.Resources.Subject.Index.IndexTexts.BookAuth</th>
+                            <th>@SchoolDiarySystem.Resources.Subject.Index.IndexTexts.Teacher</th>
                             <th></th>
                         </tr>
                     </thead>
@@ -90,8 +92,8 @@
                                             <span class="flaticon-more-button-of-three-dots"></span>
                                         </a>
                                         <div class="dropdown-menu dropdown-menu-right">
-                                            <a class="dropdown-item" href="@Url.Action("Delete", "Subject", new { id = item.SubjectID })"><i class="fas fa-times text-orange-red"></i>Delete</a>
-                                            <a class="dropdown-item" href="@Url.Action("Update", "Subject", new { id = item.SubjectID })"><i class="fas fa-cogs text-dark-pastel-green"></i>Update</a>
+                                            <a class="dropdown-item" href="@Url.Action("Delete", "Subject", new { id = item.SubjectID })"><i class="fas fa-times text-orange-red"></i>@SchoolDiarySystem.Resources.Universal.UniversalTexts.DeleteLower</a>
+                                            <a class="dropdown-item" href="@Url.Action("Update", "Subject", new { id = item.SubjectID })"><i class="fas fa-cogs text-dark-pastel-green"></i>@SchoolDiarySystem.Resources.Universal.UniversalTexts.UpdateLower</a>
                                         </div>
                                         <div class="modal-box">
                                             <!-- Modal -->
@@ -136,8 +138,7 @@
                                         <span class="flaticon-more-button-of-three-dots"></span>
                                     </a>
                                     <div class="dropdown-menu dropdown-menu-right">
-                                        <a class="dropdown-item" data-toggle="modal" data-target="#standard-modal"><i class="fas fa-download"></i>Download Excel</a>
-                                        @*<a class="dropdown-item" onclick="PrintTable();"><i class="fas fa-print"></i>Print</a>*@
+                                        <a class="dropdown-item" data-toggle="modal" data-target="#standard-modal"><i class="fas fa-download"></i>@SchoolDiarySystem.Resources.Universal.UniversalTexts.DownloadExcel</a>
                                     </div>
                                     <div class="modal-box">
                                         <!-- Modal -->
@@ -145,19 +146,19 @@
                                             <div class="modal-dialog" role="document">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
-                                                        <h5 class="modal-title">Download Excel</h5>
+                                                        <h5 class="modal-title">@SchoolDiarySystem.Resources.Universal.UniversalTexts.DownloadExcel</h5>
                                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                             <span aria-hidden="true">×</span>
                                                         </button>
                                                     </div>
                                                     <div class="modal-body">
-                                                        Are you sure you want to download?
+                                                        @SchoolDiarySystem.Resources.Universal.UniversalTexts.SureDownload
                                                     </div>
                                                     <div class="modal-footer">
-                                                        <button type="button" class="footer-btn bg-dark-low" data-dismiss="modal">No</button>
-                                                        @using (Html.BeginForm("Export", "Subject", FormMethod.Post))
+                                                        <button type="button" class="footer-btn bg-dark-low" data-dismiss="modal">@SchoolDiarySystem.Resources.Universal.UniversalTexts.No</button>
+                                                        @using (Html.BeginForm("Export", "Student", FormMethod.Post))
                                                         {
-                                                            <input type="submit" value="Download Excel" class="footer-btn bg-linkedin" aria-label="Close" />
+                                                            <input type="submit" value="@SchoolDiarySystem.Resources.Universal.UniversalTexts.Download" class="footer-btn bg-linkedin" aria-label="Close" />
                                                         }
                                                     </div>
                                                 </div>
