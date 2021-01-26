@@ -51,15 +51,24 @@ namespace SchoolDiarySystem.Controllers
             }
         }
 
-        public ActionResult Create()
+        public ActionResult Create(int? id)
         {
             if (UserSession.GetUsers != null)
             {
                 if (UserSession.GetUsers.Role.RoleName == UserRoles.TEACHER)
                 {
-                    GetItemForSelectList();
-                    var absence = new Absences();
-                    return View(absence);
+                    if (id != null)
+                    {
+                        GetItemForSelectList((int)id);
+                        var absence = new Absences();
+                        return View(absence);
+                    }
+                    else
+                    {
+                        GetItemForSelectList();
+                        var absence = new Absences();
+                        return View(absence);
+                    }
                 }
                 else
                 {
@@ -242,6 +251,28 @@ namespace SchoolDiarySystem.Controllers
             ViewBag.Class = classDAL.GetAllForTeacher(teacher);
             ViewBag.Student = studentsDAL.GetAllForTeacher(teacher);
             ViewBag.AbsenceReasoning = reasons;
+        }
+
+        private void GetItemForSelectList(int? id)
+        {
+            if (id != null)
+            {
+                List<string> reasons = new List<string>() { "Reasonable", "Unreasonable" };
+                List<Class> classes = classDAL.GetAllForTeacher(teacher);
+
+                Students stud = studentsDAL.Get((int)id);
+
+                ViewBag.Subject = subjectsDAL.GetAllForTeacher(teacher);
+                ViewBag.Student = studentsDAL.Get((int)id);
+                ViewBag.AbsenceReasoning = reasons;
+                foreach (var s in classes)
+                {
+                    if (s.ClassID == stud.ClassID)
+                    {
+                        ViewBag.Class = s.ClassNo;
+                    }
+                }
+            }
         }
     }
 }

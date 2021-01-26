@@ -61,6 +61,24 @@ namespace SchoolDiarySystem.Resources.Universal {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Add Absence.
+        /// </summary>
+        public static string Absence {
+            get {
+                return ResourceManager.GetString("Absence", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add Comment.
+        /// </summary>
+        public static string Comment {
+            get {
+                return ResourceManager.GetString("Comment", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Create.
         /// </summary>
         public static string CreateLower {

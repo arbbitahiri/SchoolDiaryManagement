@@ -28,7 +28,7 @@
                 <div class="row">
                     <div class="col-12 form-group mg-t-8">
                         <p>
-                            @Html.ActionLink(SchoolDiarySystem.Resources.Schedule.Index.IndexTexts.Create, "Create", "Schedule", null, new { @class = "btn-fill-lg font-normal text-light gradient-pastel-green" })
+                            @Html.ActionLink(SchoolDiarySystem.Resources.Universal.UniversalTexts.CreateLower, "Create", "Schedule", null, new { @class = "btn-fill-lg font-normal text-light gradient-pastel-green" })
                         </p>
                     </div>
                 </div>
@@ -86,6 +86,15 @@
                                 @Html.DisplayFor(m => item.Time)
                             </td>
                             <td>
+                                <div class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                        <span class="flaticon-more-button-of-three-dots"></span>
+                                    </a>
+                                    <div class="dropdown-menu dropdown-menu-right">
+                                        <a class="dropdown-item" href="@Url.Action("Delete", "Schedule", new { id = item.ScheduleID })"><i class="fas fa-times text-orange-red"></i>@SchoolDiarySystem.Resources.Universal.UniversalTexts.DeleteLower</a>
+                                        <a class="dropdown-item" href="@Url.Action("Update", "Schedule", new { id = item.ScheduleID })"><i class="fas fa-cogs text-dark-pastel-green"></i>@SchoolDiarySystem.Resources.Universal.UniversalTexts.UpdateLower</a>
+                                    </div>
+                                </div>
                             </td>
                         </tr>
                     }

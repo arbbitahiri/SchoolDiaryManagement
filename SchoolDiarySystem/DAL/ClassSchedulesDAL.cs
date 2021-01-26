@@ -117,7 +117,7 @@ namespace SchoolDiarySystem.DAL
                 }
                 return schedule;
             }
-            catch (Exception)
+            catch (Exception e)
             {
 
                 throw;

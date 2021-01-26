@@ -120,7 +120,7 @@ namespace SchoolDiarySystem.DAL
                 }
                 return student;
             }
-            catch (Exception)
+            catch (Exception e)
             {
                 throw;
             }
