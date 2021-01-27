@@ -165,6 +165,9 @@
   <data name="SearchBy" xml:space="preserve">
     <value>Kërko sipas emrit apo mbiemrit të arsimtarit...</value>
   </data>
+  <data name="TeacherHELP" xml:space="preserve">
+    <value>Na mundëson të shikojmë listën e arsimtarëve me të gjitha të dhënat e tyre. Krijimin dhe përditësimin e të dhënave të arsimtarit. Mund të bëhet kërkimi sipas emrit ose mbiemrit.</value>
+  </data>
   <data name="TeachList" xml:space="preserve">
     <value>Lista e Arsimtarëve</value>
   </data>

@@ -115,6 +115,15 @@ namespace SchoolDiarySystem.Resources.Schedule.Delete {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Allows us to delete the class schedule by clicking the DELETE button..
+        /// </summary>
+        public static string ScheduleHELP {
+            get {
+                return ResourceManager.GetString("ScheduleHELP", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Subject :.
         /// </summary>
         public static string Subject {

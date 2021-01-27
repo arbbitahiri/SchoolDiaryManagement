@@ -196,6 +196,24 @@ namespace SchoolDiarySystem.Resources.Student.Index {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to It enables us to view the list of all students with their data. Creating, updating, deleting students, as well as printing in Excel. The search can be done by student&apos;s first name or last name..
+        /// </summary>
+        public static string StudentHELP {
+            get {
+                return ResourceManager.GetString("StudentHELP", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Also, at the •••, it opens the section, as shown down below, to delete or update the student..
+        /// </summary>
+        public static string StudentHELP_2 {
+            get {
+                return ResourceManager.GetString("StudentHELP_2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Students List.
         /// </summary>
         public static string StudentList {

@@ -141,4 +141,7 @@
   <data name="NewParent" xml:space="preserve">
     <value>Prind të Ri</value>
   </data>
+  <data name="ParentHELP" xml:space="preserve">
+    <value>Na mundëson krijimin e prindit me të dhënat e saj: emrit, mbiemrit, dhe qytetit.</value>
+  </data>
 </root>

@@ -135,6 +135,9 @@
   <data name="SchedDet" xml:space="preserve">
     <value>Detajet e Orarit të Klasës</value>
   </data>
+  <data name="ScheduleHELP" xml:space="preserve">
+    <value>Na mundëson t’a fshijmë orarin, duke klikuar në butonin DELETE.</value>
+  </data>
   <data name="Subject" xml:space="preserve">
     <value>Lënda :</value>
   </data>

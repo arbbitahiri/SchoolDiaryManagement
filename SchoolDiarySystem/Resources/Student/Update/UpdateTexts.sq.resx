@@ -135,6 +135,9 @@
   <data name="SelParent" xml:space="preserve">
     <value>Zgjedh Prindin *</value>
   </data>
+  <data name="StudentHELP" xml:space="preserve">
+    <value>Na mundëson përditësimin e të dhënave të një studenti me të dhënat e saj përkatëse: emrit, mbiemrit, gjinisë, ditës së lindjes, klasës, dhe prindit.</value>
+  </data>
   <data name="Update" xml:space="preserve">
     <value>PËRDITËSO</value>
   </data>

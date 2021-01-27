@@ -142,6 +142,15 @@ namespace SchoolDiarySystem.Resources.Student.Delete {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Allows us to delete the student by clicking the DELETE button..
+        /// </summary>
+        public static string StudentHELP {
+            get {
+                return ResourceManager.GetString("StudentHELP", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Are you sure you want to delete this student?.
         /// </summary>
         public static string Sure {

@@ -7,52 +7,88 @@
 @using SchoolDiarySystem.Models
 @model Class
 
-        <div class="breadcrumbs-area">
-            <h3>@SchoolDiarySystem.Resources.Class.Update.UpdateTexts.UCForm</h3>
-            <ul>
-                <li>
-                    <a href="@Url.Action("Index", "Admin")">@SchoolDiarySystem.Resources.Class.Update.UpdateTexts.Home</a>
-                </li>
-                <li>@SchoolDiarySystem.Resources.Class.Update.UpdateTexts.UpdateC</li>
-            </ul>
-        </div>
-        <div class="card height-auto">
-            <div class="card-body">
-                <div class="heading-layout1">
-                    <div class="item-title">
-                        <h3>@SchoolDiarySystem.Resources.Class.Update.UpdateTexts.UpdateC</h3>
-                    </div>
+<div class="breadcrumbs-area">
+    <h3>@SchoolDiarySystem.Resources.Class.Update.UpdateTexts.UCForm</h3>
+    <ul>
+        <li>
+            <a href="@Url.Action("Index", "Admin")">@SchoolDiarySystem.Resources.Class.Update.UpdateTexts.Home</a>
+        </li>
+        <li>@SchoolDiarySystem.Resources.Class.Update.UpdateTexts.UpdateC</li>
+    </ul>
+</div>
+<div class="card height-auto">
+    <div class="card-body">
+        <div class="heading-layout1">
+            <div class="item-title">
+                <h3>@SchoolDiarySystem.Resources.Class.Update.UpdateTexts.UpdateC</h3>
+            </div>
+            <div class="dropdown">
+                <a class="dropdown-toggle" href="#" role="button" data-toggle="dropdown"
+                   aria-expanded="false">...</a>
+                <div class="dropdown-menu dropdown-menu-right text-center">
+                    <a class="dropdown-item" data-toggle="modal" data-target="#right-slide-modal">
+                        @SchoolDiarySystem.Resources.Universal.UniversalTexts.Help
+                    </a>
                 </div>
-                @using (Html.BeginForm("Update", "Class", FormMethod.Post))
-                {
-                    @Html.ValidationSummary(true, "", new { @class = "alert alert-danger" })
-                    <form class="new-added-form">
-                        <div class="row">
-                            @Html.HiddenFor(m => m.ClassID)
-                            <div class="col-xl-4 col-lg-6 col-12 form-group">
-                                <label>@SchoolDiarySystem.Resources.Class.Update.UpdateTexts.SelTeach</label>
-                                @Html.DropDownListFor(m => m.TeacherID, new SelectList(ViewBag.Teacher, "TeacherID", "FullName"), htmlAttributes: new { @class = "select2" })
-                                @Html.ValidationMessageFor(m => m.TeacherID, "", new { @class = "text-danger" })
-                            </div>
-                            <div class="col-xl-4 col-lg-6 col-12 form-group">
-                                <label>@SchoolDiarySystem.Resources.Class.Update.UpdateTexts.ClassNo</label>
-                                @Html.HiddenFor(m => m.ClassNo)
-                                @Html.TextBoxFor(m => m.ClassNo, new { @class = "form-control", @placeholder = "Write class number...", disabled = "true", @type = "number", @maxlength = 1, autocomplete = "off" })
-                                @Html.ValidationMessageFor(m => m.ClassNo, "", new { @class = "text-danger" })
-                            </div>
-                            <div class="col-xl-4 col-lg-6 col-12 form-group">
-                                <label>@SchoolDiarySystem.Resources.Class.Update.UpdateTexts.SelRoom</label>
-                                @Html.DropDownListFor(m => m.RoomID, new SelectList(ViewBag.Room, "RoomID", "RoomType"), htmlAttributes: new { @class = "select2" })
-                                @Html.ValidationMessageFor(m => m.RoomID, "", new { @class = "text-danger" })
-                            </div>
-                            <div class="col-12 form-group mg-t-8">
-                                <input type="submit" value="@SchoolDiarySystem.Resources.Class.Update.UpdateTexts.Update" class="btn-fill-lmd radius-4 text-light bg-violet-blue" />
+                <div class="ui-modal-box">
+                    <div class="modal-box">
+                        <div class="modal right-slide-modal fade" id="right-slide-modal" tabindex="-1"
+                             role="dialog" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title">@SchoolDiarySystem.Resources.Universal.UniversalTexts.Help</h5>
+                                        <button type="button" class="close" data-dismiss="modal"
+                                                aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        @SchoolDiarySystem.Resources.Class.Update.UpdateTexts.ClassHELP
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="footer-btn bg-dark-low"
+                                                data-dismiss="modal">
+                                            @SchoolDiarySystem.Resources.Universal.UniversalTexts.Close
+                                        </button>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </form>
-                }
+                    </div>
+                </div>
             </div>
         </div>
+        @using (Html.BeginForm("Update", "Class", FormMethod.Post))
+        {
+            @Html.ValidationSummary(true, "", new { @class = "alert alert-danger" })
+            <form class="new-added-form">
+                <div class="row">
+                    @Html.HiddenFor(m => m.ClassID)
+                    <div class="col-xl-4 col-lg-6 col-12 form-group">
+                        <label>@SchoolDiarySystem.Resources.Class.Update.UpdateTexts.SelTeach</label>
+                        @Html.DropDownListFor(m => m.TeacherID, new SelectList(ViewBag.Teacher, "TeacherID", "FullName"), htmlAttributes: new { @class = "select2" })
+                        @Html.ValidationMessageFor(m => m.TeacherID, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="col-xl-4 col-lg-6 col-12 form-group">
+                        <label>@SchoolDiarySystem.Resources.Class.Update.UpdateTexts.ClassNo</label>
+                        @Html.HiddenFor(m => m.ClassNo)
+                        @Html.TextBoxFor(m => m.ClassNo, new { @class = "form-control", @placeholder = "Write class number...", disabled = "true", @type = "number", @maxlength = 1, autocomplete = "off" })
+                        @Html.ValidationMessageFor(m => m.ClassNo, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="col-xl-4 col-lg-6 col-12 form-group">
+                        <label>@SchoolDiarySystem.Resources.Class.Update.UpdateTexts.SelRoom</label>
+                        @Html.DropDownListFor(m => m.RoomID, new SelectList(ViewBag.Room, "RoomID", "RoomType"), htmlAttributes: new { @class = "select2" })
+                        @Html.ValidationMessageFor(m => m.RoomID, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="col-12 form-group mg-t-8">
+                        <input type="submit" value="@SchoolDiarySystem.Resources.Class.Update.UpdateTexts.Update" class="btn-fill-lmd radius-4 text-light bg-violet-blue" />
+                    </div>
+                </div>
+            </form>
+        }
+    </div>
+</div>
 
 
 @section Scripts {}

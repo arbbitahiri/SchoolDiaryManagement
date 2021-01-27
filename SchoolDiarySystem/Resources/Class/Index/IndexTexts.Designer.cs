@@ -79,6 +79,15 @@ namespace SchoolDiarySystem.Resources.Class.Index {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to It enables us to view the list of classes with their data. Creating, updating, deleting students, as well as printing in Excel. The search can be done by class numbers..
+        /// </summary>
+        public static string ClassHELP {
+            get {
+                return ResourceManager.GetString("ClassHELP", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Classes List.
         /// </summary>
         public static string ClassList {

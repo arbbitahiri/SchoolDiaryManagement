@@ -79,6 +79,15 @@ namespace SchoolDiarySystem.Resources.Room.Update {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Enables us to update a sroom&apos;s data with its relevant data: room number and room type..
+        /// </summary>
+        public static string RoomHELP {
+            get {
+                return ResourceManager.GetString("RoomHELP", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Room Number *.
         /// </summary>
         public static string RoomNo {

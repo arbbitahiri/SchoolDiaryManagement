@@ -150,4 +150,9 @@
   <data name="SelParent" xml:space="preserve">
     <value>Select Parent *</value>
   </data>
+  <data name="StudentHELP" xml:space="preserve">
+    <value>It enables us to create the student with its details: first name, last name, gender, date of birth, class, and parent.
+
+If not all fields are filled in, the section:</value>
+  </data>
 </root>

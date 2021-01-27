@@ -123,6 +123,9 @@
   <data name="ClassDet" xml:space="preserve">
     <value>Class Details</value>
   </data>
+  <data name="ClassHELP" xml:space="preserve">
+    <value>Allows us to delete the class by clicking the DELETE button.</value>
+  </data>
   <data name="DCForm" xml:space="preserve">
     <value>Delete Class Form</value>
   </data>

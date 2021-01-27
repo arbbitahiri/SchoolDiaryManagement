@@ -123,6 +123,9 @@
   <data name="Class" xml:space="preserve">
     <value>Klasët</value>
   </data>
+  <data name="ClassHELP" xml:space="preserve">
+    <value>Na mundëson të shikojmë listën e klasave me të gjitha të dhënat e tyre. Krijimin, përditësimin, dhe fshirjen e të dhënave. Mund të bëhet kërkimi sipas numrit të klasës.</value>
+  </data>
   <data name="ClassList" xml:space="preserve">
     <value>Lista e Klasëve</value>
   </data>

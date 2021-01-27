@@ -70,6 +70,15 @@ namespace SchoolDiarySystem.Resources.Schedule.Update {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Enables us to update a student&apos;s data with its relevant data: class, subject, time and day..
+        /// </summary>
+        public static string ScheduleHELP {
+            get {
+                return ResourceManager.GetString("ScheduleHELP", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Select Class *.
         /// </summary>
         public static string SelClas {

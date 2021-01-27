@@ -124,6 +124,26 @@ namespace SchoolDiarySystem.Resources.Subject.Create {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to It enables us to create the student with its details: subject title, book, book author and teacher.
+        ///
+        ///If not all fields are filled in, the section:.
+        /// </summary>
+        public static string SubjectHELP {
+            get {
+                return ResourceManager.GetString("SubjectHELP", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Also, if we try to add the same subject, the part appears:.
+        /// </summary>
+        public static string SubjectHELP_2 {
+            get {
+                return ResourceManager.GetString("SubjectHELP_2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Subject *.
         /// </summary>
         public static string SubTitle {

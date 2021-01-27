@@ -129,6 +129,9 @@
   <data name="LastN" xml:space="preserve">
     <value>Last Name *</value>
   </data>
+  <data name="ParentHELP" xml:space="preserve">
+    <value>Enables us to update a parent's data with its relevant data: first name, last name, and city.</value>
+  </data>
   <data name="Update" xml:space="preserve">
     <value>UPDATE</value>
   </data>

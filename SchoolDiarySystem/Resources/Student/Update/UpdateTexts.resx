@@ -135,6 +135,9 @@
   <data name="SelParent" xml:space="preserve">
     <value>Select Parent *</value>
   </data>
+  <data name="StudentHELP" xml:space="preserve">
+    <value>Enables us to update a student's data with its relevant data: first name, last name, class, and parent.</value>
+  </data>
   <data name="Update" xml:space="preserve">
     <value>UPDATE</value>
   </data>

@@ -135,6 +135,9 @@
   <data name="ParentDet" xml:space="preserve">
     <value>Detajet e Prindit</value>
   </data>
+  <data name="ParentHELP" xml:space="preserve">
+    <value>Na mundëson t’a fshijmë prindin, duke klikuar në butonin DELETE.</value>
+  </data>
   <data name="Sure" xml:space="preserve">
     <value>A jeni të sigurt që t'a fshini këtë prind?</value>
   </data>

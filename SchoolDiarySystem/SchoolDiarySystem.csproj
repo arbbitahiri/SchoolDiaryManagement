@@ -892,6 +892,23 @@
     <Content Include="Content\img\figure\user3.jpg" />
     <Content Include="Content\img\figure\user4.jpg" />
     <Content Include="Content\img\figure\user5.jpg" />
+    <Content Include="Content\img\Help\Classes_List.png" />
+    <Content Include="Content\img\Help\Create_InvalidAttempt_Teacher.png" />
+    <Content Include="Content\img\Help\Create_InvalidAttempt_Subject.png" />
+    <Content Include="Content\img\Help\Create_InvalidAttempt_Parent.png" />
+    <Content Include="Content\img\Help\Create_InvalidAttempt_Exists_Subject.png" />
+    <Content Include="Content\img\Help\Create_InvalidAttempt_Schedule.png" />
+    <Content Include="Content\img\Help\Create_InvalidAttempt_Room.png" />
+    <Content Include="Content\img\Help\Create_InvalidAttempt_Class.png" />
+    <Content Include="Content\img\Help\Create_InvalidAttempt_Exists_Class.png" />
+    <Content Include="Content\img\Help\Create_InvalidAttempt_Student.png" />
+    <Content Include="Content\img\Help\List_Options.png" />
+    <Content Include="Content\img\Help\Parents_List.png" />
+    <Content Include="Content\img\Help\Rooms_List.png" />
+    <Content Include="Content\img\Help\Schedules_List.png" />
+    <Content Include="Content\img\Help\Students_List.png" />
+    <Content Include="Content\img\Help\Subjects_List.png" />
+    <Content Include="Content\img\Help\Teachers_List.png" />
     <Content Include="Content\img\logo.png" />
     <Content Include="Content\img\logo1.png" />
     <Content Include="Content\img\logo2.png" />
@@ -1038,6 +1055,7 @@
   <ItemGroup>
     <Folder Include="App_Code\" />
     <Folder Include="App_Data\" />
+    <Folder Include="Properties\PublishProfiles\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

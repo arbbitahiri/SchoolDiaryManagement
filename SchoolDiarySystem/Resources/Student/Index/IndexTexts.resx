@@ -162,6 +162,12 @@
   <data name="SearchBy" xml:space="preserve">
     <value>Search by first or last name....</value>
   </data>
+  <data name="StudentHELP" xml:space="preserve">
+    <value>It enables us to view the list of all students with their data. Creating, updating, deleting students, as well as printing in Excel. The search can be done by student's first name or last name.</value>
+  </data>
+  <data name="StudentHELP_2" xml:space="preserve">
+    <value>Also, at the •••, it opens the section, as shown down below, to delete or update the student.</value>
+  </data>
   <data name="StudentList" xml:space="preserve">
     <value>Students List</value>
   </data>

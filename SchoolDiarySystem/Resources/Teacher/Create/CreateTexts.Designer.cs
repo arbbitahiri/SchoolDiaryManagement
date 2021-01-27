@@ -167,5 +167,16 @@ namespace SchoolDiarySystem.Resources.Teacher.Create {
                 return ResourceManager.GetString("PhoneNo", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to It enables us to create the teacher with its details: first name, last name, gender, date of birth, city, e-mail and phone number.
+        ///
+        ///If not all fields are filled in, the section:.
+        /// </summary>
+        public static string TeacherHELP {
+            get {
+                return ResourceManager.GetString("TeacherHELP", resourceCulture);
+            }
+        }
     }
 }

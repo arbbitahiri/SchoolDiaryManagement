@@ -123,6 +123,9 @@
   <data name="Room Type" xml:space="preserve">
     <value>Lloji i Sallës *</value>
   </data>
+  <data name="RoomHELP" xml:space="preserve">
+    <value>Na mundëson përditësimin e të dhënave të një salle me të dhënat e caktuara: numrin dhe llojin e sallës.</value>
+  </data>
   <data name="RoomNo" xml:space="preserve">
     <value>Numri i Sallës *</value>
   </data>

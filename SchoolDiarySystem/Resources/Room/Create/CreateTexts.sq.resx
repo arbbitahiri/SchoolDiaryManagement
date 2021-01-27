@@ -129,6 +129,9 @@
   <data name="NewRoom" xml:space="preserve">
     <value>Sallë e Re</value>
   </data>
+  <data name="RoomHELP" xml:space="preserve">
+    <value>Na mundëson krijimin e një dhome të re ku shfaqim numrin dhe llojin e sallës.</value>
+  </data>
   <data name="RoomNo" xml:space="preserve">
     <value>Numri i Sallës *</value>
   </data>

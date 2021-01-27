@@ -97,6 +97,15 @@ namespace SchoolDiarySystem.Resources.Parent.Update {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Enables us to update a parent&apos;s data with its relevant data: first name, last name, and city..
+        /// </summary>
+        public static string ParentHELP {
+            get {
+                return ResourceManager.GetString("ParentHELP", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to UPDATE.
         /// </summary>
         public static string Update {

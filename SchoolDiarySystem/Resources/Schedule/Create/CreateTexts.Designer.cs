@@ -97,6 +97,17 @@ namespace SchoolDiarySystem.Resources.Schedule.Create {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to It enables us to create the student with its details: class, subject, time and day.
+        ///
+        ///If not all fields are filled in, the section:.
+        /// </summary>
+        public static string ScheduleHELP {
+            get {
+                return ResourceManager.GetString("ScheduleHELP", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Select Class *.
         /// </summary>
         public static string SelClass {

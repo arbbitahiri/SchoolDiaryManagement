@@ -61,6 +61,15 @@ namespace SchoolDiarySystem.Resources.Class.Update {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Enables us to update a class&apos;s data with its relevant data: teacher, class number, and room..
+        /// </summary>
+        public static string ClassHELP {
+            get {
+                return ResourceManager.GetString("ClassHELP", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Class Number *.
         /// </summary>
         public static string ClassNo {

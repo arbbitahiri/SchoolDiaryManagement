@@ -120,6 +120,9 @@
   <data name="Home" xml:space="preserve">
     <value>Shtëpi</value>
   </data>
+  <data name="ScheduleHELP" xml:space="preserve">
+    <value>Na mundëson përditësimin e të dhënave të një orarit me të dhënat e saj: klasën, lëndën, orës, dhe datës.</value>
+  </data>
   <data name="SelClas" xml:space="preserve">
     <value>Zgjedh Klasën *</value>
   </data>

@@ -138,6 +138,12 @@
   <data name="SelTeach" xml:space="preserve">
     <value>Zgjedh Arsimtarin *</value>
   </data>
+  <data name="SubjectHELP" xml:space="preserve">
+    <value>Na mundëson krijimin e një lënde të re me të gjitha të dhënat si: emri i lëndës, libri, autori i librit (nuk pranohet numër apo ndonjë simbol), dhe arsimtari i lëndës</value>
+  </data>
+  <data name="SubjectHELP_2" xml:space="preserve">
+    <value>Po ashtu, nëse provojmë të shtojmë të njëjtën lëndë, shfaqet pjesa:</value>
+  </data>
   <data name="SubTitle" xml:space="preserve">
     <value>Emri i Lëndës *</value>
   </data>

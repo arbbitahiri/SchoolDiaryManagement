@@ -129,6 +129,9 @@
   <data name="RoomDet" xml:space="preserve">
     <value>Detajet e Sallës</value>
   </data>
+  <data name="RoomHELP" xml:space="preserve">
+    <value>Na mundëson t’a fshijmë sallën, duke klikuar në butonin DELETE.</value>
+  </data>
   <data name="RoomNo" xml:space="preserve">
     <value>Numri i Sallës :</value>
   </data>

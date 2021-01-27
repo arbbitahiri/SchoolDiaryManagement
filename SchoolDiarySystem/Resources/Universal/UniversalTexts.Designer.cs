@@ -70,6 +70,15 @@ namespace SchoolDiarySystem.Resources.Universal {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Close.
+        /// </summary>
+        public static string Close {
+            get {
+                return ResourceManager.GetString("Close", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Add Comment.
         /// </summary>
         public static string Comment {
@@ -133,11 +142,29 @@ namespace SchoolDiarySystem.Resources.Universal {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to HELP.
+        /// </summary>
+        public static string Help {
+            get {
+                return ResourceManager.GetString("Help", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Home.
         /// </summary>
         public static string Home {
             get {
                 return ResourceManager.GetString("Home", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Log Out.
+        /// </summary>
+        public static string LogOut {
+            get {
+                return ResourceManager.GetString("LogOut", resourceCulture);
             }
         }
         
@@ -151,7 +178,7 @@ namespace SchoolDiarySystem.Resources.Universal {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to KËRKO.
+        ///   Looks up a localized string similar to SEARCH.
         /// </summary>
         public static string Search {
             get {

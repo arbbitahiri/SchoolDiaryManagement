@@ -135,6 +135,9 @@
   <data name="SchedDet" xml:space="preserve">
     <value>Class's Schedule Details</value>
   </data>
+  <data name="ScheduleHELP" xml:space="preserve">
+    <value>Allows us to delete the class schedule by clicking the DELETE button.</value>
+  </data>
   <data name="Subject" xml:space="preserve">
     <value>Subject :</value>
   </data>

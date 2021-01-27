@@ -97,6 +97,17 @@ namespace SchoolDiarySystem.Resources.Room.Create {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to It enables us to create the student with its details: room number and room type.
+        ///
+        ///If not all fields are filled in, the section:.
+        /// </summary>
+        public static string RoomHELP {
+            get {
+                return ResourceManager.GetString("RoomHELP", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Room Number *.
         /// </summary>
         public static string RoomNo {

@@ -115,6 +115,15 @@ namespace SchoolDiarySystem.Resources.Parent.Delete {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Allows us to delete the parent by clicking the DELETE button..
+        /// </summary>
+        public static string ParentHELP {
+            get {
+                return ResourceManager.GetString("ParentHELP", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Are you sure you want to delete this parent?.
         /// </summary>
         public static string Sure {

@@ -150,4 +150,9 @@
   <data name="SelParent" xml:space="preserve">
     <value>Zgjedh Prindin *</value>
   </data>
+  <data name="StudentHELP" xml:space="preserve">
+    <value>Na mundëson krijimin e prindit me të dhënat e saj: emrit, mbiemrit, gjinisë, ditës së lindjes, klasës, dhe prindit.
+
+Nëse nuk janë të plotësuara të gjitha fushat, shfaqet pjesa:</value>
+  </data>
 </root>

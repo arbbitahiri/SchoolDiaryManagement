@@ -138,6 +138,9 @@
   <data name="Previous" xml:space="preserve">
     <value>Mëparshme</value>
   </data>
+  <data name="RoomHELP" xml:space="preserve">
+    <value>Na mundëson të shikojmë listën e sallave me të gjitha të dhënat e tyre. Krijimin, përditësimin, dhe fshirjen e një salle. Mund të bëhet kërkimi sipas llojit të sallës.</value>
+  </data>
   <data name="RoomList" xml:space="preserve">
     <value>Lista e Sallëve</value>
   </data>

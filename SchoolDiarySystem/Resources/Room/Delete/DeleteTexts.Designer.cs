@@ -97,6 +97,15 @@ namespace SchoolDiarySystem.Resources.Room.Delete {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Allows us to delete the room by clicking the DELETE button..
+        /// </summary>
+        public static string RoomHELP {
+            get {
+                return ResourceManager.GetString("RoomHELP", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Room Number :.
         /// </summary>
         public static string RoomNo {

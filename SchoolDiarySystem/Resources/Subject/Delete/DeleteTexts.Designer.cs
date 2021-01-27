@@ -115,6 +115,15 @@ namespace SchoolDiarySystem.Resources.Subject.Delete {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Allows us to delete the subject by clicking the DELETE button..
+        /// </summary>
+        public static string SubjectHELP {
+            get {
+                return ResourceManager.GetString("SubjectHELP", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Subject :.
         /// </summary>
         public static string SubTitle {

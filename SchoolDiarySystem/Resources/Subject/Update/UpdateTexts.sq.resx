@@ -129,6 +129,9 @@
   <data name="SelTeach" xml:space="preserve">
     <value>Zgjedh Arsimtarin *</value>
   </data>
+  <data name="SubjectHELP" xml:space="preserve">
+    <value>Na mundëson përditësimin e të dhënave të një lënde me të gjitha të dhënat si: emri i lëndës, libri, autori i librit (nuk pranohet numër apo ndonjë simbol), dhe arsimtari i lëndës.</value>
+  </data>
   <data name="SubTitle" xml:space="preserve">
     <value>Emri i Lëndës *</value>
   </data>

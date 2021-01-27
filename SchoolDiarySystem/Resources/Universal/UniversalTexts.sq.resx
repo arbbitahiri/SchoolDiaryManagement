@@ -120,6 +120,9 @@
   <data name="Absence" xml:space="preserve">
     <value>Shto Mungesë</value>
   </data>
+  <data name="Close" xml:space="preserve">
+    <value>Mbyll</value>
+  </data>
   <data name="Comment" xml:space="preserve">
     <value>Shto Vërejtje</value>
   </data>
@@ -141,14 +144,20 @@
   <data name="DownloadExcel" xml:space="preserve">
     <value>Shkarkoni Listën në Excel</value>
   </data>
+  <data name="Help" xml:space="preserve">
+    <value>NDIHMË</value>
+  </data>
   <data name="Home" xml:space="preserve">
     <value>Shtëpi</value>
+  </data>
+  <data name="LogOut" xml:space="preserve">
+    <value>Largohu</value>
   </data>
   <data name="No" xml:space="preserve">
     <value>Jo</value>
   </data>
   <data name="Search" xml:space="preserve">
-    <value>SEARCH</value>
+    <value>KËRKO</value>
   </data>
   <data name="SureDownload" xml:space="preserve">
     <value>A jeni të sigurt që doni ta shkarkoni këtë list?</value>

@@ -123,6 +123,9 @@
   <data name="Class" xml:space="preserve">
     <value>Class</value>
   </data>
+  <data name="ClassHELP" xml:space="preserve">
+    <value>It enables us to view the list of classes with their data. Creating, updating, deleting students, as well as printing in Excel. The search can be done by class numbers.</value>
+  </data>
   <data name="ClassList" xml:space="preserve">
     <value>Classes List</value>
   </data>

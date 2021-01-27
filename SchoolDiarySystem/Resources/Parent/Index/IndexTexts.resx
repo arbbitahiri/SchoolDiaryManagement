@@ -144,6 +144,9 @@
   <data name="Next" xml:space="preserve">
     <value>Next</value>
   </data>
+  <data name="ParentHELP" xml:space="preserve">
+    <value>It enables us to view the list of all parents with their data. Creating, updating, deleting students, as well as printing in Excel. The search can be done by parent's first name or last name.</value>
+  </data>
   <data name="ParentList" xml:space="preserve">
     <value>Parents List</value>
   </data>

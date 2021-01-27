@@ -129,6 +129,9 @@
   <data name="RoomDet" xml:space="preserve">
     <value>Room's Details</value>
   </data>
+  <data name="RoomHELP" xml:space="preserve">
+    <value>Allows us to delete the room by clicking the DELETE button.</value>
+  </data>
   <data name="RoomNo" xml:space="preserve">
     <value>Room Number :</value>
   </data>

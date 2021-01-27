@@ -123,6 +123,14 @@
   <data name="CClass" xml:space="preserve">
     <value>Create Class</value>
   </data>
+  <data name="ClassHELP" xml:space="preserve">
+    <value>It enables us to create the class with its details:  teacher, class number, and room.
+
+If not all fields are filled in, the section:</value>
+  </data>
+  <data name="ClassHELP_2" xml:space="preserve">
+    <value>Also, if we try to add the same class, the part appears:</value>
+  </data>
   <data name="ClassNo" xml:space="preserve">
     <value>Class Number *</value>
   </data>

@@ -142,6 +142,15 @@ namespace SchoolDiarySystem.Resources.Schedule.Index {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to It enables us to view the list of all class schedule with their data. Creating, updating, deleting students, as well as printing in Excel. The search can be done by class, subject or day..
+        /// </summary>
+        public static string ScheduleHELP {
+            get {
+                return ResourceManager.GetString("ScheduleHELP", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to SEARCH.
         /// </summary>
         public static string Search {

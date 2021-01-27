@@ -123,6 +123,9 @@
   <data name="Room Type" xml:space="preserve">
     <value>Room Type *</value>
   </data>
+  <data name="RoomHELP" xml:space="preserve">
+    <value>Enables us to update a sroom's data with its relevant data: room number and room type.</value>
+  </data>
   <data name="RoomNo" xml:space="preserve">
     <value>Room Number *</value>
   </data>

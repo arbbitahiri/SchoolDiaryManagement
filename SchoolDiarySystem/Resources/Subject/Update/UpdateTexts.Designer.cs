@@ -97,6 +97,15 @@ namespace SchoolDiarySystem.Resources.Subject.Update {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Enables us to update a student&apos;s data with its relevant data: subject title, book, book author and teacher..
+        /// </summary>
+        public static string SubjectHELP {
+            get {
+                return ResourceManager.GetString("SubjectHELP", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Subject Title *.
         /// </summary>
         public static string SubTitle {

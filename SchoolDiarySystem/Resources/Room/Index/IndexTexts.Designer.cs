@@ -124,6 +124,15 @@ namespace SchoolDiarySystem.Resources.Room.Index {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to It enables us to view the list of all room with their data. Creating, updating, deleting students, as well as printing in Excel. The search can be done by room type..
+        /// </summary>
+        public static string RoomHELP {
+            get {
+                return ResourceManager.GetString("RoomHELP", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Rooms List.
         /// </summary>
         public static string RoomList {

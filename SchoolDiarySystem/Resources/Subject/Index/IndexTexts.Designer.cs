@@ -169,6 +169,15 @@ namespace SchoolDiarySystem.Resources.Subject.Index {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to It enables us to view the list of all subjects with their data. Creating, updating, deleting students, as well as printing in Excel. The search can be done by subject title..
+        /// </summary>
+        public static string SubjectHELP {
+            get {
+                return ResourceManager.GetString("SubjectHELP", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Subjects List.
         /// </summary>
         public static string SubjectList {

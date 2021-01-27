@@ -141,4 +141,9 @@
   <data name="NewParent" xml:space="preserve">
     <value>New Parent</value>
   </data>
+  <data name="ParentHELP" xml:space="preserve">
+    <value>It enables us to create the student with its details: first name, last name, and city.
+
+If not all fields are filled in, the section:</value>
+  </data>
 </root>

@@ -129,6 +129,9 @@
   <data name="LastN" xml:space="preserve">
     <value>Mbiemri *</value>
   </data>
+  <data name="ParentHELP" xml:space="preserve">
+    <value>Na mundëson përditësimin e të dhënave të një prindi me të dhënat e saj përkatëse: emrit, mbiemrit, dhe qytetit.</value>
+  </data>
   <data name="Update" xml:space="preserve">
     <value>PËRDITËSO</value>
   </data>

@@ -153,6 +153,9 @@
   <data name="Subject" xml:space="preserve">
     <value>Subject</value>
   </data>
+  <data name="SubjectHELP" xml:space="preserve">
+    <value>It enables us to view the list of all subjects with their data. Creating, updating, deleting students, as well as printing in Excel. The search can be done by subject title.</value>
+  </data>
   <data name="SubjectList" xml:space="preserve">
     <value>Subjects List</value>
   </data>

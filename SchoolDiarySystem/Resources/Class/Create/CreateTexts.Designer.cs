@@ -79,6 +79,26 @@ namespace SchoolDiarySystem.Resources.Class.Create {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to It enables us to create the class with its details:  teacher, class number, and room.
+        ///
+        ///If not all fields are filled in, the section:.
+        /// </summary>
+        public static string ClassHELP {
+            get {
+                return ResourceManager.GetString("ClassHELP", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Also, if we try to add the same class, the part appears:.
+        /// </summary>
+        public static string ClassHELP_2 {
+            get {
+                return ResourceManager.GetString("ClassHELP_2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Class Number *.
         /// </summary>
         public static string ClassNo {

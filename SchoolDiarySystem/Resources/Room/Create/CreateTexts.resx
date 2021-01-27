@@ -129,6 +129,11 @@
   <data name="NewRoom" xml:space="preserve">
     <value>New Room</value>
   </data>
+  <data name="RoomHELP" xml:space="preserve">
+    <value>It enables us to create the student with its details: room number and room type.
+
+If not all fields are filled in, the section:</value>
+  </data>
   <data name="RoomNo" xml:space="preserve">
     <value>Room Number *</value>
   </data>

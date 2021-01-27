@@ -120,6 +120,9 @@
   <data name="Home" xml:space="preserve">
     <value>Home</value>
   </data>
+  <data name="ScheduleHELP" xml:space="preserve">
+    <value>Enables us to update a student's data with its relevant data: class, subject, time and day.</value>
+  </data>
   <data name="SelClas" xml:space="preserve">
     <value>Select Class *</value>
   </data>

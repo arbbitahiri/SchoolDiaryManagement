@@ -144,6 +144,9 @@
   <data name="SchedList" xml:space="preserve">
     <value>Classes Schedule List</value>
   </data>
+  <data name="ScheduleHELP" xml:space="preserve">
+    <value>It enables us to view the list of all class schedule with their data. Creating, updating, deleting students, as well as printing in Excel. The search can be done by class, subject or day.</value>
+  </data>
   <data name="Search" xml:space="preserve">
     <value>SEARCH</value>
   </data>

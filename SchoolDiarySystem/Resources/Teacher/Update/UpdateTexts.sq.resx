@@ -135,6 +135,9 @@
   <data name="PhoneNo" xml:space="preserve">
     <value>Numri i Telefonit *</value>
   </data>
+  <data name="TeacherHELP" xml:space="preserve">
+    <value>Na mundëson përditësimin e të dhënave të një arsimtari me të gjitha të dhënat si: emri(nuk pranohet numri apo ndonjë simbol), mbiemri(nuk pranohet numri apo ndonjë simbol), qyteti(nuk pranohet numri apo ndonjë simbol), e-mail(pranohet vetëm e-mail valid), dhe numri i telefonit(pranohet vetëm numër valid).</value>
+  </data>
   <data name="Update" xml:space="preserve">
     <value>PËRDITËSO</value>
   </data>

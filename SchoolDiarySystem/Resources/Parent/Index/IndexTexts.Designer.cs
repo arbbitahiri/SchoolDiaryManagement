@@ -142,6 +142,15 @@ namespace SchoolDiarySystem.Resources.Parent.Index {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to It enables us to view the list of all parents with their data. Creating, updating, deleting students, as well as printing in Excel. The search can be done by parent&apos;s first name or last name..
+        /// </summary>
+        public static string ParentHELP {
+            get {
+                return ResourceManager.GetString("ParentHELP", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Parents List.
         /// </summary>
         public static string ParentList {

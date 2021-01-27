@@ -135,6 +135,9 @@
   <data name="SubDet" xml:space="preserve">
     <value>Detajet e Lëndës</value>
   </data>
+  <data name="SubjectHELP" xml:space="preserve">
+    <value>Na mundëson t’a fshijmë lëndën, duke klikuar në butonin DELETE.</value>
+  </data>
   <data name="SubTitle" xml:space="preserve">
     <value>Lënda :</value>
   </data>

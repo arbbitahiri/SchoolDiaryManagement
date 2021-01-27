@@ -158,5 +158,14 @@ namespace SchoolDiarySystem.Resources.Teacher.Delete {
                 return ResourceManager.GetString("TeacherDet", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Allows us to delete the teacher by clicking the DELETE button..
+        /// </summary>
+        public static string TeacherHELP {
+            get {
+                return ResourceManager.GetString("TeacherHELP", resourceCulture);
+            }
+        }
     }
 }

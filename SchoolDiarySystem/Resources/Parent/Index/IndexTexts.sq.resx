@@ -144,6 +144,9 @@
   <data name="Next" xml:space="preserve">
     <value>Tjetër</value>
   </data>
+  <data name="ParentHELP" xml:space="preserve">
+    <value>Na mundëson të shikojmë listën e prindërve me të gjitha të dhënat e tyre. Krijimin, përditësimin, fshirjen të prindit. po ashtu dhe printimin ne Excel. Mund të bëhet kërkimi me anë të emrit apo mbiemrit të prindit.</value>
+  </data>
   <data name="ParentList" xml:space="preserve">
     <value>Lista e Prindërve</value>
   </data>

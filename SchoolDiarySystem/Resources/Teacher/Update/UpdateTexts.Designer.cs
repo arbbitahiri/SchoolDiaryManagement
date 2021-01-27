@@ -115,6 +115,15 @@ namespace SchoolDiarySystem.Resources.Teacher.Update {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Enables us to update a student&apos;s data with its relevant data: : first name, last name, city, e-mail and phone number..
+        /// </summary>
+        public static string TeacherHELP {
+            get {
+                return ResourceManager.GetString("TeacherHELP", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to UPDATE.
         /// </summary>
         public static string Update {

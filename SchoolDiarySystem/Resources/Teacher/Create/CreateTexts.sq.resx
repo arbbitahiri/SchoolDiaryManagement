@@ -153,4 +153,7 @@
   <data name="PhoneNo" xml:space="preserve">
     <value>Numri i Telefonit *</value>
   </data>
+  <data name="TeacherHELP" xml:space="preserve">
+    <value>Na mundëson krijimin e një arsimtari të ri me të gjitha të dhënat si: emri(nuk pranohet numri apo ndonjë simbol), mbiemri(nuk pranohet numri apo ndonjë simbol), gjinia, qyteti(nuk pranohet numri apo ndonjë simbol), data e lindjes(nuk pranohet që arsimtari të jetë më i vogël se 18 vjet), e-mail(pranohet vetëm e-mail valid), dhe numri i telefonit(pranohet vetëm numër valid).</value>
+  </data>
 </root>

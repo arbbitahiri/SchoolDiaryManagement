@@ -162,6 +162,12 @@
   <data name="SearchBy" xml:space="preserve">
     <value>Kërko sipas emrit ose mbiemrit...</value>
   </data>
+  <data name="StudentHELP" xml:space="preserve">
+    <value>Na mundëson të shikojmë listën e studentëve me të gjitha të dhënat e tyre. Krijimin, përditësimin, fshirjen të studentit, po ashtu dhe printimin ne Excel. Mund të bëhet kërkimi me anë të emrit apo mbiemrit të studentit.</value>
+  </data>
+  <data name="StudentHELP_2" xml:space="preserve">
+    <value>Po ashtu, te pjesa •••, hapet pjesa, siç në figurë më poshtë, për të fshirë apo përditësuar arsimtarin.</value>
+  </data>
   <data name="StudentList" xml:space="preserve">
     <value>Lista e Nxënësve</value>
   </data>

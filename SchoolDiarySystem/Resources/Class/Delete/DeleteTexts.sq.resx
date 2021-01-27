@@ -123,6 +123,9 @@
   <data name="ClassDet" xml:space="preserve">
     <value>Detajet e Klasës</value>
   </data>
+  <data name="ClassHELP" xml:space="preserve">
+    <value>Na mundëson t’a fshijmë klasën, duke klikuar në butonin DELETE.</value>
+  </data>
   <data name="DCForm" xml:space="preserve">
     <value>Forma për të Fshirë një Klasë</value>
   </data>

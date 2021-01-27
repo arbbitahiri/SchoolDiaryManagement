@@ -22,6 +22,43 @@
             <div class="item-title">
                 <h3>@SchoolDiarySystem.Resources.Schedule.Create.CreateTexts.CreateSched</h3>
             </div>
+            <div class="dropdown">
+                <a class="dropdown-toggle" href="#" role="button" data-toggle="dropdown"
+                   aria-expanded="false">...</a>
+                <div class="dropdown-menu dropdown-menu-right text-center">
+                    <a class="dropdown-item" data-toggle="modal" data-target="#right-slide-modal">
+                        @SchoolDiarySystem.Resources.Universal.UniversalTexts.Help
+                    </a>
+                </div>
+                <div class="ui-modal-box">
+                    <div class="modal-box">
+                        <div class="modal right-slide-modal fade" id="right-slide-modal" tabindex="-1"
+                             role="dialog" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title">@SchoolDiarySystem.Resources.Universal.UniversalTexts.Help</h5>
+                                        <button type="button" class="close" data-dismiss="modal"
+                                                aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        @SchoolDiarySystem.Resources.Schedule.Create.CreateTexts.ScheduleHELP
+                                        <img src="~/Content/img/Help/Create_InvalidAttempt_Schedule.png" alt="logo" />
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="footer-btn bg-dark-low"
+                                                data-dismiss="modal">
+                                            @SchoolDiarySystem.Resources.Universal.UniversalTexts.Close
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
         @using (Html.BeginForm("Create", "Schedule", FormMethod.Post))
         {

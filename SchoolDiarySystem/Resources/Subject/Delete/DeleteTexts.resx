@@ -135,6 +135,9 @@
   <data name="SubDet" xml:space="preserve">
     <value>Subject's Details</value>
   </data>
+  <data name="SubjectHELP" xml:space="preserve">
+    <value>Allows us to delete the subject by clicking the DELETE button.</value>
+  </data>
   <data name="SubTitle" xml:space="preserve">
     <value>Subject :</value>
   </data>

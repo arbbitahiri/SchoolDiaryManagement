@@ -150,4 +150,7 @@
   <data name="TeacherDet" xml:space="preserve">
     <value>Teacher's Details</value>
   </data>
+  <data name="TeacherHELP" xml:space="preserve">
+    <value>Allows us to delete the teacher by clicking the DELETE button.</value>
+  </data>
 </root>

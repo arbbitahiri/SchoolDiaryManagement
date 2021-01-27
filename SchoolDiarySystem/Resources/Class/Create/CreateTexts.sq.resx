@@ -123,6 +123,12 @@
   <data name="CClass" xml:space="preserve">
     <value>Krijo Klasën</value>
   </data>
+  <data name="ClassHELP" xml:space="preserve">
+    <value>Na mundëson krijimin e një klase me të dhënat e caktuara: arsimtarin e caktuar (kujdestarin), numrin e klasës (1-9), dhe llojin e klasës.</value>
+  </data>
+  <data name="ClassHELP_2" xml:space="preserve">
+    <value>Po ashtu, nëse provojmë të shtojmë të njëjtën klasë, shfaqet pjesa:</value>
+  </data>
   <data name="ClassNo" xml:space="preserve">
     <value>Numri i Klasës *</value>
   </data>

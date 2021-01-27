@@ -158,5 +158,16 @@ namespace SchoolDiarySystem.Resources.Student.Create {
                 return ResourceManager.GetString("SelParent", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to It enables us to create the student with its details: first name, last name, gender, date of birth, class, and parent.
+        ///
+        ///If not all fields are filled in, the section:.
+        /// </summary>
+        public static string StudentHELP {
+            get {
+                return ResourceManager.GetString("StudentHELP", resourceCulture);
+            }
+        }
     }
 }

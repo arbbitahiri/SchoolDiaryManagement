@@ -150,4 +150,7 @@
   <data name="TeacherDet" xml:space="preserve">
     <value>Detajet e Arsimtarit</value>
   </data>
+  <data name="TeacherHELP" xml:space="preserve">
+    <value>Na mundëson t’a fshijmë arsimtarin, duke klikuar në butonin DELETE.</value>
+  </data>
 </root>

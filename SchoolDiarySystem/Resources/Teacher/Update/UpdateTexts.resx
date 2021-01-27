@@ -135,6 +135,9 @@
   <data name="PhoneNo" xml:space="preserve">
     <value>Phone Number *</value>
   </data>
+  <data name="TeacherHELP" xml:space="preserve">
+    <value>Enables us to update a student's data with its relevant data: : first name, last name, city, e-mail and phone number.</value>
+  </data>
   <data name="Update" xml:space="preserve">
     <value>UPDATE</value>
   </data>

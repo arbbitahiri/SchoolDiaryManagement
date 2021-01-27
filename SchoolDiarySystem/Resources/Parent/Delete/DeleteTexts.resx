@@ -135,6 +135,9 @@
   <data name="ParentDet" xml:space="preserve">
     <value>Parent's Details</value>
   </data>
+  <data name="ParentHELP" xml:space="preserve">
+    <value>Allows us to delete the parent by clicking the DELETE button.</value>
+  </data>
   <data name="Sure" xml:space="preserve">
     <value>Are you sure you want to delete this parent?</value>
   </data>

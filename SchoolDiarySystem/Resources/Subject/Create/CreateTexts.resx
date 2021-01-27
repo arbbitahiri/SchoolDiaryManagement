@@ -138,6 +138,14 @@
   <data name="SelTeach" xml:space="preserve">
     <value>Select Teacher *</value>
   </data>
+  <data name="SubjectHELP" xml:space="preserve">
+    <value>It enables us to create the student with its details: subject title, book, book author and teacher.
+
+If not all fields are filled in, the section:</value>
+  </data>
+  <data name="SubjectHELP_2" xml:space="preserve">
+    <value>Also, if we try to add the same subject, the part appears:</value>
+  </data>
   <data name="SubTitle" xml:space="preserve">
     <value>Subject *</value>
   </data>

@@ -138,6 +138,9 @@
   <data name="Previous" xml:space="preserve">
     <value>Previous</value>
   </data>
+  <data name="RoomHELP" xml:space="preserve">
+    <value>It enables us to view the list of all room with their data. Creating, updating, deleting students, as well as printing in Excel. The search can be done by room type.</value>
+  </data>
   <data name="RoomList" xml:space="preserve">
     <value>Rooms List</value>
   </data>

@@ -144,6 +144,9 @@
   <data name="SchedList" xml:space="preserve">
     <value>Lista e Orarit të Klasëve</value>
   </data>
+  <data name="ScheduleHELP" xml:space="preserve">
+    <value>Na mundëson të shikojmë listën e orarit me të gjitha të dhënat e saj. Krijimin, përditësimin, fshirjen të orarit. po ashtu dhe printimin ne Excel. Mund të bëhet kërkimi me anë të klasës dhe ditës.</value>
+  </data>
   <data name="Search" xml:space="preserve">
     <value>KËRKO</value>
   </data>

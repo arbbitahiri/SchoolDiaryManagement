@@ -8,12 +8,12 @@
 @model IEnumerable<Students>
 
     <div class="breadcrumbs-area">
-        <h3>Student</h3>
+        <h3>@SchoolDiarySystem.Resources.Student.Index.IndexTexts.StudentList</h3>
         <ul>
             <li>
                 <a href="@Url.Action("Index", "Admin")">@SchoolDiarySystem.Resources.Universal.UniversalTexts.Home</a>
             </li>
-            <li>All Students</li>
+            <li>@SchoolDiarySystem.Resources.Student.Index.IndexTexts.StudentList</li>
         </ul>
     </div>
     <div class="col-4-xxxl col-12" style="display:contents">
@@ -21,7 +21,7 @@
             <div class="card-body">
                 <div class="heading-layout1">
                     <div class="item-title">
-                        <h3>Create A Student</h3>
+                        <h3>@SchoolDiarySystem.Resources.Student.Index.IndexTexts.CreateStudent</h3>
                     </div>
                 </div>
                 <form class="new-added-form">
@@ -40,7 +40,46 @@
         <div class="card-body">
             <div class="heading-layout1">
                 <div class="item-title">
-                    <h3>All Students Data</h3>
+                    <h3>@SchoolDiarySystem.Resources.Student.Index.IndexTexts.StudentList</h3>
+                </div>
+                <div class="dropdown">
+                    <a class="dropdown-toggle" href="#" role="button" data-toggle="dropdown"
+                       aria-expanded="false">...</a>
+                    <div class="dropdown-menu dropdown-menu-right text-center">
+                        <a class="dropdown-item" data-toggle="modal" data-target="#right-slide-modal">
+                            @SchoolDiarySystem.Resources.Universal.UniversalTexts.Help
+                        </a>
+                    </div>
+                    <div class="ui-modal-box">
+                        <div class="modal-box">
+                            <div class="modal right-slide-modal fade" id="right-slide-modal" tabindex="-1"
+                                 role="dialog" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title">@SchoolDiarySystem.Resources.Universal.UniversalTexts.Help</h5>
+                                            <button type="button" class="close" data-dismiss="modal"
+                                                    aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            @SchoolDiarySystem.Resources.Student.Index.IndexTexts.StudentHELP
+                                            <img src="~/Content/img/Help/Students_List.png" alt="logo" />
+                                            @SchoolDiarySystem.Resources.Student.Index.IndexTexts.StudentHELP_2
+                                            <img src="~/Content/img/Help/List_Options.png" alt="logo" />
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="footer-btn bg-dark-low"
+                                                    data-dismiss="modal">
+                                                @SchoolDiarySystem.Resources.Universal.UniversalTexts.Close
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
             @using (Html.BeginForm("Index", "Student", FormMethod.Get))
@@ -48,7 +87,7 @@
                 <form class="mg-b-20">
                     <div class="row gutters-8">
                         <div class="col-4-xxxl col-xl-10 col-lg-3 col-12 form-group">
-                            <input type="text" autocomplete="off" placeholder="Search by first or last name ..." name="searchString" class="form-control">
+                            <input type="text" autocomplete="off" placeholder="@SchoolDiarySystem.Resources.Student.Index.IndexTexts.SearchBy" name="searchString" class="form-control">
                         </div>
                         <div class="col-1-xxxl col-xl-2 col-lg-3 col-12 form-group">
                             <button type="submit" class="fw-btn-fill btn-gradient-yellow">@SchoolDiarySystem.Resources.Universal.UniversalTexts.Search</button>

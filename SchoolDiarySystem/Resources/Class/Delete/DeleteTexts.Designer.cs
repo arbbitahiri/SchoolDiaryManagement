@@ -79,6 +79,15 @@ namespace SchoolDiarySystem.Resources.Class.Delete {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Allows us to delete the class by clicking the DELETE button..
+        /// </summary>
+        public static string ClassHELP {
+            get {
+                return ResourceManager.GetString("ClassHELP", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Delete Class Form.
         /// </summary>
         public static string DCForm {

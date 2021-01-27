@@ -144,6 +144,9 @@
   <data name="StudDet" xml:space="preserve">
     <value>Detajet e Nxënësit</value>
   </data>
+  <data name="StudentHELP" xml:space="preserve">
+    <value>Na mundëson t’a fshijmë studentin, duke klikuar në butonin DELETE.</value>
+  </data>
   <data name="Sure" xml:space="preserve">
     <value>A jeni të sigurt që t'a fshini këtë nxënës?</value>
   </data>

@@ -129,6 +129,9 @@
   <data name="SelTeach" xml:space="preserve">
     <value>Select Teacher *</value>
   </data>
+  <data name="SubjectHELP" xml:space="preserve">
+    <value>Enables us to update a student's data with its relevant data: subject title, book, book author and teacher.</value>
+  </data>
   <data name="SubTitle" xml:space="preserve">
     <value>Subject Title *</value>
   </data>

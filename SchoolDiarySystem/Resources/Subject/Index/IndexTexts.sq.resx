@@ -153,6 +153,9 @@
   <data name="Subject" xml:space="preserve">
     <value>Lënda</value>
   </data>
+  <data name="SubjectHELP" xml:space="preserve">
+    <value>Na mundëson të shikojmë listën e lëndëve me të gjitha të dhënat e tyre. Krijimin, përditësimin, apo fshirjen e një lënde. Po ashtu dhe printimin ne Excel. Mund të bëhet kërkimi i titullit te lendes ose arsimtari i po asaj lende.</value>
+  </data>
   <data name="SubjectList" xml:space="preserve">
     <value>Lista e Lëndëve</value>
   </data>

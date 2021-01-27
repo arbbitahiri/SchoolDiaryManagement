@@ -205,6 +205,15 @@ namespace SchoolDiarySystem.Resources.Teacher.Index {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to It enables us to view the list of all teachers with their data. Creating, updating, deleting students, as well as printing in Excel. The search can be done by teacher&apos;s first name or last name..
+        /// </summary>
+        public static string TeacherHELP {
+            get {
+                return ResourceManager.GetString("TeacherHELP", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Teachers List.
         /// </summary>
         public static string TeachList {
